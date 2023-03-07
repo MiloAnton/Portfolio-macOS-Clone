@@ -3,147 +3,137 @@
     {
       "nom": "React",
       "description": "Bibliothèque JavaScript libre développée par Facebook pour faciliter la création d'interfaces utilisateur.",
-      "image": ""
+      "image": "./../assets/iconesStack/react.svg"
     },
     {
       "nom": "Angular",
       "description": "Plateforme de développement d'applications web développée par Google en TypeScript.",
-      "image": ""
+      "image": "./../assets/iconesStack/angular.svg"
     },
     {
       "nom": "Vite",
       "description": "Outil de construction d'applications web ultra-rapide et léger développé en JavaScript.",
-      "image": ""
+      "image": "vite"
     }
   ],
   "langages": [
     {
       "nom": "JavaScript",
       "description": "Langage de programmation de scripts principalement utilisé pour les pages web interactives et les applications web.",
-      "image": ""
+      "image": "./../assets/iconesStack/javascript.svg"
     },
     {
       "nom": "TypeScript",
       "description": "Langage de programmation libre et open source développé et maintenu par Microsoft qui ajoute des fonctionnalités à JavaScript.",
-      "image": ""
+      "image": "./../assets/iconesStack/typescript.svg"
     },
     {
       "nom": "C",
       "description": "Langage de programmation impératif généraliste développé à l'origine par Dennis Ritchie pour le système d'exploitation UNIX.",
-      "image": ""
+      "image": "./../assets/iconesStack/c.svg"
     },
     {
       "nom": "Python",
       "description": "Langage de programmation interprété, multi-paradigme et multiplateforme.",
-      "image": ""
+      "image": "./../assets/iconesStack/python.svg"
     },
     {
       "nom": "PHP",
       "description": "Langage de script open source principalement utilisé pour le développement web côté serveur.",
-      "image": ""
-    },
-    {
-      "nom": "HTML",
-      "description": "Langage de balisage utilisé pour créer et structurer du contenu pour le Web.",
-      "image": ""
-    },
-    {
-      "nom": "CSS",
-      "description": "Langage de feuilles de style utilisé pour décrire la présentation d'un document écrit en HTML.",
-      "image": ""
+      "image": "./../assets/iconesStack/php.svg"
     }
   ],
   "backend": [
     {
       "nom": "Django",
       "description": "Framework Web open source en Python pour le développement rapide d'applications sécurisées et maintenables.",
-      "image": ""
+      "image": "./../assets/iconesStack/django.svg"
     },
     {
       "nom": "NestJS",
       "description": "Framework Web en Node.js pour construire des applications efficaces, évolutives et robustes avec une architecture propre et maintenable.",
-      "image": ""
+      "image": "./../assets/iconesStack/nestjs.svg"
     },
     {
       "nom": "Express",
       "description": "Framework Web minimal et flexible pour Node.js qui fournit un ensemble de fonctionnalités pour les applications Web et mobiles.",
-      "image": ""
+      "image": "./../assets/iconesStack/express.png"
     },
     {
       "nom": "SQL",
       "description": "Langage de requête utilisé pour communiquer avec des bases de données relationnelles.",
-      "image": ""
+      "image": "./../assets/iconesStack/sql.svg"
     },
     {
       "nom": "MongoDB",
       "description": "Système de gestion de base de données orientée documents, open source et multiplateforme.",
-      "image": ""
+      "image": "./../assets/iconesStack/mongodb.svg"
     }
   ],
   "devops": [
     {
       "nom": "Git",
       "description": "Système de contrôle de version distribué gratuit et open source conçu pour gérer tout, depuis de petits projets jusqu'à de très grands projets avec rapidité et efficacité.",
-      "image": ""
+      "image": "./../assets/iconesStack/git.svg"
     },
     {
       "nom": "Sonarqube",
       "description": "Plateforme de qualité de code open source utilisée pour analyser et mesurer la qualité du code source.",
-      "image": ""
+      "image": "./../assets/iconesStack/sonarqube.png"
     },
     {
       "nom": "Ansible",
       "description": "Outil d'automatisation open source pour la gestion de configuration, le déploiement d'applications et la gestion d'orchestration.",
-      "image": ""
+      "image": "./../assets/iconesStack/ansible.svg"
     },
     {
       "nom": "Docker",
       "description": "Plateforme de conteneurisation open source qui permet aux développeurs de développer, tester et déployer des applications rapidement et facilement.",
-      "image": ""
+      "image": "./../assets/iconesStack/docker.svg"
     }
   ],
   "autres": [
     {
       "nom": "Figma",
       "description": "Outil de conception d'interface utilisateur basé sur le Web qui permet aux équipes de collaborer en temps réel.",
-      "image": ""
+      "image": "./../assets/iconesStack/figma.svg"
     },
     {
-      "nom": "Adobe Creative Cloud",
+      "nom": "Adobe CC",
       "description": "Suite de logiciels de création graphique, de montage vidéo et de développement web de la société Adobe Systems.",
-      "image": ""
+      "image": "./../assets/iconesStack/adobe.svg"
     },
     {
       "nom": "Notion",
       "description": "Outil de productivité tout-en-un qui combine des notes, des tâches, des wikis et des bases de données.",
-      "image": ""
+      "image": "./../assets/iconesStack/notion.svg"
     },
     {
-      "nom": "Google Suite",
+      "nom": "G-Suite",
       "description": "Suite de logiciels de productivité basés sur le Web comprenant Gmail, Google Drive, Google Docs, Sheets, Slides, etc.",
-      "image": ""
+      "image": "./../assets/iconesStack/gsuite.svg"
     },
     {
-      "nom": "Microsoft Office",
+      "nom": "Office",
       "description": "Suite de logiciels de productivité comprenant Word, Excel, PowerPoint, Outlook, etc.",
-      "image": ""
+      "image": "./../assets/iconesStack/office.svg"
     }
   ],
   "os": [
     {
       "nom": "Linux",
       "description": "Système d'exploitation de type Unix qui est gratuit et open source.",
-      "image": ""
+      "image": "./../assets/iconesStack/tux.svg"
     },
     {
       "nom": "macOS",
       "description": "Système d'exploitation propriétaire développé par Apple pour ses ordinateurs Macintosh.",
-      "image": ""
+      "image": "./../assets/iconesStack/apple.svg"
     },
     {
       "nom": "Windows",
       "description": "Système d'exploitation propriétaire développé par Microsoft pour les ordinateurs personnels.",
-      "image": ""
+      "image": "./../assets/iconesStack/windows.svg"
     }
   ]
 }

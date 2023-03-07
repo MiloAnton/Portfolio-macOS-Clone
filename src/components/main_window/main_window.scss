@@ -1,40 +1,42 @@
 .page {
+  overflow-y: scroll;
+  max-height: calc(100% - 60px);
+  scroll-behavior: smooth;
+  &:hover {
     overflow-y: scroll;
-    max-height: calc(100% - 60px);
-    scroll-behavior: smooth;
-    &:hover{
-      overflow-y:scroll;
-    }
-    &::-webkit-scrollbar {
-      width: 7px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      border-radius:20px;
-    }
-    
-    .content {
-      margin: auto;
-      max-width: 90%;
-      color: white;
+  }
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 20px;
+  }
 
-      .presentation {
-        display: flex;
-        align-items: center;
-        gap: 40px;
+  .content {
+    margin: auto;
+    max-width: 90%;
+    color: white;
 
-        .round {
-            height: 100px;
-            width: 100px;
-            border: 1px solid white;
-            border-radius: 1000px;
-        }
+    .presentation {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+
+      .round {
+        min-height: 100px;
+        min-width: 100px;
+        border: 1px solid white;
+        border-radius: 1000px;
+        background-image: url(./../../assets/profil.jpeg);
+        background-size: cover;
       }
+    }
 
-      .iconesStack {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
+    .iconesStack {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
   }
+}
