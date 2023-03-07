@@ -1,8 +1,10 @@
 .App {
-  margin: 80px 120px 80px 120px;
+  margin: 80px 200px 80px 200px;
+  max-width: 1600px;
   height: calc(100vh - 192px);
   background-color: #273138;
   border-radius: 18px;
+  box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);  
 
   @media screen and (max-width: 900px) {
     margin: 50px;
@@ -12,11 +14,5 @@
   @media screen and (max-width: 500px) {
     height: calc(100vh - 60px);
     margin: 15px;
-  }
-
-  .versionNumber {
-    margin-right: 20px;
-    color: white;
-    user-select: none;
   }
 }

@@ -1,4 +1,7 @@
 import "./main_window.scss";
+import listStack from "./../../ressources/listStack.json";
+import educationList from "./../../ressources/listEducation.json";
+import experienceList from "./../../ressources/listExperiences.json";
 
 export default function MainWindow() {
   return (
@@ -12,107 +15,72 @@ export default function MainWindow() {
           </div>
         </section>
         <section className="stack" id="stack">
-            <h2>Stack maîtrisée</h2>
-            <div className="iconesStack">
-                <p>O</p>
-                <p>O</p>
-                <p>O</p>
-                <p>O</p>
-                <p>O</p>
-                <p>O</p>
-                <p>O</p>
-                <p>O</p>
-            </div>
+          <h2>Stack maîtrisée</h2>
+          <h3>Frontend</h3>
+          <div className="iconesStack">
+            {listStack.frontend.map((element) => {
+              return <p>{element.nom}</p>;
+            })}
+          </div>
+          <h3>Backend</h3>
+          <div className="iconesStack">
+            {listStack.backend.map((element) => {
+              return <p>{element.nom}</p>;
+            })}
+          </div>
+          <h3>DevOps</h3>
+          <div className="iconesStack">
+            {listStack.devops.map((element) => {
+              return <p>{element.nom}</p>;
+            })}
+          </div>
+          <h3>Langages</h3>
+          <div className="iconesStack">
+            {listStack.langages.map((element) => {
+              return <p>{element.nom}</p>;
+            })}
+          </div>
+          <h3>Autres</h3>
+          <div className="iconesStack">
+            {listStack.autres.map((element) => {
+              return <p>{element.nom}</p>;
+            })}
+          </div>
+          <h3>OS</h3>
+          <div className="iconesStack">
+            {listStack.os.map((element) => {
+              return <p>{element.nom}</p>;
+            })}
+          </div>
         </section>
         <section className="experience" id="pro">
           <h2>Expériences</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            egestas luctus molestie. Nullam rhoncus ac turpis nec ultricies.
-            Nulla facilisi. Donec ligula massa, tristique a neque nec, euismod
-            tincidunt tortor. Donec auctor consectetur arcu sit amet posuere.
-            Suspendisse potenti. Mauris sed sapien hendrerit, varius nisi sed,
-            posuere nisi. Curabitur at nibh ipsum. Proin fermentum enim in
-            tortor dignissim posuere vel eu leo. Donec hendrerit facilisis
-            venenatis. Donec ut fringilla augue. Vestibulum sollicitudin neque
-            at magna facilisis, in vehicula massa convallis. Etiam dignissim vel
-            risus id bibendum. In hac habitasse platea dictumst. Fusce tempus
-            nisl sapien. Praesent bibendum, leo eu pellentesque pellentesque,
-            urna diam imperdiet magna, non tristique lorem nisi in purus.
-            Praesent tempus semper sapien, nec pretium urna dictum ut.
-            Pellentesque sed nulla tempus, bibendum nunc et, vehicula libero.
-            Morbi at condimentum sapien. Suspendisse gravida est vel facilisis
-            vestibulum. In sed scelerisque neque. Cras vel sem a nisl elementum
-            posuere et vel dolor. Morbi lacinia nisl nec gravida fringilla. In
-            molestie pharetra lectus euismod malesuada. Pellentesque venenatis
-            purus felis, eu suscipit elit suscipit vitae. Aenean libero velit,
-            volutpat id porta vitae, posuere ac enim.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            egestas luctus molestie. Nullam rhoncus ac turpis nec ultricies.
-            Nulla facilisi. Donec ligula massa, tristique a neque nec, euismod
-            tincidunt tortor. Donec auctor consectetur arcu sit amet posuere.
-            Suspendisse potenti. Mauris sed sapien hendrerit, varius nisi sed,
-            posuere nisi. Curabitur at nibh ipsum. Proin fermentum enim in
-            tortor dignissim posuere vel eu leo. Donec hendrerit facilisis
-            venenatis. Donec ut fringilla augue. Vestibulum sollicitudin neque
-            at magna facilisis, in vehicula massa convallis. Etiam dignissim vel
-            risus id bibendum. In hac habitasse platea dictumst. Fusce tempus
-            nisl sapien. Praesent bibendum, leo eu pellentesque pellentesque,
-            urna diam imperdiet magna, non tristique lorem nisi in purus.
-            Praesent tempus semper sapien, nec pretium urna dictum ut.
-            Pellentesque sed nulla tempus, bibendum nunc et, vehicula libero.
-            Morbi at condimentum sapien. Suspendisse gravida est vel facilisis
-            vestibulum. In sed scelerisque neque. Cras vel sem a nisl elementum
-            posuere et vel dolor. Morbi lacinia nisl nec gravida fringilla. In
-            molestie pharetra lectus euismod malesuada. Pellentesque venenatis
-            purus felis, eu suscipit elit suscipit vitae. Aenean libero velit,
-            volutpat id porta vitae, posuere ac enim.
-          </p>
+          {experienceList.experiences.map((element) => {
+            return (
+                <div>
+                    <h3>{element.entreprise}</h3>
+                    <p>{element.contrat}</p>
+                    <h4>{element.poste}</h4>
+                    <p>{element.localisation}</p>
+                    <p>{element.timeline}</p>
+                    <p>{element.description}</p>
+                </div>
+            )
+          })}
         </section>
         <section className="education" id="education">
           <h2>Education</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            egestas luctus molestie. Nullam rhoncus ac turpis nec ultricies.
-            Nulla facilisi. Donec ligula massa, tristique a neque nec, euismod
-            tincidunt tortor. Donec auctor consectetur arcu sit amet posuere.
-            Suspendisse potenti. Mauris sed sapien hendrerit, varius nisi sed,
-            posuere nisi. Curabitur at nibh ipsum. Proin fermentum enim in
-            tortor dignissim posuere vel eu leo. Donec hendrerit facilisis
-            venenatis. Donec ut fringilla augue. Vestibulum sollicitudin neque
-            at magna facilisis, in vehicula massa convallis. Etiam dignissim vel
-            risus id bibendum. In hac habitasse platea dictumst. Fusce tempus
-            nisl sapien. Praesent bibendum, leo eu pellentesque pellentesque,
-            urna diam imperdiet magna, non tristique lorem nisi in purus.
-            Praesent tempus semper sapien, nec pretium urna dictum ut.
-            Pellentesque sed nulla tempus, bibendum nunc et, vehicula libero.
-            Morbi at condimentum sapien. Suspendisse gravida est vel facilisis
-            vestibulum. In sed scelerisque neque. Cras vel sem a nisl elementum
-            posuere et vel dolor. Morbi lacinia nisl nec gravida fringilla. In
-            molestie pharetra lectus euismod malesuada. Pellentesque venenatis
-            purus felis, eu suscipit elit suscipit vitae. Aenean libero velit,
-            volutpat id porta vitae, posuere ac enim.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            egestas luctus molestie. Nullam rhoncus ac turpis nec ultricies.
-            Nulla facilisi. Donec ligula massa, tristique a neque nec, euismod
-            tincidunt tortor. Donec auctor consectetur arcu sit amet posuere.
-            Suspendisse potenti. Mauris sed sapien hendrerit, varius nisi sed,
-            posuere nisi. Curabitur at nibh ipsum. Proin fermentum enim in
-            tortor dignissim posuere vel eu leo. Donec hendrerit facilisis
-            venenatis. Donec ut fringilla augue. Vestibulum sollicitudin neque
-            at magna facilisis, in vehicula massa convallis. Etiam dignissim vel
-            risus id bibendum. In hac habitasse platea dictumst. Fusce tempus
-            nisl sapien. Praesent bibendum, leo eu pellentesque pellentesque,
-            urna diam imperdiet magna, non tristique lorem nisi in purus.
-            Praesent tempus semper sapien, nec pretium urna dictum ut.
-            Pellentesque sed nulla tempus, bibendum nunc et, vehicula libero.
-            Morbi at condimentum sapien. Suspendisse gravida est vel facilisis
-            vestibulum. In sed scelerisque neque. Cras vel sem a nisl elementum
-            posuere et vel dolor. Morbi lacinia nisl nec gravida fringilla. In
-            molestie pharetra lectus euismod malesuada. Pellentesque venenatis
-            purus felis, eu suscipit elit suscipit vitae. Aenean libero velit,
-            volutpat id porta vitae, posuere ac enim.
-          </p>
+          {educationList.education.map((element) => {
+            return (
+                <div>
+                    <h3>{element.ecole}</h3>
+                    <h4>{element.diplome}</h4>
+                    <p>{element.localisation}</p>
+                    <p>{element.timeline}</p>
+                    <p>{element.description}</p>
+                </div>
+            )
+          })}
         </section>
       </div>
     </section>

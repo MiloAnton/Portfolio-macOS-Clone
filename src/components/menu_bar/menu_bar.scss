@@ -47,4 +47,14 @@
         }
       }
     }
+    
+    .version {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-right: 20px;
+      gap: 20px;
+      color: white;
+      user-select: none;
+    }
 }

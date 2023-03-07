@@ -1,0 +1,44 @@
+{
+    "education": [
+        {
+            "ecole":"EFREI Paris",
+            "logo":"",
+            "localisation":"Villejuif",
+            "timeline":"2022 - 2024",
+            "diplome":"Mastère Dev Manager Full-stack",
+            "description":""
+        },
+        {
+            "ecole":"EFREI Paris",
+            "logo":"",
+            "localisation":"Villejuif",
+            "timeline":"2021 - 2022",
+            "diplome":"Bachelor Concepteur Développeur d'applications",
+            "description":""
+        },
+        {
+            "ecole":"Lycée Edmond Michelet",
+            "logo":"",
+            "localisation":"Arpajon",
+            "timeline":"2019 - 2021",
+            "diplome":"BTS Systèmes Numériques Informatique et Réseaux",
+            "description":""
+        },
+        {
+            "ecole":"Université Paris X Naterre",
+            "logo":"",
+            "localisation":"Nanterre",
+            "timeline":"2018 - 2019",
+            "diplome":"L1 STAPS (non obtenu)",
+            "description":""
+        },
+        {
+            "ecole":"Lycée Agricole et Horticole de Saint-Germain-en-Laye",
+            "logo":"",
+            "localisation":"Saint-Germain-en-Laye",
+            "timeline":"2015 - 2018",
+            "diplome":"Baccalauréat Scientifique - Option Biologie",
+            "description":""
+        }
+    ]
+}

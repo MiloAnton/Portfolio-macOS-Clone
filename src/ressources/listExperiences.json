@@ -1,0 +1,31 @@
+{
+    "experiences": [
+        {
+            "entreprise":"Collecty'form",
+            "logo":"",
+            "contrat":"Associé",
+            "localisation":"Distanciel",
+            "timeline":"2021 - ...",
+            "poste":"Directeur des Systèmes d'Information",
+            "description":""
+        },
+        {
+            "entreprise":"Bouygues Telecom",
+            "logo":"",
+            "contrat":"Alternance",
+            "localisation":"Meudon-la-forêt",
+            "timeline":"2021 - 2024",
+            "poste":"Concepteur - Développeur Full-Stack",
+            "description":""
+        },
+        {
+            "entreprise":"Orange Business Services",
+            "logo":"",
+            "contrat":"Stage",
+            "localisation":"Paris",
+            "timeline":"2020",
+            "poste":"Développeur web",
+            "description":""
+        }
+    ]
+}

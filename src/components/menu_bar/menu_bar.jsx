@@ -9,7 +9,10 @@ export default function MenuBar () {
                 <div className="minimizeButton" />
                 <div className="fullscreenButton" />
             </div>
-            <p className="versionNumber">v{version.version}</p>
+            <div className="version">
+                <p className="versionNumber">v{version.version}</p>
+                <p style={{ fontSize: "13px" }}>(07/03/2023)</p>
+            </div>
         </section>
     )
 }
