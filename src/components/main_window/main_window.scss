@@ -1,0 +1,40 @@
+.page {
+    overflow-y: scroll;
+    max-height: calc(100% - 60px);
+    scroll-behavior: smooth;
+    &:hover{
+      overflow-y:scroll;
+    }
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      border-radius:20px;
+    }
+    
+    .content {
+      margin: auto;
+      max-width: 90%;
+      color: white;
+
+      .presentation {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+
+        .round {
+            height: 100px;
+            width: 100px;
+            border: 1px solid white;
+            border-radius: 1000px;
+        }
+      }
+
+      .iconesStack {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  }

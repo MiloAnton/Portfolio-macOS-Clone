@@ -1,94 +1,22 @@
 .App {
   margin: 80px 120px 80px 120px;
-  height: calc(100vh - 162px);
+  height: calc(100vh - 192px);
   background-color: #273138;
   border-radius: 18px;
 
   @media screen and (max-width: 900px) {
     margin: 50px;
-    height: calc(100vh - 102px);
+    height: calc(100vh - 130px);
   }
 
   @media screen and (max-width: 500px) {
-    height: calc(100vh - 32px);
+    height: calc(100vh - 60px);
     margin: 15px;
   }
 
-  .toolbar {
-    height: 60px;
-    border-radius: 18px 18px 0 0;
-    display: flex;
-    justify-content: space-between;
-    
-    .buttons {
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      width: 100px;
-      margin-left: 10px;
-
-      .quitButton {
-        height: 15px;
-        width: 15px;
-        background-color: red;
-        border-radius: 1000px ;
-        transition: 0.14s ease-in-out;
-
-        &:hover {
-          background-color: rgb(194, 0, 0);
-        }
-      }
-
-      .minimizeButton {
-        height: 15px;
-        width: 15px;
-        background-color: orange;
-        border-radius: 1000px ;
-        transition: 0.14s ease-in-out;
-
-        &:hover {
-          background-color: rgb(196, 127, 0);
-        }
-      }
-
-      .fullscreenButton {
-        height: 15px;
-        width: 15px;
-        background-color: rgb(0, 155, 0);
-        border-radius: 1000px ;
-        transition: 0.14s ease-in-out;
-
-        &:hover {
-          background-color: green;
-        }
-      }
-    }
-
-    .versionNumber {
-      margin-right: 20px;
-      color: white;
-      user-select: none;
-    }
-  }
-
-  .page {
-    overflow-y: scroll;
-    max-height: calc(100% - 60px);
-    &:hover{
-      overflow-y:scroll;
-    }
-    &::-webkit-scrollbar {
-      width: 7px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      border-radius:20px;
-    }
-    
-    .content {
-      margin: auto;
-      max-width: 90%;
-      color: white;
-    }
+  .versionNumber {
+    margin-right: 20px;
+    color: white;
+    user-select: none;
   }
 }
