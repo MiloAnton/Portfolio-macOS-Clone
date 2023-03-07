@@ -3,16 +3,16 @@ import version from "./../package.json";
 
 export default function App() {
   return (
-    <div className="App">
-      <div className="toolbar">
+    <main className="App">
+      <section className="toolbar">
         <div className="buttons">
           <div className="quitButton" />
           <div className="minimizeButton" />
           <div className="fullscreenButton" />
         </div>
         <p className="versionNumber">v{version.version}</p>
-      </div>
-      <div className="page">
+      </section>
+      <section className="page">
         <div className="content">
           <h3>
             {" "}
@@ -179,7 +179,7 @@ export default function App() {
             euismod. Proin sodales finibus lorem sit amet gravida.
           </h3>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
