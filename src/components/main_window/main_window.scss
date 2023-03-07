@@ -14,9 +14,67 @@
   }
 
   .content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
     margin: auto;
     max-width: 90%;
     color: white;
+    margin-top: 30px;
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+
+      @media screen and (max-width: 520px) {
+        flex-direction: column;
+      }
+    }
+
+    .rowText {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 500px;
+    }
+
+    .experience {
+      .card-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+
+        @media screen and (max-width: 800px) {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .cardExperience {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        border: 1px solid white;
+        padding: 15px;
+        border-radius: 14px;
+        transition: 0.14s ease-in-out;
+
+        &:hover {
+          background-color: #49494988;
+          transform: scale(1.01);
+        }
+        
+        img {
+          max-height: 100px;
+          max-width: 130px;
+          margin-bottom: 10px;
+        }
+
+        h4, p {
+          margin: 5px;
+        }
+      }
+    }
 
     .presentation {
       display: flex;

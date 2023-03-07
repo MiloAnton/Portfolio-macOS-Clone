@@ -2,6 +2,9 @@ import "./main_window.scss";
 import listStack from "./../../ressources/listStack.json";
 import educationList from "./../../ressources/listEducation.json";
 import experienceList from "./../../ressources/listExperiences.json";
+import obs from "./../../assets/logosEntreprises/obs.png";
+import bytel from "./../../assets/logosEntreprises/bytel.png";
+import cf from "./../../assets/logosEntreprises/cf.png";
 
 export default function MainWindow() {
   return (
@@ -11,7 +14,7 @@ export default function MainWindow() {
           <div className="round" />
           <div>
             <h2>Milo Roche-Vandenbroucque</h2>
-            <h3>Alternant et entrepreneur pasionné !</h3>
+            <h3>Alternant et entrepreneur passionné !</h3>
           </div>
         </section>
         <section className="stack" id="stack">
@@ -21,7 +24,6 @@ export default function MainWindow() {
             {listStack.frontend.map((element) => {
               return (
                 <div>
-                  <img src={element.image} alt="logo"/>
                   <p>{element.nom}</p>
                 </div>
               );
@@ -60,32 +62,54 @@ export default function MainWindow() {
         </section>
         <section className="experience" id="pro">
           <h2>Expériences</h2>
-          {experienceList.experiences.map((element) => {
-            return (
-              <div>
-                <h3>{element.entreprise}</h3>
-                <p>{element.contrat}</p>
-                <h4>{element.poste}</h4>
-                <p>{element.localisation}</p>
-                <p>{element.timeline}</p>
-                <p>{element.description}</p>
-              </div>
-            );
-          })}
+            <div className="card-container">
+              {experienceList.experiences.map((element) => {
+                return (
+                    <div className="cardExperience">
+                      <div className="row">
+                        <img
+                          src={
+                            element.logo === "obs"
+                              ? obs
+                              : element.logo === "bytel"
+                              ? bytel
+                              : element.logo === "cf"
+                              ? cf
+                              : null
+                          }
+                          alt="logo"
+                        />
+                      </div>
+                      <div className="rowText">
+                        <h4>{element.poste}</h4>-<p>{element.contrat}</p>
+                      </div>
+                      <p>{element.timeline}</p>
+                      <ul>
+                        {element.description.map((item) => {
+                          return <li>{item}</li>;
+                        })}
+                      </ul>
+                    </div>
+                );
+              })}
+            </div>
         </section>
         <section className="education" id="education">
           <h2>Education</h2>
-          {educationList.education.map((element) => {
-            return (
-              <div>
-                <h3>{element.ecole}</h3>
-                <h4>{element.diplome}</h4>
-                <p>{element.localisation}</p>
-                <p>{element.timeline}</p>
-                <p>{element.description}</p>
-              </div>
-            );
-          })}
+            <div className="card-container">
+              {educationList.education.map((element) => {
+                return (
+                  <div className="cardEducation">
+                    <h3>{element.ecole}</h3>
+                    <h4>{element.diplome}</h4>
+                    <p>{element.localisation}</p>
+                    <p>{element.timeline}</p>
+                    <p>{element.description}</p>
+                    <p>---------------------------</p>
+                  </div>
+                );
+              })}
+            </div>
         </section>
       </div>
     </section>

@@ -2,30 +2,48 @@
   "experiences": [
     {
       "entreprise": "Collecty'form",
-      "logo": "",
+      "logo": "cf",
       "contrat": "Associé",
       "localisation": "Distanciel",
       "timeline": "2021 - ...",
-      "poste": "Directeur des Systèmes d'Information",
-      "description": ""
+      "poste": "Directeur des SI",
+      "description": [
+        "Responsable de la conception et de la globalité des développements et architectures informatiques de l'entreprise",
+        "Développement de portails et outils internes",
+        "Recrutement technique de candidats développeurs ou vidéastes",
+        "Référent technique sur les solutions numériques ",
+        "Référent partenariats avec acteurs dans le digital",
+        "Lead de l'équipe de développeurs",
+        "Mise en place et gestion de l'hébergement de la configuration de mails et outils professionnels"
+      ] 
     },
     {
       "entreprise": "Bouygues Telecom",
-      "logo": "",
+      "logo": "bytel",
       "contrat": "Alternance",
       "localisation": "Meudon-la-forêt",
       "timeline": "2021 - 2024",
-      "poste": "Concepteur - Développeur Full-Stack",
-      "description": ""
+      "poste": "Développeur Full-Stack",
+      "description": [
+        "Récupération des besoins clients",
+        "Design UI / UX et échanges avec le client",
+        "Conception et Développement d'un outil de suivi et consolidation budgétaire",
+        "Stack choisi : ReactJS-Boostrap / Python - Django - REST Framework / MongoDB",
+        "Travail en deux langues : Français et Anglais",
+        "Rédaction de la documentation",
+        "Évolutions de l’outil"
+      ] 
     },
     {
       "entreprise": "Orange Business Services",
-      "logo": "",
+      "logo": "obs",
       "contrat": "Stage",
       "localisation": "Paris",
       "timeline": "2020",
       "poste": "Développeur web",
-      "description": ""
+      "description": [
+        "Développement d'une fonctonnalité d'import, traitement (comparaison, calculs) puis export de fichiers Excel et Access dans une application web PHP/MariaDB."
+      ] 
     }
   ]
 }
