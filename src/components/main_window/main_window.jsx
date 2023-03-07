@@ -24,7 +24,7 @@ export default function MainWindow() {
             {listStack.frontend.map((element) => {
               return (
                 <div>
-                  <p>{element.nom}</p>
+                  <p key={element.nom}>{element.nom}</p>
                 </div>
               );
             })}
@@ -32,40 +32,40 @@ export default function MainWindow() {
           <h3>Backend</h3>
           <div className="iconesStack">
             {listStack.backend.map((element) => {
-              return <p>{element.nom}</p>;
+              return <p key={element.nom}>{element.nom}</p>;
             })}
           </div>
           <h3>DevOps</h3>
           <div className="iconesStack">
             {listStack.devops.map((element) => {
-              return <p>{element.nom}</p>;
+              return <p key={element.nom}>{element.nom}</p>;
             })}
           </div>
           <h3>Langages</h3>
           <div className="iconesStack">
             {listStack.langages.map((element) => {
-              return <p>{element.nom}</p>;
+              return <p key={element.nom}>{element.nom}</p>;
             })}
           </div>
           <h3>Autres</h3>
           <div className="iconesStack">
             {listStack.autres.map((element) => {
-              return <p>{element.nom}</p>;
+              return <p key={element.nom}>{element.nom}</p>;
             })}
           </div>
           <h3>OS</h3>
           <div className="iconesStack">
             {listStack.os.map((element) => {
-              return <p>{element.nom}</p>;
+              return <p key={element.nom}>{element.nom}</p>;
             })}
           </div>
         </section>
         <section className="experience" id="pro">
           <h2>Expériences</h2>
             <div className="card-container">
-              {experienceList.experiences.map((element) => {
+              {experienceList.experiences.map((element, index) => {
                 return (
-                    <div className="cardExperience">
+                    <div className="cardExperience" key={index}>
                       <div className="row">
                         <img
                           src={
@@ -86,7 +86,7 @@ export default function MainWindow() {
                       <p>{element.timeline}</p>
                       <ul>
                         {element.description.map((item) => {
-                          return <li>{item}</li>;
+                          return <li key={element.item}>{item}</li>;
                         })}
                       </ul>
                     </div>
@@ -97,9 +97,9 @@ export default function MainWindow() {
         <section className="education" id="education">
           <h2>Education</h2>
             <div className="card-container">
-              {educationList.education.map((element) => {
+              {educationList.education.map((element, index) => {
                 return (
-                  <div className="cardEducation">
+                  <div className="cardEducation" key={index}>
                     <h3>{element.ecole}</h3>
                     <h4>{element.diplome}</h4>
                     <p>{element.localisation}</p>
