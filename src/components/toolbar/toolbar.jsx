@@ -26,7 +26,7 @@ export default function Toolbar() {
           <p>Pro</p>
         </a>
         <a href="#education" title="Scroll vers mes diplômes">
-          <p>Education</p>
+          <p>Formation</p>
         </a>
       </div>
       <div className="icons">

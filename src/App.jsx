@@ -6,6 +6,7 @@ import ProjectsWindow from "./components/projects_window/projects_window";
 import LinksWindow from "./components/links_window/links_window";
 import MenuBar from "./components/menu_bar/menu_bar";
 import Toolbar from "./components/toolbar/toolbar";
+import Draggable from 'react-draggable';
 
 export default function App() {
   const availableComponents = {MainWindow, ProjectsWindow, LinksWindow}
@@ -25,12 +26,14 @@ export default function App() {
   }
 
   return (
-    <main>
+    <main className="bounds">
       <Toolbar />
-          <div className="App">
-            <MenuBar />
-            <DynamicComponent />
-          </div>
+      <Draggable handle="#handle">
+        <div className="App">
+          <MenuBar />
+          <DynamicComponent />
+        </div>
+      </Draggable>
       <Dock 
         setCurriculum={handleSetCurriculum}
         setProjects={handleSetProjects}

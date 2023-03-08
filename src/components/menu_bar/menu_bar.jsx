@@ -3,7 +3,7 @@ import version from "./../../../package.json";
 
 export default function MenuBar() {
   return (
-    <section className="menubar">
+    <section className="menubar" id="handle" style={{ cursor:"grab" }}>
       <div className="buttons">
         <div className="quitButton" />
         <div className="minimizeButton" />
