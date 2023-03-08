@@ -3,12 +3,12 @@
     {
       "nom": "React",
       "description": "Bibliothèque JavaScript libre développée par Facebook pour faciliter la création d'interfaces utilisateur.",
-      "image": "./../assets/iconesStack/react.svg"
+      "image": "react"
     },
     {
       "nom": "Angular",
       "description": "Plateforme de développement d'applications web développée par Google en TypeScript.",
-      "image": "./../assets/iconesStack/angular.svg"
+      "image": "angular"
     },
     {
       "nom": "Vite",
@@ -20,120 +20,120 @@
     {
       "nom": "JavaScript",
       "description": "Langage de programmation de scripts principalement utilisé pour les pages web interactives et les applications web.",
-      "image": "./../assets/iconesStack/javascript.svg"
+      "image": "javascript"
     },
     {
       "nom": "TypeScript",
       "description": "Langage de programmation libre et open source développé et maintenu par Microsoft qui ajoute des fonctionnalités à JavaScript.",
-      "image": "./../assets/iconesStack/typescript.svg"
+      "image": "typescript"
     },
     {
       "nom": "C",
       "description": "Langage de programmation impératif généraliste développé à l'origine par Dennis Ritchie pour le système d'exploitation UNIX.",
-      "image": "./../assets/iconesStack/c.svg"
+      "image": "c"
     },
     {
       "nom": "Python",
       "description": "Langage de programmation interprété, multi-paradigme et multiplateforme.",
-      "image": "./../assets/iconesStack/python.svg"
+      "image": "python"
     },
     {
       "nom": "PHP",
       "description": "Langage de script open source principalement utilisé pour le développement web côté serveur.",
-      "image": "./../assets/iconesStack/php.svg"
+      "image": "php"
     }
   ],
   "backend": [
     {
       "nom": "Django",
       "description": "Framework Web open source en Python pour le développement rapide d'applications sécurisées et maintenables.",
-      "image": "./../assets/iconesStack/django.svg"
+      "image": "django"
     },
     {
       "nom": "NestJS",
       "description": "Framework Web en Node.js pour construire des applications efficaces, évolutives et robustes avec une architecture propre et maintenable.",
-      "image": "./../assets/iconesStack/nestjs.svg"
+      "image": "nest"
     },
     {
       "nom": "Express",
       "description": "Framework Web minimal et flexible pour Node.js qui fournit un ensemble de fonctionnalités pour les applications Web et mobiles.",
-      "image": "./../assets/iconesStack/express.png"
+      "image": "express"
     },
     {
       "nom": "SQL",
       "description": "Langage de requête utilisé pour communiquer avec des bases de données relationnelles.",
-      "image": "./../assets/iconesStack/sql.svg"
+      "image": "sql"
     },
     {
       "nom": "MongoDB",
       "description": "Système de gestion de base de données orientée documents, open source et multiplateforme.",
-      "image": "./../assets/iconesStack/mongodb.svg"
+      "image": "mongo"
     }
   ],
   "devops": [
     {
       "nom": "Git",
       "description": "Système de contrôle de version distribué gratuit et open source conçu pour gérer tout, depuis de petits projets jusqu'à de très grands projets avec rapidité et efficacité.",
-      "image": "./../assets/iconesStack/git.svg"
+      "image": "git"
     },
     {
       "nom": "Sonarqube",
       "description": "Plateforme de qualité de code open source utilisée pour analyser et mesurer la qualité du code source.",
-      "image": "./../assets/iconesStack/sonarqube.png"
+      "image": "sonarqube"
     },
     {
       "nom": "Ansible",
       "description": "Outil d'automatisation open source pour la gestion de configuration, le déploiement d'applications et la gestion d'orchestration.",
-      "image": "./../assets/iconesStack/ansible.svg"
+      "image": "ansible"
     },
     {
       "nom": "Docker",
       "description": "Plateforme de conteneurisation open source qui permet aux développeurs de développer, tester et déployer des applications rapidement et facilement.",
-      "image": "./../assets/iconesStack/docker.svg"
+      "image": "docker"
     }
   ],
   "autres": [
     {
       "nom": "Figma",
       "description": "Outil de conception d'interface utilisateur basé sur le Web qui permet aux équipes de collaborer en temps réel.",
-      "image": "./../assets/iconesStack/figma.svg"
+      "image": "figma"
     },
     {
       "nom": "Adobe CC",
       "description": "Suite de logiciels de création graphique, de montage vidéo et de développement web de la société Adobe Systems.",
-      "image": "./../assets/iconesStack/adobe.svg"
+      "image": "adobecc"
     },
     {
       "nom": "Notion",
       "description": "Outil de productivité tout-en-un qui combine des notes, des tâches, des wikis et des bases de données.",
-      "image": "./../assets/iconesStack/notion.svg"
+      "image": "notion"
     },
     {
       "nom": "G-Suite",
       "description": "Suite de logiciels de productivité basés sur le Web comprenant Gmail, Google Drive, Google Docs, Sheets, Slides, etc.",
-      "image": "./../assets/iconesStack/gsuite.svg"
+      "image": "gsuite"
     },
     {
       "nom": "Office",
       "description": "Suite de logiciels de productivité comprenant Word, Excel, PowerPoint, Outlook, etc.",
-      "image": "./../assets/iconesStack/office.svg"
+      "image": "office"
     }
   ],
   "os": [
     {
       "nom": "Linux",
       "description": "Système d'exploitation de type Unix qui est gratuit et open source.",
-      "image": "./../assets/iconesStack/tux.svg"
+      "image": "tux"
     },
     {
       "nom": "macOS",
       "description": "Système d'exploitation propriétaire développé par Apple pour ses ordinateurs Macintosh.",
-      "image": "./../assets/iconesStack/apple.svg"
+      "image": "finder"
     },
     {
       "nom": "Windows",
       "description": "Système d'exploitation propriétaire développé par Microsoft pour les ordinateurs personnels.",
-      "image": "./../assets/iconesStack/windows.svg"
+      "image": "windows"
     }
   ]
 }

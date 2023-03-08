@@ -6,6 +6,31 @@ import obs from "./../../assets/logosEntreprises/obs.png";
 import bytel from "./../../assets/logosEntreprises/bytel.png";
 import cf from "./../../assets/logosEntreprises/cf.png";
 import demo from "./../../assets/demo.png";
+import adobecc from "./../../assets/iconesStack/adobecc.png";
+import angular from "./../../assets/iconesStack/angular.png";
+import ansible from "./../../assets/iconesStack/ansible.png";
+import c from "./../../assets/iconesStack/c.png";
+import django from "./../../assets/iconesStack/django.png";
+import docker from "./../../assets/iconesStack/docker.webp";
+import express from "./../../assets/iconesStack/express.png";
+import figma from "./../../assets/iconesStack/figma.png";
+import finder from "./../../assets/iconesStack/finder.png";
+import git from "./../../assets/iconesStack/git.png";
+import gsuite from "./../../assets/iconesStack/gsuite.png";
+import javascript from "./../../assets/iconesStack/javascript.png";
+import mongo from "./../../assets/iconesStack/mongo.png";
+import nest from "./../../assets/iconesStack/nest.png";
+import notion from "./../../assets/iconesStack/notion.png";
+import office from "./../../assets/iconesStack/office.png";
+import php from "./../../assets/iconesStack/php.png";
+import python from "./../../assets/iconesStack/python.png";
+import react from "./../../assets/iconesStack/react.png";
+import sonarqube from "./../../assets/iconesStack/sonarqube.png";
+import sql from "./../../assets/iconesStack/sql.png";
+import tux from "./../../assets/iconesStack/tux.png";
+import typescript from "./../../assets/iconesStack/typescript.png";
+import vite from "./../../assets/iconesStack/vite.png";
+import windows from "./../../assets/iconesStack/windows.png";
 
 export default function MainWindow() {
   return (
@@ -24,46 +49,176 @@ export default function MainWindow() {
         </section>
         <section className="stack" id="stack">
           <h2>Stack maîtrisée</h2>
-          <h3>Frontend</h3>
-          <div className="iconesStack">
-            {listStack.frontend.map((element) => {
-              return (
-                <div>
-                  <p key={element.nom}>{element.nom}</p>
+          <div className="gridStack">
+            <div>
+                <h3>Frontend</h3>
+                <div className="iconesStack">
+                    {listStack.frontend.map((element) => {
+                    return (
+                        <div style={{ textAlign:"center" }}>
+                            <img 
+                                src={
+                                    element.image === "react" 
+                                    ? react
+                                    : element.image === "angular" 
+                                        ? angular
+                                        : element.image === "vite"
+                                            ? vite
+                                            : null
+                                } 
+                                alt="logo"
+                                height="40px" 
+                            />
+                        <p key={element.nom}>{element.nom}</p>
+                        </div>
+                    );
+                    })}
                 </div>
-              );
-            })}
+            </div>
+            <div>
+                <h3>Backend</h3>
+                <div className="iconesStack">
+                    {listStack.backend.map((element) => {
+                    return (
+                        <div style={{ textAlign:"center" }}>
+                            <img 
+                                src={
+                                    element.image === "django" 
+                                    ? django
+                                    : element.image === "nest" 
+                                        ? nest
+                                        : element.image === "express"
+                                            ? express
+                                            : element.image === "sql"
+                                                ? sql
+                                                : element.image === "mongo"
+                                                    ? mongo
+                                                    : null
+                                } 
+                                alt="logo"
+                                height="40px" 
+                            />
+                            <p key={element.nom}>{element.nom}</p>
+                        </div>
+                    )
+                    })}
+                </div>
+            </div>
           </div>
-          <h3>Backend</h3>
-          <div className="iconesStack">
-            {listStack.backend.map((element) => {
-              return <p key={element.nom}>{element.nom}</p>;
-            })}
+          <div className="gridStack">
+            <div>
+                <h3>DevOps</h3>
+                <div className="iconesStack">
+                    {listStack.devops.map((element) => {
+                    return (
+                        <div style={{ textAlign:"center" }}>
+                            <img 
+                                src={
+                                    element.image === "git" 
+                                    ? git
+                                    : element.image === "sonarqube" 
+                                        ? sonarqube
+                                        : element.image === "ansible"
+                                            ? ansible
+                                            : element.image === "docker"
+                                                ? docker
+                                                : null
+                                } 
+                                alt="logo"
+                                height="40px" 
+                            />
+                            <p key={element.nom}>{element.nom}</p>
+                        </div>
+                    )
+                    })}
+                </div>
+            </div>
+            <div>
+                <h3>Langages</h3>
+                <div className="iconesStack">
+                    {listStack.langages.map((element) => {
+                    return (
+                        <div style={{ textAlign:"center" }}>
+                            <img 
+                                src={
+                                    element.image === "javascript" 
+                                    ? javascript
+                                    : element.image === "typescript" 
+                                        ? typescript
+                                        : element.image === "c"
+                                            ? c
+                                            : element.image === "python"
+                                                ? python
+                                                : element.image === "php"
+                                                    ? php
+                                                    : null
+                                } 
+                                alt="logo"
+                                height="40px" 
+                            />
+                            <p key={element.nom}>{element.nom}</p>
+                        </div>
+                    )
+                    })}
+                </div>
+            </div>
           </div>
-          <h3>DevOps</h3>
-          <div className="iconesStack">
-            {listStack.devops.map((element) => {
-              return <p key={element.nom}>{element.nom}</p>;
-            })}
-          </div>
-          <h3>Langages</h3>
-          <div className="iconesStack">
-            {listStack.langages.map((element) => {
-              return <p key={element.nom}>{element.nom}</p>;
-            })}
-          </div>
-          <h3>Autres</h3>
-          <div className="iconesStack">
-            {listStack.autres.map((element) => {
-              return <p key={element.nom}>{element.nom}</p>;
-            })}
-          </div>
-          <h3>OS</h3>
-          <div className="iconesStack">
-            {listStack.os.map((element) => {
-              return <p key={element.nom}>{element.nom}</p>;
-            })}
-          </div>
+          <div className="gridStack">
+            <div>
+                <h3>Autres</h3>
+                <div className="iconesStack">
+                    {listStack.autres.map((element) => {
+                    return (
+                        <div style={{ textAlign:"center" }}>
+                            <img 
+                                src={
+                                    element.image === "figma" 
+                                    ? figma
+                                    : element.image === "adobecc" 
+                                        ? adobecc
+                                        : element.image === "notion"
+                                            ? notion
+                                            : element.image === "gsuite"
+                                                ? gsuite
+                                                : element.image === "office"
+                                                    ? office
+                                                    : null
+                                } 
+                                alt="logo"
+                                height="40px" 
+                            />
+                            <p key={element.nom}>{element.nom}</p>
+                        </div>
+                    )
+                    })}
+                </div>
+            </div>
+            <div>
+                <h3>OS</h3>
+                <div className="iconesStack">
+                    {listStack.os.map((element) => {
+                    return (
+                        <div style={{ textAlign:"center" }}>
+                            <img 
+                                src={
+                                    element.image === "tux" 
+                                    ? tux
+                                    : element.image === "finder" 
+                                        ? finder
+                                        : element.image === "windows"
+                                            ? windows
+                                            : null
+                                } 
+                                alt="logo"
+                                height="40px" 
+                            />
+                            <p key={element.nom}>{element.nom}</p>
+                        </div>
+                    )
+                    })}
+                </div>
+            </div>
+            </div>
         </section>
         <section className="experience" id="pro">
           <h2>Expériences</h2>
