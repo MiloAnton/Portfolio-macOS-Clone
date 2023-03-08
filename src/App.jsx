@@ -7,6 +7,7 @@ import LinksWindow from "./components/links_window/links_window";
 import MenuBar from "./components/menu_bar/menu_bar";
 import Toolbar from "./components/toolbar/toolbar";
 import Draggable from 'react-draggable';
+import Tutorial from "./components/tutorial/tutorial";
 
 export default function App() {
   const availableComponents = {MainWindow, ProjectsWindow, LinksWindow}
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <main className="bounds">
+      <Tutorial />
       <Toolbar />
       <Draggable handle="#handle">
         <div className="App">

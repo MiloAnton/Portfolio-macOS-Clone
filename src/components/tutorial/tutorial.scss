@@ -1,0 +1,82 @@
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.tuto_container {
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
+  height: 200px;
+  width: 600px;
+  cursor: grab;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
+  margin: auto;
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100px;
+
+    .quitButton {
+      height: 15px;
+      width: 15px;
+      cursor: pointer;
+      background-color: red;
+      border-radius: 1000px;
+      transition: 0.14s ease-in-out;
+
+      &:hover {
+        background-color: rgb(194, 0, 0);
+      }
+    }
+
+    .minimizeButton {
+      height: 15px;
+      width: 15px;
+      background-color: orange;
+      border-radius: 1000px;
+      transition: 0.14s ease-in-out;
+
+      &:hover {
+        background-color: rgb(196, 127, 0);
+      }
+    }
+
+    .fullscreenButton {
+      height: 15px;
+      width: 15px;
+      background-color: rgb(0, 155, 0);
+      border-radius: 1000px;
+      transition: 0.14s ease-in-out;
+
+      &:hover {
+        background-color: green;
+      }
+    }
+  }
+}
