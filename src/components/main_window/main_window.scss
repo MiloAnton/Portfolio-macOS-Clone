@@ -12,6 +12,7 @@
     background-color: darkgrey;
     border-radius: 20px;
   }
+  overflow-x: hidden;
 
   .content {
     display: flex;
@@ -37,6 +38,21 @@
       align-items: center;
       gap: 10px;
       max-width: 500px;
+    }
+
+    .demoMobile {
+      display: none;
+
+      @media screen and (max-width: 520px) {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        img {
+          max-width: 100%;
+          border-radius: 10px;
+        }
+      }
     }
 
     .experience {

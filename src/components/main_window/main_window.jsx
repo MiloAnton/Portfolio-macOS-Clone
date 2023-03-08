@@ -5,16 +5,21 @@ import experienceList from "./../../ressources/listExperiences.json";
 import obs from "./../../assets/logosEntreprises/obs.png";
 import bytel from "./../../assets/logosEntreprises/bytel.png";
 import cf from "./../../assets/logosEntreprises/cf.png";
+import demo from "./../../assets/demo.png";
 
 export default function MainWindow() {
   return (
     <section className="page">
       <div className="content">
+        <section className="demoMobile">
+            <p>Profitez de l'expérience complète sur Desktop !</p>
+            <img src={demo} alt="demo screenshot on desktop"/>
+        </section>
         <section className="presentation" id="perso">
           <div className="round" />
           <div>
             <h2>Milo Roche-Vandenbroucque</h2>
-            <h3>Alternant et entrepreneur passionné !</h3>
+            <h3>Étudiant, Alternant et Entrepreneur passionné 💪💻🎉</h3>
           </div>
         </section>
         <section className="stack" id="stack">

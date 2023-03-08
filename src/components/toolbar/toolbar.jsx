@@ -17,7 +17,7 @@ export default function Toolbar() {
           alt="Icône de coeur"
         />
         <a href="#perso" title="Scroll vers la présentation">
-          <p>Milo</p>
+          <p><b>Milo</b></p>
         </a>
         <a href="#stack" title="Scroll vers ma stack technique">
           <p>Stack</p>
