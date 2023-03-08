@@ -255,7 +255,7 @@ export default function MainWindow() {
             </div>
         </section>
         <section className="education" id="education">
-          <h2>Education</h2>
+          <h2>Formation</h2>
             <div className="card-container">
               {educationList.education.map((element, index) => {
                 return (

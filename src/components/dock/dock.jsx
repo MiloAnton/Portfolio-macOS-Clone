@@ -1,4 +1,19 @@
 import "./dock.scss";
+import finder from "./../../assets/iconesDock/finder.png"
+import siri from "./../../assets/iconesDock/siri.png"
+import appstore from "./../../assets/iconesDock/appstore.png"
+import contacts from "./../../assets/iconesDock/contacts.png"
+import facetime from "./../../assets/iconesDock/facetime.png"
+import launchpad from "./../../assets/iconesDock/launchpad.png"
+import message from "./../../assets/iconesDock/message.png"
+import music from "./../../assets/iconesDock/music.png"
+import notes from "./../../assets/iconesDock/notes.png"
+import photos from "./../../assets/iconesDock/photos.png"
+import podcasts from "./../../assets/iconesDock/podcasts.png"
+import reminders from "./../../assets/iconesDock/reminders.png"
+import safari from "./../../assets/iconesDock/safari.png"
+import trash from "./../../assets/iconesDock/trash.png"
+import tv from "./../../assets/iconesDock/tv.png"
 
 export default function Dock(props) {
   let icons = document.querySelectorAll(".ico");
@@ -41,7 +56,7 @@ export default function Dock(props) {
           <div className="name">Finder</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853981255cc36b3a37af_finder.png"
+            src={finder}
             alt=""
           />
         </li>
@@ -49,7 +64,7 @@ export default function Dock(props) {
           <div className="name">Projets</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853ff3bafbac60495771_siri.png"
+            src={siri}
             alt=""
           />
         </li>
@@ -57,7 +72,7 @@ export default function Dock(props) {
           <div className="name">Liens</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853943597517f128b9b4_launchpad.png"
+            src={launchpad}
             alt=""
           />
         </li>
@@ -65,7 +80,7 @@ export default function Dock(props) {
           <div className="name">Contacts</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853743597518c528b9b3_contacts.png"
+            src={contacts}
             alt=""
           />
         </li>
@@ -73,7 +88,7 @@ export default function Dock(props) {
           <div className="name">Notes</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853c849ec3735b52cef9_notes.png"
+            src={notes}
             alt=""
           />
         </li>
@@ -81,7 +96,7 @@ export default function Dock(props) {
           <div className="name">Reminders</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853d44d99641ce69afeb_reminders.png"
+            src={reminders}
             alt=""
           />
         </li>
@@ -89,7 +104,7 @@ export default function Dock(props) {
           <div className="name">Photos</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853c55558a2e1192ee09_photos.png"
+            src={photos}
             alt=""
           />
         </li>
@@ -97,7 +112,7 @@ export default function Dock(props) {
           <div className="name">Messages</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853a55558a68e192ee08_messages.png"
+            src={message}
             alt=""
           />
         </li>
@@ -105,7 +120,7 @@ export default function Dock(props) {
           <div className="name">FaceTime</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f708537f18e2cb27247c904_facetime.png"
+            src={facetime}
             alt=""
           />
         </li>
@@ -113,7 +128,7 @@ export default function Dock(props) {
           <div className="name">Music</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853ba0782d6ff2aca6b3_music.png"
+            src={music}
             alt=""
           />
         </li>
@@ -121,7 +136,7 @@ export default function Dock(props) {
           <div className="name">Podcasts</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853cc718ba9ede6888f9_podcasts.png"
+            src={podcasts}
             alt=""
           />
         </li>
@@ -129,7 +144,7 @@ export default function Dock(props) {
           <div className="name">TV</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f708540dd82638d7b8eda70_tv.png"
+            src={tv}
             alt=""
           />
         </li>
@@ -137,7 +152,7 @@ export default function Dock(props) {
           <div className="name">App Store</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853270b5e2ccfd795b49_appstore.png"
+            src={appstore}
             alt=""
           />
         </li>
@@ -145,7 +160,7 @@ export default function Dock(props) {
           <div className="name">Safari</div>
           <img
             className="ico"
-            src="https://uploads-ssl.webflow.com/5f7081c044fb7b3321ac260e/5f70853ddd826358438eda6d_safari.png"
+            src={safari}
             alt=""
           />
         </li>
@@ -153,7 +168,7 @@ export default function Dock(props) {
           <div className="name">Bin</div>
           <img
             className="ico ico-bin"
-            src="https://findicons.com/files/icons/569/longhorn_objects/128/trash.png"
+            src={trash}
             alt=""
           />
         </li>

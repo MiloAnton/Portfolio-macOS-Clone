@@ -27,10 +27,10 @@ export default function App() {
   return (
     <main>
       <Toolbar />
-      <div className="App">
-        <MenuBar />
-        <DynamicComponent />
-      </div>
+          <div className="App">
+            <MenuBar />
+            <DynamicComponent />
+          </div>
       <Dock 
         setCurriculum={handleSetCurriculum}
         setProjects={handleSetProjects}
