@@ -55,7 +55,7 @@ export default function MainWindow() {
                 <div className="iconesStack">
                     {listStack.frontend.map((element) => {
                     return (
-                        <div style={{ textAlign:"center" }}>
+                        <div style={{ textAlign:"center" }} title={element.description}>
                             <img 
                                 src={
                                     element.image === "react" 
@@ -80,7 +80,7 @@ export default function MainWindow() {
                 <div className="iconesStack">
                     {listStack.backend.map((element) => {
                     return (
-                        <div style={{ textAlign:"center" }}>
+                        <div style={{ textAlign:"center" }} title={element.description}>
                             <img 
                                 src={
                                     element.image === "django" 
@@ -111,7 +111,7 @@ export default function MainWindow() {
                 <div className="iconesStack">
                     {listStack.devops.map((element) => {
                     return (
-                        <div style={{ textAlign:"center" }}>
+                        <div style={{ textAlign:"center" }} title={element.description}>
                             <img 
                                 src={
                                     element.image === "git" 
@@ -138,7 +138,7 @@ export default function MainWindow() {
                 <div className="iconesStack">
                     {listStack.langages.map((element) => {
                     return (
-                        <div style={{ textAlign:"center" }}>
+                        <div style={{ textAlign:"center" }} title={element.description}>
                             <img 
                                 src={
                                     element.image === "javascript" 
@@ -169,7 +169,7 @@ export default function MainWindow() {
                 <div className="iconesStack">
                     {listStack.autres.map((element) => {
                     return (
-                        <div style={{ textAlign:"center" }}>
+                        <div style={{ textAlign:"center" }} title={element.description}>
                             <img 
                                 src={
                                     element.image === "figma" 
@@ -198,7 +198,7 @@ export default function MainWindow() {
                 <div className="iconesStack">
                     {listStack.os.map((element) => {
                     return (
-                        <div style={{ textAlign:"center" }}>
+                        <div style={{ textAlign:"center" }} title={element.description}>
                             <img 
                                 src={
                                     element.image === "tux" 
