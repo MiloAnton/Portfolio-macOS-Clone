@@ -2,25 +2,18 @@ import "./tutorial.scss";
 import { useState, useEffect } from "react";
 import Draggable from 'react-draggable';
 
-export default function Tutorial() {
+export default function Tutorial(props) {
     const [displayed, setDisplayed] = useState(false)
 
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            setDisplayed(true);
-        }, 1000)
-        return () => {
-            clearTimeout(timeoutId)
-        };
-    }, []);
-
-    return displayed ? (
+    return (
         <Draggable handle="#handle">
-            <section className="tuto_container" id="handle">
-                <div className="buttons">
-                    <div className="quitButton" onClick={() => setDisplayed(false)}/>
-                    <div className="minimizeButton" />
-                    <div className="fullscreenButton" />
+            <section className="tuto_container" style={{ zIndex:props.zIndex }} onMouseDownCapture={() => props.handleClickZIndex()}>
+                <div id="handle" style={{ cursor:"grab" }}>
+                    <div className="buttons">
+                        <div className="quitButton" onClick={() => props.setDisplayed(false)}/>
+                        <div className="minimizeButton" />
+                        <div className="fullscreenButton" />
+                    </div>
                 </div>
                 <div className="content">
                     <h2>Bienvenue !</h2>
@@ -29,5 +22,5 @@ export default function Tutorial() {
                 </div>
             </section>
         </Draggable>
-    ) : null
+    )
 }

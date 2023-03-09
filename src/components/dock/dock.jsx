@@ -164,7 +164,7 @@ export default function Dock(props) {
             alt=""
           />
         </li>
-        <li className="li-bin li-15">
+        <li className="li-bin li-15" onClick={() => props.setTutorial()}>
           <div className="name">Bin</div>
           <img
             className="ico ico-bin"

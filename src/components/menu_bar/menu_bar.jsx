@@ -10,7 +10,7 @@ export default function MenuBar() {
         <div className="fullscreenButton" />
       </div>
       <div className="version">
-        <p className="versionNumber" title="Version du 08/03/2023">
+        <p className="versionNumber" title="Version du 09/03/2023">
           v{version.version}
         </p>
       </div>
