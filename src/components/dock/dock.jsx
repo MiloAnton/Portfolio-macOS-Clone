@@ -1,8 +1,8 @@
 import "./dock.scss";
 import finder from "./../../assets/iconesDock/finder.png"
-import siri from "./../../assets/iconesDock/siri.png"
-import appstore from "./../../assets/iconesDock/appstore.png"
-import contacts from "./../../assets/iconesDock/contacts.png"
+import projects from "./../../assets/iconesDock/projects.png"
+import links from "./../../assets/iconesDock/links.png"
+import people from "./../../assets/iconesDock/people.png"
 import facetime from "./../../assets/iconesDock/facetime.png"
 import launchpad from "./../../assets/iconesDock/launchpad.png"
 import message from "./../../assets/iconesDock/message.png"
@@ -64,7 +64,7 @@ export default function Dock(props) {
           <div className="name">Projets</div>
           <img
             className="ico"
-            src={siri}
+            src={projects}
             alt=""
           />
         </li>
@@ -72,15 +72,15 @@ export default function Dock(props) {
           <div className="name">Liens</div>
           <img
             className="ico"
-            src={launchpad}
+            src={links}
             alt=""
           />
         </li>
         <li className="li-4">
-          <div className="name">Contacts</div>
+          <div className="name">Références</div>
           <img
             className="ico"
-            src={contacts}
+            src={people}
             alt=""
           />
         </li>
@@ -92,7 +92,7 @@ export default function Dock(props) {
             alt=""
           />
         </li>
-        <li className="li-6">
+        {/* <li className="li-6">
           <div className="name">Reminders</div>
           <img
             className="ico"
@@ -148,14 +148,6 @@ export default function Dock(props) {
             alt=""
           />
         </li>
-        <li className="li-12">
-          <div className="name">App Store</div>
-          <img
-            className="ico"
-            src={appstore}
-            alt=""
-          />
-        </li>
         <li className="li-14">
           <div className="name">Safari</div>
           <img
@@ -163,7 +155,7 @@ export default function Dock(props) {
             src={safari}
             alt=""
           />
-        </li>
+        </li> */}
         <li className="li-bin li-15" onClick={() => props.setTutorial()}>
           <div className="name">Bin</div>
           <img

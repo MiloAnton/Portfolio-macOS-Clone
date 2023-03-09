@@ -1,10 +1,7 @@
 import "./tutorial.scss";
-import { useState, useEffect } from "react";
 import Draggable from 'react-draggable';
 
 export default function Tutorial(props) {
-    const [displayed, setDisplayed] = useState(false)
-
     return (
         <Draggable handle="#handle">
             <section className="tuto_container" style={{ zIndex:props.zIndex }} onMouseDownCapture={() => props.handleClickZIndex()}>

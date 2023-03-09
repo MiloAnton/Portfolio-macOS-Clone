@@ -1,5 +1,6 @@
 import "./toolbar.scss";
 import heart from "./../../assets/heart.svg";
+import CircumIcon from "@klarr-agency/circum-icons-react";
 
 export default function Toolbar() {
   const current = new Date();
@@ -30,8 +31,12 @@ export default function Toolbar() {
         </a>
       </div>
       <div className="icons">
+        <CircumIcon name="cloud_on"/>
+        <CircumIcon name="bluetooth"/>
+        <CircumIcon name="battery_full"/>
         <p>{date}</p>
         <p>9:41 am</p>
+        <CircumIcon name="logout"/>
       </div>
     </section>
   );
