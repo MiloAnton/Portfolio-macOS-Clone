@@ -65,7 +65,7 @@
     }
 
     .experience {
-      .card-container{
+      .card-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
@@ -88,14 +88,15 @@
           background-color: #49494988;
           transform: scale(1.01);
         }
-        
+
         img {
           max-height: 100px;
           max-width: 130px;
           margin-bottom: 10px;
         }
 
-        h4, p {
+        h4,
+        p {
           margin: 5px;
         }
       }

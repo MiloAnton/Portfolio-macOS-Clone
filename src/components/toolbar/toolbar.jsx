@@ -18,7 +18,9 @@ export default function Toolbar() {
           alt="Icône de coeur"
         />
         <a href="#perso" title="Scroll vers la présentation">
-          <p><b>Milo</b></p>
+          <p>
+            <b>Milo</b>
+          </p>
         </a>
         <a href="#stack" title="Scroll vers ma stack technique">
           <p>Stack</p>
@@ -31,12 +33,12 @@ export default function Toolbar() {
         </a>
       </div>
       <div className="icons">
-        <CircumIcon name="cloud_on"/>
-        <CircumIcon name="bluetooth"/>
-        <CircumIcon name="battery_full"/>
+        <CircumIcon name="cloud_on" />
+        <CircumIcon name="bluetooth" />
+        <CircumIcon name="battery_full" />
         <p>{date}</p>
         <p>9:41 am</p>
-        <CircumIcon name="logout"/>
+        <CircumIcon name="logout" />
       </div>
     </section>
   );

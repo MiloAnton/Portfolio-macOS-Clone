@@ -1,19 +1,10 @@
 import "./dock.scss";
-import finder from "./../../assets/iconesDock/finder.png"
-import projects from "./../../assets/iconesDock/projects.png"
-import links from "./../../assets/iconesDock/links.png"
-import people from "./../../assets/iconesDock/people.png"
-import facetime from "./../../assets/iconesDock/facetime.png"
-import launchpad from "./../../assets/iconesDock/launchpad.png"
-import message from "./../../assets/iconesDock/message.png"
-import music from "./../../assets/iconesDock/music.png"
-import notes from "./../../assets/iconesDock/notes.png"
-import photos from "./../../assets/iconesDock/photos.png"
-import podcasts from "./../../assets/iconesDock/podcasts.png"
-import reminders from "./../../assets/iconesDock/reminders.png"
-import safari from "./../../assets/iconesDock/safari.png"
-import trash from "./../../assets/iconesDock/trash.png"
-import tv from "./../../assets/iconesDock/tv.png"
+import finder from "./../../assets/iconesDock/finder.png";
+import projects from "./../../assets/iconesDock/projects.png";
+import links from "./../../assets/iconesDock/links.png";
+import people from "./../../assets/iconesDock/people.png";
+import notes from "./../../assets/iconesDock/notes.png";
+import trash from "./../../assets/iconesDock/trash.png";
 
 export default function Dock(props) {
   let icons = document.querySelectorAll(".ico");
@@ -54,115 +45,27 @@ export default function Dock(props) {
       <div className="dock-container">
         <li className="li-1" onClick={() => props.setCurriculum()}>
           <div className="name">Finder</div>
-          <img
-            className="ico"
-            src={finder}
-            alt=""
-          />
+          <img className="ico" src={finder} alt="" />
         </li>
         <li className="li-2" onClick={() => props.setProjects()}>
           <div className="name">Projets</div>
-          <img
-            className="ico"
-            src={projects}
-            alt=""
-          />
+          <img className="ico" src={projects} alt="" />
         </li>
         <li className="li-3" onClick={() => props.setLinks()}>
           <div className="name">Liens</div>
-          <img
-            className="ico"
-            src={links}
-            alt=""
-          />
+          <img className="ico" src={links} alt="" />
         </li>
         <li className="li-4">
           <div className="name">Références</div>
-          <img
-            className="ico"
-            src={people}
-            alt=""
-          />
+          <img className="ico" src={people} alt="" />
         </li>
         <li className="li-5">
           <div className="name">Notes</div>
-          <img
-            className="ico"
-            src={notes}
-            alt=""
-          />
+          <img className="ico" src={notes} alt="" />
         </li>
-        {/* <li className="li-6">
-          <div className="name">Reminders</div>
-          <img
-            className="ico"
-            src={reminders}
-            alt=""
-          />
-        </li>
-        <li className="li-7">
-          <div className="name">Photos</div>
-          <img
-            className="ico"
-            src={photos}
-            alt=""
-          />
-        </li>
-        <li className="li-8">
-          <div className="name">Messages</div>
-          <img
-            className="ico"
-            src={message}
-            alt=""
-          />
-        </li>
-        <li className="li-9">
-          <div className="name">FaceTime</div>
-          <img
-            className="ico"
-            src={facetime}
-            alt=""
-          />
-        </li>
-        <li className="li-10">
-          <div className="name">Music</div>
-          <img
-            className="ico"
-            src={music}
-            alt=""
-          />
-        </li>
-        <li className="li-11">
-          <div className="name">Podcasts</div>
-          <img
-            className="ico"
-            src={podcasts}
-            alt=""
-          />
-        </li>
-        <li className="li-12">
-          <div className="name">TV</div>
-          <img
-            className="ico"
-            src={tv}
-            alt=""
-          />
-        </li>
-        <li className="li-14">
-          <div className="name">Safari</div>
-          <img
-            className="ico"
-            src={safari}
-            alt=""
-          />
-        </li> */}
         <li className="li-bin li-15" onClick={() => props.setTutorial()}>
           <div className="name">Bin</div>
-          <img
-            className="ico ico-bin"
-            src={trash}
-            alt=""
-          />
+          <img className="ico ico-bin" src={trash} alt="" />
         </li>
       </div>
     </div>

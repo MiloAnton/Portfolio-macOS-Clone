@@ -15,7 +15,7 @@
         "Référent partenariats avec acteurs dans le digital",
         "Lead de l'équipe de développeurs",
         "Mise en place et gestion de l'hébergement de la configuration de mails et outils professionnels"
-      ] 
+      ]
     },
     {
       "entreprise": "Bouygues Telecom",
@@ -32,7 +32,7 @@
         "Travail en deux langues : Français et Anglais",
         "Rédaction de la documentation",
         "Évolutions de l’outil"
-      ] 
+      ]
     },
     {
       "entreprise": "Orange Business Services",
@@ -43,7 +43,7 @@
       "poste": "Développeur web",
       "description": [
         "Développement d'une fonctonnalité d'import, traitement (comparaison, calculs) puis export de fichiers Excel et Access dans une application web PHP/MariaDB."
-      ] 
+      ]
     }
   ]
 }

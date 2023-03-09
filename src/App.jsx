@@ -63,23 +63,23 @@ export default function App() {
     zIndexMainWindow,
     zIndexProjectsWindow,
     zIndexLinksWindow,
-    zIndexTutorial
+    zIndexTutorial,
   ]);
 
   useEffect(() => {
-    handleClickZIndexMainWindow()
+    handleClickZIndexMainWindow();
   }, [displayedMainWindow]);
 
   useEffect(() => {
-    handleClickZIndexProjectsWindow()
+    handleClickZIndexProjectsWindow();
   }, [displayedProjectsWindow]);
 
   useEffect(() => {
-    handleClickZIndexLinksWindow()
+    handleClickZIndexLinksWindow();
   }, [displayedLinksWindow]);
 
   useEffect(() => {
-    handleClickZIndexTutorial()
+    handleClickZIndexTutorial();
   }, [displayedTutorial]);
 
   const handleSetCurriculum = () => {

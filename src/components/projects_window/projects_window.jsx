@@ -4,7 +4,11 @@ import MenuBar from "../menu_bar/menu_bar";
 export default function ProjectsWindow(props) {
   return (
     <Draggable handle="#handle">
-      <div className="App" style={{ zIndex:props.zIndex }} onMouseDownCapture={() => props.handleClickZIndex()}>
+      <div
+        className="App"
+        style={{ zIndex: props.zIndex }}
+        onMouseDownCapture={() => props.handleClickZIndex()}
+      >
         <MenuBar />
         <section className="page">
           <div className="content">
