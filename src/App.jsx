@@ -8,11 +8,10 @@ import Toolbar from "./components/toolbar/toolbar";
 import Tutorial from "./components/tutorial/tutorial";
 
 export default function App() {
-
-  const [displayedTutorial, setDisplayedTutorial] = useState(true)
-  const [displayedMainWindow, setDisplayedMainWindow] = useState(true)
-  const [displayedProjectsWindow, setDisplayedProjectsWindow] = useState(false)
-  const [displayedLinksWindow, setDisplayedLinksWindow] = useState(false)
+  const [displayedTutorial, setDisplayedTutorial] = useState(true);
+  const [displayedMainWindow, setDisplayedMainWindow] = useState(true);
+  const [displayedProjectsWindow, setDisplayedProjectsWindow] = useState(false);
+  const [displayedLinksWindow, setDisplayedLinksWindow] = useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
@@ -22,69 +21,133 @@ export default function App() {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
     zIndexLinksWindow: zIndexLinksWindow,
-    zIndexTutorial: zIndexTutorial
+    zIndexTutorial: zIndexTutorial,
   };
-  const [maxZIndexVarName, setMaxZIndexVarName] = useState('zIndexMainWindow');
+  const [maxZIndexVarName, setMaxZIndexVarName] = useState("zIndexMainWindow");
   const maxZIndex = zIndexValues[maxZIndexVarName];
 
   const handleClickZIndexMainWindow = () => {
-    setZIndexMinWindow(maxZIndex + 1)
+    setZIndexMinWindow(maxZIndex + 1);
   };
 
   const handleClickZIndexProjectsWindow = () => {
-    setZIndexProjectsWindow(maxZIndex + 1)
+    setZIndexProjectsWindow(maxZIndex + 1);
   };
 
   const handleClickZIndexLinksWindow = () => {
-    setZIndexLinksWindow(maxZIndex + 1)
+    setZIndexLinksWindow(maxZIndex + 1);
   };
 
   const handleClickZIndexTutorial = () => {
-    setZIndexTutorial(maxZIndex + 1)
+    setZIndexTutorial(maxZIndex + 1);
   };
 
   useEffect(() => {
-    if (zIndexMainWindow >= zIndexProjectsWindow && zIndexMainWindow >= zIndexLinksWindow && zIndexMainWindow >= zIndexTutorial) {
-      setMaxZIndexVarName('zIndexMainWindow');
-    } else if (zIndexProjectsWindow >= zIndexLinksWindow && zIndexProjectsWindow >= zIndexTutorial) {
-      setMaxZIndexVarName('zIndexProjectsWindow');
+    if (
+      zIndexMainWindow >= zIndexProjectsWindow &&
+      zIndexMainWindow >= zIndexLinksWindow &&
+      zIndexMainWindow >= zIndexTutorial
+    ) {
+      setMaxZIndexVarName("zIndexMainWindow");
+    } else if (
+      zIndexProjectsWindow >= zIndexLinksWindow &&
+      zIndexProjectsWindow >= zIndexTutorial
+    ) {
+      setMaxZIndexVarName("zIndexProjectsWindow");
     } else if (zIndexLinksWindow >= zIndexTutorial) {
-      setMaxZIndexVarName('zIndexLinksWindow');
+      setMaxZIndexVarName("zIndexLinksWindow");
     } else {
-      setMaxZIndexVarName('zIndexTutorial');
+      setMaxZIndexVarName("zIndexTutorial");
     }
-  }, [zIndexMainWindow, zIndexProjectsWindow, zIndexLinksWindow, zIndexTutorial])
+  }, [
+    zIndexMainWindow,
+    zIndexProjectsWindow,
+    zIndexLinksWindow,
+    zIndexTutorial
+  ]);
+
+  useEffect(() => {
+    handleClickZIndexMainWindow()
+  }, [displayedMainWindow]);
+
+  useEffect(() => {
+    handleClickZIndexProjectsWindow()
+  }, [displayedProjectsWindow]);
+
+  useEffect(() => {
+    handleClickZIndexLinksWindow()
+  }, [displayedLinksWindow]);
+
+  useEffect(() => {
+    handleClickZIndexTutorial()
+  }, [displayedTutorial]);
 
   const handleSetCurriculum = () => {
-    setDisplayedMainWindow(!displayedMainWindow)
-  }
+    setDisplayedMainWindow(!displayedMainWindow);
+  };
 
   const handleSetProjects = () => {
-    setDisplayedProjectsWindow(!displayedProjectsWindow)
-  }
+    setDisplayedProjectsWindow(!displayedProjectsWindow);
+  };
 
   const handleSetLinks = () => {
-    setDisplayedLinksWindow(!displayedLinksWindow)
-  }
+    setDisplayedLinksWindow(!displayedLinksWindow);
+  };
 
   const handleSetDisplayTutorial = () => {
-    setDisplayedTutorial(!displayedTutorial)
-  }
+    setDisplayedTutorial(!displayedTutorial);
+  };
 
   return (
     <main className="bounds">
       <Toolbar />
-      {
-        [
-          { component: <MainWindow setDisplayed={handleSetCurriculum} zIndex={zIndexMainWindow} handleClickZIndex={handleClickZIndexMainWindow} />, displayed: displayedMainWindow },
-          { component: <ProjectsWindow setDisplayed={handleSetProjects} zIndex={zIndexProjectsWindow} handleClickZIndex={handleClickZIndexProjectsWindow} />, displayed: displayedProjectsWindow },
-          { component: <LinksWindow setDisplayed={handleSetLinks} zIndex={zIndexLinksWindow} handleClickZIndex={handleClickZIndexLinksWindow} />, displayed: displayedLinksWindow },
-          { component: <Tutorial setDisplayed={handleSetDisplayTutorial} zIndex={zIndexTutorial} handleClickZIndex={handleClickZIndexTutorial} />, displayed: displayedTutorial }
-        ]
-          .filter(item => item.displayed)
-          .map((item, index) => <React.Fragment key={index}>{item.component}</React.Fragment>)
-      }
-      <Dock 
+      {[
+        {
+          component: (
+            <MainWindow
+              setDisplayed={handleSetCurriculum}
+              zIndex={zIndexMainWindow}
+              handleClickZIndex={handleClickZIndexMainWindow}
+            />
+          ),
+          displayed: displayedMainWindow,
+        },
+        {
+          component: (
+            <ProjectsWindow
+              setDisplayed={handleSetProjects}
+              zIndex={zIndexProjectsWindow}
+              handleClickZIndex={handleClickZIndexProjectsWindow}
+            />
+          ),
+          displayed: displayedProjectsWindow,
+        },
+        {
+          component: (
+            <LinksWindow
+              setDisplayed={handleSetLinks}
+              zIndex={zIndexLinksWindow}
+              handleClickZIndex={handleClickZIndexLinksWindow}
+            />
+          ),
+          displayed: displayedLinksWindow,
+        },
+        {
+          component: (
+            <Tutorial
+              setDisplayed={handleSetDisplayTutorial}
+              zIndex={zIndexTutorial}
+              handleClickZIndex={handleClickZIndexTutorial}
+            />
+          ),
+          displayed: displayedTutorial,
+        },
+      ]
+        .filter((item) => item.displayed)
+        .map((item, index) => (
+          <React.Fragment key={index}>{item.component}</React.Fragment>
+        ))}
+      <Dock
         setCurriculum={handleSetCurriculum}
         setProjects={handleSetProjects}
         setLinks={handleSetLinks}

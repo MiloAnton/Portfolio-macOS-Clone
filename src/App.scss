@@ -22,9 +22,8 @@
   box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
   -webkit-animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  position: fixed;
+  position: absolute;
   user-select: none;
-  
 
   @media screen and (max-width: 900px) {
     margin: 50px;
