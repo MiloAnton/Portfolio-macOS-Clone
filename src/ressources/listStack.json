@@ -90,6 +90,11 @@
       "nom": "Docker",
       "description": "Plateforme de conteneurisation open source qui permet aux développeurs de développer, tester et déployer des applications rapidement et facilement.",
       "image": "docker"
+    },
+    {
+      "nom": "Jira",
+      "description": "Logiciel de gestion de projet et de support technique développé par Atlassian.",
+      "image": "jira"
     }
   ],
   "autres": [

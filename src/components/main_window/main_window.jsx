@@ -18,6 +18,7 @@ import finder from "./../../assets/iconesStack/finder.png";
 import git from "./../../assets/iconesStack/git.png";
 import gsuite from "./../../assets/iconesStack/gsuite.png";
 import javascript from "./../../assets/iconesStack/javascript.png";
+import jira from "./../../assets/iconesStack/jira.png";
 import mongo from "./../../assets/iconesStack/mongo.png";
 import nest from "./../../assets/iconesStack/nest.png";
 import notion from "./../../assets/iconesStack/notion.png";
@@ -140,6 +141,8 @@ export default function MainWindow(props) {
                                 ? ansible
                                 : element.image === "docker"
                                 ? docker
+                                : element.image === "jira"
+                                ? jira
                                 : null
                             }
                             alt="logo"
