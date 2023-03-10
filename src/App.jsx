@@ -68,18 +68,22 @@ export default function App() {
 
   useEffect(() => {
     handleClickZIndexMainWindow();
+    // eslint-disable-next-line
   }, [displayedMainWindow]);
 
   useEffect(() => {
     handleClickZIndexProjectsWindow();
+    // eslint-disable-next-line
   }, [displayedProjectsWindow]);
 
   useEffect(() => {
     handleClickZIndexLinksWindow();
+    // eslint-disable-next-line
   }, [displayedLinksWindow]);
 
   useEffect(() => {
     handleClickZIndexTutorial();
+    // eslint-disable-next-line
   }, [displayedTutorial]);
 
   const handleSetCurriculum = () => {
@@ -100,7 +104,7 @@ export default function App() {
 
   return (
     <main className="bounds">
-      <Toolbar />
+      <Toolbar focusedWindow={maxZIndexVarName} />
       {[
         {
           component: (

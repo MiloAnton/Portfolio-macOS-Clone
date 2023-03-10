@@ -11,7 +11,7 @@ export default function MenuBar() {
         <div className="fullscreenButton" />
       </div>
       <div className="version">
-        <a href="https://github.com/MiloAnton/Portfolio" target="_blank">
+        <a href="https://github.com/MiloAnton/Portfolio" target="_blank" rel="noreferrer">
           <img src={github} height="30px" alt="Logo de github" />
         </a>
         <p className="versionNumber" title="Version du 09/03/2023">
