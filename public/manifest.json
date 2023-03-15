@@ -4,7 +4,6 @@
   "short_name": "Milo",
   "start_url": ".",
   "lang": "en-US",
-  "theme_color": "#F5F5F5",
   "display": "standalone",
   "icons": [
     {

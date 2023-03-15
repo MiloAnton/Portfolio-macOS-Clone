@@ -16,7 +16,13 @@ Are used in this project :
 
 ## Changelog
 
-### 0.3.4 (current)
+### 0.3.5 (current)
+
+- Added an internal browser to mimic safari (iframe)
+- Added a Welcome Animation
+- Fixes and improvements
+
+### 0.3.4
 
 - Added completed recent changelog in this README
 - Fixed tutorial window's draggable handle

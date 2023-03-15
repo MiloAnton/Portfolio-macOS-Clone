@@ -4,6 +4,7 @@ import projects from "./../../assets/iconesDock/projects.png";
 import people from "./../../assets/iconesDock/people.png";
 import notes from "./../../assets/iconesDock/notes.png";
 import trash from "./../../assets/iconesDock/trash.png";
+import safari from "./../../assets/iconesDock/safari.png";
 
 export default function Dock(props) {
   let icons = document.querySelectorAll(".ico");
@@ -50,9 +51,9 @@ export default function Dock(props) {
           <div className="name">Projets</div>
           <img className="ico" src={projects} alt="" />
         </li>
-        <li className="li-4">
-          <div className="name">Références</div>
-          <img className="ico" src={people} alt="" />
+        <li className="li-4" onClick={() => props.setSafari()}>
+          <div className="name">Safari</div>
+          <img className="ico" src={safari} alt="" />
         </li>
         <li className="li-5">
           <div className="name">Notes</div>

@@ -5,19 +5,31 @@ import MainWindow from "./components/main_window/main_window";
 import ProjectsWindow from "./components/projects_window/projects_window";
 import Toolbar from "./components/toolbar/toolbar";
 import Tutorial from "./components/tutorial/tutorial";
+import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
+import InternalBrowser from "./components/internal_browser/InternalBrowser";
 
 export default function App() {
+  const [isWelcomeAnimationVisible, setIsWelcomeAnimationVisible] =
+    useState(true);
+
+  const handleAnimationEnd = () => {
+    setIsWelcomeAnimationVisible(false);
+  };
+
   const [displayedTutorial, setDisplayedTutorial] = useState(true);
   const [displayedMainWindow, setDisplayedMainWindow] = useState(true);
   const [displayedProjectsWindow, setDisplayedProjectsWindow] = useState(false);
+  const [displayedSafari, setDisplayedSafari] = useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
   const [zIndexTutorial, setZIndexTutorial] = useState(1);
+  const [zIndexSafari, setZIndexSafari] = useState(1);
   const zIndexValues = {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
     zIndexTutorial: zIndexTutorial,
+    zIndexSafari: zIndexSafari,
   };
   const [maxZIndexVarName, setMaxZIndexVarName] = useState("zIndexMainWindow");
   const maxZIndex = zIndexValues[maxZIndexVarName];
@@ -34,22 +46,31 @@ export default function App() {
     setZIndexTutorial(maxZIndex + 1);
   };
 
+  const handleClickZIndexSafari = () => {
+    setZIndexSafari(maxZIndex + 1);
+  };
+
   useEffect(() => {
     if (
       zIndexMainWindow >= zIndexProjectsWindow &&
+      zIndexMainWindow >= zIndexSafari &&
       zIndexMainWindow >= zIndexTutorial
     ) {
       setMaxZIndexVarName("zIndexMainWindow");
     } else if (
+      zIndexProjectsWindow >= zIndexSafari &&
       zIndexProjectsWindow >= zIndexTutorial
     ) {
       setMaxZIndexVarName("zIndexProjectsWindow");
+    } else if (zIndexSafari >= zIndexTutorial) {
+      setMaxZIndexVarName("zIndexSafari");
     } else {
       setMaxZIndexVarName("zIndexTutorial");
     }
   }, [
     zIndexMainWindow,
     zIndexProjectsWindow,
+    zIndexSafari,
     zIndexTutorial,
   ]);
 
@@ -80,8 +101,15 @@ export default function App() {
     setDisplayedTutorial(!displayedTutorial);
   };
 
+  const handleSetDisplaySafari = () => {
+    setDisplayedSafari(!displayedSafari);
+  };
+
   return (
     <main className="bounds">
+      {isWelcomeAnimationVisible && (
+        <WelcomeAnimation onAnimationEnd={handleAnimationEnd} />
+      )}
       <Toolbar focusedWindow={maxZIndexVarName} />
       {[
         {
@@ -89,6 +117,7 @@ export default function App() {
             <MainWindow
               setDisplayed={handleSetCurriculum}
               zIndex={zIndexMainWindow}
+              handle="#handle"
               handleClickZIndex={handleClickZIndexMainWindow}
             />
           ),
@@ -114,6 +143,16 @@ export default function App() {
           ),
           displayed: displayedTutorial,
         },
+        {
+          component: (
+            <InternalBrowser
+              setDisplayed={handleSetDisplaySafari}
+              zIndex={zIndexSafari}
+              handleClickZIndex={handleClickZIndexSafari}
+            />
+          ),
+          displayed: displayedSafari,
+        },
       ]
         .filter((item) => item.displayed)
         .map((item, index) => (
@@ -123,6 +162,7 @@ export default function App() {
         setCurriculum={handleSetCurriculum}
         setProjects={handleSetProjects}
         setTutorial={handleSetDisplayTutorial}
+        setSafari={handleSetDisplaySafari}
       />
     </main>
   );

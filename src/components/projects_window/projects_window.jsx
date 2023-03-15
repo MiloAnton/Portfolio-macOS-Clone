@@ -15,6 +15,9 @@ export default function ProjectsWindow(props) {
             <h2 style={{ color: "white", textAlign: "center" }}>
               Projets (bientôt disponible)
             </h2>
+            <p>
+              Mes projets seront visibles sur <br/>cette fenêtre et seront consultables sur <br/>votre navigateur, ou à travers un navigateur interne.
+            </p>
           </div>
         </section>
       </div>

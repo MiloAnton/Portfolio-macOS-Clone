@@ -22,34 +22,27 @@ export default function Toolbar(props) {
             <b>Milo</b>
           </p>
         </a>
-        {
-          props.focusedWindow === "zIndexMainWindow" ? (
-            <>
-              <a href="#stack" title="Scroll vers ma stack technique">
-                <p>Stack</p>
-              </a>
-              <a href="#pro" title="Scroll vers mes expériences">
-                <p>Pro</p>
-              </a>
-              <a href="#education" title="Scroll vers mes diplômes">
-                <p>Formation</p>
-              </a>
-            </>
-          ) : props.focusedWindow === "zIndexProjectsWindow" ? (
-            <a href="#projects" title="Scroll vers mes projets">
-              <p>Projets</p>
+        {props.focusedWindow === "zIndexMainWindow" ? (
+          <>
+            <a href="#stack" title="Scroll vers ma stack technique">
+              <p>Stack</p>
             </a>
-          ) : props.focusedWindow === "zIndexPeopleWindow" ? (
-            <a href="#people" title="Scroll vers mes liens">
-              <p>Liens</p>
+            <a href="#pro" title="Scroll vers mes expériences">
+              <p>Pro</p>
             </a>
-          ) : null
-        }
-        
+            <a href="#education" title="Scroll vers mes diplômes">
+              <p>Formation</p>
+            </a>
+          </>
+        ) : props.focusedWindow === "zIndexProjectsWindow" ? (
+          <a href="#projects" title="Scroll vers mes projets">
+            <p>Projets</p>
+          </a>
+        ) : null}
       </div>
       <div className="icons">
         <div title="Super le cloud">
-          <CircumIcon name="cloud_on"/>
+          <CircumIcon name="cloud_on" />
         </div>
         <div title="Bluetooth enabled">
           <CircumIcon name="bluetooth" />
@@ -59,7 +52,12 @@ export default function Toolbar(props) {
         </div>
         <p title="Date du jour">{date}</p>
         <p title="2007 ?">9:41 am</p>
-        <a title="Bisous" href="https://www.bisous.fr" target="_blank" rel="noreferrer">
+        <a
+          title="Bisous"
+          href="https://www.bisous.fr"
+          target="_blank"
+          rel="noreferrer"
+        >
           <CircumIcon name="logout" />
         </a>
       </div>

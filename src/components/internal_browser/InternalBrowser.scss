@@ -1,0 +1,52 @@
+.InternalBrowser {
+  margin: 40px 200px 80px 200px;
+  max-width: 1600px;
+  min-width: 900px;
+  height: calc(100vh - 192px);
+  background-color: #f2f2f2;
+  border-radius: 18px;
+  box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
+  -webkit-animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  position: absolute;
+  overflow: scroll;
+  user-select: none;
+}
+
+.internal-browser-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #ebebeb;
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.internal-browser-input {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  outline: none;
+}
+
+.internal-browser-button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-left: 10px;
+  color: #4a4a4a;
+}
+
+.internal-browser-iframe {
+  width: 100%;
+  height: calc(
+    100% - 52px
+  ); /* 52px pour tenir compte de la hauteur du formulaire et de la bordure */
+  border: none;
+}
