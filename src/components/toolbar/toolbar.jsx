@@ -39,10 +39,6 @@ export default function Toolbar(props) {
             <a href="#projects" title="Scroll vers mes projets">
               <p>Projets</p>
             </a>
-          ) : props.focusedWindow === "zIndexLinksWindow" ? (
-            <a href="#links" title="Scroll vers mes liens">
-              <p>Liens</p>
-            </a>
           ) : props.focusedWindow === "zIndexPeopleWindow" ? (
             <a href="#people" title="Scroll vers mes liens">
               <p>Liens</p>
@@ -52,12 +48,20 @@ export default function Toolbar(props) {
         
       </div>
       <div className="icons">
-        <CircumIcon name="cloud_on" />
-        <CircumIcon name="bluetooth" />
-        <CircumIcon name="battery_full" />
-        <p>{date}</p>
-        <p>9:41 am</p>
-        <CircumIcon name="logout" />
+        <div title="Super le cloud">
+          <CircumIcon name="cloud_on"/>
+        </div>
+        <div title="Bluetooth enabled">
+          <CircumIcon name="bluetooth" />
+        </div>
+        <div title="Battery : 95%">
+          <CircumIcon name="battery_full" />
+        </div>
+        <p title="Date du jour">{date}</p>
+        <p title="2007 ?">9:41 am</p>
+        <a title="Bisous" href="https://www.bisous.fr" target="_blank" rel="noreferrer">
+          <CircumIcon name="logout" />
+        </a>
       </div>
     </section>
   );

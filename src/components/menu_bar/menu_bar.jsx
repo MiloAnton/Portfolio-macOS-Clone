@@ -14,7 +14,7 @@ export default function MenuBar() {
         <a href="https://github.com/MiloAnton/Portfolio" target="_blank" rel="noreferrer">
           <img src={github} height="30px" alt="Logo de github" />
         </a>
-        <p className="versionNumber" title="Version du 09/03/2023">
+        <p className="versionNumber" title="Version du 15/03/2023">
           v{version.version}
         </p>
       </div>

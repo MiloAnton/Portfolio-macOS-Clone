@@ -1,7 +1,6 @@
 import "./dock.scss";
 import finder from "./../../assets/iconesDock/finder.png";
 import projects from "./../../assets/iconesDock/projects.png";
-import links from "./../../assets/iconesDock/links.png";
 import people from "./../../assets/iconesDock/people.png";
 import notes from "./../../assets/iconesDock/notes.png";
 import trash from "./../../assets/iconesDock/trash.png";
@@ -44,16 +43,12 @@ export default function Dock(props) {
     <div className="dock">
       <div className="dock-container">
         <li className="li-1" onClick={() => props.setCurriculum()}>
-          <div className="name">Finder</div>
+          <div className="name">WHOAMI</div>
           <img className="ico" src={finder} alt="" />
         </li>
         <li className="li-2" onClick={() => props.setProjects()}>
           <div className="name">Projets</div>
           <img className="ico" src={projects} alt="" />
-        </li>
-        <li className="li-3" onClick={() => props.setLinks()}>
-          <div className="name">Liens</div>
-          <img className="ico" src={links} alt="" />
         </li>
         <li className="li-4">
           <div className="name">Références</div>

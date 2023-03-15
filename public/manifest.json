@@ -1,15 +1,19 @@
 {
-  "short_name": "Portfolio Milo",
-  "name": "Milo's Portfolio",
+  "name": "Portfolio Milo",
+  "description": "Portfolio de Milo Roche-Vandenbroucque ! Découvrez ma stack technique, mes expériences et mes diplômes !",
+  "short_name": "Milo",
+  "start_url": ".",
+  "lang": "en-US",
+  "theme_color": "#F5F5F5",
+  "display": "standalone",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "%PUBLIC_URL%/logo192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "%PUBLIC_URL%/logo512.png",
+      "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#F5F5F5"
+  ]
 }
