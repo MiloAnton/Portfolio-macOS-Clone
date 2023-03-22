@@ -52,14 +52,13 @@ export default function Toolbar(props) {
         </div>
         <p title="Date du jour">{date}</p>
         <p title="2007 ?">9:41 am</p>
-        <a
+        <div
           title="Bisous"
-          href="https://www.bisous.fr"
-          target="_blank"
-          rel="noreferrer"
+          onClick={() => props.Login()}
+          style={{ cursor: "pointer" }}
         >
           <CircumIcon name="logout" />
-        </a>
+        </div>
       </div>
     </section>
   );

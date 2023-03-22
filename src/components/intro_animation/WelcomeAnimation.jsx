@@ -20,7 +20,9 @@ const WelcomeAnimation = ({ onAnimationEnd }) => {
     <div
       className={`welcome-animation ${isAnimationFinished ? "fadeOut" : ""}`}
     >
-      <img src={logo} alt="Logo" className="welcome-logo" />
+      <div class="spinner">
+        <div class="spinnerin"></div>
+      </div>
     </div>
   );
 };

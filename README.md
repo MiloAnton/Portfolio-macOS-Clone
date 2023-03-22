@@ -16,11 +16,13 @@ Are used in this project :
 
 ## Changelog
 
-### 0.3.6 (current)
+### 0.4.0 (current)
 
+- Added a fake Login page
 - Added shortcuts instead of URL input on InternalBrowser
 - Fixed z-index bug on InternalBrowser
-- 
+- Changed animation on "session load"
+- Bug fixes and improvements
 
 ### 0.3.5
 

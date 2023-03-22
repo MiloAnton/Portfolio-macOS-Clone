@@ -16,7 +16,9 @@ export default function ProjectsWindow(props) {
               Projets (bientôt disponible)
             </h2>
             <p>
-              Mes projets seront visibles sur <br/>cette fenêtre et seront consultables sur <br/>votre navigateur, ou à travers un navigateur interne.
+              Mes projets seront visibles sur <br />
+              cette fenêtre et seront consultables sur <br />
+              votre navigateur, ou à travers un navigateur interne.
             </p>
           </div>
         </section>
