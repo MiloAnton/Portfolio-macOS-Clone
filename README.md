@@ -16,7 +16,13 @@ Are used in this project :
 
 ## Changelog
 
-### 0.3.5 (current)
+### 0.3.6 (current)
+
+- Added shortcuts instead of URL input on InternalBrowser
+- Fixed z-index bug on InternalBrowser
+- 
+
+### 0.3.5
 
 - Added an internal browser to mimic safari (iframe)
 - Added a Welcome Animation
