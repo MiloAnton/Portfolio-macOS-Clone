@@ -1,10 +1,10 @@
-import React from 'react';
-import Draggable from 'react-draggable';
-import MenuBar from '../menu_bar/menu_bar';
-import './InternalBrowser.scss';
+import React from "react";
+import Draggable from "react-draggable";
+import MenuBar from "../menu_bar/menu_bar";
+import "./InternalBrowser.scss";
 
 const InternalBrowser = (props) => {
-  const [url, setUrl] = React.useState('');
+  const [url, setUrl] = React.useState("");
   const [showHomePage, setShowHomePage] = React.useState(true);
 
   const handleClick = (newUrl) => {
@@ -17,8 +17,8 @@ const InternalBrowser = (props) => {
   };
 
   const predefinedLinks = [
-    { name: 'NutriCalc', url: 'https://nutricalc.collecty-space.fr' },
-    { name: 'Portfolio', url: 'https://miloroche.fr' },
+    { name: "NutriCalc", url: "https://nutricalc.collecty-space.fr" },
+    { name: "Portfolio", url: "https://miloroche.fr" },
   ];
 
   return (

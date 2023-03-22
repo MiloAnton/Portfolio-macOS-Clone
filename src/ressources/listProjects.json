@@ -1,66 +1,49 @@
 {
-    "projects": [
-      {
-        "name": "Collecty'app",
-        "logo": "collectyapp",
-        "function": "Responsable - Gestion de projet",
-        "languages": [
-            "ReactJS",
-            "Angular",
-            "NestJS"
-        ],
-        "when": "2022 - ...",
-        "where": "Collecty'form",
-        "description": ""
-      },
-      {
-        "name": "Picsous",
-        "logo": "picsous",
-        "function": "Concepteur / Développeur full-stack",
-        "languages": [
-            "ReactJS",
-            "Python / Django",
-            "MongoDB"
-        ],
-        "when": "2021 - ...",
-        "where": "Bouygues Telecom",
-        "description": ""
-      },
-      {
-        "name": "Collecty'calc",
-        "logo": "collectycalc",
-        "function": "Concepteur / Développeur full-stack",
-        "languages": [
-            "reactJS"
-        ],
-        "when": "2022",
-        "where": "Collecty'form",
-        "description": ""
-      },
-      {
-        "name": "Pro'file",
-        "logo": "profile",
-        "function": "Développeur / Responsable front-end",
-        "languages": [
-            "ReactJS",
-            "Express",
-            "PHP"
-        ],
-        "when": "2022",
-        "where": "EFREI Paris",
-        "description": ""
-      }, 
-      {
-        "name": "Portfolio",
-        "logo": "portfolio",
-        "function": "Concepteur / Développeur",
-        "languages": [
-            "ReactJS"
-        ],
-        "when": "2023",
-        "where": "Projet personnel",
-        "description": ""
-      }
-    ]
-  }
-  
+  "projects": [
+    {
+      "name": "Collecty'app",
+      "logo": "collectyapp",
+      "function": "Responsable - Gestion de projet",
+      "languages": ["ReactJS", "Angular", "NestJS"],
+      "when": "2022 - ...",
+      "where": "Collecty'form",
+      "description": ""
+    },
+    {
+      "name": "Picsous",
+      "logo": "picsous",
+      "function": "Concepteur / Développeur full-stack",
+      "languages": ["ReactJS", "Python / Django", "MongoDB"],
+      "when": "2021 - ...",
+      "where": "Bouygues Telecom",
+      "description": ""
+    },
+    {
+      "name": "Collecty'calc",
+      "logo": "collectycalc",
+      "function": "Concepteur / Développeur full-stack",
+      "languages": ["reactJS"],
+      "when": "2022",
+      "where": "Collecty'form",
+      "description": ""
+    },
+    {
+      "name": "Pro'file",
+      "logo": "profile",
+      "function": "Développeur / Responsable front-end",
+      "languages": ["ReactJS", "Express", "PHP"],
+      "when": "2022",
+      "where": "EFREI Paris",
+      "description": ""
+    },
+    {
+      "name": "Portfolio",
+      "logo": "portfolio",
+      "function": "Concepteur / Développeur",
+      "languages": ["ReactJS"],
+      "when": "2023",
+      "where": "Projet personnel",
+      "description": ""
+    }
+  ]
+}
