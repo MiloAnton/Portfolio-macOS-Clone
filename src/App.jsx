@@ -103,6 +103,7 @@ export default function App() {
 
   const handleSetDisplaySafari = () => {
     setDisplayedSafari(!displayedSafari);
+    handleClickZIndexSafari();
   };
 
   return (

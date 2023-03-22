@@ -1,7 +1,6 @@
 import "./dock.scss";
 import finder from "./../../assets/iconesDock/finder.png";
 import projects from "./../../assets/iconesDock/projects.png";
-import people from "./../../assets/iconesDock/people.png";
 import notes from "./../../assets/iconesDock/notes.png";
 import trash from "./../../assets/iconesDock/trash.png";
 import safari from "./../../assets/iconesDock/safari.png";
