@@ -2,6 +2,7 @@ import React from "react";
 import Draggable from "react-draggable";
 import MenuBar from "../menu_bar/menu_bar";
 import "./InternalBrowser.scss";
+import { ResizableBox } from "react-resizable";
 
 const InternalBrowser = (props) => {
   const [url, setUrl] = React.useState("");
@@ -23,10 +24,15 @@ const InternalBrowser = (props) => {
 
   return (
     <Draggable handle="#handle">
-      <div
+      <ResizableBox
         className="InternalBrowser"
         style={{ zIndex: props.zIndex }}
         onMouseDownCapture={() => props.handleClickZIndex()}
+        width={600} // Largeur initiale de la fenêtre
+        height={400} // Hauteur initiale de la fenêtre
+        minConstraints={[300, 200]} // Largeur et hauteur minimales
+        maxConstraints={[1200, 800]} // Largeur et hauteur maximales
+        resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
       >
         <MenuBar />
         <div className="internal-browser-shortcuts">
@@ -57,7 +63,8 @@ const InternalBrowser = (props) => {
             />
           )
         )}
-      </div>
+        <div className="resizeIndicator" />
+      </ResizableBox>
     </Draggable>
   );
 };

@@ -3,6 +3,7 @@
 This is the repository on wich you can find the source code of my [online portfolio](https://miloroche.fr).
 
 ![demo image](./src/assets/demo.png)
+
 ## Description
 
 This website mimics the macOS operating system to offer a different user experience during navigation. The dock, windows, and menu bar are functional.
@@ -10,13 +11,19 @@ This website mimics the macOS operating system to offer a different user experie
 ## Stack
 
 Are used in this project :
+
 1. [ReactJS](https://reactjs.org/) / JavaScript
 2. [SCSS](https://sass-lang.com/) with sass preprocessor
 3. [Draggable](https://www.npmjs.com/package/react-draggable) npm package
 
 ## Changelog
 
-### 0.4.0 (current)
+### 0.5.0
+
+- Windows are now resizeable !
+- Bug fixes and improvements
+
+### 0.4.0
 
 - Added a fake Login page
 - Added shortcuts instead of URL input on InternalBrowser
@@ -53,7 +60,7 @@ Are used in this project :
 - Updated the Dock and icons
 - Fixed initial width on mobile
 
-### 0.3.1 
+### 0.3.1
 
 - Added technos icons and grid layout
 - Dock icons are now loaded from the server and not an external link
@@ -62,17 +69,17 @@ Are used in this project :
 ### 0.3.0
 
 - Added Draggable and focused windows
-- Removed background repeat  
+- Removed background repeat
 - Added basic welcome animations
 
 ### 0.2.1
 
-- Added titles 
-- Fixed some CSS 
+- Added titles
+- Fixed some CSS
 - Removed package-lock
 
 ### 0.2.0
 
-- Separated everything in different components 
+- Separated everything in different components
 - Added custom scrollbar
 - Added first sections and navigation toolbar

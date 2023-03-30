@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./WelcomeAnimation.scss";
-import logo from "./../../assets/logo512.png";
 
 const WelcomeAnimation = ({ onAnimationEnd }) => {
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);

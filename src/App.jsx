@@ -122,7 +122,6 @@ export default function App() {
               <MainWindow
                 setDisplayed={handleSetCurriculum}
                 zIndex={zIndexMainWindow}
-                handle="#handle"
                 handleClickZIndex={handleClickZIndexMainWindow}
               />
             ),
@@ -161,7 +160,9 @@ export default function App() {
         ]
           .filter((item) => item.displayed)
           .map((item, index) => (
-            <React.Fragment key={index}>{item.component}</React.Fragment>
+            <div className="window-container" key={index}>
+              {item.component}
+            </div>
           ))}
         <Dock
           setCurriculum={handleSetCurriculum}
