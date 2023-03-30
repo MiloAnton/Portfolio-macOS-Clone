@@ -18,7 +18,7 @@ Are used in this project :
 
 ## Changelog
 
-### 0.5.0
+### 0.5.0 (current)
 
 - Windows are now resizeable !
 - Bug fixes and improvements
