@@ -18,7 +18,12 @@ Are used in this project :
 
 ## Changelog
 
-### 0.5.0 (current)
+### 0.5.1 (current)
+
+- Window buttons now have icons inside them on hover
+- Fixed resize indicator
+
+### 0.5.0
 
 - Windows are now resizeable !
 - Bug fixes and improvements

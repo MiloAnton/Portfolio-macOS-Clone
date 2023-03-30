@@ -11,43 +11,76 @@
     align-items: center;
     width: 100px;
     margin-left: 10px;
-
-    .quitButton {
+  
+    .quitButton,
+    .minimizeButton,
+    .fullscreenButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
       height: 15px;
       width: 15px;
-      background-color: red;
       border-radius: 1000px;
       transition: 0.14s ease-in-out;
       cursor: pointer;
-
+    }
+  
+    .quitButton {
+      background-color: red;
+  
       &:hover {
         background-color: rgb(194, 0, 0);
       }
+  
+      &::before {
+        content: "×";
+        opacity: 0;
+        color: black;
+        font-weight: bold;
+      }
+  
+      &:hover::before {
+        opacity: 1;
+      }
     }
-
+  
     .minimizeButton {
-      height: 15px;
-      width: 15px;
       background-color: orange;
-      border-radius: 1000px;
-      transition: 0.14s ease-in-out;
-      cursor: pointer;
-
+  
       &:hover {
         background-color: rgb(196, 127, 0);
       }
+  
+      &::before {
+        content: "–";
+        opacity: 0;
+        color: black;
+        font-weight: bold;
+      }
+  
+      &:hover::before {
+        opacity: 1;
+      }
     }
-
+  
     .fullscreenButton {
-      height: 15px;
-      width: 15px;
       background-color: rgb(0, 155, 0);
-      border-radius: 1000px;
-      transition: 0.14s ease-in-out;
-      cursor: pointer;
-
+  
       &:hover {
         background-color: green;
+      }
+  
+      &::before {
+        content: "⛶";
+        opacity: 0;
+        color: black;
+        font-weight: bold;
+        font-size: 12px;
+      }
+  
+      &:hover::before {
+        opacity: 1;
       }
     }
   }
