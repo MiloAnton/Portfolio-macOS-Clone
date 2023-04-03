@@ -2,13 +2,13 @@ import "./menu_bar.scss";
 import version from "./../../../package.json";
 import github from "./../../assets/github.png";
 
-export default function MenuBar() {
+export default function MenuBar(props) {
   return (
     <section className="menubar" id="handle" style={{ cursor: "grab" }}>
       <div className="buttons">
-        <div className="quitButton" />
-        <div className="minimizeButton" />
-        <div className="fullscreenButton" />
+        <div className="quitButton" onClick={() => props.handleQuit()}/>
+        <div className="minimizeButton" onClick={() => props.handleQuit()}/>
+        <div className="fullscreenButton" onClick={() => props.handleFullscreen()}/>
       </div>
       <div className="version">
         <a
@@ -19,7 +19,7 @@ export default function MenuBar() {
         >
           <img src={github} height="30px" alt="Logo de github" />
         </a>
-        <p className="versionNumber" title="Version du 30/03/2023">
+        <p className="versionNumber" title="Version du 03/04/2023">
           v{version.version}
         </p>
       </div>

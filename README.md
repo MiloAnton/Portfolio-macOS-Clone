@@ -15,10 +15,17 @@ Are used in this project :
 1. [ReactJS](https://reactjs.org/) / JavaScript
 2. [SCSS](https://sass-lang.com/) with sass preprocessor
 3. [Draggable](https://www.npmjs.com/package/react-draggable) npm package
+4. [Resizeable](https://www.npmjs.com/react-resizeable) npm package
 
 ## Changelog
 
-### 0.5.1 (current)
+### 0.5.2 (current)
+
+- Quit and Minimize Windows are implemented
+- Updated tutorial window
+- Bug fixes and improvements
+
+### 0.5.1
 
 - Window buttons now have icons inside them on hover
 - Fixed resize indicator

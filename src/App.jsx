@@ -107,6 +107,44 @@ export default function App() {
     setLoggedIn(!LoggedIn);
   };
 
+  const [mainWindowIsMinimized, setMainWindowIsMinimized] = useState(false);
+  const [mainindowIsFullScreen, setMainWindowIsFullScreen] = useState(false);
+  const [projectsWindowIsFullScreen, setProjectsWindowIsFullScreen] =
+    useState(false);
+  const [tutorialIsFullScreen, setTutorialIsFullScreen] = useState(false);
+  const [safariIsFullScreen, setSafariIsFullScreen] = useState(false);
+  const handleCloseMainWindow = () => {
+    setDisplayedMainWindow(false);
+    setMainWindowIsFullScreen(false);
+  };
+  const handleCloseProjectsWindow = () => {
+    setDisplayedProjectsWindow(false);
+    setProjectsWindowIsFullScreen(false);
+  };
+  const handleCloseTutorial = () => {
+    setDisplayedTutorial(false);
+    setTutorialIsFullScreen(false);
+  };
+  const handleCloseSafari = () => {
+    setDisplayedSafari(false);
+    setSafariIsFullScreen(false);
+  };
+  const handleMinimizeMainWindow = () => {
+    setMainWindowIsMinimized(!mainWindowIsMinimized);
+  };
+  const handleFullScreenMainWindow = () => {
+    setMainWindowIsFullScreen(!mainindowIsFullScreen);
+  };
+  const handleFullScreenProjectsWindow = () => {
+    setProjectsWindowIsFullScreen(!projectsWindowIsFullScreen);
+  };
+  const handleFullScreenTutorial = () => {
+    setTutorialIsFullScreen(!tutorialIsFullScreen);
+  };
+  const handleFullScreenSafari = () => {
+    setSafariIsFullScreen(!safariIsFullScreen);
+  };
+
   if (LoggedIn === false) {
     return <LoginPage Login={handleLogIn} />;
   } else {
@@ -123,6 +161,11 @@ export default function App() {
                 setDisplayed={handleSetCurriculum}
                 zIndex={zIndexMainWindow}
                 handleClickZIndex={handleClickZIndexMainWindow}
+                isMinimized={mainWindowIsMinimized}
+                isFullScreen={mainindowIsFullScreen}
+                handleClose={handleCloseMainWindow}
+                minimize={handleMinimizeMainWindow}
+                fullScreen={handleFullScreenMainWindow}
               />
             ),
             displayed: displayedMainWindow,
@@ -133,6 +176,9 @@ export default function App() {
                 setDisplayed={handleSetProjects}
                 zIndex={zIndexProjectsWindow}
                 handleClickZIndex={handleClickZIndexProjectsWindow}
+                isFullScreen={projectsWindowIsFullScreen}
+                handleClose={handleCloseProjectsWindow}
+                fullScreen={handleFullScreenProjectsWindow}
               />
             ),
             displayed: displayedProjectsWindow,
@@ -143,6 +189,9 @@ export default function App() {
                 setDisplayed={handleSetDisplayTutorial}
                 zIndex={zIndexTutorial}
                 handleClickZIndex={handleClickZIndexTutorial}
+                isFullScreen={tutorialIsFullScreen}
+                handleClose={handleCloseTutorial}
+                fullScreen={handleFullScreenTutorial}
               />
             ),
             displayed: displayedTutorial,
@@ -153,6 +202,9 @@ export default function App() {
                 setDisplayed={handleSetDisplaySafari}
                 zIndex={zIndexSafari}
                 handleClickZIndex={handleClickZIndexSafari}
+                isFullScreen={safariIsFullScreen}
+                handleClose={handleCloseSafari}
+                fullScreen={handleFullScreenSafari}
               />
             ),
             displayed: displayedSafari,

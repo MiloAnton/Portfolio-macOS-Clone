@@ -22,19 +22,36 @@ const InternalBrowser = (props) => {
     { name: "Portfolio", url: "https://miloroche.fr" },
   ];
 
+  const handleFullscreen = () => {
+    props.fullscreen();
+  };
+
+  const handleQuit = () => {
+    props.handleClose();
+  };
+
   return (
     <Draggable handle="#handle">
       <ResizableBox
         className="InternalBrowser"
-        style={{ zIndex: props.zIndex }}
+        style={
+          props.isMinimized 
+          ? { display: "none" }
+          : props.isFullscreen
+            ? { width: "calc(100vw - 100px) !important", height: "100vh !important" }
+            : { zIndex: props.zIndex }
+        }
         onMouseDownCapture={() => props.handleClickZIndex()}
-        width={600} // Largeur initiale de la fenêtre
-        height={400} // Hauteur initiale de la fenêtre
+        width={800} // Largeur initiale de la fenêtre
+        height={600} // Hauteur initiale de la fenêtre
         minConstraints={[300, 200]} // Largeur et hauteur minimales
-        maxConstraints={[1200, 800]} // Largeur et hauteur maximales
+        maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
       >
-        <MenuBar />
+        <MenuBar 
+          handleFullscreen={handleFullscreen}
+          handleQuit={handleQuit}
+        />
         <div className="internal-browser-shortcuts">
           {predefinedLinks.map((link, index) => (
             <button

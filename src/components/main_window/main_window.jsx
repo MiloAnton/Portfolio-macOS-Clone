@@ -39,34 +39,49 @@ import "react-resizable/css/styles.css";
 import { useState, useEffect } from "react";
 
 export default function MainWindow(props) {
-  const [initialWidth, setInitialWidth] = useState(900);
-  const [initialHeight, setInitialHeight] = useState(450);
+  const [initialWidth, setInitialWidth] = useState(1100);
+  const [initialHeight, setInitialHeight] = useState(700);
 
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
-
-      setInitialWidth(screenWidth > 900 ? 900 : screenWidth);
-      setInitialHeight(screenHeight > 450 ? 450 : screenHeight);
+      setInitialWidth(screenWidth > 900 ? 1100 : screenWidth);
+      setInitialHeight(screenHeight > 450 ? 700 : screenHeight);
     };
-
     handleResize();
   }, []);
+
+  const handleFullscreen = () => {
+    props.fullscreen();
+  };
+
+  const handleQuit = () => {
+    props.handleClose();
+  };
 
   return (
     <Draggable handle="#handle">
       <ResizableBox
         className="App"
-        style={{ zIndex: props.zIndex }}
+        style={
+          props.isMinimized 
+          ? { display: "none" }
+          : props.isFullscreen
+            ? { width: "calc(100vw - 100px) !important", height: "100vh !important" }
+            : { zIndex: props.zIndex }
+        }
         onMouseDownCapture={() => props.handleClickZIndex()}
         width={initialWidth} // Largeur initiale de la fenêtre
         height={initialHeight} // Hauteur initiale de la fenêtre
         minConstraints={[300, 200]} // Largeur et hauteur minimales
-        maxConstraints={[1300, 800]} // Largeur et hauteur maximales
+        maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
       >
-        <MenuBar />
+        <MenuBar 
+          handleFullscreen={handleFullscreen}
+          handleQuit={handleQuit}
+        />
         <section className="page">
           <div className="content">
             <section className="demoMobile">
