@@ -6,32 +6,32 @@ import obs from "./../../assets/logosEntreprises/obs.png";
 import bytel from "./../../assets/logosEntreprises/bytel.png";
 import cf from "./../../assets/logosEntreprises/cf.png";
 import demo from "./../../assets/demo.png";
-import adobecc from "./../../assets/iconesStack/adobecc.png";
-import angular from "./../../assets/iconesStack/angular.png";
-import ansible from "./../../assets/iconesStack/ansible.png";
-import c from "./../../assets/iconesStack/c.png";
-import django from "./../../assets/iconesStack/django.png";
+import adobecc from "./../../assets/iconesStack/adobecc.webp";
+import angular from "./../../assets/iconesStack/angular.webp";
+import ansible from "./../../assets/iconesStack/ansible.webp";
+import c from "./../../assets/iconesStack/c.webp";
+import django from "./../../assets/iconesStack/django.webp";
 import docker from "./../../assets/iconesStack/docker.webp";
-import express from "./../../assets/iconesStack/express.png";
-import figma from "./../../assets/iconesStack/figma.png";
-import finder from "./../../assets/iconesStack/finder.png";
-import git from "./../../assets/iconesStack/git.png";
-import gsuite from "./../../assets/iconesStack/gsuite.png";
-import javascript from "./../../assets/iconesStack/javascript.png";
-import jira from "./../../assets/iconesStack/jira.png";
-import mongo from "./../../assets/iconesStack/mongo.png";
-import nest from "./../../assets/iconesStack/nest.png";
-import notion from "./../../assets/iconesStack/notion.png";
-import office from "./../../assets/iconesStack/office.png";
-import php from "./../../assets/iconesStack/php.png";
-import python from "./../../assets/iconesStack/python.png";
-import react from "./../../assets/iconesStack/react.png";
-import sonarqube from "./../../assets/iconesStack/sonarqube.png";
-import sql from "./../../assets/iconesStack/sql.png";
-import tux from "./../../assets/iconesStack/tux.png";
-import typescript from "./../../assets/iconesStack/typescript.png";
-import vite from "./../../assets/iconesStack/vite.png";
-import windows from "./../../assets/iconesStack/windows.png";
+import express from "./../../assets/iconesStack/express.webp";
+import figma from "./../../assets/iconesStack/figma.webp";
+import finder from "./../../assets/iconesStack/finder.webp";
+import git from "./../../assets/iconesStack/git.webp";
+import gsuite from "./../../assets/iconesStack/gsuite.webp";
+import javascript from "./../../assets/iconesStack/javascript.webp";
+import jira from "./../../assets/iconesStack/jira.webp";
+import mongo from "./../../assets/iconesStack/mongo.webp";
+import nest from "./../../assets/iconesStack/nest.webp";
+import notion from "./../../assets/iconesStack/notion.webp";
+import office from "./../../assets/iconesStack/office.webp";
+import php from "./../../assets/iconesStack/php.webp";
+import python from "./../../assets/iconesStack/python.webp";
+import react from "./../../assets/iconesStack/react.webp";
+import sonarqube from "./../../assets/iconesStack/sonarqube.webp";
+import sql from "./../../assets/iconesStack/sql.webp";
+import tux from "./../../assets/iconesStack/tux.webp";
+import typescript from "./../../assets/iconesStack/typescript.webp";
+import vite from "./../../assets/iconesStack/vite.webp";
+import windows from "./../../assets/iconesStack/windows.webp";
 import MenuBar from "../menu_bar/menu_bar";
 import Draggable from "react-draggable";
 import { ResizableBox } from "react-resizable";
@@ -59,6 +59,14 @@ export default function MainWindow(props) {
   const handleQuit = () => {
     props.handleClose();
   };
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(".fade-in-from-top");
+
+    elements.forEach((element, index) => {
+      element.style.animationDelay = `${index * 0.1}s`;
+    });
+  }, []);
 
   return (
     <Draggable handle="#handle">
@@ -106,6 +114,15 @@ export default function MainWindow(props) {
                         <div
                           style={{ textAlign: "center" }}
                           title={element.description}
+                          className={
+                            element.image === "react"
+                              ? "element-1 fade-in-from-top"
+                              : element.image === "angular"
+                              ? "element-2 fade-in-from-top"
+                              : element.image === "vite"
+                              ? "element-3 fade-in-from-top"
+                              : null
+                          }
                         >
                           <img
                             src={
@@ -134,6 +151,19 @@ export default function MainWindow(props) {
                         <div
                           style={{ textAlign: "center" }}
                           title={element.description}
+                          className={
+                            element.image === "django"
+                              ? "element-1 fade-in-from-top"
+                              : element.image === "nest"
+                              ? "element-2 fade-in-from-top"
+                              : element.image === "express"
+                              ? "element-3 fade-in-from-top"
+                              : element.image === "sql"
+                              ? "element-4 fade-in-from-top"
+                              : element.image === "mongo"
+                              ? "element-5 fade-in-from-top"
+                              : null
+                          }
                         >
                           <img
                             src={
@@ -168,6 +198,19 @@ export default function MainWindow(props) {
                         <div
                           style={{ textAlign: "center" }}
                           title={element.description}
+                          className={
+                            element.image === "git"
+                              ? "element-1 fade-in-from-top"
+                              : element.image === "sonarqube"
+                              ? "element-2 fade-in-from-top"
+                              : element.image === "ansible"
+                              ? "element-3 fade-in-from-top"
+                              : element.image === "docker"
+                              ? "element-4 fade-in-from-top"
+                              : element.image === "jira"
+                              ? "element-5 fade-in-from-top"
+                              : null
+                          }
                         >
                           <img
                             src={
@@ -200,6 +243,19 @@ export default function MainWindow(props) {
                         <div
                           style={{ textAlign: "center" }}
                           title={element.description}
+                          className={
+                            element.image === "javascript"
+                              ? "element-1 fade-in-from-top"
+                              : element.image === "typescript"
+                              ? "element-2 fade-in-from-top"
+                              : element.image === "c"
+                              ? "element-3 fade-in-from-top"
+                              : element.image === "python"
+                              ? "element-4 fade-in-from-top"
+                              : element.image === "php"
+                              ? "element-5 fade-in-from-top"
+                              : null
+                          }
                         >
                           <img
                             src={
@@ -234,6 +290,19 @@ export default function MainWindow(props) {
                         <div
                           style={{ textAlign: "center" }}
                           title={element.description}
+                          className={
+                            element.image === "figma"
+                              ? "element-1 fade-in-from-top"
+                              : element.image === "adobecc"
+                              ? "element-2 fade-in-from-top"
+                              : element.image === "notion"
+                              ? "element-3 fade-in-from-top"
+                              : element.image === "gsuite"
+                              ? "element-4 fade-in-from-top"
+                              : element.image === "office"
+                              ? "element-5 fade-in-from-top"
+                              : null
+                          }
                         >
                           <img
                             src={
@@ -266,6 +335,15 @@ export default function MainWindow(props) {
                         <div
                           style={{ textAlign: "center" }}
                           title={element.description}
+                          className={
+                            element.image === "tux"
+                              ? "element-1 fade-in-from-top"
+                              : element.image === "finder"
+                              ? "element-2 fade-in-from-top"
+                              : element.image === "windows"
+                              ? "element-3 fade-in-from-top"
+                              : null
+                          }
                         >
                           <img
                             src={

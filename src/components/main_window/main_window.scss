@@ -114,6 +114,23 @@
       }
     }
 
+    @keyframes fadeInFromTop {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-from-top {
+      animation-name: fadeInFromTop;
+      animation-duration: 0.5s;
+      animation-fill-mode: both;
+    }
+
     .presentation {
       display: flex;
       align-items: center;

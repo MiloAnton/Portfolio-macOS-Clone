@@ -18,11 +18,7 @@ const WelcomeAnimation = ({ onAnimationEnd }) => {
   return (
     <div
       className={`welcome-animation ${isAnimationFinished ? "fadeOut" : ""}`}
-    >
-      <div class="spinner">
-        <div class="spinnerin"></div>
-      </div>
-    </div>
+    />
   );
 };
 
