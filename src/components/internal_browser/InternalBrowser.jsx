@@ -35,10 +35,13 @@ const InternalBrowser = (props) => {
       <ResizableBox
         className="InternalBrowser"
         style={
-          props.isMinimized 
-          ? { display: "none" }
-          : props.isFullscreen
-            ? { width: "calc(100vw - 100px) !important", height: "100vh !important" }
+          props.isMinimized
+            ? { display: "none" }
+            : props.isFullscreen
+            ? {
+                width: "calc(100vw - 100px) !important",
+                height: "100vh !important",
+              }
             : { zIndex: props.zIndex }
         }
         onMouseDownCapture={() => props.handleClickZIndex()}
@@ -48,10 +51,7 @@ const InternalBrowser = (props) => {
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
       >
-        <MenuBar 
-          handleFullscreen={handleFullscreen}
-          handleQuit={handleQuit}
-        />
+        <MenuBar handleFullscreen={handleFullscreen} handleQuit={handleQuit} />
         <div className="internal-browser-shortcuts">
           {predefinedLinks.map((link, index) => (
             <button

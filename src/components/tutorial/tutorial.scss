@@ -38,83 +38,83 @@
   }
 
   .buttons {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100px;
-  margin-left: -10px;
-  margin-top: 20px;
-
-  .quitButton,
-  .minimizeButton,
-  .fullscreenButton {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    position: relative;
-    height: 15px;
-    width: 15px;
-    border-radius: 1000px;
-    transition: 0.14s ease-in-out;
-    cursor: pointer;
+    width: 100px;
+    margin-left: -10px;
+    margin-top: 20px;
+
+    .quitButton,
+    .minimizeButton,
+    .fullscreenButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 15px;
+      width: 15px;
+      border-radius: 1000px;
+      transition: 0.14s ease-in-out;
+      cursor: pointer;
+    }
+
+    .quitButton {
+      background-color: red;
+
+      &:hover {
+        background-color: rgb(194, 0, 0);
+      }
+
+      &::before {
+        content: "×";
+        opacity: 0;
+        color: black;
+        font-weight: bold;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+    }
+
+    .minimizeButton {
+      background-color: orange;
+
+      &:hover {
+        background-color: rgb(196, 127, 0);
+      }
+
+      &::before {
+        content: "–";
+        opacity: 0;
+        color: black;
+        font-weight: bold;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+    }
+
+    .fullscreenButton {
+      background-color: rgb(0, 155, 0);
+
+      &:hover {
+        background-color: green;
+      }
+
+      &::before {
+        content: "⛶";
+        opacity: 0;
+        color: black;
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+    }
   }
-
-  .quitButton {
-    background-color: red;
-
-    &:hover {
-      background-color: rgb(194, 0, 0);
-    }
-
-    &::before {
-      content: "×";
-      opacity: 0;
-      color: black;
-      font-weight: bold;
-    }
-
-    &:hover::before {
-      opacity: 1;
-    }
-  }
-
-  .minimizeButton {
-    background-color: orange;
-
-    &:hover {
-      background-color: rgb(196, 127, 0);
-    }
-
-    &::before {
-      content: "–";
-      opacity: 0;
-      color: black;
-      font-weight: bold;
-    }
-
-    &:hover::before {
-      opacity: 1;
-    }
-  }
-
-  .fullscreenButton {
-    background-color: rgb(0, 155, 0);
-
-    &:hover {
-      background-color: green;
-    }
-
-    &::before {
-      content: "⛶";
-      opacity: 0;
-      color: black;
-      font-weight: bold;
-      font-size: 12px;
-    }
-
-    &:hover::before {
-      opacity: 1;
-    }
-  }
-}
 }

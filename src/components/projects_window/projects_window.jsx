@@ -17,10 +17,13 @@ export default function ProjectsWindow(props) {
       <ResizableBox
         className="App"
         style={
-          props.isMinimized 
-          ? { display: "none" }
-          : props.isFullscreen
-            ? { width: "calc(100vw - 100px) !important", height: "100vh !important" }
+          props.isMinimized
+            ? { display: "none" }
+            : props.isFullscreen
+            ? {
+                width: "calc(100vw - 100px) !important",
+                height: "100vh !important",
+              }
             : { zIndex: props.zIndex }
         }
         onMouseDownCapture={() => props.handleClickZIndex()}
@@ -30,10 +33,7 @@ export default function ProjectsWindow(props) {
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
       >
-        <MenuBar 
-          handleFullscreen={handleFullscreen}
-          handleQuit={handleQuit}
-        />
+        <MenuBar handleFullscreen={handleFullscreen} handleQuit={handleQuit} />
         <section className="page">
           <div className="content">
             <h2 style={{ color: "white", textAlign: "center" }}>

@@ -40,7 +40,8 @@ export default function Tutorial(props) {
           <h2>Bienvenue !</h2>
           <p>
             Vous pouvez utiliser ce site comme vous le feriez naturellement sur
-            votre ordinateur, retrouvez dans cette fenêtre quelques informations de base sur son fonctionnement.
+            votre ordinateur, retrouvez dans cette fenêtre quelques informations
+            de base sur son fonctionnement.
           </p>
           <p>
             <b>
@@ -60,8 +61,8 @@ export default function Tutorial(props) {
                 droit pour redimensionner la fenêtre.
               </li>
               <li>
-                <b>Déplacer</b> : cliquez sur la barre supérieure de la fenêtre et déplacez là où vous le
-                souhaitez.
+                <b>Déplacer</b> : cliquez sur la barre supérieure de la fenêtre
+                et déplacez là où vous le souhaitez.
               </li>
               <li>
                 <b>Utilisation du Dock</b> : cliquez sur les icônes du Dock pour
