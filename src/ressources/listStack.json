@@ -1,6 +1,16 @@
 {
   "frontend": [
     {
+      "nom": "NextJS",
+      "description": "Framework Web open source en React pour le développement de sites et d'applications web.",
+      "image": "next"
+    },
+    {
+      "nom":"TailwindCSS",
+      "description": "Framework CSS open source qui permet de créer des interfaces utilisateur personnalisées.",
+      "image": "tailwind"
+    },
+    {
       "nom": "React",
       "description": "Bibliothèque JavaScript libre développée par Facebook pour faciliter la création d'interfaces utilisateur.",
       "image": "react"

@@ -31,6 +31,8 @@ import sql from "./../../assets/iconesStack/sql.webp";
 import tux from "./../../assets/iconesStack/tux.webp";
 import typescript from "./../../assets/iconesStack/typescript.webp";
 import vite from "./../../assets/iconesStack/vite.webp";
+import next from "./../../assets/iconesStack/next.svg";
+import tailwind from "./../../assets/iconesStack/tailwind.png";
 import windows from "./../../assets/iconesStack/windows.webp";
 import MenuBar from "../menu_bar/menu_bar";
 import Draggable from "react-draggable";
@@ -132,6 +134,10 @@ export default function MainWindow(props) {
                                 ? angular
                                 : element.image === "vite"
                                 ? vite
+                                : element.image === "next"
+                                ? next
+                                : element.image === "tailwind"
+                                ? tailwind
                                 : null
                             }
                             alt="logo"
