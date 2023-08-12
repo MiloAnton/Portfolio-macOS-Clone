@@ -22,7 +22,7 @@ export default function MenuBar(props) {
         >
           <img src={github} height="30px" alt="Logo de github" />
         </a>
-        <p className="versionNumber" title="Version du 03/04/2023">
+        <p className="versionNumber" title="Version du 12/08/2023">
           v{version.version}
         </p>
       </div>

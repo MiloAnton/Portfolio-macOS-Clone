@@ -18,6 +18,7 @@ export default function LoginPage(props) {
               onClick={() => props.Login()}
               title="Connexion"
             >
+              <div className="tooltip">Cliquez ici !</div>
               <img src={loginarrow} alt="Login arrow" height="30px" />
             </button>
           </div>

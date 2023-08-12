@@ -6,7 +6,6 @@ import ProjectsWindow from "./components/projects_window/projects_window";
 import Toolbar from "./components/toolbar/toolbar";
 import Tutorial from "./components/tutorial/tutorial";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
-import InternalBrowser from "./components/internal_browser/InternalBrowser";
 import LoginPage from "./components/login_page/loginPage";
 
 export default function App() {
@@ -20,17 +19,14 @@ export default function App() {
   const [displayedTutorial, setDisplayedTutorial] = useState(true);
   const [displayedMainWindow, setDisplayedMainWindow] = useState(true);
   const [displayedProjectsWindow, setDisplayedProjectsWindow] = useState(false);
-  const [displayedSafari, setDisplayedSafari] = useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
   const [zIndexTutorial, setZIndexTutorial] = useState(1);
-  const [zIndexSafari, setZIndexSafari] = useState(1);
   const zIndexValues = {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
     zIndexTutorial: zIndexTutorial,
-    zIndexSafari: zIndexSafari,
   };
   const [maxZIndexVarName, setMaxZIndexVarName] = useState("zIndexMainWindow");
   const maxZIndex = zIndexValues[maxZIndexVarName];
@@ -47,28 +43,20 @@ export default function App() {
     setZIndexTutorial(maxZIndex + 1);
   };
 
-  const handleClickZIndexSafari = () => {
-    setZIndexSafari(maxZIndex + 1);
-  };
-
   useEffect(() => {
     if (
       zIndexMainWindow >= zIndexProjectsWindow &&
-      zIndexMainWindow >= zIndexSafari &&
       zIndexMainWindow >= zIndexTutorial
     ) {
       setMaxZIndexVarName("zIndexMainWindow");
     } else if (
-      zIndexProjectsWindow >= zIndexSafari &&
       zIndexProjectsWindow >= zIndexTutorial
     ) {
       setMaxZIndexVarName("zIndexProjectsWindow");
-    } else if (zIndexSafari >= zIndexTutorial) {
-      setMaxZIndexVarName("zIndexSafari");
     } else {
       setMaxZIndexVarName("zIndexTutorial");
     }
-  }, [zIndexMainWindow, zIndexProjectsWindow, zIndexSafari, zIndexTutorial]);
+  }, [zIndexMainWindow, zIndexProjectsWindow, zIndexTutorial]);
 
   useEffect(() => {
     handleClickZIndexMainWindow();
@@ -97,11 +85,6 @@ export default function App() {
     setDisplayedTutorial(!displayedTutorial);
   };
 
-  const handleSetDisplaySafari = () => {
-    setDisplayedSafari(!displayedSafari);
-    handleClickZIndexSafari();
-  };
-
   const [LoggedIn, setLoggedIn] = useState(false);
   const handleLogIn = () => {
     setLoggedIn(!LoggedIn);
@@ -112,7 +95,6 @@ export default function App() {
   const [projectsWindowIsFullScreen, setProjectsWindowIsFullScreen] =
     useState(false);
   const [tutorialIsFullScreen, setTutorialIsFullScreen] = useState(false);
-  const [safariIsFullScreen, setSafariIsFullScreen] = useState(false);
   const handleCloseMainWindow = () => {
     setDisplayedMainWindow(false);
     setMainWindowIsFullScreen(false);
@@ -125,10 +107,6 @@ export default function App() {
     setDisplayedTutorial(false);
     setTutorialIsFullScreen(false);
   };
-  const handleCloseSafari = () => {
-    setDisplayedSafari(false);
-    setSafariIsFullScreen(false);
-  };
   const handleMinimizeMainWindow = () => {
     setMainWindowIsMinimized(!mainWindowIsMinimized);
   };
@@ -140,9 +118,6 @@ export default function App() {
   };
   const handleFullScreenTutorial = () => {
     setTutorialIsFullScreen(!tutorialIsFullScreen);
-  };
-  const handleFullScreenSafari = () => {
-    setSafariIsFullScreen(!safariIsFullScreen);
   };
 
   if (LoggedIn === false) {
@@ -195,20 +170,7 @@ export default function App() {
               />
             ),
             displayed: displayedTutorial,
-          },
-          {
-            component: (
-              <InternalBrowser
-                setDisplayed={handleSetDisplaySafari}
-                zIndex={zIndexSafari}
-                handleClickZIndex={handleClickZIndexSafari}
-                isFullScreen={safariIsFullScreen}
-                handleClose={handleCloseSafari}
-                fullScreen={handleFullScreenSafari}
-              />
-            ),
-            displayed: displayedSafari,
-          },
+          }
         ]
           .filter((item) => item.displayed)
           .map((item, index) => (
@@ -220,7 +182,6 @@ export default function App() {
           setCurriculum={handleSetCurriculum}
           setProjects={handleSetProjects}
           setTutorial={handleSetDisplayTutorial}
-          setSafari={handleSetDisplaySafari}
         />
       </main>
     );

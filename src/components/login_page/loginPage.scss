@@ -51,6 +51,7 @@ input[type="password"] {
 }
 
 button.login {
+  position: relative;
   background-color: transparent;
   color: #ffffff;
   padding: 10px;
@@ -65,5 +66,43 @@ button.login {
 
   &:hover {
     transform: scale(1.2);
+  }
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 40px; // Ajustez selon votre besoin
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333; // Ou toute autre couleur de votre choix
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  pointer-events: none; // Pour éviter tout interaction avec le tooltip
+  animation: pulse 1.5s infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
   }
 }

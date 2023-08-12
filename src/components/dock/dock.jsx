@@ -3,7 +3,6 @@ import finder from "./../../assets/iconesDock/finder.png";
 import projects from "./../../assets/iconesDock/projects.png";
 import notes from "./../../assets/iconesDock/notes.png";
 import trash from "./../../assets/iconesDock/trash.png";
-import safari from "./../../assets/iconesDock/safari.png";
 
 export default function Dock(props) {
   let icons = document.querySelectorAll(".ico");
@@ -49,10 +48,6 @@ export default function Dock(props) {
         <li className="li-2" onClick={() => props.setProjects()}>
           <div className="name">Projets</div>
           <img className="ico" src={projects} alt="" />
-        </li>
-        <li className="li-4" onClick={() => props.setSafari()}>
-          <div className="name">Safari</div>
-          <img className="ico" src={safari} alt="" />
         </li>
         <li className="li-5">
           <div className="name">Notes</div>
