@@ -31,8 +31,11 @@ Are used in this project :
 
 ## Changelog
 
-### 0.5.4 (current)
+### 0.5.5 (current)
 
+- Added glassmorphism effect on Main Window
+
+### 0.5.4
 - Fixed handle on tutorial window
 - Added icons on Dock for future updates
 - Fixed scrollbar on tutorial window

@@ -21,13 +21,19 @@
   margin: 40px 200px 80px 200px;
   max-width: 1600px;
   height: calc(100vh - 192px);
-  background-color: #273138;
   border-radius: 18px;
   box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
   -webkit-animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   position: absolute;
   user-select: none;
+
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.2px);
+  -webkit-backdrop-filter: blur(10.2px);
+
 
   @media screen and (max-width: 900px) {
     margin: 50px;

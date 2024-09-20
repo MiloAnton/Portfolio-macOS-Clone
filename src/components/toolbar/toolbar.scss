@@ -44,6 +44,11 @@
     gap: 20px;
     padding-top: 3px;
 
+    p {
+      margin: 0;
+      padding-bottom: 3px;
+    }
+
     @media screen and (max-width: 520px) {
       display: none;
     }

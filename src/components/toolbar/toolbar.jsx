@@ -42,13 +42,13 @@ export default function Toolbar(props) {
       </div>
       <div className="icons">
         <div title="Super le cloud">
-          <CircumIcon name="cloud_on" />
+          <CircumIcon name="cloud_on" size="30px"/>
         </div>
         <div title="Bluetooth enabled">
-          <CircumIcon name="bluetooth" />
+          <CircumIcon name="bluetooth"  size="30px"/>
         </div>
         <div title="Battery : 95%">
-          <CircumIcon name="battery_full" />
+          <CircumIcon name="battery_full"  size="30px"/>
         </div>
         <p title="Date du jour">{date}</p>
         <p title="2007 ?">9:41 am</p>
@@ -57,7 +57,7 @@ export default function Toolbar(props) {
           onClick={() => props.Login()}
           style={{ cursor: "pointer" }}
         >
-          <CircumIcon name="logout" />
+          <CircumIcon name="logout"  size="30px"/>
         </div>
       </div>
     </section>
