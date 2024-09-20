@@ -17,9 +17,26 @@ Are used in this project :
 3. [Draggable](https://www.npmjs.com/package/react-draggable) npm package
 4. [Resizeable](https://www.npmjs.com/react-resizeable) npm package
 
+## To be fixed / added
+
+- Welcome animation freezing draggable windows
+- Minimizing or opening a new window makes everything go back to it's initial position
+- Updates to the "Stack maîtrisée"
+- Correct Logo on Education
+- Functional Projects Window
+- Implement a Notes App
+- Implement a Safari App
+- Implement a Calculator App
+
 ## Changelog
 
-### 0.5.2 (current)
+### 0.5.3 (current)
+
+- Added Experiences
+- Updated Education
+- Updated Wallpaper
+
+### 0.5.2
 
 - Quit and Minimize Windows are implemented
 - Updated tutorial window

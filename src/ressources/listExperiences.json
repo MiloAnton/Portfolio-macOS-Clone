@@ -1,6 +1,18 @@
 {
   "experiences": [
     {
+      "entreprise": "France Fire",
+      "logo": "ff",
+      "contrat": "Référent",
+      "localisation": "Distanciel",
+      "timeline": "2024 - ...",
+      "poste": "Référent SI",
+      "description": [
+        "Mise en place et maintenance des solutions digitales internes de la société",
+        "Création de l'identité visuelle et des supports de communication"
+      ]
+    },
+    {
       "entreprise": "Collecty'form",
       "logo": "cf",
       "contrat": "Associé",

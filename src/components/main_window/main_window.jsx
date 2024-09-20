@@ -5,6 +5,7 @@ import experienceList from "./../../ressources/listExperiences.json";
 import obs from "./../../assets/logosEntreprises/obs.png";
 import bytel from "./../../assets/logosEntreprises/bytel.png";
 import cf from "./../../assets/logosEntreprises/cf.png";
+import ff from "./../../assets/logosEntreprises/ff.png";
 import demo from "./../../assets/demo.png";
 import adobecc from "./../../assets/iconesStack/adobecc.webp";
 import angular from "./../../assets/iconesStack/angular.webp";
@@ -102,7 +103,7 @@ export default function MainWindow(props) {
               <div className="round" />
               <div>
                 <h2>Milo Roche-Vandenbroucque</h2>
-                <h3>Étudiant, Alternant et Entrepreneur passionné 💪💻🎉</h3>
+                <h3>Intervenant formateur en études supérieures 👨‍🏫</h3>
               </div>
             </section>
             <section className="stack" id="stack">
@@ -387,6 +388,8 @@ export default function MainWindow(props) {
                               ? bytel
                               : element.logo === "cf"
                               ? cf
+                              : element.logo === "ff"
+                              ? ff
                               : null
                           }
                           alt="logo"
