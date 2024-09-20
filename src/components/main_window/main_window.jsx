@@ -401,6 +401,7 @@ export default function MainWindow(props) {
                       <div className="rowText">
                         <h4>{element.poste}</h4>-<p>{element.contrat}</p>
                       </div>
+                      <p>{element.entreprise}</p>
                       <p>{element.timeline}</p>
                       <ul>
                         {element.description.map((item) => {
