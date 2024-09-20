@@ -26,7 +26,7 @@ export default function Tutorial(props) {
         }
         onMouseDownCapture={() => props.handleClickZIndex()}
       >
-        <div id="handle" style={{ cursor: "grab" }}>
+        <div id="handle" style={{ height: "40px", alignContent: "center", cursor: "grab" }}>
           <div className="buttons">
             <div className="quitButton" onClick={() => handleQuit()} />
             <div className="minimizeButton" onClick={() => handleQuit()} />

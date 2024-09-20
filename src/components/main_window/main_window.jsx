@@ -6,6 +6,7 @@ import obs from "./../../assets/logosEntreprises/obs.png";
 import bytel from "./../../assets/logosEntreprises/bytel.png";
 import cf from "./../../assets/logosEntreprises/cf.png";
 import ff from "./../../assets/logosEntreprises/ff.png";
+import mdc from "./../../assets/logosEntreprises/mdc.png";
 import demo from "./../../assets/demo.png";
 import adobecc from "./../../assets/iconesStack/adobecc.webp";
 import angular from "./../../assets/iconesStack/angular.webp";
@@ -390,6 +391,8 @@ export default function MainWindow(props) {
                               ? cf
                               : element.logo === "ff"
                               ? ff
+                              : element.logo === "mdc"
+                              ? mdc
                               : null
                           }
                           alt="logo"

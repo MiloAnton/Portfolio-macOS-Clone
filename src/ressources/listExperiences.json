@@ -4,7 +4,7 @@
       "entreprise": "France Fire",
       "logo": "ff",
       "contrat": "Référent",
-      "localisation": "Distanciel",
+      "localisation": "Hybride",
       "timeline": "2024 - ...",
       "poste": "Référent SI",
       "description": [
@@ -13,10 +13,22 @@
       ]
     },
     {
+      "entreprise": "Milo Digital Creations",
+      "logo": "mdc",
+      "contrat": "Gérant",
+      "localisation": "Présentiel",
+      "timeline": "2023 - ...",
+      "poste": "Intervenant formateur",
+      "description": [
+        "Formations en études supérieures dans le monde du digital jusqu'au BAC+5",
+        "Développement web, Gestion de projet, Conception d'application, Réseaux.."
+      ]
+    },
+    {
       "entreprise": "Collecty'form",
       "logo": "cf",
       "contrat": "Associé",
-      "localisation": "Distanciel",
+      "localisation": "Hybride",
       "timeline": "2021 - ...",
       "poste": "Directeur des SI",
       "description": [
@@ -33,9 +45,9 @@
       "entreprise": "Bouygues Telecom",
       "logo": "bytel",
       "contrat": "Alternance",
-      "localisation": "Meudon-la-forêt",
+      "localisation": "Vélizy-Villacoublay",
       "timeline": "2021 - 2024",
-      "poste": "Développeur Full-Stack",
+      "poste": "Concepteur Développeur Full-Stack",
       "description": [
         "Récupération des besoins clients",
         "Design UI / UX et échanges avec le client",

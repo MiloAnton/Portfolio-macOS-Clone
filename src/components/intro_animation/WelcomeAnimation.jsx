@@ -8,7 +8,7 @@ const WelcomeAnimation = ({ onAnimationEnd }) => {
     const timer = setTimeout(() => {
       setIsAnimationFinished(true);
       onAnimationEnd();
-    }, 3000); // Durée de l'animation en millisecondes
+    }, 2000); // Durée de l'animation en millisecondes
 
     return () => {
       clearTimeout(timer);

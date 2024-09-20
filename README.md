@@ -24,13 +24,20 @@ Are used in this project :
 - Updates to the "Stack maîtrisée"
 - Correct Logo on Education
 - Functional Projects Window
-- Implement a Notes App
-- Implement a Safari App
-- Implement a Calculator App
+- Fix the fullscreen button
+- Implement a Notes App (Proof of concept)
+- Implement a Safari App (Proof of concept)
+- Implement a Message App (contact)
 
 ## Changelog
 
-### 0.5.3 (current)
+### 0.5.4 (current)
+
+- Fixed handle on tutorial window
+- Added icons on Dock for future updates
+- Fixed scrollbar on tutorial window
+
+### 0.5.3 
 
 - Added Experiences
 - Updated Education

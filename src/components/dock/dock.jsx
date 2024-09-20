@@ -3,6 +3,8 @@ import finder from "./../../assets/iconesDock/finder.png";
 import projects from "./../../assets/iconesDock/projects.png";
 import notes from "./../../assets/iconesDock/notes.png";
 import trash from "./../../assets/iconesDock/trash.png";
+import safari from "./../../assets/iconesDock/safari.png";
+import message from "./../../assets/iconesDock/message.png";
 
 export default function Dock(props) {
   let icons = document.querySelectorAll(".ico");
@@ -42,19 +44,27 @@ export default function Dock(props) {
     <div className="dock">
       <div className="dock-container">
         <li className="li-1" onClick={() => props.setCurriculum()}>
-          <div className="name">WHOAMI</div>
+          <div className="name">Curriculum</div>
           <img className="ico" src={finder} alt="" />
         </li>
         <li className="li-2" onClick={() => props.setProjects()}>
           <div className="name">Projets</div>
           <img className="ico" src={projects} alt="" />
         </li>
+        <li className="li-2">
+          <div className="name">Safari</div>
+          <img className="ico" src={safari} alt="" />
+        </li>
+        <li className="li-2">
+          <div className="name">Message</div>
+          <img className="ico" src={message} alt="" />
+        </li>
         <li className="li-5">
           <div className="name">Notes</div>
           <img className="ico" src={notes} alt="" />
         </li>
         <li className="li-bin li-15" onClick={() => props.setTutorial()}>
-          <div className="name">Bin</div>
+          <div className="name">Tutoriel</div>
           <img className="ico ico-bin" src={trash} alt="" />
         </li>
       </div>
