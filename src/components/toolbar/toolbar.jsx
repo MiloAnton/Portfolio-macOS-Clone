@@ -1,7 +1,20 @@
 import "./toolbar.scss";
 import heart from "./../../assets/heart.svg";
-import CircumIcon from "@klarr-agency/circum-icons-react";
 import { useEffect, useState } from "react";
+
+const BluetoothIcon = () => (
+  <svg viewBox="0 0 16 20" aria-hidden="true">
+    <path d="M7.5 1.5v17l5-4.5-9-8 9 8-5 4.5m0-17 5 4.5-9 8" />
+  </svg>
+);
+
+const BatteryIcon = () => (
+  <svg viewBox="0 0 26 13" aria-hidden="true">
+    <rect x="1" y="1" width="21" height="11" rx="2.5" />
+    <path d="M24 4.5v4" />
+    <rect className="battery-level" x="3" y="3" width="17" height="7" rx="1" />
+  </svg>
+);
 
 export default function Toolbar(props) {
   const [current, setCurrent] = useState(() => new Date());
@@ -61,17 +74,16 @@ export default function Toolbar(props) {
         ) : null}
       </div>
       <div className="icons">
-        <div title="Super le cloud">
-          <CircumIcon name="cloud_on" size="30px"/>
+        <div className="status-icon bluetooth-icon" title="Bluetooth activé">
+          <BluetoothIcon />
         </div>
-        <div title="Bluetooth enabled">
-          <CircumIcon name="bluetooth"  size="30px"/>
+        <div className="status-icon battery-icon" title="Batterie : 95 %">
+          <BatteryIcon />
         </div>
-        <div title="Battery : 95%">
-          <CircumIcon name="battery_full"  size="30px"/>
+        <div className="date-time">
+          <p title="Date du jour">{date}</p>
+          <p title={`Heure locale : ${fullTime}`}>{time}</p>
         </div>
-        <p title="Date du jour">{date}</p>
-        <p title={`Heure locale : ${fullTime}`}>{time}</p>
       </div>
     </section>
   );
