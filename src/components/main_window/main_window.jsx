@@ -94,7 +94,9 @@ export default function MainWindow(props) {
   return (
     <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
-        className="App"
+        className={`App ${
+          props.isActive ? "window-active" : "window-inactive"
+        }`}
         style={
           props.isMinimized
             ? { display: "none" }
@@ -391,9 +393,9 @@ export default function MainWindow(props) {
                                 ? tux
                                 : element.image === "finder"
                                 ? finder
-                                : element.image === "windows"
-                                ? windows
-                                : null
+                              : element.image === "windows"
+                              ? windows
+                              : element.logo || null
                             }
                             alt="logo"
                             height="40px"

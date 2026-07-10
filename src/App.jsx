@@ -80,20 +80,23 @@ export default function App() {
   };
 
   useEffect(() => {
-    const currentZIndexes = {
-      zIndexMainWindow,
-      zIndexProjectsWindow,
-      zIndexNotesWindow,
-      zIndexFacetimeWindow,
-      zIndexTerminalWindow,
-      zIndexSafariWindow,
-      zIndexMessagesWindow,
-    };
-    setMaxZIndexVarName(
-      Object.keys(currentZIndexes).reduce((a, b) =>
-        currentZIndexes[a] > currentZIndexes[b] ? a : b
-      )
-    );
+    const currentZIndexes = {};
+    if (displayedMainWindow) currentZIndexes.zIndexMainWindow = zIndexMainWindow;
+    if (displayedProjectsWindow) currentZIndexes.zIndexProjectsWindow = zIndexProjectsWindow;
+    if (displayedNotesWindow) currentZIndexes.zIndexNotesWindow = zIndexNotesWindow;
+    if (displayedFacetimeWindow) currentZIndexes.zIndexFacetimeWindow = zIndexFacetimeWindow;
+    if (displayedTerminalWindow) currentZIndexes.zIndexTerminalWindow = zIndexTerminalWindow;
+    if (displayedSafariWindow) currentZIndexes.zIndexSafariWindow = zIndexSafariWindow;
+    if (displayedMessagesWindow) currentZIndexes.zIndexMessagesWindow = zIndexMessagesWindow;
+
+    const displayedWindowNames = Object.keys(currentZIndexes);
+    if (displayedWindowNames.length > 0) {
+      setMaxZIndexVarName(
+        displayedWindowNames.reduce((a, b) =>
+          currentZIndexes[a] > currentZIndexes[b] ? a : b
+        )
+      );
+    }
   }, [
     zIndexMainWindow,
     zIndexProjectsWindow,
@@ -102,6 +105,13 @@ export default function App() {
     zIndexTerminalWindow,
     zIndexSafariWindow,
     zIndexMessagesWindow,
+    displayedMainWindow,
+    displayedProjectsWindow,
+    displayedNotesWindow,
+    displayedFacetimeWindow,
+    displayedTerminalWindow,
+    displayedSafariWindow,
+    displayedMessagesWindow,
   ]);
 
   useEffect(() => {
@@ -257,6 +267,7 @@ export default function App() {
                 handleClose={handleCloseMainWindow}
                 minimize={handleMinimizeMainWindow}
                 fullScreen={handleFullScreenMainWindow}
+                isActive={maxZIndexVarName === "zIndexMainWindow"}
               />
             ),
             displayed: displayedMainWindow,
@@ -270,6 +281,7 @@ export default function App() {
                 isFullScreen={projectsWindowIsFullScreen}
                 handleClose={handleCloseProjectsWindow}
                 fullScreen={handleFullScreenProjectsWindow}
+                isActive={maxZIndexVarName === "zIndexProjectsWindow"}
               />
             ),
             displayed: displayedProjectsWindow,
@@ -283,6 +295,7 @@ export default function App() {
                 isFullScreen={notesWindowIsFullScreen}
                 handleClose={handleCloseNotesWindow}
                 fullScreen={handleFullScreenNotesWindow}
+                isActive={maxZIndexVarName === "zIndexNotesWindow"}
               />
             ),
             displayed: displayedNotesWindow,
@@ -296,6 +309,7 @@ export default function App() {
                 isFullScreen={facetimeWindowIsFullScreen}
                 handleClose={handleCloseFacetimeWindow}
                 fullScreen={handleFullScreenFacetimeWindow}
+                isActive={maxZIndexVarName === "zIndexFacetimeWindow"}
               />
             ),
             displayed: displayedFacetimeWindow,
@@ -309,6 +323,7 @@ export default function App() {
                 isFullScreen={terminalWindowIsFullScreen}
                 handleClose={handleCloseTerminalWindow}
                 fullScreen={handleFullScreenTerminalWindow}
+                isActive={maxZIndexVarName === "zIndexTerminalWindow"}
               />
             ),
             displayed: displayedTerminalWindow,
@@ -322,6 +337,7 @@ export default function App() {
                 isFullScreen={safariWindowIsFullScreen}
                 handleClose={handleCloseSafariWindow}
                 fullScreen={handleFullScreenSafariWindow}
+                isActive={maxZIndexVarName === "zIndexSafariWindow"}
               />
             ),
             displayed: displayedSafariWindow,
@@ -334,6 +350,7 @@ export default function App() {
                 isFullScreen={messagesWindowIsFullScreen}
                 handleClose={handleCloseMessagesWindow}
                 fullScreen={handleFullScreenMessagesWindow}
+                isActive={maxZIndexVarName === "zIndexMessagesWindow"}
               />
             ),
             displayed: displayedMessagesWindow,

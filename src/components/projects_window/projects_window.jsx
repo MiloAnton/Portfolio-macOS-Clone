@@ -23,7 +23,9 @@ export default function ProjectsWindow(props) {
   return (
     <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
-        className="App"
+        className={`App ${
+          props.isActive ? "window-active" : "window-inactive"
+        }`}
         style={
           props.isMinimized
             ? { display: "none" }

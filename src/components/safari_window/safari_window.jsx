@@ -102,7 +102,9 @@ export default function SafariWindow(props) {
   return (
     <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
-        className="App safari-window"
+        className={`App safari-window ${
+          props.isActive ? "window-active" : "window-inactive"
+        }`}
         style={{ zIndex: props.zIndex }}
         onMouseDownCapture={props.handleClickZIndex}
         width={900}

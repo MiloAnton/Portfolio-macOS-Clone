@@ -7,6 +7,7 @@
   border-radius: 16px 16px 0 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(35, 35, 38, 0.78);
+  transition: background-color 130ms ease, border-color 130ms ease;
 
   .buttons {
     display: flex;
@@ -110,5 +111,42 @@
     font-size: 11px;
     opacity: 0.45;
     user-select: none;
+  }
+}
+
+.window-inactive .menubar {
+  border-bottom-color: rgba(255, 255, 255, 0.045);
+  background: rgba(38, 38, 40, 0.68);
+
+  .window-title {
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  .version {
+    opacity: 0.28;
+  }
+
+  .quitButton {
+    background-color: #77777b;
+
+    &:hover {
+      background-color: #77777b;
+    }
+  }
+
+  .minimizeButton {
+    background-color: #707074;
+
+    &:hover {
+      background-color: #707074;
+    }
+  }
+
+  .fullscreenButton {
+    background-color: #68686c;
+
+    &:hover {
+      background-color: #68686c;
+    }
   }
 }

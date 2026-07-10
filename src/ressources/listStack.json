@@ -257,6 +257,24 @@
       "nom": "Windows",
       "description": "Système d'exploitation propriétaire développé par Microsoft pour les ordinateurs personnels.",
       "image": "windows"
+    },
+    {
+      "nom": "Bash",
+      "description": "Shell Unix et langage de commande largement utilisé pour l'administration système et l'automatisation.",
+      "image": "bash",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg"
+    },
+    {
+      "nom": "Shell",
+      "description": "Interface en ligne de commande permettant d'interagir avec le système d'exploitation et d'automatiser des tâches.",
+      "image": "shell",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unix/unix-original.svg"
+    },
+    {
+      "nom": "Zsh",
+      "description": "Shell Unix interactif et personnalisable, notamment utilisé par défaut sur macOS.",
+      "image": "zsh",
+      "logo": "https://cdn.simpleicons.org/zsh/FFFFFF"
     }
   ]
 }

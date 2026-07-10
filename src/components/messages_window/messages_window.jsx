@@ -92,7 +92,9 @@ export default function MessagesWindow(props) {
   return (
     <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
-        className="App messages-window"
+        className={`App messages-window ${
+          props.isActive ? "window-active" : "window-inactive"
+        }`}
         style={{ zIndex: props.zIndex }}
         onMouseDownCapture={props.handleClickZIndex}
         width={760}
