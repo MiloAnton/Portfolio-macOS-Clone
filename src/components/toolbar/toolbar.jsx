@@ -38,6 +38,12 @@ export default function Toolbar(props) {
           <a href="#projects" title="Scroll vers mes projets">
             <p>Projets</p>
           </a>
+        ) : props.focusedWindow === "zIndexNotesWindow" ? (
+          <p title="Vos notes sont sauvegardées dans votre navigateur">Notes</p>
+        ) : props.focusedWindow === "zIndexFacetimeWindow" ? (
+          <p title="Rien n'est enregistré ni envoyé">FaceTime</p>
+        ) : props.focusedWindow === "zIndexTerminalWindow" ? (
+          <p title="Tapez `help` pour commencer">Terminal</p>
         ) : null}
       </div>
       <div className="icons">

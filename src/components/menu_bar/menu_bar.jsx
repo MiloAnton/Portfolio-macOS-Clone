@@ -14,15 +14,7 @@ export default function MenuBar(props) {
         />
       </div>
       <div className="version">
-        <a
-          href="https://github.com/MiloAnton/Portfolio"
-          target="_blank"
-          rel="noreferrer"
-          title="Repository GitHub"
-        >
-          <img src={github} height="30px" alt="Logo de github" />
-        </a>
-        <p className="versionNumber" title="Version du 12/08/2023">
+        <p className="versionNumber" title="Version du 10/07/2026">
           v{version.version}
         </p>
       </div>

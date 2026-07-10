@@ -1,6 +1,15 @@
 {
   "projects": [
     {
+      "name": "Coaching Hub - Leonis",
+      "logo": "leonis",
+      "function": "Fondateur - Concepteur / Développeur",
+      "languages": ["Javascript, NextJS"],
+      "when": "2023 - ...",
+      "where": "Leonis",
+      "description": "Plateforme de planification et d'inscription à des séances de coaching."
+    },
+    {
       "name": "Collecty'app",
       "logo": "collectyapp",
       "function": "Responsable - Gestion de projet",
@@ -22,7 +31,7 @@
       "name": "Collecty'calc",
       "logo": "collectycalc",
       "function": "Concepteur / Développeur full-stack",
-      "languages": ["reactJS"],
+      "languages": ["ReactJS"],
       "when": "2022",
       "where": "Collecty'form",
       "description": ""
@@ -41,9 +50,9 @@
       "logo": "portfolio",
       "function": "Concepteur / Développeur",
       "languages": ["ReactJS"],
-      "when": "2023",
+      "when": "2023 - ...",
       "where": "Projet personnel",
-      "description": ""
+      "description": "Ce site : un clone de macOS développé en ReactJS."
     }
   ]
 }

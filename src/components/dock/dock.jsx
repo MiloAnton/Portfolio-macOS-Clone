@@ -5,10 +5,11 @@ import notes from "./../../assets/iconesDock/notes.png";
 import trash from "./../../assets/iconesDock/trash.png";
 import safari from "./../../assets/iconesDock/safari.png";
 import message from "./../../assets/iconesDock/message.png";
+import facetime from "./../../assets/iconesDock/facetime.png";
+import terminal from "./../../assets/iconesDock/terminal.svg";
 
 export default function Dock(props) {
   let icons = document.querySelectorAll(".ico");
-  let length = icons.length;
 
   icons.forEach((item, index) => {
     item.addEventListener("mouseover", (e) => {
@@ -22,22 +23,18 @@ export default function Dock(props) {
   });
 
   const focus = (elem, index) => {
-    let previous = index - 1;
-    let previous1 = index - 2;
-    let next = index + 1;
-    let next2 = index + 2;
-
-    if (previous === -1) {
-      elem.style.transform = "scale(1.5)  translateY(-10px)";
-    } else if (next === length) {
-      elem.style.transform = "scale(1.5)  translateY(-10px)";
-    } else {
-      elem.style.transform = "scale(1.5)  translateY(-10px)";
-      icons[previous].style.transform = "scale(1.2) translateY(-6px)";
-      icons[previous1].style.transform = "scale(1.1)";
-      icons[next].style.transform = "scale(1.2) translateY(-6px)";
-      icons[next2].style.transform = "scale(1.1)";
-    }
+    elem.style.transform = "scale(1.5)  translateY(-10px)";
+    const neighbours = [
+      [index - 1, "scale(1.2) translateY(-6px)"],
+      [index + 1, "scale(1.2) translateY(-6px)"],
+      [index - 2, "scale(1.1)"],
+      [index + 2, "scale(1.1)"],
+    ];
+    neighbours.forEach(([neighbourIndex, transform]) => {
+      if (icons[neighbourIndex]) {
+        icons[neighbourIndex].style.transform = transform;
+      }
+    });
   };
 
   return (
@@ -59,9 +56,17 @@ export default function Dock(props) {
           <div className="name">Message</div>
           <img className="ico" src={message} alt="" />
         </li>
-        <li className="li-5">
+        <li className="li-5" onClick={() => props.setNotes()}>
           <div className="name">Notes</div>
           <img className="ico" src={notes} alt="" />
+        </li>
+        <li className="li-6" onClick={() => props.setFacetime()}>
+          <div className="name">FaceTime</div>
+          <img className="ico" src={facetime} alt="" />
+        </li>
+        <li className="li-7" onClick={() => props.setTerminal()}>
+          <div className="name">Terminal</div>
+          <img className="ico" src={terminal} alt="" />
         </li>
         <li className="li-bin li-15" onClick={() => props.setTutorial()}>
           <div className="name">Tutoriel</div>

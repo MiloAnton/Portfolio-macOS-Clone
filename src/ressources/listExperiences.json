@@ -1,15 +1,20 @@
 {
   "experiences": [
     {
-      "entreprise": "France Fire",
-      "logo": "ff",
-      "contrat": "Référent",
+      "entreprise": "Leonis (ex-Collecty'form)",
+      "logo": "leonis",
+      "contrat": "Fondateur",
       "localisation": "Hybride",
-      "timeline": "2024 - ...",
-      "poste": "Référent SI",
+      "timeline": "2021 - ...",
+      "poste": "Gérant & Directeur des SI",
       "description": [
-        "Mise en place et maintenance des solutions digitales internes de la société",
-        "Création de l'identité visuelle et des supports de communication"
+        "Organisme de formation professionnelle : sport en entreprise, ateliers bien-être et qualité de vie au travail, formations sécurité-secourisme (SST, incendie, évacuation)",
+        "Interventions d'experts en activité auprès d'étudiants en enseignement supérieur",
+        "Responsable de la conception et de la globalité des développements et architectures informatiques de l'entreprise",
+        "Développement du site et des outils internes",
+        "Recrutement et lead de l'équipe de formateurs et développeurs",
+        "Référent partenariats et relations clients",
+        "Mise en place et gestion de l'hébergement, de la configuration de mails et des outils professionnels"
       ]
     },
     {
@@ -25,20 +30,15 @@
       ]
     },
     {
-      "entreprise": "Collecty'form",
-      "logo": "cf",
-      "contrat": "Cofondateur Associé",
+      "entreprise": "France Fire",
+      "logo": "ff",
+      "contrat": "Indépendant",
       "localisation": "Hybride",
-      "timeline": "2021 - ...",
+      "timeline": "2024 - 2025",
       "poste": "Directeur des SI",
       "description": [
-        "Responsable de la conception et de la globalité des développements et architectures informatiques de l'entreprise",
-        "Développement de portails et outils internes",
-        "Recrutement technique de candidats développeurs ou vidéastes",
-        "Référent technique sur les solutions numériques ",
-        "Référent partenariats avec acteurs dans le digital",
-        "Lead de l'équipe de développeurs",
-        "Mise en place et gestion de l'hébergement de la configuration de mails et outils professionnels"
+        "Mise en place et maintenance des solutions digitales internes de la société",
+        "Création de l'identité visuelle et des supports de communication"
       ]
     },
     {
@@ -55,7 +55,7 @@
         "Stack choisi : ReactJS-Boostrap / Python - Django - REST Framework / MongoDB",
         "Travail en deux langues : Français et Anglais",
         "Rédaction de la documentation",
-        "Évolutions de l’outil"
+        "Évolutions de l'outil"
       ]
     },
     {

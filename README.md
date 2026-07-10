@@ -21,17 +21,37 @@ Are used in this project :
 
 - Welcome animation freezing draggable windows
 - Minimizing or opening a new window makes everything go back to it's initial position
-- Updates to the "Stack maîtrisée"
 - Correct Logo on Education
-- Functional Projects Window
+- Logos for each project on the Projects Window
 - Fix the fullscreen button
-- Implement a Notes App (Proof of concept)
 - Implement a Safari App (Proof of concept)
 - Implement a Message App (contact)
 
 ## Changelog
 
-### 0.5.5 (current)
+### 0.9.0 (current)
+
+- Terminal App : emulated zsh with help, about, ls, cat, projets, open, neofetch, command history (↑/↓), Tab completion and a few easter eggs
+- New Terminal dock icon (hand-made SVG)
+
+### 0.8.0
+
+- FaceTime App : visitor's webcam with Milo as caller (nothing is recorded or sent), call timer, camera toggle and hangup buttons
+- Fixed dock hover crash on edge icons, neighbours now scale properly on every icon
+
+### 0.7.0
+
+- Notes App : create, edit and delete notes, saved in localStorage
+- Notes dock icon now opens the Notes window
+
+### 0.6.0
+
+- Functional Projects Window (first version, based on listProjects.json)
+- Merged Collecty'form into Leonis (rebranding) with new logo
+- Updated experiences (France Fire ended in 2025, added Leonis activities)
+- New headline: "Entrepreneur & Formateur"
+
+### 0.5.5
 
 - Added glassmorphism effect on Main Window
 
