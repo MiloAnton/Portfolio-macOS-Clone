@@ -8,6 +8,7 @@ import FacetimeWindow from "./components/facetime_window/facetime_window";
 import TerminalWindow from "./components/terminal_window/terminal_window";
 import SafariWindow from "./components/safari_window/safari_window";
 import MessagesWindow from "./components/messages_window/messages_window";
+import CalculatorWindow from "./components/calculator_window/calculator_window";
 import Toolbar from "./components/toolbar/toolbar";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import Desktop from "./components/desktop/desktop";
@@ -29,6 +30,8 @@ export default function App() {
     useState(isDesktop);
   const [displayedSafariWindow, setDisplayedSafariWindow] = useState(false);
   const [displayedMessagesWindow, setDisplayedMessagesWindow] = useState(false);
+  const [displayedCalculatorWindow, setDisplayedCalculatorWindow] =
+    useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
@@ -37,6 +40,7 @@ export default function App() {
   const [zIndexTerminalWindow, setZIndexTerminalWindow] = useState(2);
   const [zIndexSafariWindow, setZIndexSafariWindow] = useState(1);
   const [zIndexMessagesWindow, setZIndexMessagesWindow] = useState(1);
+  const [zIndexCalculatorWindow, setZIndexCalculatorWindow] = useState(1);
   const zIndexValues = {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
@@ -45,6 +49,7 @@ export default function App() {
     zIndexTerminalWindow: zIndexTerminalWindow,
     zIndexSafariWindow: zIndexSafariWindow,
     zIndexMessagesWindow: zIndexMessagesWindow,
+    zIndexCalculatorWindow: zIndexCalculatorWindow,
   };
   const [maxZIndexVarName, setMaxZIndexVarName] = useState(
     isDesktop ? "zIndexTerminalWindow" : "zIndexMainWindow"
@@ -79,6 +84,10 @@ export default function App() {
     setZIndexMessagesWindow(maxZIndex + 1);
   };
 
+  const handleClickZIndexCalculatorWindow = () => {
+    setZIndexCalculatorWindow(maxZIndex + 1);
+  };
+
   useEffect(() => {
     const currentZIndexes = {};
     if (displayedMainWindow) currentZIndexes.zIndexMainWindow = zIndexMainWindow;
@@ -88,6 +97,7 @@ export default function App() {
     if (displayedTerminalWindow) currentZIndexes.zIndexTerminalWindow = zIndexTerminalWindow;
     if (displayedSafariWindow) currentZIndexes.zIndexSafariWindow = zIndexSafariWindow;
     if (displayedMessagesWindow) currentZIndexes.zIndexMessagesWindow = zIndexMessagesWindow;
+    if (displayedCalculatorWindow) currentZIndexes.zIndexCalculatorWindow = zIndexCalculatorWindow;
 
     const displayedWindowNames = Object.keys(currentZIndexes);
     if (displayedWindowNames.length > 0) {
@@ -105,6 +115,7 @@ export default function App() {
     zIndexTerminalWindow,
     zIndexSafariWindow,
     zIndexMessagesWindow,
+    zIndexCalculatorWindow,
     displayedMainWindow,
     displayedProjectsWindow,
     displayedNotesWindow,
@@ -112,6 +123,7 @@ export default function App() {
     displayedTerminalWindow,
     displayedSafariWindow,
     displayedMessagesWindow,
+    displayedCalculatorWindow,
   ]);
 
   useEffect(() => {
@@ -149,6 +161,11 @@ export default function App() {
     // eslint-disable-next-line
   }, [displayedMessagesWindow]);
 
+  useEffect(() => {
+    handleClickZIndexCalculatorWindow();
+    // eslint-disable-next-line
+  }, [displayedCalculatorWindow]);
+
   const handleSetCurriculum = () => {
     setDisplayedMainWindow(!displayedMainWindow);
   };
@@ -182,6 +199,10 @@ export default function App() {
     setDisplayedMessagesWindow(!displayedMessagesWindow);
   };
 
+  const handleSetCalculator = () => {
+    setDisplayedCalculatorWindow(!displayedCalculatorWindow);
+  };
+
   const [mainWindowIsMinimized, setMainWindowIsMinimized] = useState(false);
   const [mainindowIsFullScreen, setMainWindowIsFullScreen] = useState(false);
   const [projectsWindowIsFullScreen, setProjectsWindowIsFullScreen] =
@@ -194,6 +215,8 @@ export default function App() {
   const [safariWindowIsFullScreen, setSafariWindowIsFullScreen] =
     useState(false);
   const [messagesWindowIsFullScreen, setMessagesWindowIsFullScreen] =
+    useState(false);
+  const [calculatorWindowIsFullScreen, setCalculatorWindowIsFullScreen] =
     useState(false);
   const handleCloseMainWindow = () => {
     setDisplayedMainWindow(false);
@@ -223,6 +246,10 @@ export default function App() {
     setDisplayedMessagesWindow(false);
     setMessagesWindowIsFullScreen(false);
   };
+  const handleCloseCalculatorWindow = () => {
+    setDisplayedCalculatorWindow(false);
+    setCalculatorWindowIsFullScreen(false);
+  };
   const handleMinimizeMainWindow = () => {
     setMainWindowIsMinimized(!mainWindowIsMinimized);
   };
@@ -246,6 +273,9 @@ export default function App() {
   };
   const handleFullScreenMessagesWindow = () => {
     setMessagesWindowIsFullScreen(!messagesWindowIsFullScreen);
+  };
+  const handleFullScreenCalculatorWindow = () => {
+    setCalculatorWindowIsFullScreen(!calculatorWindowIsFullScreen);
   };
 
   return (
@@ -355,6 +385,19 @@ export default function App() {
             ),
             displayed: displayedMessagesWindow,
           },
+          {
+            component: (
+              <CalculatorWindow
+                zIndex={zIndexCalculatorWindow}
+                handleClickZIndex={handleClickZIndexCalculatorWindow}
+                isFullScreen={calculatorWindowIsFullScreen}
+                handleClose={handleCloseCalculatorWindow}
+                fullScreen={handleFullScreenCalculatorWindow}
+                isActive={maxZIndexVarName === "zIndexCalculatorWindow"}
+              />
+            ),
+            displayed: displayedCalculatorWindow,
+          },
         ]
           .filter((item) => item.displayed)
           .map((item, index) => (
@@ -370,6 +413,7 @@ export default function App() {
           setTerminal={handleSetTerminal}
           setSafari={handleSetSafari}
           setMessages={handleSetMessages}
+          setCalculator={handleSetCalculator}
         />
       </main>
   );

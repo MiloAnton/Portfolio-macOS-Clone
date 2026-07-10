@@ -71,6 +71,8 @@ export default function Toolbar(props) {
           <p title="Navigateur web intégré">Safari</p>
         ) : props.focusedWindow === "zIndexMessagesWindow" ? (
           <p title="Simulation locale, aucun message n’est envoyé">Messages</p>
+        ) : props.focusedWindow === "zIndexCalculatorWindow" ? (
+          <p>Calculatrice</p>
         ) : null}
       </div>
       <div className="icons">
