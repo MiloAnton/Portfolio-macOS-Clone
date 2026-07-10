@@ -72,15 +72,15 @@ export default function Dock(props) {
         </li>
         <li className="li-8" onClick={() => props.setCalculator()}>
           <div className="name">Calculatrice</div>
-          <img className="ico" src={calculator} alt="" />
+          <img className="ico ico-system-app" src={calculator} alt="" />
         </li>
         <li className="li-9" onClick={() => props.setConsole()}>
           <div className="name">Console</div>
-          <img className="ico" src={consoleIcon} alt="" />
+          <img className="ico ico-system-app" src={consoleIcon} alt="" />
         </li>
         <li className="li-10" onClick={() => props.setGames()}>
           <div className="name">Jeux</div>
-          <img className="ico" src={games} alt="" />
+          <img className="ico ico-system-app" src={games} alt="" />
         </li>
       </div>
     </div>

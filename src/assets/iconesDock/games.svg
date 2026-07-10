@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7868ff"/><stop offset="1" stop-color="#4430b8"/></linearGradient></defs>
-  <rect width="512" height="512" rx="112" fill="url(#g)"/>
-  <path d="M151 174h210c54 0 88 49 76 101l-26 110c-8 35-51 46-75 19l-42-47h-76l-42 47c-24 27-67 16-75-19L75 275c-12-52 22-101 76-101Z" fill="#f7f7fb"/>
-  <g fill="#4b3ac4"><rect x="130" y="249" width="86" height="25" rx="8"/><rect x="160" y="219" width="25" height="86" rx="8"/></g>
-  <circle cx="342" cy="242" r="18" fill="#ff5f57"/><circle cx="382" cy="282" r="18" fill="#28c840"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="36 36 440 440">
+  <defs><linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8478ff"/><stop offset="1" stop-color="#4935c5"/></linearGradient></defs>
+  <rect x="36" y="36" width="440" height="440" rx="102" fill="url(#c)"/>
+  <path d="M154 184h204c49 0 82 45 70 93l-24 97c-9 36-53 46-76 18l-39-46h-66l-39 46c-23 28-67 18-76-18l-24-97c-12-48 21-93 70-93Z" fill="#f8f8fb"/>
+  <g fill="#5140c9"><rect x="133" y="251" width="84" height="24" rx="8"/><rect x="163" y="221" width="24" height="84" rx="8"/></g>
+  <circle cx="339" cy="242" r="17" fill="#ff5f57"/><circle cx="379" cy="282" r="17" fill="#28c840"/>
 </svg>
