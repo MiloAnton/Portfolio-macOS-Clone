@@ -207,6 +207,12 @@
       "description": "Plateforme collaborative d'hébergement de code et de gestion de projets reposant sur Git.",
       "image": "github",
       "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+    },
+    {
+      "nom": "OWASP ZAP",
+      "description": "Scanner de sécurité web open source utilisé pour détecter automatiquement les vulnérabilités des applications.",
+      "image": "owasp-zap",
+      "logo": "https://www.zaproxy.org/img/zap-by-checkmarx.svg"
     }
   ],
   "autres": [

@@ -226,7 +226,7 @@ export default function MainWindow(props) {
               </div>
               <div className="gridStack">
                 <div>
-                  <h3>DevOps</h3>
+                  <h3>DevSecOps</h3>
                   <div className="iconesStack">
                     {listStack.devops.map((element) => {
                       return (
