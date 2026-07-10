@@ -6,9 +6,27 @@
       "image": "next"
     },
     {
-      "nom":"TailwindCSS",
+      "nom":"Tailwind",
       "description": "Framework CSS open source qui permet de créer des interfaces utilisateur personnalisées.",
       "image": "tailwind"
+    },
+    {
+      "nom": "HTML",
+      "description": "Langage de balisage standard utilisé pour structurer le contenu des pages web.",
+      "image": "html",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+    },
+    {
+      "nom": "CSS",
+      "description": "Langage de feuilles de style utilisé pour définir la présentation et la mise en page des interfaces web.",
+      "image": "css",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+    },
+    {
+      "nom": "SCSS",
+      "description": "Syntaxe de Sass qui enrichit CSS avec des variables, des règles imbriquées et des fonctionnalités réutilisables.",
+      "image": "scss",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg"
     },
     {
       "nom": "React",
@@ -28,6 +46,23 @@
   ],
   "langages": [
     {
+      "nom": "C",
+      "description": "Langage de programmation impératif généraliste développé à l'origine par Dennis Ritchie pour le système d'exploitation UNIX.",
+      "image": "c"
+    },
+    {
+      "nom": "C++",
+      "description": "Langage compilé généraliste offrant programmation procédurale, orientée objet et générique.",
+      "image": "cplusplus",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
+    },
+    {
+      "nom": "C#",
+      "description": "Langage moderne orienté objet développé par Microsoft pour l'écosystème .NET.",
+      "image": "csharp",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"
+    },
+    {
       "nom": "JavaScript",
       "description": "Langage de programmation de scripts principalement utilisé pour les pages web interactives et les applications web.",
       "image": "javascript"
@@ -38,11 +73,6 @@
       "image": "typescript"
     },
     {
-      "nom": "C",
-      "description": "Langage de programmation impératif généraliste développé à l'origine par Dennis Ritchie pour le système d'exploitation UNIX.",
-      "image": "c"
-    },
-    {
       "nom": "Python",
       "description": "Langage de programmation interprété, multi-paradigme et multiplateforme.",
       "image": "python"
@@ -51,9 +81,67 @@
       "nom": "PHP",
       "description": "Langage de script open source principalement utilisé pour le développement web côté serveur.",
       "image": "php"
+    },
+    {
+      "nom": "Java",
+      "description": "Langage de programmation orienté objet, multiplateforme et largement utilisé pour les applications d'entreprise.",
+      "image": "java",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+    },
+    {
+      "nom": "Kotlin",
+      "description": "Langage moderne et concis, interopérable avec Java et privilégié pour le développement Android.",
+      "image": "kotlin",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg"
+    },
+    {
+      "nom": "Swift",
+      "description": "Langage développé par Apple pour créer des applications sur les plateformes Apple.",
+      "image": "swift",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg"
+    },
+    {
+      "nom": "Go",
+      "description": "Langage compilé conçu par Google, reconnu pour sa simplicité, ses performances et sa gestion de la concurrence.",
+      "image": "go",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original-wordmark.svg"
+    },
+    {
+      "nom": "Rust",
+      "description": "Langage système performant offrant des garanties fortes de sûreté mémoire.",
+      "image": "rust",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg"
     }
   ],
   "backend": [
+    {
+      "nom": "SQL",
+      "description": "Langage de requête utilisé pour communiquer avec des bases de données relationnelles.",
+      "image": "sql"
+    },
+    {
+      "nom": "MongoDB",
+      "description": "Système de gestion de base de données orientée documents, open source et multiplateforme.",
+      "image": "mongo"
+    },
+    {
+      "nom": "Neo4J",
+      "description": "Système de gestion de base de données orientée graphe conçu pour modéliser et parcourir des relations complexes.",
+      "image": "neo4j",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/neo4j/neo4j-original.svg"
+    },
+    {
+      "nom": "GraphQL",
+      "description": "Langage de requête et environnement d'exécution permettant aux clients de demander précisément les données nécessaires.",
+      "image": "graphql",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg"
+    },
+    {
+      "nom": "Prisma",
+      "description": "ORM moderne pour Node.js et TypeScript facilitant l'accès typé aux bases de données.",
+      "image": "prisma",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg"
+    },
     {
       "nom": "Django",
       "description": "Framework Web open source en Python pour le développement rapide d'applications sécurisées et maintenables.",
@@ -68,16 +156,6 @@
       "nom": "Express",
       "description": "Framework Web minimal et flexible pour Node.js qui fournit un ensemble de fonctionnalités pour les applications Web et mobiles.",
       "image": "express"
-    },
-    {
-      "nom": "SQL",
-      "description": "Langage de requête utilisé pour communiquer avec des bases de données relationnelles.",
-      "image": "sql"
-    },
-    {
-      "nom": "MongoDB",
-      "description": "Système de gestion de base de données orientée documents, open source et multiplateforme.",
-      "image": "mongo"
     }
   ],
   "devops": [
@@ -105,6 +183,30 @@
       "nom": "Jira",
       "description": "Logiciel de gestion de projet et de support technique développé par Atlassian.",
       "image": "jira"
+    },
+    {
+      "nom": "Kubernetes",
+      "description": "Plateforme open source d'orchestration et d'automatisation du déploiement de conteneurs.",
+      "image": "kubernetes",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-original.svg"
+    },
+    {
+      "nom": "Bitbucket",
+      "description": "Service Atlassian d'hébergement de dépôts Git et d'intégration aux workflows de développement.",
+      "image": "bitbucket",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bitbucket/bitbucket-original.svg"
+    },
+    {
+      "nom": "GitLab",
+      "description": "Plateforme DevOps proposant hébergement Git, intégration continue et gestion du cycle de développement.",
+      "image": "gitlab",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gitlab/gitlab-original.svg"
+    },
+    {
+      "nom": "GitHub",
+      "description": "Plateforme collaborative d'hébergement de code et de gestion de projets reposant sur Git.",
+      "image": "github",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
     }
   ],
   "autres": [

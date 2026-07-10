@@ -44,6 +44,8 @@ export default function Toolbar(props) {
           <p title="Rien n'est enregistré ni envoyé">FaceTime</p>
         ) : props.focusedWindow === "zIndexTerminalWindow" ? (
           <p title="Tapez `help` pour commencer">Terminal</p>
+        ) : props.focusedWindow === "zIndexSafariWindow" ? (
+          <p title="Navigateur web intégré">Safari</p>
         ) : null}
       </div>
       <div className="icons">

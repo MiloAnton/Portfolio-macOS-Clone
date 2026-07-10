@@ -2,7 +2,6 @@ import "./dock.scss";
 import finder from "./../../assets/iconesDock/finder.png";
 import projects from "./../../assets/iconesDock/projects.png";
 import notes from "./../../assets/iconesDock/notes.png";
-import trash from "./../../assets/iconesDock/trash.png";
 import safari from "./../../assets/iconesDock/safari.png";
 import message from "./../../assets/iconesDock/message.png";
 import facetime from "./../../assets/iconesDock/facetime.png";
@@ -48,7 +47,7 @@ export default function Dock(props) {
           <div className="name">Projets</div>
           <img className="ico" src={projects} alt="" />
         </li>
-        <li className="li-2">
+        <li className="li-2" onClick={() => props.setSafari()}>
           <div className="name">Safari</div>
           <img className="ico" src={safari} alt="" />
         </li>
@@ -67,10 +66,6 @@ export default function Dock(props) {
         <li className="li-7" onClick={() => props.setTerminal()}>
           <div className="name">Terminal</div>
           <img className="ico" src={terminal} alt="" />
-        </li>
-        <li className="li-bin li-15" onClick={() => props.setTutorial()}>
-          <div className="name">Tutoriel</div>
-          <img className="ico ico-bin" src={trash} alt="" />
         </li>
       </div>
     </div>

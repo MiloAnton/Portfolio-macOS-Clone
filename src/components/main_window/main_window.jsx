@@ -64,7 +64,7 @@ export default function MainWindow(props) {
   }, []);
 
   const handleFullscreen = () => {
-    props.fullscreen();
+    props.fullScreen();
   };
 
   const handleQuit = () => {
@@ -86,7 +86,7 @@ export default function MainWindow(props) {
         style={
           props.isMinimized
             ? { display: "none" }
-            : props.isFullscreen
+            : props.isFullScreen
             ? {
                 width: "calc(100vw - 100px) !important",
                 height: "100vh !important",
@@ -100,8 +100,12 @@ export default function MainWindow(props) {
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
       >
-        <MenuBar handleFullscreen={handleFullscreen} handleQuit={handleQuit} />
-        <section className="page">
+        <MenuBar
+          title="À propos de Milo"
+          handleFullscreen={handleFullscreen}
+          handleQuit={handleQuit}
+        />
+        <section className="page resume-page">
           <div className="content">
             <section className="demoMobile">
               <p>Profitez de l'expérience complète sur Desktop !</p>
@@ -109,13 +113,17 @@ export default function MainWindow(props) {
             </section>
             <section className="presentation" id="perso">
               <div className="round" />
-              <div>
+              <div className="profile-copy">
+                <p className="eyebrow">Portfolio professionnel</p>
                 <h2>Milo Roche-Vandenbroucque</h2>
                 <h3>Entrepreneur & Formateur 🦁</h3>
               </div>
             </section>
             <section className="stack" id="stack">
-              <h2>Stack maîtrisée</h2>
+              <div className="section-heading">
+                <p>Expertise</p>
+                <h2>Stack maîtrisée</h2>
+              </div>
               <div className="gridStack">
                 <div>
                   <h3>Frontend</h3>
@@ -145,9 +153,9 @@ export default function MainWindow(props) {
                                 ? vite
                                 : element.image === "next"
                                 ? next
-                                : element.image === "tailwind"
-                                ? tailwind
-                                : null
+                              : element.image === "tailwind"
+                              ? tailwind
+                              : element.logo || null
                             }
                             alt="logo"
                             height="40px"
@@ -190,9 +198,9 @@ export default function MainWindow(props) {
                                 ? express
                                 : element.image === "sql"
                                 ? sql
-                                : element.image === "mongo"
-                                ? mongo
-                                : null
+                              : element.image === "mongo"
+                              ? mongo
+                              : element.logo || null
                             }
                             alt="logo"
                             height="40px"
@@ -228,6 +236,11 @@ export default function MainWindow(props) {
                           }
                         >
                           <img
+                            className={
+                              element.image === "github"
+                                ? "github-icon"
+                                : undefined
+                            }
                             src={
                               element.image === "git"
                                 ? git
@@ -237,9 +250,9 @@ export default function MainWindow(props) {
                                 ? ansible
                                 : element.image === "docker"
                                 ? docker
-                                : element.image === "jira"
-                                ? jira
-                                : null
+                              : element.image === "jira"
+                              ? jira
+                              : element.logo || null
                             }
                             alt="logo"
                             height="40px"
@@ -282,9 +295,9 @@ export default function MainWindow(props) {
                                 ? c
                                 : element.image === "python"
                                 ? python
-                                : element.image === "php"
-                                ? php
-                                : null
+                              : element.image === "php"
+                              ? php
+                              : element.logo || null
                             }
                             alt="logo"
                             height="40px"
@@ -382,7 +395,10 @@ export default function MainWindow(props) {
               </div>
             </section>
             <section className="experience" id="pro">
-              <h2>Expériences</h2>
+              <div className="section-heading">
+                <p>Parcours</p>
+                <h2>Expériences</h2>
+              </div>
               <div className="card-container">
                 {experienceList.experiences.map((element, index) => {
                   return (
@@ -423,7 +439,10 @@ export default function MainWindow(props) {
               </div>
             </section>
             <section className="education" id="education">
-              <h2>Formation</h2>
+              <div className="section-heading">
+                <p>Études</p>
+                <h2>Formation</h2>
+              </div>
               <div className="card-container">
                 {educationList.education.map((element, index) => {
                   return (
@@ -433,7 +452,6 @@ export default function MainWindow(props) {
                       <p>{element.localisation}</p>
                       <p>{element.timeline}</p>
                       <p>{element.description}</p>
-                      <p>---------------------------</p>
                     </div>
                   );
                 })}

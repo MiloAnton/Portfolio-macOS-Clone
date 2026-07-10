@@ -29,7 +29,12 @@ Are used in this project :
 
 ## Changelog
 
-### 0.9.1 (current)
+### 0.9.2 (current)
+- New wallpaper (macOS Tahoe)
+- Added Safari for iframe-friendly websites
+- Added a few logos in "Stack maitrisée"
+
+### 0.9.1 
 - Windows now will open at the same place they were closed. 
 - They also open for the first time in a random place on screen.
 

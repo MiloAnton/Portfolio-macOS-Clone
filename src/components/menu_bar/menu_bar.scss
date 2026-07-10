@@ -1,9 +1,12 @@
 .menubar {
   height: 60px;
-  border-radius: 18px 18px 0 0;
+  position: relative;
   display: flex;
   justify-content: space-between;
-  border-radius: 16px;
+  align-items: center;
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(35, 35, 38, 0.78);
 
   .buttons {
     display: flex;
@@ -27,7 +30,7 @@
     }
 
     .quitButton {
-      background-color: red;
+      background-color: #ff5f57;
 
       &:hover {
         background-color: rgb(194, 0, 0);
@@ -46,7 +49,7 @@
     }
 
     .minimizeButton {
-      background-color: orange;
+      background-color: #febc2e;
 
       &:hover {
         background-color: rgb(196, 127, 0);
@@ -65,7 +68,7 @@
     }
 
     .fullscreenButton {
-      background-color: rgb(0, 155, 0);
+      background-color: #28c840;
 
       &:hover {
         background-color: green;
@@ -85,6 +88,18 @@
     }
   }
 
+  .window-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    user-select: none;
+  }
+
   .version {
     display: flex;
     align-items: center;
@@ -92,6 +107,8 @@
     margin-right: 20px;
     gap: 20px;
     color: white;
+    font-size: 11px;
+    opacity: 0.45;
     user-select: none;
   }
 }

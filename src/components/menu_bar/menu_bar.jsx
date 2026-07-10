@@ -1,6 +1,5 @@
 import "./menu_bar.scss";
 import version from "./../../../package.json";
-import github from "./../../assets/github.png";
 
 export default function MenuBar(props) {
   return (
@@ -13,6 +12,7 @@ export default function MenuBar(props) {
           onClick={() => props.handleFullscreen()}
         />
       </div>
+      {props.title && <p className="window-title">{props.title}</p>}
       <div className="version">
         <p className="versionNumber" title="Version du 10/07/2026">
           v{version.version}

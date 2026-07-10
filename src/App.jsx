@@ -6,8 +6,8 @@ import ProjectsWindow from "./components/projects_window/projects_window";
 import NotesWindow from "./components/notes_window/notes_window";
 import FacetimeWindow from "./components/facetime_window/facetime_window";
 import TerminalWindow from "./components/terminal_window/terminal_window";
+import SafariWindow from "./components/safari_window/safari_window";
 import Toolbar from "./components/toolbar/toolbar";
-import Tutorial from "./components/tutorial/tutorial";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import LoginPage from "./components/login_page/loginPage";
 
@@ -19,26 +19,26 @@ export default function App() {
     setIsWelcomeAnimationVisible(false);
   };
 
-  const [displayedTutorial, setDisplayedTutorial] = useState(true);
   const [displayedMainWindow, setDisplayedMainWindow] = useState(true);
   const [displayedProjectsWindow, setDisplayedProjectsWindow] = useState(false);
   const [displayedNotesWindow, setDisplayedNotesWindow] = useState(false);
   const [displayedFacetimeWindow, setDisplayedFacetimeWindow] = useState(false);
   const [displayedTerminalWindow, setDisplayedTerminalWindow] = useState(false);
+  const [displayedSafariWindow, setDisplayedSafariWindow] = useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
-  const [zIndexTutorial, setZIndexTutorial] = useState(1);
   const [zIndexNotesWindow, setZIndexNotesWindow] = useState(1);
   const [zIndexFacetimeWindow, setZIndexFacetimeWindow] = useState(1);
   const [zIndexTerminalWindow, setZIndexTerminalWindow] = useState(1);
+  const [zIndexSafariWindow, setZIndexSafariWindow] = useState(1);
   const zIndexValues = {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
-    zIndexTutorial: zIndexTutorial,
     zIndexNotesWindow: zIndexNotesWindow,
     zIndexFacetimeWindow: zIndexFacetimeWindow,
     zIndexTerminalWindow: zIndexTerminalWindow,
+    zIndexSafariWindow: zIndexSafariWindow,
   };
   const [maxZIndexVarName, setMaxZIndexVarName] = useState("zIndexMainWindow");
   const maxZIndex = zIndexValues[maxZIndexVarName];
@@ -49,10 +49,6 @@ export default function App() {
 
   const handleClickZIndexProjectsWindow = () => {
     setZIndexProjectsWindow(maxZIndex + 1);
-  };
-
-  const handleClickZIndexTutorial = () => {
-    setZIndexTutorial(maxZIndex + 1);
   };
 
   const handleClickZIndexNotesWindow = () => {
@@ -67,14 +63,18 @@ export default function App() {
     setZIndexTerminalWindow(maxZIndex + 1);
   };
 
+  const handleClickZIndexSafariWindow = () => {
+    setZIndexSafariWindow(maxZIndex + 1);
+  };
+
   useEffect(() => {
     const currentZIndexes = {
       zIndexMainWindow,
       zIndexProjectsWindow,
-      zIndexTutorial,
       zIndexNotesWindow,
       zIndexFacetimeWindow,
       zIndexTerminalWindow,
+      zIndexSafariWindow,
     };
     setMaxZIndexVarName(
       Object.keys(currentZIndexes).reduce((a, b) =>
@@ -84,10 +84,10 @@ export default function App() {
   }, [
     zIndexMainWindow,
     zIndexProjectsWindow,
-    zIndexTutorial,
     zIndexNotesWindow,
     zIndexFacetimeWindow,
     zIndexTerminalWindow,
+    zIndexSafariWindow,
   ]);
 
   useEffect(() => {
@@ -99,11 +99,6 @@ export default function App() {
     handleClickZIndexProjectsWindow();
     // eslint-disable-next-line
   }, [displayedProjectsWindow]);
-
-  useEffect(() => {
-    handleClickZIndexTutorial();
-    // eslint-disable-next-line
-  }, [displayedTutorial]);
 
   useEffect(() => {
     handleClickZIndexNotesWindow();
@@ -120,16 +115,17 @@ export default function App() {
     // eslint-disable-next-line
   }, [displayedTerminalWindow]);
 
+  useEffect(() => {
+    handleClickZIndexSafariWindow();
+    // eslint-disable-next-line
+  }, [displayedSafariWindow]);
+
   const handleSetCurriculum = () => {
     setDisplayedMainWindow(!displayedMainWindow);
   };
 
   const handleSetProjects = () => {
     setDisplayedProjectsWindow(!displayedProjectsWindow);
-  };
-
-  const handleSetDisplayTutorial = () => {
-    setDisplayedTutorial(!displayedTutorial);
   };
 
   const handleSetNotes = () => {
@@ -144,6 +140,10 @@ export default function App() {
     setDisplayedTerminalWindow(!displayedTerminalWindow);
   };
 
+  const handleSetSafari = () => {
+    setDisplayedSafariWindow(!displayedSafariWindow);
+  };
+
   const [LoggedIn, setLoggedIn] = useState(false);
   const handleLogIn = () => {
     setLoggedIn(!LoggedIn);
@@ -153,11 +153,12 @@ export default function App() {
   const [mainindowIsFullScreen, setMainWindowIsFullScreen] = useState(false);
   const [projectsWindowIsFullScreen, setProjectsWindowIsFullScreen] =
     useState(false);
-  const [tutorialIsFullScreen, setTutorialIsFullScreen] = useState(false);
   const [notesWindowIsFullScreen, setNotesWindowIsFullScreen] = useState(false);
   const [facetimeWindowIsFullScreen, setFacetimeWindowIsFullScreen] =
     useState(false);
   const [terminalWindowIsFullScreen, setTerminalWindowIsFullScreen] =
+    useState(false);
+  const [safariWindowIsFullScreen, setSafariWindowIsFullScreen] =
     useState(false);
   const handleCloseMainWindow = () => {
     setDisplayedMainWindow(false);
@@ -166,10 +167,6 @@ export default function App() {
   const handleCloseProjectsWindow = () => {
     setDisplayedProjectsWindow(false);
     setProjectsWindowIsFullScreen(false);
-  };
-  const handleCloseTutorial = () => {
-    setDisplayedTutorial(false);
-    setTutorialIsFullScreen(false);
   };
   const handleCloseNotesWindow = () => {
     setDisplayedNotesWindow(false);
@@ -183,6 +180,10 @@ export default function App() {
     setDisplayedTerminalWindow(false);
     setTerminalWindowIsFullScreen(false);
   };
+  const handleCloseSafariWindow = () => {
+    setDisplayedSafariWindow(false);
+    setSafariWindowIsFullScreen(false);
+  };
   const handleMinimizeMainWindow = () => {
     setMainWindowIsMinimized(!mainWindowIsMinimized);
   };
@@ -192,9 +193,6 @@ export default function App() {
   const handleFullScreenProjectsWindow = () => {
     setProjectsWindowIsFullScreen(!projectsWindowIsFullScreen);
   };
-  const handleFullScreenTutorial = () => {
-    setTutorialIsFullScreen(!tutorialIsFullScreen);
-  };
   const handleFullScreenNotesWindow = () => {
     setNotesWindowIsFullScreen(!notesWindowIsFullScreen);
   };
@@ -203,6 +201,9 @@ export default function App() {
   };
   const handleFullScreenTerminalWindow = () => {
     setTerminalWindowIsFullScreen(!terminalWindowIsFullScreen);
+  };
+  const handleFullScreenSafariWindow = () => {
+    setSafariWindowIsFullScreen(!safariWindowIsFullScreen);
   };
 
   if (LoggedIn === false) {
@@ -284,17 +285,17 @@ export default function App() {
           },
           {
             component: (
-              <Tutorial
-                setDisplayed={handleSetDisplayTutorial}
-                zIndex={zIndexTutorial}
-                handleClickZIndex={handleClickZIndexTutorial}
-                isFullScreen={tutorialIsFullScreen}
-                handleClose={handleCloseTutorial}
-                fullScreen={handleFullScreenTutorial}
+              <SafariWindow
+                setDisplayed={handleSetSafari}
+                zIndex={zIndexSafariWindow}
+                handleClickZIndex={handleClickZIndexSafariWindow}
+                isFullScreen={safariWindowIsFullScreen}
+                handleClose={handleCloseSafariWindow}
+                fullScreen={handleFullScreenSafariWindow}
               />
             ),
-            displayed: displayedTutorial,
-          }
+            displayed: displayedSafariWindow,
+          },
         ]
           .filter((item) => item.displayed)
           .map((item, index) => (
@@ -308,7 +309,7 @@ export default function App() {
           setNotes={handleSetNotes}
           setFacetime={handleSetFacetime}
           setTerminal={handleSetTerminal}
-          setTutorial={handleSetDisplayTutorial}
+          setSafari={handleSetSafari}
         />
       </main>
     );
