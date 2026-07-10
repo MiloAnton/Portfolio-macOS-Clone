@@ -63,13 +63,20 @@ export default function Dock(props) {
           <div className="name">Message</div>
           <img className="ico" src={message} alt="" />
         </li>
-        <li className="li-5" onClick={() => props.setNotes()}>
-          <div className="name">Notes</div>
-          <img className="ico" src={notes} alt="" />
-        </li>
         <li className="li-6" onClick={() => props.setFacetime()}>
           <div className="name">FaceTime</div>
           <img className="ico" src={facetime} alt="" />
+        </li>
+        <li className="li-11" onClick={() => props.setCalendar()}>
+          <div className="name">Calendrier</div>
+          <div className="ico calendar-dock-icon" aria-hidden="true">
+            <span>{calendarMonth}</span>
+            <strong>{today.getDate()}</strong>
+          </div>
+        </li>
+        <li className="li-5" onClick={() => props.setNotes()}>
+          <div className="name">Notes</div>
+          <img className="ico" src={notes} alt="" />
         </li>
         <li className="li-7" onClick={() => props.setTerminal()}>
           <div className="name">Terminal</div>
@@ -86,13 +93,6 @@ export default function Dock(props) {
         <li className="li-10" onClick={() => props.setGames()}>
           <div className="name">Jeux</div>
           <img className="ico ico-system-app" src={games} alt="" />
-        </li>
-        <li className="li-11" onClick={() => props.setCalendar()}>
-          <div className="name">Calendrier</div>
-          <div className="ico calendar-dock-icon" aria-hidden="true">
-            <span>{calendarMonth}</span>
-            <strong>{today.getDate()}</strong>
-          </div>
         </li>
       </div>
     </div>
