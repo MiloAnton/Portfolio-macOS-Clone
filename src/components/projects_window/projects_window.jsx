@@ -56,8 +56,7 @@ export default function ProjectsWindow(props) {
                   <p className="eyebrow">Sélection de travaux</p>
                   <h2>Projets</h2>
                   <p className="intro">
-                    Des produits conçus à la croisée du développement, de la
-                    formation et de l’entrepreneuriat.
+                    Certains de mes projets terminés, parfois vendus, parfois offerts :)
                   </p>
                 </div>
                 <span className="project-count">

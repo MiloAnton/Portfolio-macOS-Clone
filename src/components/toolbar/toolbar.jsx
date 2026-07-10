@@ -73,6 +73,10 @@ export default function Toolbar(props) {
           <p title="Simulation locale, aucun message n’est envoyé">Messages</p>
         ) : props.focusedWindow === "zIndexCalculatorWindow" ? (
           <p>Calculatrice</p>
+        ) : props.focusedWindow === "zIndexConsoleWindow" ? (
+          <p title="Événements internes du portfolio">Console</p>
+        ) : props.focusedWindow === "zIndexGamesWindow" ? (
+          <p>Jeux</p>
         ) : null}
       </div>
       <div className="icons">

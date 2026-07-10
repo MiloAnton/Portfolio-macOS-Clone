@@ -7,6 +7,8 @@ import message from "./../../assets/iconesDock/message.png";
 import facetime from "./../../assets/iconesDock/facetime.png";
 import terminal from "./../../assets/iconesDock/terminal.svg";
 import calculator from "./../../assets/iconesDock/calculator.svg";
+import consoleIcon from "./../../assets/iconesDock/console.svg";
+import games from "./../../assets/iconesDock/games.svg";
 
 export default function Dock(props) {
   let icons = document.querySelectorAll(".ico");
@@ -71,6 +73,14 @@ export default function Dock(props) {
         <li className="li-8" onClick={() => props.setCalculator()}>
           <div className="name">Calculatrice</div>
           <img className="ico" src={calculator} alt="" />
+        </li>
+        <li className="li-9" onClick={() => props.setConsole()}>
+          <div className="name">Console</div>
+          <img className="ico" src={consoleIcon} alt="" />
+        </li>
+        <li className="li-10" onClick={() => props.setGames()}>
+          <div className="name">Jeux</div>
+          <img className="ico" src={games} alt="" />
         </li>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.scss";
 import Dock from "./components/dock/dock";
 import MainWindow from "./components/main_window/main_window";
@@ -9,9 +9,12 @@ import TerminalWindow from "./components/terminal_window/terminal_window";
 import SafariWindow from "./components/safari_window/safari_window";
 import MessagesWindow from "./components/messages_window/messages_window";
 import CalculatorWindow from "./components/calculator_window/calculator_window";
+import ConsoleWindow from "./components/console_window/console_window";
+import GamesWindow from "./components/games_window/games_window";
 import Toolbar from "./components/toolbar/toolbar";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import Desktop from "./components/desktop/desktop";
+import { addPortfolioLog } from "./utils/portfolioLogger";
 
 export default function App() {
   const isDesktop = typeof window !== "undefined" && window.innerWidth > 900;
@@ -32,6 +35,8 @@ export default function App() {
   const [displayedMessagesWindow, setDisplayedMessagesWindow] = useState(false);
   const [displayedCalculatorWindow, setDisplayedCalculatorWindow] =
     useState(false);
+  const [displayedConsoleWindow, setDisplayedConsoleWindow] = useState(false);
+  const [displayedGamesWindow, setDisplayedGamesWindow] = useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
@@ -41,6 +46,8 @@ export default function App() {
   const [zIndexSafariWindow, setZIndexSafariWindow] = useState(1);
   const [zIndexMessagesWindow, setZIndexMessagesWindow] = useState(1);
   const [zIndexCalculatorWindow, setZIndexCalculatorWindow] = useState(1);
+  const [zIndexConsoleWindow, setZIndexConsoleWindow] = useState(1);
+  const [zIndexGamesWindow, setZIndexGamesWindow] = useState(1);
   const zIndexValues = {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
@@ -50,6 +57,8 @@ export default function App() {
     zIndexSafariWindow: zIndexSafariWindow,
     zIndexMessagesWindow: zIndexMessagesWindow,
     zIndexCalculatorWindow: zIndexCalculatorWindow,
+    zIndexConsoleWindow: zIndexConsoleWindow,
+    zIndexGamesWindow: zIndexGamesWindow,
   };
   const [maxZIndexVarName, setMaxZIndexVarName] = useState(
     isDesktop ? "zIndexTerminalWindow" : "zIndexMainWindow"
@@ -88,6 +97,13 @@ export default function App() {
     setZIndexCalculatorWindow(maxZIndex + 1);
   };
 
+  const handleClickZIndexConsoleWindow = () => {
+    setZIndexConsoleWindow(maxZIndex + 1);
+  };
+  const handleClickZIndexGamesWindow = () => {
+    setZIndexGamesWindow(maxZIndex + 1);
+  };
+
   useEffect(() => {
     const currentZIndexes = {};
     if (displayedMainWindow) currentZIndexes.zIndexMainWindow = zIndexMainWindow;
@@ -98,6 +114,8 @@ export default function App() {
     if (displayedSafariWindow) currentZIndexes.zIndexSafariWindow = zIndexSafariWindow;
     if (displayedMessagesWindow) currentZIndexes.zIndexMessagesWindow = zIndexMessagesWindow;
     if (displayedCalculatorWindow) currentZIndexes.zIndexCalculatorWindow = zIndexCalculatorWindow;
+    if (displayedConsoleWindow) currentZIndexes.zIndexConsoleWindow = zIndexConsoleWindow;
+    if (displayedGamesWindow) currentZIndexes.zIndexGamesWindow = zIndexGamesWindow;
 
     const displayedWindowNames = Object.keys(currentZIndexes);
     if (displayedWindowNames.length > 0) {
@@ -116,6 +134,8 @@ export default function App() {
     zIndexSafariWindow,
     zIndexMessagesWindow,
     zIndexCalculatorWindow,
+    zIndexConsoleWindow,
+    zIndexGamesWindow,
     displayedMainWindow,
     displayedProjectsWindow,
     displayedNotesWindow,
@@ -124,6 +144,8 @@ export default function App() {
     displayedSafariWindow,
     displayedMessagesWindow,
     displayedCalculatorWindow,
+    displayedConsoleWindow,
+    displayedGamesWindow,
   ]);
 
   useEffect(() => {
@@ -166,6 +188,15 @@ export default function App() {
     // eslint-disable-next-line
   }, [displayedCalculatorWindow]);
 
+  useEffect(() => {
+    handleClickZIndexConsoleWindow();
+    // eslint-disable-next-line
+  }, [displayedConsoleWindow]);
+  useEffect(() => {
+    handleClickZIndexGamesWindow();
+    // eslint-disable-next-line
+  }, [displayedGamesWindow]);
+
   const handleSetCurriculum = () => {
     setDisplayedMainWindow(!displayedMainWindow);
   };
@@ -203,6 +234,13 @@ export default function App() {
     setDisplayedCalculatorWindow(!displayedCalculatorWindow);
   };
 
+  const handleSetConsole = () => {
+    setDisplayedConsoleWindow(!displayedConsoleWindow);
+  };
+  const handleSetGames = () => {
+    setDisplayedGamesWindow(!displayedGamesWindow);
+  };
+
   const [mainWindowIsMinimized, setMainWindowIsMinimized] = useState(false);
   const [mainindowIsFullScreen, setMainWindowIsFullScreen] = useState(false);
   const [projectsWindowIsFullScreen, setProjectsWindowIsFullScreen] =
@@ -218,6 +256,9 @@ export default function App() {
     useState(false);
   const [calculatorWindowIsFullScreen, setCalculatorWindowIsFullScreen] =
     useState(false);
+  const [consoleWindowIsFullScreen, setConsoleWindowIsFullScreen] =
+    useState(false);
+  const [gamesWindowIsFullScreen, setGamesWindowIsFullScreen] = useState(false);
   const handleCloseMainWindow = () => {
     setDisplayedMainWindow(false);
     setMainWindowIsFullScreen(false);
@@ -250,6 +291,14 @@ export default function App() {
     setDisplayedCalculatorWindow(false);
     setCalculatorWindowIsFullScreen(false);
   };
+  const handleCloseConsoleWindow = () => {
+    setDisplayedConsoleWindow(false);
+    setConsoleWindowIsFullScreen(false);
+  };
+  const handleCloseGamesWindow = () => {
+    setDisplayedGamesWindow(false);
+    setGamesWindowIsFullScreen(false);
+  };
   const handleMinimizeMainWindow = () => {
     setMainWindowIsMinimized(!mainWindowIsMinimized);
   };
@@ -277,6 +326,72 @@ export default function App() {
   const handleFullScreenCalculatorWindow = () => {
     setCalculatorWindowIsFullScreen(!calculatorWindowIsFullScreen);
   };
+  const handleFullScreenConsoleWindow = () => {
+    setConsoleWindowIsFullScreen(!consoleWindowIsFullScreen);
+  };
+  const handleFullScreenGamesWindow = () => {
+    setGamesWindowIsFullScreen(!gamesWindowIsFullScreen);
+  };
+
+  const previousWindowsRef = useRef(null);
+  const previousFocusRef = useRef(null);
+  useEffect(() => {
+    const windows = {
+      Curriculum: displayedMainWindow,
+      Projets: displayedProjectsWindow,
+      Notes: displayedNotesWindow,
+      FaceTime: displayedFacetimeWindow,
+      Terminal: displayedTerminalWindow,
+      Safari: displayedSafariWindow,
+      Messages: displayedMessagesWindow,
+      Calculatrice: displayedCalculatorWindow,
+      Console: displayedConsoleWindow,
+      Jeux: displayedGamesWindow,
+    };
+
+    if (previousWindowsRef.current === null) {
+      addPortfolioLog("success", "system", "Session du portfolio initialisée");
+      Object.entries(windows)
+        .filter(([, isOpen]) => isOpen)
+        .forEach(([name]) => addPortfolioLog("info", "window", `${name} ouverte`));
+    } else {
+      Object.entries(windows).forEach(([name, isOpen]) => {
+        if (previousWindowsRef.current[name] !== isOpen) {
+          addPortfolioLog(
+            "info",
+            "window",
+            `${name} ${isOpen ? "ouverte" : "fermée"}`
+          );
+        }
+      });
+    }
+    previousWindowsRef.current = windows;
+  }, [
+    displayedMainWindow,
+    displayedProjectsWindow,
+    displayedNotesWindow,
+    displayedFacetimeWindow,
+    displayedTerminalWindow,
+    displayedSafariWindow,
+    displayedMessagesWindow,
+    displayedCalculatorWindow,
+    displayedConsoleWindow,
+    displayedGamesWindow,
+  ]);
+
+  useEffect(() => {
+    if (
+      previousFocusRef.current !== null &&
+      previousFocusRef.current !== maxZIndexVarName
+    ) {
+      addPortfolioLog(
+        "info",
+        "focus",
+        maxZIndexVarName.replace("zIndex", "").replace("Window", "")
+      );
+    }
+    previousFocusRef.current = maxZIndexVarName;
+  }, [maxZIndexVarName]);
 
   return (
       <main className="bounds">
@@ -398,6 +513,32 @@ export default function App() {
             ),
             displayed: displayedCalculatorWindow,
           },
+          {
+            component: (
+              <ConsoleWindow
+                zIndex={zIndexConsoleWindow}
+                handleClickZIndex={handleClickZIndexConsoleWindow}
+                isFullScreen={consoleWindowIsFullScreen}
+                handleClose={handleCloseConsoleWindow}
+                fullScreen={handleFullScreenConsoleWindow}
+                isActive={maxZIndexVarName === "zIndexConsoleWindow"}
+              />
+            ),
+            displayed: displayedConsoleWindow,
+          },
+          {
+            component: (
+              <GamesWindow
+                zIndex={zIndexGamesWindow}
+                handleClickZIndex={handleClickZIndexGamesWindow}
+                isFullScreen={gamesWindowIsFullScreen}
+                handleClose={handleCloseGamesWindow}
+                fullScreen={handleFullScreenGamesWindow}
+                isActive={maxZIndexVarName === "zIndexGamesWindow"}
+              />
+            ),
+            displayed: displayedGamesWindow,
+          },
         ]
           .filter((item) => item.displayed)
           .map((item, index) => (
@@ -414,6 +555,8 @@ export default function App() {
           setSafari={handleSetSafari}
           setMessages={handleSetMessages}
           setCalculator={handleSetCalculator}
+          setConsole={handleSetConsole}
+          setGames={handleSetGames}
         />
       </main>
   );

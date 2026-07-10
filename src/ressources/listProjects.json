@@ -10,13 +10,22 @@
       "description": "Plateforme de planification et d'inscription à des séances de coaching."
     },
     {
+      "name": "Neologos",
+      "logo": "neologos",
+      "function": "Concepteur / Développeur",
+      "languages": ["Javascript, React"],
+      "when": "2025 - ...",
+      "where": "Projet personnel",
+      "description": "Jeu de création de mots à partir de préfixes/racines/suffixes grecs et latins."
+    },
+    {
       "name": "Collecty'app",
       "logo": "collectyapp",
       "function": "Responsable - Gestion de projet",
       "languages": ["ReactJS", "Angular", "NestJS"],
       "when": "2022 - ...",
       "where": "Collecty'form",
-      "description": ""
+      "description": "Application B2C autour de la QVT et du bien-être, prepa mentale, prepa physique, streaming, cours..."
     },
     {
       "name": "Picsous",
@@ -25,7 +34,7 @@
       "languages": ["ReactJS", "Python / Django", "MongoDB"],
       "when": "2021 - ...",
       "where": "Bouygues Telecom",
-      "description": ""
+      "description": "Plateforme de pilotage et de consolidation budgétaire transverse."
     },
     {
       "name": "Collecty'calc",
@@ -34,7 +43,7 @@
       "languages": ["ReactJS"],
       "when": "2022",
       "where": "Collecty'form",
-      "description": ""
+      "description": "Calculateur de macro-nutriments et suivi quotidien de son alimentation."
     },
     {
       "name": "Pro'file",
@@ -43,7 +52,7 @@
       "languages": ["ReactJS", "Express", "PHP"],
       "when": "2022",
       "where": "EFREI Paris",
-      "description": ""
+      "description": "Plateforme de mise en relation entre professionnels du sport et clubs/associations sportives. (Tinder-like)"
     },
     {
       "name": "Portfolio",
@@ -52,7 +61,7 @@
       "languages": ["ReactJS"],
       "when": "2023 - ...",
       "where": "Projet personnel",
-      "description": "Ce site : un clone de macOS développé en ReactJS."
+      "description": "Ce site : un clone de macOS développé en ReactJS :)"
     }
   ]
 }
