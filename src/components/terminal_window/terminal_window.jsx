@@ -58,10 +58,22 @@ const welcomeLines = [
 ];
 
 export default function TerminalWindow(props) {
+  const defaultPosition = {
+    x: Math.round(
+      Math.min(window.innerWidth * 0.57, window.innerWidth - 744) - 200
+    ),
+    y: Math.round(
+      Math.min(window.innerHeight * 0.505, window.innerHeight - 570) - 40
+    ),
+  };
   const { position, handleDragStop } = usePersistentWindowPosition(
     "terminal",
     720,
-    480
+    480,
+    {
+      initialPosition: defaultPosition,
+      storageKeySuffix: "showcase-layout",
+    }
   );
   const [lines, setLines] = useState(welcomeLines);
   const [input, setInput] = useState("");

@@ -50,9 +50,11 @@ export default function usePersistentWindowPosition(
   windowId,
   width,
   height,
-  { centered = false } = {}
+  { centered = false, initialPosition = null, storageKeySuffix = "" } = {}
 ) {
-  const storageKey = `${STORAGE_PREFIX}${windowId}`;
+  const storageKey = `${STORAGE_PREFIX}${windowId}${
+    storageKeySuffix ? `:${storageKeySuffix}` : ""
+  }`;
   const [position, setPosition] = useState(() => {
     try {
       const savedPosition = JSON.parse(localStorage.getItem(storageKey));
@@ -61,7 +63,9 @@ export default function usePersistentWindowPosition(
       // Le stockage peut être désactivé ou contenir une ancienne valeur invalide.
     }
 
-    const randomPosition = createRandomPosition(width, height, centered);
+    const randomPosition = isValidPosition(initialPosition)
+      ? initialPosition
+      : createRandomPosition(width, height, centered);
     try {
       localStorage.setItem(storageKey, JSON.stringify(randomPosition));
     } catch (error) {

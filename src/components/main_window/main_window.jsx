@@ -47,18 +47,30 @@ import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition
 export default function MainWindow(props) {
   const [initialWidth, setInitialWidth] = useState(1100);
   const [initialHeight, setInitialHeight] = useState(700);
+  const defaultPosition = {
+    x: Math.round(window.innerWidth * 0.02 - 200),
+    y: Math.round(window.innerHeight * 0.055 - 40),
+  };
   const { position, handleDragStop } = usePersistentWindowPosition(
     "main",
     initialWidth,
-    initialHeight
+    initialHeight,
+    {
+      initialPosition: defaultPosition,
+      storageKeySuffix: "showcase-layout",
+    }
   );
 
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
-      setInitialWidth(screenWidth > 900 ? 1100 : screenWidth);
-      setInitialHeight(screenHeight > 450 ? 700 : screenHeight);
+      setInitialWidth(
+        screenWidth > 900 ? Math.min(1100, screenWidth - 80) : screenWidth
+      );
+      setInitialHeight(
+        screenHeight > 450 ? Math.min(700, screenHeight - 140) : screenHeight
+      );
     };
     handleResize();
   }, []);

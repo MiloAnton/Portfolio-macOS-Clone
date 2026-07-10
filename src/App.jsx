@@ -13,6 +13,7 @@ import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import Desktop from "./components/desktop/desktop";
 
 export default function App() {
+  const isDesktop = typeof window !== "undefined" && window.innerWidth > 900;
   const [isWelcomeAnimationVisible, setIsWelcomeAnimationVisible] =
     useState(true);
 
@@ -20,11 +21,12 @@ export default function App() {
     setIsWelcomeAnimationVisible(false);
   };
 
-  const [displayedMainWindow, setDisplayedMainWindow] = useState(true);
+  const [displayedMainWindow, setDisplayedMainWindow] = useState(isDesktop);
   const [displayedProjectsWindow, setDisplayedProjectsWindow] = useState(false);
   const [displayedNotesWindow, setDisplayedNotesWindow] = useState(false);
   const [displayedFacetimeWindow, setDisplayedFacetimeWindow] = useState(false);
-  const [displayedTerminalWindow, setDisplayedTerminalWindow] = useState(false);
+  const [displayedTerminalWindow, setDisplayedTerminalWindow] =
+    useState(isDesktop);
   const [displayedSafariWindow, setDisplayedSafariWindow] = useState(false);
   const [displayedMessagesWindow, setDisplayedMessagesWindow] = useState(false);
 
@@ -32,7 +34,7 @@ export default function App() {
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
   const [zIndexNotesWindow, setZIndexNotesWindow] = useState(1);
   const [zIndexFacetimeWindow, setZIndexFacetimeWindow] = useState(1);
-  const [zIndexTerminalWindow, setZIndexTerminalWindow] = useState(1);
+  const [zIndexTerminalWindow, setZIndexTerminalWindow] = useState(2);
   const [zIndexSafariWindow, setZIndexSafariWindow] = useState(1);
   const [zIndexMessagesWindow, setZIndexMessagesWindow] = useState(1);
   const zIndexValues = {
@@ -44,7 +46,9 @@ export default function App() {
     zIndexSafariWindow: zIndexSafariWindow,
     zIndexMessagesWindow: zIndexMessagesWindow,
   };
-  const [maxZIndexVarName, setMaxZIndexVarName] = useState("zIndexMainWindow");
+  const [maxZIndexVarName, setMaxZIndexVarName] = useState(
+    isDesktop ? "zIndexTerminalWindow" : "zIndexMainWindow"
+  );
   const maxZIndex = zIndexValues[maxZIndexVarName];
 
   const handleClickZIndexMainWindow = () => {
@@ -87,7 +91,7 @@ export default function App() {
     };
     setMaxZIndexVarName(
       Object.keys(currentZIndexes).reduce((a, b) =>
-        currentZIndexes[a] >= currentZIndexes[b] ? a : b
+        currentZIndexes[a] > currentZIndexes[b] ? a : b
       )
     );
   }, [
