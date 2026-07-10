@@ -42,10 +42,16 @@ import Draggable from "react-draggable";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
 import { useState, useEffect } from "react";
+import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 export default function MainWindow(props) {
   const [initialWidth, setInitialWidth] = useState(1100);
   const [initialHeight, setInitialHeight] = useState(700);
+  const { position, handleDragStop } = usePersistentWindowPosition(
+    "main",
+    initialWidth,
+    initialHeight
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -74,7 +80,7 @@ export default function MainWindow(props) {
   }, []);
 
   return (
-    <Draggable handle="#handle">
+    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
         className="App"
         style={

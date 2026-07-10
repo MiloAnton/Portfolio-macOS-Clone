@@ -8,6 +8,7 @@ import projectsList from "./../../ressources/listProjects.json";
 import experienceList from "./../../ressources/listExperiences.json";
 import version from "./../../../package.json";
 import { useEffect, useRef, useState } from "react";
+import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 const PROMPT = "visiteur@milo ~ %";
 
@@ -57,6 +58,11 @@ const welcomeLines = [
 ];
 
 export default function TerminalWindow(props) {
+  const { position, handleDragStop } = usePersistentWindowPosition(
+    "terminal",
+    720,
+    480
+  );
   const [lines, setLines] = useState(welcomeLines);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState([]);
@@ -308,7 +314,7 @@ export default function TerminalWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle">
+    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
         className="App"
         style={

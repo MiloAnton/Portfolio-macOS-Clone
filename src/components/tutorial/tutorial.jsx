@@ -1,7 +1,14 @@
 import "./tutorial.scss";
 import Draggable from "react-draggable";
+import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 export default function Tutorial(props) {
+  const { position, handleDragStop } = usePersistentWindowPosition(
+    "tutorial",
+    640,
+    470,
+    { centered: true }
+  );
   const handleFullscreen = () => {
     props.fullscreen();
   };
@@ -11,7 +18,7 @@ export default function Tutorial(props) {
   };
 
   return (
-    <Draggable handle="#handle">
+    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <section
         className="tuto_container"
         style={

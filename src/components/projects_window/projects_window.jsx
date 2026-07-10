@@ -3,8 +3,14 @@ import MenuBar from "../menu_bar/menu_bar";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
 import projectsList from "./../../ressources/listProjects.json";
+import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 export default function ProjectsWindow(props) {
+  const { position, handleDragStop } = usePersistentWindowPosition(
+    "projects",
+    800,
+    600
+  );
   const handleFullscreen = () => {
     props.fullscreen();
   };
@@ -14,7 +20,7 @@ export default function ProjectsWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle">
+    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
         className="App"
         style={

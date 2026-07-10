@@ -5,6 +5,7 @@ import "react-resizable/css/styles.css";
 import "./facetime_window.scss";
 import profilepic from "./../../assets/profil.png";
 import { useEffect, useRef, useState } from "react";
+import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 const formatDuration = (seconds) => {
   const min = String(Math.floor(seconds / 60)).padStart(2, "0");
@@ -13,6 +14,11 @@ const formatDuration = (seconds) => {
 };
 
 export default function FacetimeWindow(props) {
+  const { position, handleDragStop } = usePersistentWindowPosition(
+    "facetime",
+    720,
+    520
+  );
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   // connecting : demande d'accès caméra en cours | active : en appel | denied : refusé/indisponible
@@ -72,7 +78,7 @@ export default function FacetimeWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle">
+    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
         className="App"
         style={

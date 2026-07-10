@@ -29,7 +29,11 @@ Are used in this project :
 
 ## Changelog
 
-### 0.9.0 (current)
+### 0.9.1 (current)
+- Windows now will open at the same place they were closed. 
+- They also open for the first time in a random place on screen.
+
+### 0.9.0
 
 - Terminal App : emulated zsh with help, about, ls, cat, projets, open, neofetch, command history (↑/↓), Tab completion and a few easter eggs
 - New Terminal dock icon (hand-made SVG)

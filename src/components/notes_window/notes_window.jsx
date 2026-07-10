@@ -4,6 +4,7 @@ import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
 import "./notes_window.scss";
 import { useEffect, useState } from "react";
+import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 const STORAGE_KEY = "portfolio-notes";
 
@@ -49,6 +50,11 @@ const noteDate = (timestamp) => {
 };
 
 export default function NotesWindow(props) {
+  const { position, handleDragStop } = usePersistentWindowPosition(
+    "notes",
+    750,
+    500
+  );
   const [notes, setNotes] = useState(loadNotes);
   const [selectedId, setSelectedId] = useState(() => loadNotes()[0]?.id);
 
@@ -93,7 +99,7 @@ export default function NotesWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle">
+    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox
         className="App"
         style={
