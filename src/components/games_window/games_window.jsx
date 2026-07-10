@@ -5,12 +5,26 @@ import "react-resizable/css/styles.css";
 import MenuBar from "../menu_bar/menu_bar";
 import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import "./games_window.scss";
+import {
+  DoodleJump,
+  FlappyBird,
+  Frogger,
+  Game2048,
+  Simon,
+  SpaceInvaders,
+} from "./extra_games";
 
 const GAME_LIST = [
   { id: "mines", name: "Démineur", icon: "💣" },
   { id: "pong", name: "Pong", icon: "🏓" },
   { id: "snake", name: "Snake", icon: "🐍" },
   { id: "racer", name: "Course", icon: "🏎️" },
+  { id: "flappy", name: "Flappy Bird", icon: "🐦" },
+  { id: "2048", name: "2048", icon: "🔢" },
+  { id: "invaders", name: "Space Invaders", icon: "👾" },
+  { id: "doodle", name: "Doodle Jump", icon: "🦘" },
+  { id: "frogger", name: "Frogger", icon: "🐸" },
+  { id: "simon", name: "Simon", icon: "🟢" },
 ];
 
 const useGameKeys = () => {
@@ -244,6 +258,12 @@ export default function GamesWindow(props) {
             {game === "pong" && <Pong />}
             {game === "snake" && <Snake />}
             {game === "racer" && <Racer />}
+            {game === "flappy" && <FlappyBird />}
+            {game === "2048" && <Game2048 />}
+            {game === "invaders" && <SpaceInvaders />}
+            {game === "doodle" && <DoodleJump />}
+            {game === "frogger" && <Frogger />}
+            {game === "simon" && <Simon />}
           </main>
         </div>
         <div className="resizeIndicator" />

@@ -29,6 +29,13 @@ Are used in this project :
 
 ## Changelog
 
+### 0.10.0
+- Added Games App with integrated mini-games
+- Added Console App 
+- Added Calculator App
+- Toolbar fixes
+- Added a few logos
+
 ### 0.9.3
 - Removed fake login page
 - Added back Messages app 

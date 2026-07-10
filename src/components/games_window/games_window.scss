@@ -1,6 +1,6 @@
 .games-window { overflow: hidden; background: #1c1c1e; }
 .games-app { height: calc(100% - 60px); display: flex; color: white; }
-.games-app nav { width: 126px; flex: 0 0 126px; padding: 12px 8px; box-sizing: border-box; border-right: 1px solid rgba(255,255,255,.09); background: #29292c; }
+.games-app nav { width: 138px; flex: 0 0 138px; padding: 12px 8px; box-sizing: border-box; overflow-y: auto; border-right: 1px solid rgba(255,255,255,.09); background: #29292c; }
 .games-app nav button { width: 100%; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; padding: 9px; border: 0; border-radius: 8px; color: rgba(255,255,255,.72); background: transparent; font: inherit; font-size: 11px; text-align: left; cursor: pointer; }
 .games-app nav button span { font-size: 18px; }
 .games-app nav button.selected { color: white; background: #0a84ff; }
@@ -16,4 +16,12 @@
 .mine-grid button { aspect-ratio: 1; border: 0; border-radius: 5px; color: white; background: linear-gradient(#747478,#59595d); font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: inset 0 1px rgba(255,255,255,.2); }
 .mine-grid button.revealed { background: #29292c; box-shadow: none; }
 .mine-grid button.n1 { color: #64a8ff; }.mine-grid button.n2 { color: #63d17a; }.mine-grid button.n3 { color: #ff6961; }.mine-grid button.n4,.mine-grid button.n5 { color: #bf7cff; }
+.grid-2048 { display: grid; grid-template-columns: repeat(4, 82px); gap: 9px; width: max-content; margin: auto; padding: 10px; border-radius: 12px; background: #6c6258; }
+.grid-2048 .tile { width: 82px; height: 82px; display: grid; place-items: center; border-radius: 8px; color: #68605a; background: rgba(238,228,218,.35); font-size: 27px; font-weight: 800; }
+.grid-2048 .t2{background:#eee4da}.grid-2048 .t4{background:#ede0c8}.grid-2048 .t8{color:white;background:#f2b179}.grid-2048 .t16{color:white;background:#f59563}.grid-2048 .t32{color:white;background:#f67c5f}.grid-2048 .t64{color:white;background:#f65e3b}.grid-2048 .t128,.grid-2048 .t256,.grid-2048 .t512,.grid-2048 .t1024,.grid-2048 .t2048{color:white;background:#edcf72;font-size:21px}
+.simon { max-width: 390px; }
+.simon-board { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 13px; border-radius: 50%; background: #151517; }
+.simon-board button { aspect-ratio: 1; border: 0; opacity: .55; cursor: pointer; transition: opacity 80ms, filter 80ms; }
+.simon-board button.active { opacity: 1; filter: brightness(1.7) drop-shadow(0 0 18px currentColor); }
+.simon-board .green{border-radius:100% 12px 12px 12px;background:#30d158}.simon-board .red{border-radius:12px 100% 12px 12px;background:#ff453a}.simon-board .yellow{border-radius:12px 12px 12px 100%;background:#ffd60a}.simon-board .blue{border-radius:12px 12px 100% 12px;background:#0a84ff}
 @media screen and (max-width:650px){.games-app nav{width:76px;flex-basis:76px}.games-app nav button{flex-direction:column;gap:2px;padding:7px 3px;font-size:8px}.games-app>main{padding:8px}}
