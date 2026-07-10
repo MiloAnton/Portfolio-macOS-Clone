@@ -11,6 +11,7 @@ import MessagesWindow from "./components/messages_window/messages_window";
 import CalculatorWindow from "./components/calculator_window/calculator_window";
 import ConsoleWindow from "./components/console_window/console_window";
 import GamesWindow from "./components/games_window/games_window";
+import CalendarWindow from "./components/calendar_window/calendar_window";
 import Toolbar from "./components/toolbar/toolbar";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import Desktop from "./components/desktop/desktop";
@@ -37,6 +38,7 @@ export default function App() {
     useState(false);
   const [displayedConsoleWindow, setDisplayedConsoleWindow] = useState(false);
   const [displayedGamesWindow, setDisplayedGamesWindow] = useState(false);
+  const [displayedCalendarWindow, setDisplayedCalendarWindow] = useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
@@ -48,6 +50,7 @@ export default function App() {
   const [zIndexCalculatorWindow, setZIndexCalculatorWindow] = useState(1);
   const [zIndexConsoleWindow, setZIndexConsoleWindow] = useState(1);
   const [zIndexGamesWindow, setZIndexGamesWindow] = useState(1);
+  const [zIndexCalendarWindow, setZIndexCalendarWindow] = useState(1);
   const zIndexValues = {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
@@ -59,6 +62,7 @@ export default function App() {
     zIndexCalculatorWindow: zIndexCalculatorWindow,
     zIndexConsoleWindow: zIndexConsoleWindow,
     zIndexGamesWindow: zIndexGamesWindow,
+    zIndexCalendarWindow: zIndexCalendarWindow,
   };
   const [maxZIndexVarName, setMaxZIndexVarName] = useState(
     isDesktop ? "zIndexTerminalWindow" : "zIndexMainWindow"
@@ -103,6 +107,9 @@ export default function App() {
   const handleClickZIndexGamesWindow = () => {
     setZIndexGamesWindow(maxZIndex + 1);
   };
+  const handleClickZIndexCalendarWindow = () => {
+    setZIndexCalendarWindow(maxZIndex + 1);
+  };
 
   useEffect(() => {
     const currentZIndexes = {};
@@ -116,6 +123,7 @@ export default function App() {
     if (displayedCalculatorWindow) currentZIndexes.zIndexCalculatorWindow = zIndexCalculatorWindow;
     if (displayedConsoleWindow) currentZIndexes.zIndexConsoleWindow = zIndexConsoleWindow;
     if (displayedGamesWindow) currentZIndexes.zIndexGamesWindow = zIndexGamesWindow;
+    if (displayedCalendarWindow) currentZIndexes.zIndexCalendarWindow = zIndexCalendarWindow;
 
     const displayedWindowNames = Object.keys(currentZIndexes);
     if (displayedWindowNames.length > 0) {
@@ -136,6 +144,7 @@ export default function App() {
     zIndexCalculatorWindow,
     zIndexConsoleWindow,
     zIndexGamesWindow,
+    zIndexCalendarWindow,
     displayedMainWindow,
     displayedProjectsWindow,
     displayedNotesWindow,
@@ -146,6 +155,7 @@ export default function App() {
     displayedCalculatorWindow,
     displayedConsoleWindow,
     displayedGamesWindow,
+    displayedCalendarWindow,
   ]);
 
   useEffect(() => {
@@ -196,6 +206,10 @@ export default function App() {
     handleClickZIndexGamesWindow();
     // eslint-disable-next-line
   }, [displayedGamesWindow]);
+  useEffect(() => {
+    handleClickZIndexCalendarWindow();
+    // eslint-disable-next-line
+  }, [displayedCalendarWindow]);
 
   const handleSetCurriculum = () => {
     setDisplayedMainWindow(!displayedMainWindow);
@@ -240,6 +254,9 @@ export default function App() {
   const handleSetGames = () => {
     setDisplayedGamesWindow(!displayedGamesWindow);
   };
+  const handleSetCalendar = () => {
+    setDisplayedCalendarWindow(!displayedCalendarWindow);
+  };
 
   const [mainWindowIsMinimized, setMainWindowIsMinimized] = useState(false);
   const [mainindowIsFullScreen, setMainWindowIsFullScreen] = useState(false);
@@ -259,6 +276,8 @@ export default function App() {
   const [consoleWindowIsFullScreen, setConsoleWindowIsFullScreen] =
     useState(false);
   const [gamesWindowIsFullScreen, setGamesWindowIsFullScreen] = useState(false);
+  const [calendarWindowIsFullScreen, setCalendarWindowIsFullScreen] =
+    useState(false);
   const handleCloseMainWindow = () => {
     setDisplayedMainWindow(false);
     setMainWindowIsFullScreen(false);
@@ -299,6 +318,10 @@ export default function App() {
     setDisplayedGamesWindow(false);
     setGamesWindowIsFullScreen(false);
   };
+  const handleCloseCalendarWindow = () => {
+    setDisplayedCalendarWindow(false);
+    setCalendarWindowIsFullScreen(false);
+  };
   const handleMinimizeMainWindow = () => {
     setMainWindowIsMinimized(!mainWindowIsMinimized);
   };
@@ -332,6 +355,9 @@ export default function App() {
   const handleFullScreenGamesWindow = () => {
     setGamesWindowIsFullScreen(!gamesWindowIsFullScreen);
   };
+  const handleFullScreenCalendarWindow = () => {
+    setCalendarWindowIsFullScreen(!calendarWindowIsFullScreen);
+  };
 
   const previousWindowsRef = useRef(null);
   const previousFocusRef = useRef(null);
@@ -347,6 +373,7 @@ export default function App() {
       Calculatrice: displayedCalculatorWindow,
       Console: displayedConsoleWindow,
       Jeux: displayedGamesWindow,
+      Calendrier: displayedCalendarWindow,
     };
 
     if (previousWindowsRef.current === null) {
@@ -377,6 +404,7 @@ export default function App() {
     displayedCalculatorWindow,
     displayedConsoleWindow,
     displayedGamesWindow,
+    displayedCalendarWindow,
   ]);
 
   useEffect(() => {
@@ -539,6 +567,19 @@ export default function App() {
             ),
             displayed: displayedGamesWindow,
           },
+          {
+            component: (
+              <CalendarWindow
+                zIndex={zIndexCalendarWindow}
+                handleClickZIndex={handleClickZIndexCalendarWindow}
+                isFullScreen={calendarWindowIsFullScreen}
+                handleClose={handleCloseCalendarWindow}
+                fullScreen={handleFullScreenCalendarWindow}
+                isActive={maxZIndexVarName === "zIndexCalendarWindow"}
+              />
+            ),
+            displayed: displayedCalendarWindow,
+          },
         ]
           .filter((item) => item.displayed)
           .map((item, index) => (
@@ -557,6 +598,7 @@ export default function App() {
           setCalculator={handleSetCalculator}
           setConsole={handleSetConsole}
           setGames={handleSetGames}
+          setCalendar={handleSetCalendar}
         />
       </main>
   );

@@ -1,4 +1,5 @@
 import "./dock.scss";
+import { useEffect } from "react";
 import finder from "./../../assets/iconesDock/finder.png";
 import projects from "./../../assets/iconesDock/projects.png";
 import notes from "./../../assets/iconesDock/notes.png";
@@ -11,33 +12,37 @@ import consoleIcon from "./../../assets/iconesDock/console.svg";
 import games from "./../../assets/iconesDock/games.svg";
 
 export default function Dock(props) {
-  let icons = document.querySelectorAll(".ico");
-
-  icons.forEach((item, index) => {
-    item.addEventListener("mouseover", (e) => {
-      focus(e.target, index);
+  const today = new Date();
+  const calendarMonth = today
+    .toLocaleDateString("fr-FR", { month: "short" })
+    .replace(".", "")
+    .toUpperCase();
+  useEffect(() => {
+    const icons = Array.from(document.querySelectorAll(".dock .ico"));
+    const reset = () => icons.forEach((icon) => {
+      icon.style.transform = "scale(1) translateY(0px)";
     });
-    item.addEventListener("mouseleave", (e) => {
-      icons.forEach((item) => {
-        item.style.transform = "scale(1)  translateY(0px)";
-      });
+    const handlers = icons.map((icon, index) => {
+      const focus = () => {
+        icon.style.transform = "scale(1.5) translateY(-10px)";
+        [
+          [index - 1, "scale(1.2) translateY(-6px)"],
+          [index + 1, "scale(1.2) translateY(-6px)"],
+          [index - 2, "scale(1.1)"],
+          [index + 2, "scale(1.1)"],
+        ].forEach(([neighbourIndex, transform]) => {
+          if (icons[neighbourIndex]) icons[neighbourIndex].style.transform = transform;
+        });
+      };
+      icon.addEventListener("mouseenter", focus);
+      icon.addEventListener("mouseleave", reset);
+      return { icon, focus };
     });
-  });
-
-  const focus = (elem, index) => {
-    elem.style.transform = "scale(1.5)  translateY(-10px)";
-    const neighbours = [
-      [index - 1, "scale(1.2) translateY(-6px)"],
-      [index + 1, "scale(1.2) translateY(-6px)"],
-      [index - 2, "scale(1.1)"],
-      [index + 2, "scale(1.1)"],
-    ];
-    neighbours.forEach(([neighbourIndex, transform]) => {
-      if (icons[neighbourIndex]) {
-        icons[neighbourIndex].style.transform = transform;
-      }
+    return () => handlers.forEach(({ icon, focus }) => {
+      icon.removeEventListener("mouseenter", focus);
+      icon.removeEventListener("mouseleave", reset);
     });
-  };
+  }, []);
 
   return (
     <div className="dock">
@@ -81,6 +86,13 @@ export default function Dock(props) {
         <li className="li-10" onClick={() => props.setGames()}>
           <div className="name">Jeux</div>
           <img className="ico ico-system-app" src={games} alt="" />
+        </li>
+        <li className="li-11" onClick={() => props.setCalendar()}>
+          <div className="name">Calendrier</div>
+          <div className="ico calendar-dock-icon" aria-hidden="true">
+            <span>{calendarMonth}</span>
+            <strong>{today.getDate()}</strong>
+          </div>
         </li>
       </div>
     </div>

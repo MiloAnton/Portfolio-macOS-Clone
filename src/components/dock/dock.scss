@@ -107,6 +107,37 @@
         height: 82%;
         object-fit: contain;
       }
+
+      .calendar-dock-icon {
+        width: 82%;
+        height: 82%;
+        overflow: hidden;
+        border-radius: 11px;
+        background: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+        color: #171719;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        text-align: center;
+
+        span {
+          height: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          background: #ff3b30;
+          font-size: 7px;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+        }
+
+        strong {
+          display: block;
+          font-size: 22px;
+          font-weight: 400;
+          line-height: 27px;
+        }
+      }
       .ico-bin {
         width: 94% !important;
         height: 94% !important;
