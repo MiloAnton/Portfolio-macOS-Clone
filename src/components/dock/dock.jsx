@@ -51,7 +51,7 @@ export default function Dock(props) {
           <div className="name">Safari</div>
           <img className="ico" src={safari} alt="" />
         </li>
-        <li className="li-2">
+        <li className="li-2" onClick={() => props.setMessages()}>
           <div className="name">Message</div>
           <img className="ico" src={message} alt="" />
         </li>

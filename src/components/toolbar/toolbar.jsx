@@ -1,12 +1,22 @@
 import "./toolbar.scss";
 import heart from "./../../assets/heart.svg";
 import CircumIcon from "@klarr-agency/circum-icons-react";
+import { useEffect, useState } from "react";
 
 export default function Toolbar(props) {
-  const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  const [current, setCurrent] = useState(() => new Date());
+
+  useEffect(() => {
+    const clock = setInterval(() => setCurrent(new Date()), 1000);
+    return () => clearInterval(clock);
+  }, []);
+
+  const date = current.toLocaleDateString("fr-FR");
+  const time = current.toLocaleTimeString("fr-FR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const fullTime = current.toLocaleTimeString("fr-FR");
 
   return (
     <section className="toolbar">
@@ -46,6 +56,8 @@ export default function Toolbar(props) {
           <p title="Tapez `help` pour commencer">Terminal</p>
         ) : props.focusedWindow === "zIndexSafariWindow" ? (
           <p title="Navigateur web intégré">Safari</p>
+        ) : props.focusedWindow === "zIndexMessagesWindow" ? (
+          <p title="Simulation locale, aucun message n’est envoyé">Messages</p>
         ) : null}
       </div>
       <div className="icons">
@@ -59,14 +71,7 @@ export default function Toolbar(props) {
           <CircumIcon name="battery_full"  size="30px"/>
         </div>
         <p title="Date du jour">{date}</p>
-        <p title="2007 ?">9:41 am</p>
-        <div
-          title="Bisous"
-          onClick={() => props.Login()}
-          style={{ cursor: "pointer" }}
-        >
-          <CircumIcon name="logout"  size="30px"/>
-        </div>
+        <p title={`Heure locale : ${fullTime}`}>{time}</p>
       </div>
     </section>
   );

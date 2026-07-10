@@ -7,9 +7,10 @@ import NotesWindow from "./components/notes_window/notes_window";
 import FacetimeWindow from "./components/facetime_window/facetime_window";
 import TerminalWindow from "./components/terminal_window/terminal_window";
 import SafariWindow from "./components/safari_window/safari_window";
+import MessagesWindow from "./components/messages_window/messages_window";
 import Toolbar from "./components/toolbar/toolbar";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
-import LoginPage from "./components/login_page/loginPage";
+import Desktop from "./components/desktop/desktop";
 
 export default function App() {
   const [isWelcomeAnimationVisible, setIsWelcomeAnimationVisible] =
@@ -25,6 +26,7 @@ export default function App() {
   const [displayedFacetimeWindow, setDisplayedFacetimeWindow] = useState(false);
   const [displayedTerminalWindow, setDisplayedTerminalWindow] = useState(false);
   const [displayedSafariWindow, setDisplayedSafariWindow] = useState(false);
+  const [displayedMessagesWindow, setDisplayedMessagesWindow] = useState(false);
 
   const [zIndexMainWindow, setZIndexMinWindow] = useState(1);
   const [zIndexProjectsWindow, setZIndexProjectsWindow] = useState(1);
@@ -32,6 +34,7 @@ export default function App() {
   const [zIndexFacetimeWindow, setZIndexFacetimeWindow] = useState(1);
   const [zIndexTerminalWindow, setZIndexTerminalWindow] = useState(1);
   const [zIndexSafariWindow, setZIndexSafariWindow] = useState(1);
+  const [zIndexMessagesWindow, setZIndexMessagesWindow] = useState(1);
   const zIndexValues = {
     zIndexMainWindow: zIndexMainWindow,
     zIndexProjectsWindow: zIndexProjectsWindow,
@@ -39,6 +42,7 @@ export default function App() {
     zIndexFacetimeWindow: zIndexFacetimeWindow,
     zIndexTerminalWindow: zIndexTerminalWindow,
     zIndexSafariWindow: zIndexSafariWindow,
+    zIndexMessagesWindow: zIndexMessagesWindow,
   };
   const [maxZIndexVarName, setMaxZIndexVarName] = useState("zIndexMainWindow");
   const maxZIndex = zIndexValues[maxZIndexVarName];
@@ -67,6 +71,10 @@ export default function App() {
     setZIndexSafariWindow(maxZIndex + 1);
   };
 
+  const handleClickZIndexMessagesWindow = () => {
+    setZIndexMessagesWindow(maxZIndex + 1);
+  };
+
   useEffect(() => {
     const currentZIndexes = {
       zIndexMainWindow,
@@ -75,6 +83,7 @@ export default function App() {
       zIndexFacetimeWindow,
       zIndexTerminalWindow,
       zIndexSafariWindow,
+      zIndexMessagesWindow,
     };
     setMaxZIndexVarName(
       Object.keys(currentZIndexes).reduce((a, b) =>
@@ -88,6 +97,7 @@ export default function App() {
     zIndexFacetimeWindow,
     zIndexTerminalWindow,
     zIndexSafariWindow,
+    zIndexMessagesWindow,
   ]);
 
   useEffect(() => {
@@ -120,12 +130,22 @@ export default function App() {
     // eslint-disable-next-line
   }, [displayedSafariWindow]);
 
+  useEffect(() => {
+    handleClickZIndexMessagesWindow();
+    // eslint-disable-next-line
+  }, [displayedMessagesWindow]);
+
   const handleSetCurriculum = () => {
     setDisplayedMainWindow(!displayedMainWindow);
   };
 
   const handleSetProjects = () => {
     setDisplayedProjectsWindow(!displayedProjectsWindow);
+  };
+
+  const handleOpenProjects = () => {
+    setDisplayedProjectsWindow(true);
+    handleClickZIndexProjectsWindow();
   };
 
   const handleSetNotes = () => {
@@ -144,9 +164,8 @@ export default function App() {
     setDisplayedSafariWindow(!displayedSafariWindow);
   };
 
-  const [LoggedIn, setLoggedIn] = useState(false);
-  const handleLogIn = () => {
-    setLoggedIn(!LoggedIn);
+  const handleSetMessages = () => {
+    setDisplayedMessagesWindow(!displayedMessagesWindow);
   };
 
   const [mainWindowIsMinimized, setMainWindowIsMinimized] = useState(false);
@@ -159,6 +178,8 @@ export default function App() {
   const [terminalWindowIsFullScreen, setTerminalWindowIsFullScreen] =
     useState(false);
   const [safariWindowIsFullScreen, setSafariWindowIsFullScreen] =
+    useState(false);
+  const [messagesWindowIsFullScreen, setMessagesWindowIsFullScreen] =
     useState(false);
   const handleCloseMainWindow = () => {
     setDisplayedMainWindow(false);
@@ -184,6 +205,10 @@ export default function App() {
     setDisplayedSafariWindow(false);
     setSafariWindowIsFullScreen(false);
   };
+  const handleCloseMessagesWindow = () => {
+    setDisplayedMessagesWindow(false);
+    setMessagesWindowIsFullScreen(false);
+  };
   const handleMinimizeMainWindow = () => {
     setMainWindowIsMinimized(!mainWindowIsMinimized);
   };
@@ -205,16 +230,17 @@ export default function App() {
   const handleFullScreenSafariWindow = () => {
     setSafariWindowIsFullScreen(!safariWindowIsFullScreen);
   };
+  const handleFullScreenMessagesWindow = () => {
+    setMessagesWindowIsFullScreen(!messagesWindowIsFullScreen);
+  };
 
-  if (LoggedIn === false) {
-    return <LoginPage Login={handleLogIn} />;
-  } else {
-    return (
+  return (
       <main className="bounds">
         {isWelcomeAnimationVisible && (
           <WelcomeAnimation onAnimationEnd={handleAnimationEnd} />
         )}
-        <Toolbar focusedWindow={maxZIndexVarName} Login={handleLogIn} />
+        <Toolbar focusedWindow={maxZIndexVarName} />
+        <Desktop openProjects={handleOpenProjects} />
         {[
           {
             component: (
@@ -296,6 +322,18 @@ export default function App() {
             ),
             displayed: displayedSafariWindow,
           },
+          {
+            component: (
+              <MessagesWindow
+                zIndex={zIndexMessagesWindow}
+                handleClickZIndex={handleClickZIndexMessagesWindow}
+                isFullScreen={messagesWindowIsFullScreen}
+                handleClose={handleCloseMessagesWindow}
+                fullScreen={handleFullScreenMessagesWindow}
+              />
+            ),
+            displayed: displayedMessagesWindow,
+          },
         ]
           .filter((item) => item.displayed)
           .map((item, index) => (
@@ -310,8 +348,8 @@ export default function App() {
           setFacetime={handleSetFacetime}
           setTerminal={handleSetTerminal}
           setSafari={handleSetSafari}
+          setMessages={handleSetMessages}
         />
       </main>
-    );
-  }
+  );
 }

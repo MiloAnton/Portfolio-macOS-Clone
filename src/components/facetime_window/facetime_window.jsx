@@ -3,7 +3,7 @@ import MenuBar from "../menu_bar/menu_bar";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
 import "./facetime_window.scss";
-import profilepic from "./../../assets/profil.png";
+import profilepic from "./../../assets/profil.jpg";
 import { useEffect, useRef, useState } from "react";
 import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 

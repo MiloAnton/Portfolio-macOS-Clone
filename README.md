@@ -29,7 +29,11 @@ Are used in this project :
 
 ## Changelog
 
-### 0.9.2 (current)
+### 0.9.3
+- Removed fake login page
+- Added back Messages app 
+
+### 0.9.2 
 - New wallpaper (macOS Tahoe)
 - Added Safari for iframe-friendly websites
 - Added a few logos in "Stack maitrisée"
