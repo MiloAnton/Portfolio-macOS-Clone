@@ -7,7 +7,10 @@ describe("window registry", () => {
 
     expect(new Set(ids).size).toBe(ids.length);
     expect(new Set(dockOrders).size).toBe(dockOrders.length);
+    expect(Object.keys(WINDOWS_BY_ID)).toEqual(ids);
     WINDOW_REGISTRY.forEach((config) => {
+      expect(config.id).toEqual(expect.any(String));
+      expect(config.id.length).toBeGreaterThan(0);
       expect(config.component).toBeTruthy();
       expect(config.defaultSize).toHaveLength(2);
       expect(config.minSize).toHaveLength(2);

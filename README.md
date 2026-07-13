@@ -19,6 +19,15 @@ Are used in this project :
 
 ## Changelog
 
+### 0.10.6
+- Expanded the pre-TypeScript safety net from 10 to 24 behavioral tests across 7 suites
+- Added App integration tests for opening windows from the Dock and desktop, plus foreground focus changes
+- Added reducer coverage for deterministic z-index ordering, ignored focus, minimize/restore transitions and fullscreen toggling
+- Added layout hook tests for loading, clamping and persisting dragged or resized window layouts
+- Strengthened registry validation for unique, non-empty IDs and exact ID lookup consistency
+- Added a FaceTime lifecycle test ensuring every camera track stops when its window is minimized
+- Added a Games isolation test ensuring gameplay keys are captured only while Games is in the foreground
+
 ### 0.10.5
 - Added a shared `WindowFrame` used by every app for macOS chrome, focus, dragging, resizing and animations
 - Fullscreen now works consistently on all windows, including double-clicking the title bar and restoring the previous layout
