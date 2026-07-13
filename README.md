@@ -19,6 +19,14 @@ Are used in this project :
 
 ## Changelog
 
+### 0.10.7
+- Removed the Dock's global DOM queries, manual event listeners and imperative transforms
+- Dock magnification and neighbouring icon effects are now derived from React hover state and CSS classes
+- Stack animation delays in the main window are now declared directly during rendering, without refs or DOM mutations
+- Split all 10 mini-games into focused, human-readable modules instead of two compact monolithic files
+- Added a declarative games registry plus shared keyboard and canvas primitives to remove duplicated infrastructure
+- Added Dock, main-window and games-registry regression tests (29 tests across 10 suites)
+
 ### 0.10.6
 - Expanded the pre-TypeScript safety net from 10 to 24 behavioral tests across 7 suites
 - Added App integration tests for opening windows from the Dock and desktop, plus foreground focus changes

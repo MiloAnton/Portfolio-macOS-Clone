@@ -37,7 +37,6 @@ import vite from "./../../assets/iconesStack/vite.webp";
 import next from "./../../assets/iconesStack/next.svg";
 import tailwind from "./../../assets/iconesStack/tailwind.png";
 import windows from "./../../assets/iconesStack/windows.webp";
-import { useEffect, useRef } from "react";
 
 // Icônes importées de la stack : les entrées absentes retombent sur
 // element.logo (URL CDN) définie dans listStack.json.
@@ -79,10 +78,13 @@ function StackSection({ title, items }) {
     <div>
       <h3>{title}</h3>
       <div className="iconesStack">
-        {items.map((element) => (
+        {items.map((element, index) => (
           <div
             key={element.nom}
-            style={{ textAlign: "center" }}
+            style={{
+              textAlign: "center",
+              animationDelay: `${index * 0.08}s`,
+            }}
             title={element.description}
             className="fade-in-from-top"
           >
@@ -103,20 +105,8 @@ function StackSection({ title, items }) {
 }
 
 export default function MainWindow() {
-  const contentRef = useRef(null);
-
-  useEffect(() => {
-    // Cascade d'apparition calculée par section (et non globalement, sinon
-    // les dernières icônes attendraient plusieurs secondes).
-    contentRef.current?.querySelectorAll(".iconesStack").forEach((section) => {
-      Array.from(section.children).forEach((element, index) => {
-        element.style.animationDelay = `${index * 0.08}s`;
-      });
-    });
-  }, []);
-
   return (
-        <section className="page resume-page" ref={contentRef}>
+        <section className="page resume-page">
           <div className="content">
             <section className="demoMobile">
               <p>Profitez de l'expérience complète sur Desktop !</p>

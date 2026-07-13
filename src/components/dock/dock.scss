@@ -100,11 +100,20 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform: scale(1) translateY(0);
         transition: 0.2s;
+      }
 
-        &:hover {
-          transform: scale(1.4) translateY(-15%);
-        }
+      &.dock-hovered .ico {
+        transform: scale(1.5) translateY(-10px);
+      }
+
+      &.dock-neighbour-1 .ico {
+        transform: scale(1.2) translateY(-6px);
+      }
+
+      &.dock-neighbour-2 .ico {
+        transform: scale(1.1) translateY(0);
       }
 
       .ico-system-app {
