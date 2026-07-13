@@ -34,6 +34,12 @@
       "image": "react"
     },
     {
+      "nom": "Vue",
+      "description": "Framework JavaScript progressif permettant de créer des interfaces utilisateur et des applications web modernes.",
+      "image": "vue",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
+    },
+    {
       "nom": "Angular",
       "description": "Plateforme de développement d'applications web développée par Google en TypeScript.",
       "image": "angular"
