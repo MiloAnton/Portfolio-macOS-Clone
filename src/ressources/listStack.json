@@ -213,6 +213,18 @@
       "description": "Scanner de sécurité web open source utilisé pour détecter automatiquement les vulnérabilités des applications.",
       "image": "owasp-zap",
       "logo": "https://www.zaproxy.org/img/zap-by-checkmarx.svg"
+    },
+    {
+      "nom": "Prometheus",
+      "description": "Système open source de supervision et d'alerting conçu pour collecter et interroger des métriques en séries temporelles.",
+      "image": "prometheus",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prometheus/prometheus-original.svg"
+    },
+    {
+      "nom": "Grafana",
+      "description": "Plateforme open source d'observabilité permettant de visualiser, explorer et corréler des métriques, logs et traces.",
+      "image": "grafana",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg"
     }
   ],
   "autres": [
