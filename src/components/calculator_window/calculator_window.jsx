@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import Draggable from "react-draggable";
-import MenuBar from "../menu_bar/menu_bar";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import version from "../../../package.json";
 import "./calculator_window.scss";
 
@@ -28,12 +25,6 @@ const getEasterEgg = (value) => {
 };
 
 export default function CalculatorWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [320, 480];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "calculator",
-    defaultWidth,
-    defaultHeight
-  );
   const [display, setDisplay] = useState("0");
   const [storedValue, setStoredValue] = useState(null);
   const [pendingOperation, setPendingOperation] = useState(null);
@@ -160,24 +151,7 @@ export default function CalculatorWindow(props) {
   ];
 
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <section
-        className={`App calculator-window ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={{
-          zIndex: props.zIndex,
-          width: defaultWidth,
-          height: defaultHeight,
-        }}
-        onMouseDownCapture={props.handleClickZIndex}
-      >
-        <MenuBar
-          title="Calculatrice"
-          handleFullscreen={props.fullScreen}
-          handleQuit={props.handleClose}
-          handleMinimize={props.handleMinimize}
-        />
+    <>
         <div className="calculator-display" aria-live="polite">
           <span>{hint || " "}</span>
           <output>{display.replace(".", ",")}</output>
@@ -194,7 +168,6 @@ export default function CalculatorWindow(props) {
             </button>
           ))}
         </div>
-      </section>
-    </Draggable>
+    </>
   );
 }

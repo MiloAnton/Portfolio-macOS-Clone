@@ -1,9 +1,4 @@
 import { useState } from "react";
-import Draggable from "react-draggable";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
-import MenuBar from "../menu_bar/menu_bar";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import "./safari_window.scss";
 
 const FAVORITES = [
@@ -44,12 +39,6 @@ const normalizeUrl = (value) => {
 };
 
 export default function SafariWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [900, 620];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "safari",
-    defaultWidth,
-    defaultHeight
-  );
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [address, setAddress] = useState("");
@@ -101,26 +90,7 @@ export default function SafariWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App safari-window ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={{ zIndex: props.zIndex }}
-        onMouseDownCapture={props.handleClickZIndex}
-        width={defaultWidth}
-        height={defaultHeight}
-        minConstraints={[520, 360]}
-        maxConstraints={[2560, 1440]}
-        resizeHandles={["se"]}
-      >
-        <MenuBar
-          title="Safari"
-          handleFullscreen={props.fullScreen}
-          handleQuit={props.handleClose}
-          handleMinimize={props.handleMinimize}
-        />
-
+    <>
         <div className="safari-toolbar">
           <div className="navigation-buttons">
             <button
@@ -223,8 +193,6 @@ export default function SafariWindow(props) {
             />
           )}
         </div>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
+    </>
   );
 }

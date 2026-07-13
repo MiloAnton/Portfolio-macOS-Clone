@@ -1,55 +1,8 @@
-import Draggable from "react-draggable";
-import MenuBar from "../menu_bar/menu_bar";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
 import projectsList from "./../../ressources/listProjects.json";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import "./projects_window.scss";
 
-export default function ProjectsWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [800, 600];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "projects",
-    defaultWidth,
-    defaultHeight
-  );
-  const handleFullscreen = () => {
-    props.fullScreen();
-  };
-
-  const handleQuit = () => {
-    props.handleClose();
-  };
-
+export default function ProjectsWindow() {
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={
-          props.isMinimized
-            ? { display: "none" }
-            : props.isFullScreen
-            ? {
-                width: "calc(100vw - 100px) !important",
-                height: "100vh !important",
-              }
-            : { zIndex: props.zIndex }
-        }
-        onMouseDownCapture={() => props.handleClickZIndex()}
-        width={defaultWidth} // Largeur initiale de la fenêtre
-        height={defaultHeight} // Hauteur initiale de la fenêtre
-        minConstraints={[300, 200]} // Largeur et hauteur minimales
-        maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
-        resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
-      >
-        <MenuBar
-          title="Projets"
-          handleFullscreen={handleFullscreen}
-          handleQuit={handleQuit}
-          handleMinimize={props.handleMinimize}
-        />
         <section className="page projects-page">
           <div className="content">
             <section className="experience" id="projects">
@@ -99,8 +52,5 @@ export default function ProjectsWindow(props) {
             </section>
           </div>
         </section>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }

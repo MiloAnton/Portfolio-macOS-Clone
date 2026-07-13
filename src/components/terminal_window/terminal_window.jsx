@@ -1,14 +1,9 @@
-import Draggable from "react-draggable";
-import MenuBar from "../menu_bar/menu_bar";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
 import "./terminal_window.scss";
 import listStack from "./../../ressources/listStack.json";
 import projectsList from "./../../ressources/listProjects.json";
 import experienceList from "./../../ressources/listExperiences.json";
 import version from "./../../../package.json";
 import { useEffect, useRef, useState } from "react";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 const PROMPT = "visiteur@milo ~ %";
 
@@ -58,24 +53,6 @@ const welcomeLines = [
 ];
 
 export default function TerminalWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [720, 480];
-  const defaultPosition = {
-    x: Math.round(
-      Math.min(window.innerWidth * 0.57, window.innerWidth - 744) - 200
-    ),
-    y: Math.round(
-      Math.min(window.innerHeight * 0.505, window.innerHeight - 570) - 40
-    ),
-  };
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "terminal",
-    defaultWidth,
-    defaultHeight,
-    {
-      initialPosition: defaultPosition,
-      storageKeySuffix: "showcase-layout",
-    }
-  );
   const [lines, setLines] = useState(welcomeLines);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState([]);
@@ -84,10 +61,19 @@ export default function TerminalWindow(props) {
   const bottomRef = useRef(null);
   const mountTime = useRef(Date.now());
   const busyRef = useRef(false);
+  const progressiveTimersRef = useRef(new Set());
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView();
   }, [lines]);
+
+  useEffect(
+    () => () => {
+      progressiveTimersRef.current.forEach((timer) => clearTimeout(timer));
+      progressiveTimersRef.current.clear();
+    },
+    []
+  );
 
   const print = (texts) =>
     texts.map((text) => ({ prompt: false, text }));
@@ -95,12 +81,14 @@ export default function TerminalWindow(props) {
   const printProgressively = (texts, delay = 400) => {
     busyRef.current = true;
     texts.forEach((text, index) => {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
+        progressiveTimersRef.current.delete(timer);
         setLines((prev) => [...prev, { prompt: false, text }]);
         if (index === texts.length - 1) {
           busyRef.current = false;
         }
       }, delay * (index + 1));
+      progressiveTimersRef.current.add(timer);
     });
   };
 
@@ -274,7 +262,7 @@ export default function TerminalWindow(props) {
       return;
     }
     if (result.exit) {
-      props.handleClose();
+      props.closeWindow();
       return;
     }
     setLines((prev) => [...prev, echoLine, ...print(result.lines || [])]);
@@ -318,35 +306,7 @@ export default function TerminalWindow(props) {
     }
   };
 
-  const handleQuit = () => {
-    props.handleClose();
-  };
-
-  const handleFullscreen = () => {
-    props.fullScreen();
-  };
-
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={
-          props.isMinimized ? { display: "none" } : { zIndex: props.zIndex }
-        }
-        onMouseDownCapture={() => props.handleClickZIndex()}
-        width={defaultWidth} // Largeur initiale de la fenêtre
-        height={defaultHeight} // Hauteur initiale de la fenêtre
-        minConstraints={[400, 250]} // Largeur et hauteur minimales
-        maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
-        resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
-      >
-        <MenuBar
-          handleFullscreen={handleFullscreen}
-          handleQuit={handleQuit}
-          handleMinimize={props.handleMinimize}
-        />
         <section
           className="terminal-app"
           onClick={() => inputRef.current?.focus()}
@@ -374,8 +334,5 @@ export default function TerminalWindow(props) {
           </div>
           <div ref={bottomRef} />
         </section>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }

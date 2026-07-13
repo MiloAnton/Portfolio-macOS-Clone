@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import Draggable from "react-draggable";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
-import MenuBar from "../menu_bar/menu_bar";
 import version from "../../../package.json";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import {
   addPortfolioLog,
   clearPortfolioLogs,
@@ -16,12 +11,6 @@ import "./console_window.scss";
 const levels = ["all", "info", "success", "warning", "error"];
 
 export default function ConsoleWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [780, 500];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "console",
-    defaultWidth,
-    defaultHeight
-  );
   const [logs, setLogs] = useState(getPortfolioLogs);
   const [level, setLevel] = useState("all");
   const [query, setQuery] = useState("");
@@ -81,7 +70,7 @@ export default function ConsoleWindow(props) {
         "Commandes : help, clear, status, version, echo <texte>"
       );
     } else if (name === "status") {
-      const openWindows = document.querySelectorAll(".window-container").length;
+      const openWindows = props.openWindowCount;
       addPortfolioLog(
         "success",
         "runtime",
@@ -100,25 +89,7 @@ export default function ConsoleWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App console-window ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={{ zIndex: props.zIndex }}
-        onMouseDownCapture={props.handleClickZIndex}
-        width={defaultWidth}
-        height={defaultHeight}
-        minConstraints={[520, 320]}
-        maxConstraints={[2560, 1440]}
-        resizeHandles={["se"]}
-      >
-        <MenuBar
-          title="Console"
-          handleFullscreen={props.fullScreen}
-          handleQuit={props.handleClose}
-          handleMinimize={props.handleMinimize}
-        />
+    <>
         <div className="console-toolbar">
           <button type="button" onClick={togglePause} className={isPaused ? "paused" : ""}>
             {isPaused ? "▶ Reprendre" : "Ⅱ Pause"}
@@ -164,8 +135,6 @@ export default function ConsoleWindow(props) {
             autoComplete="off"
           />
         </form>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
+    </>
   );
 }

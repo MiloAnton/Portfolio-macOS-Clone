@@ -1,9 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Draggable from "react-draggable";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
-import MenuBar from "../menu_bar/menu_bar";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import "./games_window.scss";
 import {
   DoodleJump,
@@ -249,13 +244,8 @@ function Racer({ isActive }) {
 }
 
 export default function GamesWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [760, 570];
-  const { position, handleDragStop } = usePersistentWindowPosition("games", defaultWidth, defaultHeight);
   const [game, setGame] = useState("mines");
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox className={`App games-window ${props.isActive ? "window-active" : "window-inactive"}`} style={{ zIndex: props.zIndex }} onMouseDownCapture={props.handleClickZIndex} width={defaultWidth} height={defaultHeight} minConstraints={[560, 480]} maxConstraints={[1200, 900]} resizeHandles={["se"]}>
-        <MenuBar title="Jeux" handleFullscreen={props.fullScreen} handleQuit={props.handleClose} handleMinimize={props.handleMinimize}/>
         <div className="games-app">
           <nav>{GAME_LIST.map((item) => <button type="button" className={game === item.id ? "selected" : ""} onClick={() => setGame(item.id)} key={item.id}><span>{item.icon}</span>{item.name}</button>)}</nav>
           <main>
@@ -271,8 +261,5 @@ export default function GamesWindow(props) {
             {game === "simon" && <Simon />}
           </main>
         </div>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }

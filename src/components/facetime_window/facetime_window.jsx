@@ -1,11 +1,6 @@
-import Draggable from "react-draggable";
-import MenuBar from "../menu_bar/menu_bar";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
 import "./facetime_window.scss";
 import profilepic from "./../../assets/profil.jpg";
 import { useEffect, useRef, useState } from "react";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 const formatDuration = (seconds) => {
   const min = String(Math.floor(seconds / 60)).padStart(2, "0");
@@ -14,12 +9,6 @@ const formatDuration = (seconds) => {
 };
 
 export default function FacetimeWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [720, 520];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "facetime",
-    defaultWidth,
-    defaultHeight
-  );
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   // connecting : demande d'accès caméra en cours | active : en appel | denied : refusé/indisponible
@@ -28,7 +17,19 @@ export default function FacetimeWindow(props) {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
+    if (!props.isVisible) {
+      setCallState("connecting");
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+      return undefined;
+    }
+
     let cancelled = false;
+    setCameraOn(true);
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setCallState("denied");
+      return undefined;
+    }
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
@@ -48,9 +49,10 @@ export default function FacetimeWindow(props) {
       cancelled = true;
       if (streamRef.current) {
         streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
       }
     };
-  }, []);
+  }, [props.isVisible]);
 
   useEffect(() => {
     if (callState !== "active") {
@@ -71,34 +73,10 @@ export default function FacetimeWindow(props) {
   };
 
   const handleQuit = () => {
-    props.handleClose();
-  };
-
-  const handleFullscreen = () => {
-    props.fullScreen();
+    props.closeWindow();
   };
 
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={
-          props.isMinimized ? { display: "none" } : { zIndex: props.zIndex }
-        }
-        onMouseDownCapture={() => props.handleClickZIndex()}
-        width={defaultWidth} // Largeur initiale de la fenêtre
-        height={defaultHeight} // Hauteur initiale de la fenêtre
-        minConstraints={[400, 300]} // Largeur et hauteur minimales
-        maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
-        resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
-      >
-        <MenuBar
-          handleFullscreen={handleFullscreen}
-          handleQuit={handleQuit}
-          handleMinimize={props.handleMinimize}
-        />
         <section className="facetime-app">
           <video ref={videoRef} autoPlay playsInline muted />
           {callState !== "active" && (
@@ -156,8 +134,5 @@ export default function FacetimeWindow(props) {
             </button>
           </div>
         </section>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }

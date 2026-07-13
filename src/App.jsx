@@ -10,6 +10,7 @@ import Dock from "./components/dock/dock";
 import Toolbar from "./components/toolbar/toolbar";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import Desktop from "./components/desktop/desktop";
+import WindowFrame from "./components/window_frame/window_frame";
 import {
   WINDOW_REGISTRY,
   WINDOWS_BY_ID,
@@ -41,6 +42,9 @@ export default function App() {
   const activeWindow = activeWindowId
     ? WINDOWS_BY_ID[activeWindowId]
     : null;
+  const openWindowCount = Object.values(windows.byId).filter(
+    (windowState) => windowState.isOpen
+  ).length;
 
   useEffect(
     () => () => {
@@ -158,27 +162,35 @@ export default function App() {
             }${windowState.isMinimized ? " window-minimized" : ""}`}
             key={windowConfig.id}
           >
-            <Suspense fallback={null}>
-              <WindowComponent
-                defaultSize={windowConfig.defaultSize}
-                setDisplayed={() => toggleWindow(windowConfig.id)}
-                zIndex={windowState.zIndex}
-                handleClickZIndex={() =>
-                  dispatch({ type: WINDOW_ACTIONS.FOCUS, id: windowConfig.id })
-                }
-                isFullScreen={windowState.isFullscreen}
-                isMinimized={windowState.isMinimized}
-                handleClose={() => animateClose(windowConfig.id)}
-                handleMinimize={() => animateMinimize(windowConfig.id)}
-                fullScreen={() =>
-                  dispatch({
-                    type: WINDOW_ACTIONS.TOGGLE_FULLSCREEN,
-                    id: windowConfig.id,
-                  })
-                }
-                isActive={activeWindowId === windowConfig.id}
-              />
-            </Suspense>
+            <WindowFrame
+              config={windowConfig}
+              windowState={{
+                ...windowState,
+                isActive: activeWindowId === windowConfig.id,
+              }}
+              onFocus={() =>
+                dispatch({ type: WINDOW_ACTIONS.FOCUS, id: windowConfig.id })
+              }
+              onClose={() => animateClose(windowConfig.id)}
+              onMinimize={() => animateMinimize(windowConfig.id)}
+              onToggleFullscreen={() =>
+                dispatch({
+                  type: WINDOW_ACTIONS.TOGGLE_FULLSCREEN,
+                  id: windowConfig.id,
+                })
+              }
+            >
+              <Suspense
+                fallback={<div className="window-loading">Ouverture…</div>}
+              >
+                <WindowComponent
+                  isActive={activeWindowId === windowConfig.id}
+                  isVisible={!windowState.isMinimized}
+                  openWindowCount={openWindowCount}
+                  closeWindow={() => animateClose(windowConfig.id)}
+                />
+              </Suspense>
+            </WindowFrame>
           </div>
         );
       })}

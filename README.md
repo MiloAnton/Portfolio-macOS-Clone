@@ -19,6 +19,16 @@ Are used in this project :
 
 ## Changelog
 
+### 0.10.5
+- Added a shared `WindowFrame` used by every app for macOS chrome, focus, dragging, resizing and animations
+- Fullscreen now works consistently on all windows, including double-clicking the title bar and restoring the previous layout
+- Window positions and resized dimensions are persisted together, migrated from the legacy format and clamped after viewport changes
+- Moved window titles, size constraints, CSS classes and placement rules into the declarative window registry
+- App components now contain only their own content and behavior, with no duplicated `Draggable`, `ResizableBox` or `MenuBar` setup
+- Replaced duplicate drag handle IDs and clickable traffic-light divs with shared classes and accessible buttons
+- FaceTime releases the camera while minimized without sacrificing the preserved state of other apps
+- Added registry, layout and `WindowFrame` tests (10 tests total)
+
 ### 0.10.4
 - Replaced the duplicated state and handlers in `App.jsx` with a centralized `useReducer` window manager
 - Added a single declarative window registry for lazy components, Dock metadata, initial layout and default sizes

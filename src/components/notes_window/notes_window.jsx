@@ -1,10 +1,5 @@
-import Draggable from "react-draggable";
-import MenuBar from "../menu_bar/menu_bar";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
 import "./notes_window.scss";
 import { useEffect, useState } from "react";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
 const STORAGE_KEY = "portfolio-notes";
 
@@ -49,13 +44,7 @@ const noteDate = (timestamp) => {
   });
 };
 
-export default function NotesWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [750, 500];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "notes",
-    defaultWidth,
-    defaultHeight
-  );
+export default function NotesWindow() {
   const [notes, setNotes] = useState(loadNotes);
   const [selectedId, setSelectedId] = useState(() => loadNotes()[0]?.id);
 
@@ -91,37 +80,7 @@ export default function NotesWindow(props) {
     );
   };
 
-  const handleFullscreen = () => {
-    props.fullScreen();
-  };
-
-  const handleQuit = () => {
-    props.handleClose();
-  };
-
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={
-          props.isMinimized
-            ? { display: "none" }
-            : { zIndex: props.zIndex }
-        }
-        onMouseDownCapture={() => props.handleClickZIndex()}
-        width={defaultWidth} // Largeur initiale de la fenêtre
-        height={defaultHeight} // Hauteur initiale de la fenêtre
-        minConstraints={[500, 300]} // Largeur et hauteur minimales
-        maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
-        resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
-      >
-        <MenuBar
-          handleFullscreen={handleFullscreen}
-          handleQuit={handleQuit}
-          handleMinimize={props.handleMinimize}
-        />
         <section className="notes-app">
           <div className="notes-sidebar">
             <div className="notes-actions">
@@ -174,8 +133,5 @@ export default function NotesWindow(props) {
             </div>
           )}
         </section>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }

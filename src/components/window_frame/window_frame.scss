@@ -1,0 +1,92 @@
+// Ouverture façon macOS. Les propriétés scale/translate n'écrasent pas le
+// transform utilisé par react-draggable pour positionner la fenêtre.
+@keyframes window-zoom-in {
+  from { opacity: 0; scale: 0.55; translate: 0 60px; }
+  to { opacity: 1; scale: 1; translate: 0 0; }
+}
+
+@keyframes window-genie-out {
+  from { opacity: 1; scale: 1; translate: 0 0; }
+  to { opacity: 0; scale: 0.3 0.05; translate: 0 45vh; }
+}
+
+.window-closing .window-frame {
+  animation: window-genie-out 0.3s cubic-bezier(0.55, 0, 0.85, 0.35) both;
+  pointer-events: none;
+}
+
+.window-minimized {
+  display: none;
+}
+
+.window-frame {
+  margin: 0;
+  max-width: none;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 18px;
+  background: #212124ee;
+  box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
+  backdrop-filter: blur(10.2px);
+  -webkit-backdrop-filter: blur(10.2px);
+  animation: window-zoom-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: 50% 100%;
+  user-select: none;
+  transition:
+    box-shadow 130ms ease,
+    filter 130ms ease,
+    background-color 130ms ease;
+
+  &.window-active {
+    filter: saturate(1) brightness(1);
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.48),
+      0 5px 18px rgba(0, 0, 0, 0.28);
+  }
+
+  &.window-inactive {
+    filter: saturate(0.86) brightness(0.94);
+    box-shadow:
+      0 10px 32px rgba(0, 0, 0, 0.25),
+      0 2px 8px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(7px) saturate(80%);
+    -webkit-backdrop-filter: blur(7px) saturate(80%);
+  }
+
+  &.window-fullscreen {
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+
+    .menubar {
+      border-radius: 0;
+    }
+
+    .react-resizable-handle {
+      display: none;
+    }
+  }
+}
+
+.window-frame-content {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.window-loading {
+  height: calc(100% - 60px);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .window-frame {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

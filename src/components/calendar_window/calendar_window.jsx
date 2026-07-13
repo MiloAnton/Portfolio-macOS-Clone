@@ -1,9 +1,4 @@
 import { useMemo, useState } from "react";
-import Draggable from "react-draggable";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
-import MenuBar from "../menu_bar/menu_bar";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import "./calendar_window.scss";
 
 const STORAGE_KEY = "portfolio-calendar-events";
@@ -45,13 +40,7 @@ const saveEvents = (events) => {
   }
 };
 
-export default function CalendarWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [840, 590];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "calendar",
-    defaultWidth,
-    defaultHeight
-  );
+export default function CalendarWindow() {
   const today = useMemo(() => new Date(), []);
   const [visibleMonth, setVisibleMonth] = useState(
     () => new Date(today.getFullYear(), today.getMonth(), 1)
@@ -106,25 +95,6 @@ export default function CalendarWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App calendar-window ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={{ zIndex: props.zIndex }}
-        onMouseDownCapture={props.handleClickZIndex}
-        width={defaultWidth}
-        height={defaultHeight}
-        minConstraints={[620, 450]}
-        maxConstraints={[1500, 1000]}
-        resizeHandles={["se"]}
-      >
-        <MenuBar
-          title="Calendrier"
-          handleFullscreen={props.fullScreen}
-          handleQuit={props.handleClose}
-          handleMinimize={props.handleMinimize}
-        />
         <div className="calendar-app">
           <header className="calendar-header">
             <div className="calendar-navigation">
@@ -191,8 +161,5 @@ export default function CalendarWindow(props) {
             </aside>
           </div>
         </div>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }

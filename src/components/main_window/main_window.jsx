@@ -37,12 +37,7 @@ import vite from "./../../assets/iconesStack/vite.webp";
 import next from "./../../assets/iconesStack/next.svg";
 import tailwind from "./../../assets/iconesStack/tailwind.png";
 import windows from "./../../assets/iconesStack/windows.webp";
-import MenuBar from "../menu_bar/menu_bar";
-import Draggable from "react-draggable";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
-import { useState, useEffect } from "react";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
+import { useEffect, useRef } from "react";
 
 // Icônes importées de la stack : les entrées absentes retombent sur
 // element.logo (URL CDN) définie dans listStack.json.
@@ -107,52 +102,13 @@ function StackSection({ title, items }) {
   );
 }
 
-export default function MainWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [1100, 700];
-  const [initialWidth, setInitialWidth] = useState(defaultWidth);
-  const [initialHeight, setInitialHeight] = useState(defaultHeight);
-  const defaultPosition = {
-    x: Math.round(window.innerWidth * 0.02 - 200),
-    y: Math.round(window.innerHeight * 0.055 - 40),
-  };
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "main",
-    initialWidth,
-    initialHeight,
-    {
-      initialPosition: defaultPosition,
-      storageKeySuffix: "showcase-layout",
-    }
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
-      setInitialWidth(
-        screenWidth > 900 ? Math.min(defaultWidth, screenWidth - 80) : screenWidth
-      );
-      setInitialHeight(
-        screenHeight > 450
-          ? Math.min(defaultHeight, screenHeight - 140)
-          : screenHeight
-      );
-    };
-    handleResize();
-  }, [defaultHeight, defaultWidth]);
-
-  const handleFullscreen = () => {
-    props.fullScreen();
-  };
-
-  const handleQuit = () => {
-    props.handleClose();
-  };
+export default function MainWindow() {
+  const contentRef = useRef(null);
 
   useEffect(() => {
     // Cascade d'apparition calculée par section (et non globalement, sinon
     // les dernières icônes attendraient plusieurs secondes).
-    document.querySelectorAll(".iconesStack").forEach((section) => {
+    contentRef.current?.querySelectorAll(".iconesStack").forEach((section) => {
       Array.from(section.children).forEach((element, index) => {
         element.style.animationDelay = `${index * 0.08}s`;
       });
@@ -160,35 +116,7 @@ export default function MainWindow(props) {
   }, []);
 
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={
-          props.isMinimized
-            ? { display: "none" }
-            : props.isFullScreen
-            ? {
-                width: "calc(100vw - 100px) !important",
-                height: "100vh !important",
-              }
-            : { zIndex: props.zIndex }
-        }
-        onMouseDownCapture={() => props.handleClickZIndex()}
-        width={initialWidth} // Largeur initiale de la fenêtre
-        height={initialHeight} // Hauteur initiale de la fenêtre
-        minConstraints={[300, 200]} // Largeur et hauteur minimales
-        maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
-        resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
-      >
-        <MenuBar
-          title="À propos de Milo"
-          handleFullscreen={handleFullscreen}
-          handleQuit={handleQuit}
-          handleMinimize={props.handleMinimize}
-        />
-        <section className="page resume-page">
+        <section className="page resume-page" ref={contentRef}>
           <div className="content">
             <section className="demoMobile">
               <p>Profitez de l'expérience complète sur Desktop !</p>
@@ -273,8 +201,5 @@ export default function MainWindow(props) {
             </section>
           </div>
         </section>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }

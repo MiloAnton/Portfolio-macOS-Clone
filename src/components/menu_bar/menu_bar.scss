@@ -1,5 +1,9 @@
 .menubar {
+  width: 100%;
+  min-width: 0;
   height: 60px;
+  flex: 0 0 60px;
+  box-sizing: border-box;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -8,6 +12,11 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(35, 35, 38, 0.78);
   transition: background-color 130ms ease, border-color 130ms ease;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 
   .buttons {
     display: flex;
@@ -25,9 +34,16 @@
       position: relative;
       height: 15px;
       width: 15px;
+      padding: 0;
+      border: 0;
       border-radius: 1000px;
       transition: 0.14s ease-in-out;
       cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.9);
+        outline-offset: 2px;
+      }
     }
 
     .quitButton {

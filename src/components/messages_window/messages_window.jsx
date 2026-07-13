@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Draggable from "react-draggable";
-import { ResizableBox } from "react-resizable";
-import "react-resizable/css/styles.css";
-import MenuBar from "../menu_bar/menu_bar";
 import profilePicture from "../../assets/profil.jpg";
-import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 import "./messages_window.scss";
 
 const initialMessages = [
@@ -48,13 +43,7 @@ const getReply = (message) => {
   return "Là, mon faux bot atteint déjà ses limites 😅 Essaie de me parler de mes projets, de ma stack, de mon CV ou de contact.";
 };
 
-export default function MessagesWindow(props) {
-  const [defaultWidth, defaultHeight] = props.defaultSize || [760, 560];
-  const { position, handleDragStop } = usePersistentWindowPosition(
-    "messages",
-    defaultWidth,
-    defaultHeight
-  );
+export default function MessagesWindow() {
   const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -91,26 +80,6 @@ export default function MessagesWindow(props) {
   };
 
   return (
-    <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox
-        className={`App messages-window ${
-          props.isActive ? "window-active" : "window-inactive"
-        }`}
-        style={{ zIndex: props.zIndex }}
-        onMouseDownCapture={props.handleClickZIndex}
-        width={defaultWidth}
-        height={defaultHeight}
-        minConstraints={[520, 380]}
-        maxConstraints={[2560, 1440]}
-        resizeHandles={["se"]}
-      >
-        <MenuBar
-          title="Messages"
-          handleFullscreen={props.fullScreen}
-          handleQuit={props.handleClose}
-          handleMinimize={props.handleMinimize}
-        />
-
         <div className="messages-app">
           <aside className="messages-sidebar">
             <div className="sidebar-heading">
@@ -177,8 +146,5 @@ export default function MessagesWindow(props) {
             </form>
           </section>
         </div>
-        <div className="resizeIndicator" />
-      </ResizableBox>
-    </Draggable>
   );
 }
