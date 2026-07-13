@@ -44,6 +44,69 @@ import "react-resizable/css/styles.css";
 import { useState, useEffect } from "react";
 import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition";
 
+// Icônes importées de la stack : les entrées absentes retombent sur
+// element.logo (URL CDN) définie dans listStack.json.
+const stackIcons = {
+  adobecc,
+  angular,
+  ansible,
+  c,
+  django,
+  docker,
+  express,
+  figma,
+  finder,
+  git,
+  gsuite,
+  javascript,
+  jira,
+  mongo,
+  nest,
+  next,
+  notion,
+  office,
+  php,
+  python,
+  react,
+  sonarqube,
+  sql,
+  tailwind,
+  tux,
+  typescript,
+  vite,
+  windows,
+};
+
+const companyLogos = { obs, bytel, cf, ff, mdc, leonis };
+
+function StackSection({ title, items }) {
+  return (
+    <div>
+      <h3>{title}</h3>
+      <div className="iconesStack">
+        {items.map((element) => (
+          <div
+            key={element.nom}
+            style={{ textAlign: "center" }}
+            title={element.description}
+            className="fade-in-from-top"
+          >
+            <img
+              className={element.image === "github" ? "github-icon" : undefined}
+              src={stackIcons[element.image] || element.logo || null}
+              alt={`Logo ${element.nom}`}
+              height="40px"
+              loading="lazy"
+              decoding="async"
+            />
+            <p>{element.nom}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function MainWindow(props) {
   const [initialWidth, setInitialWidth] = useState(1100);
   const [initialHeight, setInitialHeight] = useState(700);
@@ -84,10 +147,12 @@ export default function MainWindow(props) {
   };
 
   useEffect(() => {
-    const elements = document.querySelectorAll(".fade-in-from-top");
-
-    elements.forEach((element, index) => {
-      element.style.animationDelay = `${index * 0.1}s`;
+    // Cascade d'apparition calculée par section (et non globalement, sinon
+    // les dernières icônes attendraient plusieurs secondes).
+    document.querySelectorAll(".iconesStack").forEach((section) => {
+      Array.from(section.children).forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.08}s`;
+      });
     });
   }, []);
 
@@ -124,7 +189,7 @@ export default function MainWindow(props) {
           <div className="content">
             <section className="demoMobile">
               <p>Profitez de l'expérience complète sur Desktop !</p>
-              <img src={demo} alt="demo screenshot on desktop" />
+              <img src={demo} alt="demo screenshot on desktop" loading="lazy" decoding="async" />
             </section>
             <section className="presentation" id="perso">
               <div className="round" />
@@ -140,279 +205,16 @@ export default function MainWindow(props) {
                 <h2>Stack maîtrisée</h2>
               </div>
               <div className="gridStack">
-                <div>
-                  <h3>Frontend</h3>
-                  <div className="iconesStack">
-                    {listStack.frontend.map((element) => {
-                      return (
-                        <div
-                          key={element.nom}
-                          style={{ textAlign: "center" }}
-                          title={element.description}
-                          className={
-                            element.image === "react"
-                              ? "element-1 fade-in-from-top"
-                              : element.image === "angular"
-                              ? "element-2 fade-in-from-top"
-                              : element.image === "vite"
-                              ? "element-3 fade-in-from-top"
-                              : null
-                          }
-                        >
-                          <img
-                            src={
-                              element.image === "react"
-                                ? react
-                                : element.image === "angular"
-                                ? angular
-                                : element.image === "vite"
-                                ? vite
-                                : element.image === "next"
-                                ? next
-                              : element.image === "tailwind"
-                              ? tailwind
-                              : element.logo || null
-                            }
-                            alt="logo"
-                            height="40px"
-                          />
-                          <p>{element.nom}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div>
-                  <h3>Backend</h3>
-                  <div className="iconesStack">
-                    {listStack.backend.map((element) => {
-                      return (
-                        <div
-                          key={element.nom}
-                          style={{ textAlign: "center" }}
-                          title={element.description}
-                          className={
-                            element.image === "django"
-                              ? "element-1 fade-in-from-top"
-                              : element.image === "nest"
-                              ? "element-2 fade-in-from-top"
-                              : element.image === "express"
-                              ? "element-3 fade-in-from-top"
-                              : element.image === "sql"
-                              ? "element-4 fade-in-from-top"
-                              : element.image === "mongo"
-                              ? "element-5 fade-in-from-top"
-                              : null
-                          }
-                        >
-                          <img
-                            src={
-                              element.image === "django"
-                                ? django
-                                : element.image === "nest"
-                                ? nest
-                                : element.image === "express"
-                                ? express
-                                : element.image === "sql"
-                                ? sql
-                              : element.image === "mongo"
-                              ? mongo
-                              : element.logo || null
-                            }
-                            alt="logo"
-                            height="40px"
-                          />
-                          <p>{element.nom}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <StackSection title="Frontend" items={listStack.frontend} />
+                <StackSection title="Backend" items={listStack.backend} />
               </div>
               <div className="gridStack">
-                <div>
-                  <h3>DevSecOps</h3>
-                  <div className="iconesStack">
-                    {listStack.devops.map((element) => {
-                      return (
-                        <div
-                          key={element.nom}
-                          style={{ textAlign: "center" }}
-                          title={element.description}
-                          className={
-                            element.image === "git"
-                              ? "element-1 fade-in-from-top"
-                              : element.image === "sonarqube"
-                              ? "element-2 fade-in-from-top"
-                              : element.image === "ansible"
-                              ? "element-3 fade-in-from-top"
-                              : element.image === "docker"
-                              ? "element-4 fade-in-from-top"
-                              : element.image === "jira"
-                              ? "element-5 fade-in-from-top"
-                              : null
-                          }
-                        >
-                          <img
-                            className={
-                              element.image === "github"
-                                ? "github-icon"
-                                : undefined
-                            }
-                            src={
-                              element.image === "git"
-                                ? git
-                                : element.image === "sonarqube"
-                                ? sonarqube
-                                : element.image === "ansible"
-                                ? ansible
-                                : element.image === "docker"
-                                ? docker
-                              : element.image === "jira"
-                              ? jira
-                              : element.logo || null
-                            }
-                            alt="logo"
-                            height="40px"
-                          />
-                          <p>{element.nom}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div>
-                  <h3>Langages</h3>
-                  <div className="iconesStack">
-                    {listStack.langages.map((element) => {
-                      return (
-                        <div
-                          key={element.nom}
-                          style={{ textAlign: "center" }}
-                          title={element.description}
-                          className={
-                            element.image === "javascript"
-                              ? "element-1 fade-in-from-top"
-                              : element.image === "typescript"
-                              ? "element-2 fade-in-from-top"
-                              : element.image === "c"
-                              ? "element-3 fade-in-from-top"
-                              : element.image === "python"
-                              ? "element-4 fade-in-from-top"
-                              : element.image === "php"
-                              ? "element-5 fade-in-from-top"
-                              : null
-                          }
-                        >
-                          <img
-                            src={
-                              element.image === "javascript"
-                                ? javascript
-                                : element.image === "typescript"
-                                ? typescript
-                                : element.image === "c"
-                                ? c
-                                : element.image === "python"
-                                ? python
-                              : element.image === "php"
-                              ? php
-                              : element.logo || null
-                            }
-                            alt="logo"
-                            height="40px"
-                          />
-                          <p>{element.nom}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <StackSection title="DevSecOps" items={listStack.devops} />
+                <StackSection title="Langages" items={listStack.langages} />
               </div>
               <div className="gridStack">
-                <div>
-                  <h3>Autres</h3>
-                  <div className="iconesStack">
-                    {listStack.autres.map((element) => {
-                      return (
-                        <div
-                          key={element.nom}
-                          style={{ textAlign: "center" }}
-                          title={element.description}
-                          className={
-                            element.image === "figma"
-                              ? "element-1 fade-in-from-top"
-                              : element.image === "adobecc"
-                              ? "element-2 fade-in-from-top"
-                              : element.image === "notion"
-                              ? "element-3 fade-in-from-top"
-                              : element.image === "gsuite"
-                              ? "element-4 fade-in-from-top"
-                              : element.image === "office"
-                              ? "element-5 fade-in-from-top"
-                              : null
-                          }
-                        >
-                          <img
-                            src={
-                              element.image === "figma"
-                                ? figma
-                                : element.image === "adobecc"
-                                ? adobecc
-                                : element.image === "notion"
-                                ? notion
-                                : element.image === "gsuite"
-                                ? gsuite
-                                : element.image === "office"
-                                ? office
-                                : null
-                            }
-                            alt="logo"
-                            height="40px"
-                          />
-                          <p>{element.nom}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div>
-                  <h3>OS</h3>
-                  <div className="iconesStack">
-                    {listStack.os.map((element) => {
-                      return (
-                        <div
-                          key={element.nom}
-                          style={{ textAlign: "center" }}
-                          title={element.description}
-                          className={
-                            element.image === "tux"
-                              ? "element-1 fade-in-from-top"
-                              : element.image === "finder"
-                              ? "element-2 fade-in-from-top"
-                              : element.image === "windows"
-                              ? "element-3 fade-in-from-top"
-                              : null
-                          }
-                        >
-                          <img
-                            src={
-                              element.image === "tux"
-                                ? tux
-                                : element.image === "finder"
-                                ? finder
-                              : element.image === "windows"
-                              ? windows
-                              : element.logo || null
-                            }
-                            alt="logo"
-                            height="40px"
-                          />
-                          <p>{element.nom}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <StackSection title="Autres" items={listStack.autres} />
+                <StackSection title="OS" items={listStack.os} />
               </div>
             </section>
             <section className="experience" id="pro">
@@ -426,22 +228,10 @@ export default function MainWindow(props) {
                     <div className="cardExperience" key={index}>
                       <div className="row">
                         <img
-                          src={
-                            element.logo === "obs"
-                              ? obs
-                              : element.logo === "bytel"
-                              ? bytel
-                              : element.logo === "cf"
-                              ? cf
-                              : element.logo === "ff"
-                              ? ff
-                              : element.logo === "mdc"
-                              ? mdc
-                              : element.logo === "leonis"
-                              ? leonis
-                              : null
-                          }
-                          alt="logo"
+                          src={companyLogos[element.logo] || null}
+                          alt={`Logo ${element.entreprise}`}
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                       <div className="rowText">

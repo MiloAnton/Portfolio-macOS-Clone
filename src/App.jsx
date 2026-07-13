@@ -1,21 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import "./App.scss";
 import Dock from "./components/dock/dock";
-import MainWindow from "./components/main_window/main_window";
-import ProjectsWindow from "./components/projects_window/projects_window";
-import NotesWindow from "./components/notes_window/notes_window";
-import FacetimeWindow from "./components/facetime_window/facetime_window";
-import TerminalWindow from "./components/terminal_window/terminal_window";
-import SafariWindow from "./components/safari_window/safari_window";
-import MessagesWindow from "./components/messages_window/messages_window";
-import CalculatorWindow from "./components/calculator_window/calculator_window";
-import ConsoleWindow from "./components/console_window/console_window";
-import GamesWindow from "./components/games_window/games_window";
-import CalendarWindow from "./components/calendar_window/calendar_window";
 import Toolbar from "./components/toolbar/toolbar";
 import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import Desktop from "./components/desktop/desktop";
 import { addPortfolioLog } from "./utils/portfolioLogger";
+
+// Chaque fenêtre est chargée à la demande (code-splitting) : le bundle
+// initial ne contient que le bureau, le Dock et la barre de menus. Les
+// petites images inlinées en base64 par CRA suivent dans le chunk de leur
+// fenêtre au lieu de gonfler le bundle principal.
+const MainWindow = lazy(() => import("./components/main_window/main_window"));
+const ProjectsWindow = lazy(() => import("./components/projects_window/projects_window"));
+const NotesWindow = lazy(() => import("./components/notes_window/notes_window"));
+const FacetimeWindow = lazy(() => import("./components/facetime_window/facetime_window"));
+const TerminalWindow = lazy(() => import("./components/terminal_window/terminal_window"));
+const SafariWindow = lazy(() => import("./components/safari_window/safari_window"));
+const MessagesWindow = lazy(() => import("./components/messages_window/messages_window"));
+const CalculatorWindow = lazy(() => import("./components/calculator_window/calculator_window"));
+const ConsoleWindow = lazy(() => import("./components/console_window/console_window"));
+const GamesWindow = lazy(() => import("./components/games_window/games_window"));
+const CalendarWindow = lazy(() => import("./components/calendar_window/calendar_window"));
 
 // Libellés affichés dans la Console pour les événements de fenêtres.
 const WINDOW_LABELS = {
@@ -653,7 +658,10 @@ export default function App() {
               }${minimizedWindows.includes(item.name) ? " window-minimized" : ""}`}
               key={item.name}
             >
-              {item.component}
+              {/* Un Suspense PAR fenêtre : un boundary global masquerait
+                  toutes les fenêtres ouvertes pendant le chargement d'un
+                  nouveau chunk. */}
+              <Suspense fallback={null}>{item.component}</Suspense>
             </div>
           ))}
         <Dock
