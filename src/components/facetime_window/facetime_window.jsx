@@ -14,10 +14,11 @@ const formatDuration = (seconds) => {
 };
 
 export default function FacetimeWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [720, 520];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "facetime",
-    720,
-    520
+    defaultWidth,
+    defaultHeight
   );
   const videoRef = useRef(null);
   const streamRef = useRef(null);
@@ -87,8 +88,8 @@ export default function FacetimeWindow(props) {
           props.isMinimized ? { display: "none" } : { zIndex: props.zIndex }
         }
         onMouseDownCapture={() => props.handleClickZIndex()}
-        width={720} // Largeur initiale de la fenêtre
-        height={520} // Hauteur initiale de la fenêtre
+        width={defaultWidth} // Largeur initiale de la fenêtre
+        height={defaultHeight} // Hauteur initiale de la fenêtre
         minConstraints={[400, 300]} // Largeur et hauteur minimales
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit

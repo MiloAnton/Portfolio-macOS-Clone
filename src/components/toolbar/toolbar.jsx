@@ -36,6 +36,7 @@ export default function Toolbar(props) {
     minute: "2-digit",
   });
   const fullTime = current.toLocaleTimeString("fr-FR");
+  const focusedWindowId = props.focusedWindow?.id;
 
   return (
     <section className="toolbar">
@@ -51,7 +52,7 @@ export default function Toolbar(props) {
             <b>Milo</b>
           </p>
         </a>
-        {props.focusedWindow === "zIndexMainWindow" ? (
+        {focusedWindowId === "main" ? (
           <>
             <a href="#stack" title="Scroll vers ma stack technique">
               <p>Stack</p>
@@ -63,28 +64,12 @@ export default function Toolbar(props) {
               <p>Formation</p>
             </a>
           </>
-        ) : props.focusedWindow === "zIndexProjectsWindow" ? (
+        ) : focusedWindowId === "projects" ? (
           <a href="#projects" title="Scroll vers mes projets">
             <p>Projets</p>
           </a>
-        ) : props.focusedWindow === "zIndexNotesWindow" ? (
-          <p title="Vos notes sont sauvegardées dans votre navigateur">Notes</p>
-        ) : props.focusedWindow === "zIndexFacetimeWindow" ? (
-          <p title="Rien n'est enregistré ni envoyé">FaceTime</p>
-        ) : props.focusedWindow === "zIndexTerminalWindow" ? (
-          <p title="Tapez `help` pour commencer">Terminal</p>
-        ) : props.focusedWindow === "zIndexSafariWindow" ? (
-          <p title="Navigateur web intégré">Safari</p>
-        ) : props.focusedWindow === "zIndexMessagesWindow" ? (
-          <p title="Simulation locale, aucun message n’est envoyé">Messages</p>
-        ) : props.focusedWindow === "zIndexCalculatorWindow" ? (
-          <p>Calculatrice</p>
-        ) : props.focusedWindow === "zIndexConsoleWindow" ? (
-          <p title="Événements internes du portfolio">Console</p>
-        ) : props.focusedWindow === "zIndexGamesWindow" ? (
-          <p>Jeux</p>
-        ) : props.focusedWindow === "zIndexCalendarWindow" ? (
-          <p>Calendrier</p>
+        ) : props.focusedWindow ? (
+          <p>{props.focusedWindow.label}</p>
         ) : null}
       </div>
       <div className="icons">

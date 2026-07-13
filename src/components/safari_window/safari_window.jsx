@@ -44,10 +44,11 @@ const normalizeUrl = (value) => {
 };
 
 export default function SafariWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [900, 620];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "safari",
-    900,
-    620
+    defaultWidth,
+    defaultHeight
   );
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -107,8 +108,8 @@ export default function SafariWindow(props) {
         }`}
         style={{ zIndex: props.zIndex }}
         onMouseDownCapture={props.handleClickZIndex}
-        width={900}
-        height={620}
+        width={defaultWidth}
+        height={defaultHeight}
         minConstraints={[520, 360]}
         maxConstraints={[2560, 1440]}
         resizeHandles={["se"]}

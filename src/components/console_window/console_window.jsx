@@ -16,10 +16,11 @@ import "./console_window.scss";
 const levels = ["all", "info", "success", "warning", "error"];
 
 export default function ConsoleWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [780, 500];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "console",
-    780,
-    500
+    defaultWidth,
+    defaultHeight
   );
   const [logs, setLogs] = useState(getPortfolioLogs);
   const [level, setLevel] = useState("all");
@@ -106,8 +107,8 @@ export default function ConsoleWindow(props) {
         }`}
         style={{ zIndex: props.zIndex }}
         onMouseDownCapture={props.handleClickZIndex}
-        width={780}
-        height={500}
+        width={defaultWidth}
+        height={defaultHeight}
         minConstraints={[520, 320]}
         maxConstraints={[2560, 1440]}
         resizeHandles={["se"]}

@@ -28,10 +28,11 @@ const getEasterEgg = (value) => {
 };
 
 export default function CalculatorWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [320, 480];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "calculator",
-    320,
-    480
+    defaultWidth,
+    defaultHeight
   );
   const [display, setDisplay] = useState("0");
   const [storedValue, setStoredValue] = useState(null);
@@ -164,7 +165,11 @@ export default function CalculatorWindow(props) {
         className={`App calculator-window ${
           props.isActive ? "window-active" : "window-inactive"
         }`}
-        style={{ zIndex: props.zIndex }}
+        style={{
+          zIndex: props.zIndex,
+          width: defaultWidth,
+          height: defaultHeight,
+        }}
         onMouseDownCapture={props.handleClickZIndex}
       >
         <MenuBar

@@ -19,6 +19,13 @@ Are used in this project :
 
 ## Changelog
 
+### 0.10.4
+- Replaced the duplicated state and handlers in `App.jsx` with a centralized `useReducer` window manager
+- Added a single declarative window registry for lazy components, Dock metadata, initial layout and default sizes
+- Dock icons, open indicators and toolbar labels are now generated from the window registry
+- Added reducer tests for desktop/mobile startup, focus, minimize, restore, close and fullscreen reset
+- Reduced `App.jsx` from roughly 700 lines to under 200 lines, making future apps much cheaper to integrate
+
 ### 0.10.3
 - Removed Google Fonts, switched to the native system font (San Francisco on Apple devices)
 - Windows are now lazy-loaded with React.lazy : ~40% smaller initial bundle

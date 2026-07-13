@@ -249,11 +249,12 @@ function Racer({ isActive }) {
 }
 
 export default function GamesWindow(props) {
-  const { position, handleDragStop } = usePersistentWindowPosition("games", 760, 570);
+  const [defaultWidth, defaultHeight] = props.defaultSize || [760, 570];
+  const { position, handleDragStop } = usePersistentWindowPosition("games", defaultWidth, defaultHeight);
   const [game, setGame] = useState("mines");
   return (
     <Draggable handle="#handle" position={position} onStop={handleDragStop}>
-      <ResizableBox className={`App games-window ${props.isActive ? "window-active" : "window-inactive"}`} style={{ zIndex: props.zIndex }} onMouseDownCapture={props.handleClickZIndex} width={760} height={570} minConstraints={[560, 480]} maxConstraints={[1200, 900]} resizeHandles={["se"]}>
+      <ResizableBox className={`App games-window ${props.isActive ? "window-active" : "window-inactive"}`} style={{ zIndex: props.zIndex }} onMouseDownCapture={props.handleClickZIndex} width={defaultWidth} height={defaultHeight} minConstraints={[560, 480]} maxConstraints={[1200, 900]} resizeHandles={["se"]}>
         <MenuBar title="Jeux" handleFullscreen={props.fullScreen} handleQuit={props.handleClose} handleMinimize={props.handleMinimize}/>
         <div className="games-app">
           <nav>{GAME_LIST.map((item) => <button type="button" className={game === item.id ? "selected" : ""} onClick={() => setGame(item.id)} key={item.id}><span>{item.icon}</span>{item.name}</button>)}</nav>

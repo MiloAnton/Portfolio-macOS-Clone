@@ -46,10 +46,11 @@ const saveEvents = (events) => {
 };
 
 export default function CalendarWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [840, 590];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "calendar",
-    840,
-    590
+    defaultWidth,
+    defaultHeight
   );
   const today = useMemo(() => new Date(), []);
   const [visibleMonth, setVisibleMonth] = useState(
@@ -112,8 +113,8 @@ export default function CalendarWindow(props) {
         }`}
         style={{ zIndex: props.zIndex }}
         onMouseDownCapture={props.handleClickZIndex}
-        width={840}
-        height={590}
+        width={defaultWidth}
+        height={defaultHeight}
         minConstraints={[620, 450]}
         maxConstraints={[1500, 1000]}
         resizeHandles={["se"]}

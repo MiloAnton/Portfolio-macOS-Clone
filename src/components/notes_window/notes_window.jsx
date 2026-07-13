@@ -50,10 +50,11 @@ const noteDate = (timestamp) => {
 };
 
 export default function NotesWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [750, 500];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "notes",
-    750,
-    500
+    defaultWidth,
+    defaultHeight
   );
   const [notes, setNotes] = useState(loadNotes);
   const [selectedId, setSelectedId] = useState(() => loadNotes()[0]?.id);
@@ -110,8 +111,8 @@ export default function NotesWindow(props) {
             : { zIndex: props.zIndex }
         }
         onMouseDownCapture={() => props.handleClickZIndex()}
-        width={750} // Largeur initiale de la fenêtre
-        height={500} // Hauteur initiale de la fenêtre
+        width={defaultWidth} // Largeur initiale de la fenêtre
+        height={defaultHeight} // Hauteur initiale de la fenêtre
         minConstraints={[500, 300]} // Largeur et hauteur minimales
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit

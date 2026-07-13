@@ -92,6 +92,10 @@
         }
       }
 
+      &:hover .name {
+        visibility: visible;
+      }
+
       .ico {
         width: 100%;
         height: 100%;
@@ -149,14 +153,6 @@
           margin-left: 10px;
         }
       }
-    }
-  }
-}
-
-@for $i from 1 through 15 {
-  .li-#{$i}:hover {
-    .name {
-      visibility: visible !important;
     }
   }
 }

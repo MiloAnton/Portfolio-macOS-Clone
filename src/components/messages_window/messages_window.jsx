@@ -49,10 +49,11 @@ const getReply = (message) => {
 };
 
 export default function MessagesWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [760, 560];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "messages",
-    760,
-    560
+    defaultWidth,
+    defaultHeight
   );
   const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState("");
@@ -97,8 +98,8 @@ export default function MessagesWindow(props) {
         }`}
         style={{ zIndex: props.zIndex }}
         onMouseDownCapture={props.handleClickZIndex}
-        width={760}
-        height={560}
+        width={defaultWidth}
+        height={defaultHeight}
         minConstraints={[520, 380]}
         maxConstraints={[2560, 1440]}
         resizeHandles={["se"]}

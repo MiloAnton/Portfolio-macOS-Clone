@@ -7,10 +7,11 @@ import usePersistentWindowPosition from "../../hooks/usePersistentWindowPosition
 import "./projects_window.scss";
 
 export default function ProjectsWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [800, 600];
   const { position, handleDragStop } = usePersistentWindowPosition(
     "projects",
-    800,
-    600
+    defaultWidth,
+    defaultHeight
   );
   const handleFullscreen = () => {
     props.fullScreen();
@@ -37,8 +38,8 @@ export default function ProjectsWindow(props) {
             : { zIndex: props.zIndex }
         }
         onMouseDownCapture={() => props.handleClickZIndex()}
-        width={800} // Largeur initiale de la fenêtre
-        height={600} // Hauteur initiale de la fenêtre
+        width={defaultWidth} // Largeur initiale de la fenêtre
+        height={defaultHeight} // Hauteur initiale de la fenêtre
         minConstraints={[300, 200]} // Largeur et hauteur minimales
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit

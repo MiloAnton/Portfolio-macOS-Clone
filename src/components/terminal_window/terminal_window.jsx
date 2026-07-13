@@ -58,6 +58,7 @@ const welcomeLines = [
 ];
 
 export default function TerminalWindow(props) {
+  const [defaultWidth, defaultHeight] = props.defaultSize || [720, 480];
   const defaultPosition = {
     x: Math.round(
       Math.min(window.innerWidth * 0.57, window.innerWidth - 744) - 200
@@ -68,8 +69,8 @@ export default function TerminalWindow(props) {
   };
   const { position, handleDragStop } = usePersistentWindowPosition(
     "terminal",
-    720,
-    480,
+    defaultWidth,
+    defaultHeight,
     {
       initialPosition: defaultPosition,
       storageKeySuffix: "showcase-layout",
@@ -335,8 +336,8 @@ export default function TerminalWindow(props) {
           props.isMinimized ? { display: "none" } : { zIndex: props.zIndex }
         }
         onMouseDownCapture={() => props.handleClickZIndex()}
-        width={720} // Largeur initiale de la fenêtre
-        height={480} // Hauteur initiale de la fenêtre
+        width={defaultWidth} // Largeur initiale de la fenêtre
+        height={defaultHeight} // Hauteur initiale de la fenêtre
         minConstraints={[400, 250]} // Largeur et hauteur minimales
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
