@@ -39,7 +39,8 @@
       border-left: 1.5px solid rgba(255, 255, 255, 0.4);
       padding: 0px 10px;
     }
-    .li-1 {
+    // Point "app ouverte" sous l'icône, posé dynamiquement via la classe .open.
+    li.open {
       &::after {
         position: absolute;
         width: 5px;

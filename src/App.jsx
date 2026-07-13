@@ -599,6 +599,19 @@ export default function App() {
           setConsole={handleSetConsole}
           setGames={handleSetGames}
           setCalendar={handleSetCalendar}
+          openApps={{
+            curriculum: displayedMainWindow,
+            projects: displayedProjectsWindow,
+            safari: displayedSafariWindow,
+            messages: displayedMessagesWindow,
+            facetime: displayedFacetimeWindow,
+            calendar: displayedCalendarWindow,
+            notes: displayedNotesWindow,
+            terminal: displayedTerminalWindow,
+            calculator: displayedCalculatorWindow,
+            console: displayedConsoleWindow,
+            games: displayedGamesWindow,
+          }}
         />
       </main>
   );

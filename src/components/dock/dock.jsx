@@ -12,6 +12,8 @@ import consoleIcon from "./../../assets/iconesDock/console.svg";
 import games from "./../../assets/iconesDock/games.svg";
 
 export default function Dock(props) {
+  // Ajoute le point "app ouverte" sous l'icône, comme sur macOS.
+  const openClass = (appId) => (props.openApps?.[appId] ? " open" : "");
   const today = new Date();
   const calendarMonth = today
     .toLocaleDateString("fr-FR", { month: "short" })
@@ -47,50 +49,50 @@ export default function Dock(props) {
   return (
     <div className="dock">
       <div className="dock-container">
-        <li className="li-1" onClick={() => props.setCurriculum()}>
+        <li className={`li-1${openClass("curriculum")}`} onClick={() => props.setCurriculum()}>
           <div className="name">Curriculum</div>
           <img className="ico" src={finder} alt="" />
         </li>
-        <li className="li-2" onClick={() => props.setProjects()}>
+        <li className={`li-2${openClass("projects")}`} onClick={() => props.setProjects()}>
           <div className="name">Projets</div>
           <img className="ico" src={projects} alt="" />
         </li>
-        <li className="li-2" onClick={() => props.setSafari()}>
+        <li className={`li-3${openClass("safari")}`} onClick={() => props.setSafari()}>
           <div className="name">Safari</div>
           <img className="ico" src={safari} alt="" />
         </li>
-        <li className="li-2" onClick={() => props.setMessages()}>
+        <li className={`li-4${openClass("messages")}`} onClick={() => props.setMessages()}>
           <div className="name">Message</div>
           <img className="ico" src={message} alt="" />
         </li>
-        <li className="li-6" onClick={() => props.setFacetime()}>
+        <li className={`li-6${openClass("facetime")}`} onClick={() => props.setFacetime()}>
           <div className="name">FaceTime</div>
           <img className="ico" src={facetime} alt="" />
         </li>
-        <li className="li-11" onClick={() => props.setCalendar()}>
+        <li className={`li-11${openClass("calendar")}`} onClick={() => props.setCalendar()}>
           <div className="name">Calendrier</div>
           <div className="ico calendar-dock-icon" aria-hidden="true">
             <span>{calendarMonth}</span>
             <strong>{today.getDate()}</strong>
           </div>
         </li>
-        <li className="li-5" onClick={() => props.setNotes()}>
+        <li className={`li-5${openClass("notes")}`} onClick={() => props.setNotes()}>
           <div className="name">Notes</div>
           <img className="ico" src={notes} alt="" />
         </li>
-        <li className="li-7" onClick={() => props.setTerminal()}>
+        <li className={`li-7${openClass("terminal")}`} onClick={() => props.setTerminal()}>
           <div className="name">Terminal</div>
           <img className="ico" src={terminal} alt="" />
         </li>
-        <li className="li-8" onClick={() => props.setCalculator()}>
+        <li className={`li-8${openClass("calculator")}`} onClick={() => props.setCalculator()}>
           <div className="name">Calculatrice</div>
           <img className="ico ico-system-app" src={calculator} alt="" />
         </li>
-        <li className="li-9" onClick={() => props.setConsole()}>
+        <li className={`li-9${openClass("console")}`} onClick={() => props.setConsole()}>
           <div className="name">Console</div>
           <img className="ico ico-system-app" src={consoleIcon} alt="" />
         </li>
-        <li className="li-10" onClick={() => props.setGames()}>
+        <li className={`li-10${openClass("games")}`} onClick={() => props.setGames()}>
           <div className="name">Jeux</div>
           <img className="ico ico-system-app" src={games} alt="" />
         </li>

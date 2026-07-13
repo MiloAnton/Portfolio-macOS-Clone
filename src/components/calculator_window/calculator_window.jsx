@@ -122,6 +122,8 @@ export default function CalculatorWindow(props) {
   };
 
   useEffect(() => {
+    // Le clavier ne doit piloter la calculatrice que si sa fenêtre a le focus.
+    if (!props.isActive) return undefined;
     const handleKeyboard = (event) => {
       if (/^[0-9]$/.test(event.key)) inputDigit(event.key);
       else if (event.key === "." || event.key === ",") inputDecimal();

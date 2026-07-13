@@ -29,6 +29,12 @@ Are used in this project :
 
 ## Changelog
 
+### 0.10.1
+- Fixed keyboard listeners leaking between apps: Calculator and Games now only capture keystrokes when their window is focused (typing in another app no longer triggers the calculator, and arrow keys / spacebar are no longer hijacked by the games)
+- Saved window positions are now clamped to the current viewport on load: switching to a smaller screen/resolution no longer leaves windows stranded off-screen (original position is kept in storage and restored on the bigger screen)
+- Fixed invalid React keys in the main window: experience bullet points used a non-existent `element.item` (all keys were `undefined`), and stack icons had their key on the inner `<p>` instead of the mapped element
+- The Dock "running app" indicator dot is now dynamic: it appears under every app whose window is open (it used to be hardcoded on the first icon only)
+
 ### 0.10.0
 - Added Games App with integrated mini-games
 - Added Console App 

@@ -1,21 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 
-const useKeys = () => {
+const useKeys = (enabled) => {
   const keys = useRef({});
   useEffect(() => {
+    // N'écoute le clavier que si la fenêtre Jeux a le focus, sinon les
+    // flèches/espace sont volées aux autres apps (scroll, terminal…).
+    if (!enabled) return undefined;
     const down = (event) => {
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(event.key)) event.preventDefault();
       keys.current[event.key] = true;
     };
     const up = (event) => { keys.current[event.key] = false; };
     window.addEventListener("keydown", down); window.addEventListener("keyup", up);
-    return () => { window.removeEventListener("keydown", down); window.removeEventListener("keyup", up); };
-  }, []);
+    return () => {
+      window.removeEventListener("keydown", down);
+      window.removeEventListener("keyup", up);
+      keys.current = {};
+    };
+  }, [enabled]);
   return keys;
 };
 
-export function FlappyBird() {
-  const canvasRef = useRef(null); const keys = useKeys();
+export function FlappyBird({ isActive }) {
+  const canvasRef = useRef(null); const keys = useKeys(isActive);
   const [running, setRunning] = useState(false); const [score, setScore] = useState(0); const [lost, setLost] = useState(false);
   useEffect(() => {
     if (!running) return undefined;
@@ -57,7 +64,7 @@ const reverseRows = (b) =>
     b.slice(row * 4, row * 4 + 4).reverse()
   ).flat();
 
-export function Game2048() {
+export function Game2048({ isActive }) {
   const [board, setBoard] = useState(new2048); const [score, setScore] = useState(0);
   const move = (direction) => {
     let work = [...board]; if (direction === "up" || direction === "down") work = transpose(work); if (direction === "right" || direction === "down") work = reverseRows(work);
@@ -67,6 +74,7 @@ export function Game2048() {
     if (work.some((v, i) => v !== board[i])) { setBoard(addTile(work)); setScore((s) => s + gained); }
   };
   useEffect(() => {
+    if (!isActive) return undefined;
     const key = (event) => { const direction = { ArrowLeft: "left", ArrowRight: "right", ArrowUp: "up", ArrowDown: "down" }[event.key]; if (direction) { event.preventDefault(); move(direction); } };
     window.addEventListener("keydown", key); return () => window.removeEventListener("keydown", key);
   });
@@ -74,8 +82,8 @@ export function Game2048() {
   return <div className="game-2048 game-stage"><div className="game-info"><span>Score {score}</span><strong>Objectif 2048</strong><button onClick={restart}>Rejouer</button></div><div className="grid-2048">{board.map((value, i) => <div className={`tile t${value}`} key={i}>{value || ""}</div>)}</div><p className="game-help">Flèches directionnelles</p></div>;
 }
 
-export function SpaceInvaders() {
-  const canvasRef = useRef(null); const keys = useKeys();
+export function SpaceInvaders({ isActive }) {
+  const canvasRef = useRef(null); const keys = useKeys(isActive);
   const [running, setRunning] = useState(false); const [score, setScore] = useState(0); const [lost, setLost] = useState(false);
   useEffect(() => {
     if (!running) return undefined; const ctx = canvasRef.current.getContext("2d"); let player = 300; let shotLock = false; let direction = 1; let frame;
@@ -97,8 +105,8 @@ export function SpaceInvaders() {
   return <CanvasShell title={`${score} pts`} status={lost ? "Invasion réussie…" : "Protège la Terre"} running={running} restart={restart} help="← → pour bouger · Espace pour tirer" canvasRef={canvasRef}/>;
 }
 
-export function DoodleJump() {
-  const canvasRef = useRef(null); const keys = useKeys();
+export function DoodleJump({ isActive }) {
+  const canvasRef = useRef(null); const keys = useKeys(isActive);
   const [running, setRunning] = useState(false); const [score, setScore] = useState(0); const [lost, setLost] = useState(false);
   useEffect(() => {
     if (!running) return undefined; const ctx = canvasRef.current.getContext("2d"); let x = 300; let y = 260; let vy = -8; let points = 0; let frame;
@@ -118,12 +126,18 @@ export function DoodleJump() {
   return <CanvasShell title={`${score} plateforme${score > 1 ? "s" : ""}`} status={lost ? "Chute libre !" : "Monte !"} running={running} restart={restart} help="Flèches ← →" canvasRef={canvasRef}/>;
 }
 
-export function Frogger() {
+export function Frogger({ isActive }) {
   const canvasRef = useRef(null); const [running, setRunning] = useState(false); const [wins, setWins] = useState(0); const [lost, setLost] = useState(false); const playerRef = useRef({ x: 300, y: 320 });
   useEffect(() => {
-    if (!running) return undefined; const ctx = canvasRef.current.getContext("2d"); let frame; const cars = Array.from({ length: 12 }, (_, i) => ({ x: (i * 117) % 700 - 60, y: 260 - (i % 4) * 55, speed: (i % 2 ? 2.7 : -3.2) }));
+    // Listener clavier séparé de la boucle de jeu : perdre le focus coupe les
+    // touches sans réinitialiser la partie en cours.
+    if (!running || !isActive) return undefined;
     const key = (event) => { const p = playerRef.current; if (event.key === "ArrowUp") p.y -= 55; if (event.key === "ArrowDown") p.y += 55; if (event.key === "ArrowLeft") p.x -= 50; if (event.key === "ArrowRight") p.x += 50; p.x = Math.max(5, Math.min(605, p.x)); p.y = Math.max(5, Math.min(320, p.y)); event.preventDefault(); };
     window.addEventListener("keydown", key);
+    return () => window.removeEventListener("keydown", key);
+  }, [running, isActive]);
+  useEffect(() => {
+    if (!running) return undefined; const ctx = canvasRef.current.getContext("2d"); let frame; const cars = Array.from({ length: 12 }, (_, i) => ({ x: (i * 117) % 700 - 60, y: 260 - (i % 4) * 55, speed: (i % 2 ? 2.7 : -3.2) }));
     const loop = () => {
       cars.forEach((c) => { c.x += c.speed; if (c.x > 680) c.x = -60; if (c.x < -70) c.x = 680; }); const p = playerRef.current;
       if (cars.some((c) => p.y + 30 > c.y && p.y < c.y + 30 && p.x + 30 > c.x && p.x < c.x + 55)) { setLost(true); setRunning(false); return; }
@@ -131,7 +145,7 @@ export function Frogger() {
       ctx.fillStyle = "#285d35"; ctx.fillRect(0, 0, 640, 360); ctx.fillStyle = "#343438"; ctx.fillRect(0, 75, 640, 235); ctx.strokeStyle = "#777"; ctx.setLineDash([18, 20]); [130, 185, 240].forEach((line) => { ctx.beginPath(); ctx.moveTo(0, line); ctx.lineTo(640, line); ctx.stroke(); }); ctx.setLineDash([]);
       cars.forEach((c, i) => { ctx.fillStyle = i % 2 ? "#ff453a" : "#0a84ff"; ctx.fillRect(c.x, c.y, 55, 30); }); ctx.fillStyle = "#30d158"; ctx.beginPath(); ctx.arc(p.x + 15, p.y + 15, 15, 0, 7); ctx.fill();
       frame = requestAnimationFrame(loop);
-    }; frame = requestAnimationFrame(loop); return () => { cancelAnimationFrame(frame); window.removeEventListener("keydown", key); };
+    }; frame = requestAnimationFrame(loop); return () => cancelAnimationFrame(frame);
   }, [running]);
   const restart = () => { playerRef.current = { x: 300, y: 320 }; setLost(false); setRunning(true); };
   return <CanvasShell title={`${wins} traversée${wins > 1 ? "s" : ""}`} status={lost ? "Écrasé !" : "Traverse la route"} running={running} restart={restart} help="Flèches directionnelles" canvasRef={canvasRef}/>;

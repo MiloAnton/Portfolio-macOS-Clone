@@ -14,32 +14,48 @@ const randomBetween = (min, max) => {
   return Math.round(min + Math.random() * (max - min));
 };
 
-const createRandomPosition = (width, height, centered) => {
-  if (typeof window === "undefined") return { x: 0, y: 0 };
-
+// Bornes de translation Draggable pour que la fenêtre reste dans le viewport.
+// Les coordonnées sont relatives à la position de base de .App (ses marges CSS),
+// d'où les bornes négatives côté min.
+const getViewportBounds = (width, height, centered) => {
   if (centered) {
     return {
-      x: randomBetween(
-        -window.innerWidth / 2 + EDGE_GAP,
-        window.innerWidth / 2 - width - EDGE_GAP
-      ),
-      y: randomBetween(
-        -window.innerHeight / 2 + 32,
-        window.innerHeight / 2 - height - EDGE_GAP
-      ),
+      minX: -window.innerWidth / 2 + EDGE_GAP,
+      maxX: window.innerWidth / 2 - width - EDGE_GAP,
+      minY: -window.innerHeight / 2 + 32,
+      maxY: window.innerHeight / 2 - height - EDGE_GAP,
     };
   }
 
   const margin = getMargins();
   return {
-    x: randomBetween(
-      -margin.x + EDGE_GAP,
-      window.innerWidth - margin.x - width - EDGE_GAP
-    ),
-    y: randomBetween(
-      0,
-      window.innerHeight - margin.y - height - EDGE_GAP
-    ),
+    minX: -margin.x + EDGE_GAP,
+    maxX: window.innerWidth - margin.x - width - EDGE_GAP,
+    minY: 0,
+    maxY: window.innerHeight - margin.y - height - EDGE_GAP,
+  };
+};
+
+const createRandomPosition = (width, height, centered) => {
+  if (typeof window === "undefined") return { x: 0, y: 0 };
+
+  const bounds = getViewportBounds(width, height, centered);
+  return {
+    x: randomBetween(bounds.minX, bounds.maxX),
+    y: randomBetween(bounds.minY, bounds.maxY),
+  };
+};
+
+// Ramène une position (ex : sauvegardée sur un écran plus grand) dans le
+// viewport actuel. Si l'écran est plus petit que la fenêtre, on aligne sur le
+// bord haut/gauche pour garder la barre de titre accessible.
+const clampToViewport = (position, width, height, centered) => {
+  if (typeof window === "undefined") return position;
+
+  const bounds = getViewportBounds(width, height, centered);
+  return {
+    x: Math.min(Math.max(position.x, bounds.minX), Math.max(bounds.minX, bounds.maxX)),
+    y: Math.min(Math.max(position.y, bounds.minY), Math.max(bounds.minY, bounds.maxY)),
   };
 };
 
@@ -58,13 +74,17 @@ export default function usePersistentWindowPosition(
   const [position, setPosition] = useState(() => {
     try {
       const savedPosition = JSON.parse(localStorage.getItem(storageKey));
-      if (isValidPosition(savedPosition)) return savedPosition;
+      // On ne réécrit pas la valeur clampée en storage : de retour sur le
+      // grand écran, la fenêtre retrouve sa position d'origine.
+      if (isValidPosition(savedPosition)) {
+        return clampToViewport(savedPosition, width, height, centered);
+      }
     } catch (error) {
       // Le stockage peut être désactivé ou contenir une ancienne valeur invalide.
     }
 
     const randomPosition = isValidPosition(initialPosition)
-      ? initialPosition
+      ? clampToViewport(initialPosition, width, height, centered)
       : createRandomPosition(width, height, centered);
     try {
       localStorage.setItem(storageKey, JSON.stringify(randomPosition));

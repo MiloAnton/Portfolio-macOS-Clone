@@ -27,9 +27,12 @@ const GAME_LIST = [
   { id: "simon", name: "Simon", icon: "🟢" },
 ];
 
-const useGameKeys = () => {
+const useGameKeys = (enabled) => {
   const keys = useRef({});
   useEffect(() => {
+    // N'écoute le clavier que si la fenêtre Jeux a le focus, sinon les
+    // flèches/espace sont volées aux autres apps (scroll, terminal…).
+    if (!enabled) return undefined;
     const down = (event) => {
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(event.key)) {
         event.preventDefault();
@@ -42,8 +45,9 @@ const useGameKeys = () => {
     return () => {
       window.removeEventListener("keydown", down);
       window.removeEventListener("keyup", up);
+      keys.current = {};
     };
-  }, []);
+  }, [enabled]);
   return keys;
 };
 
@@ -131,9 +135,9 @@ function Minesweeper() {
   );
 }
 
-function Pong() {
+function Pong({ isActive }) {
   const canvasRef = useRef(null);
-  const keys = useGameKeys();
+  const keys = useGameKeys(isActive);
   const [running, setRunning] = useState(false);
   const [score, setScore] = useState([0, 0]);
   const scoreRef = useRef([0, 0]);
@@ -174,9 +178,9 @@ function Pong() {
   return <div className="canvas-game game-stage"><div className="game-info"><span>Toi {score[0]} — {score[1]} Mac</span><strong>{Math.max(...score) >= 5 ? (score[0] > score[1] ? "Victoire !" : "Perdu !") : "Premier à 5"}</strong><button onClick={restart}>{running ? "Recommencer" : "Jouer"}</button></div><canvas ref={canvasRef} width="640" height="360"/><p className="game-help">Flèches ↑ ↓ ou W/S</p></div>;
 }
 
-function Snake() {
+function Snake({ isActive }) {
   const canvasRef = useRef(null);
-  const keys = useGameKeys();
+  const keys = useGameKeys(isActive);
   const [running, setRunning] = useState(false);
   const [score, setScore] = useState(0);
   const [lost, setLost] = useState(false);
@@ -210,9 +214,9 @@ function Snake() {
   return <div className="canvas-game game-stage"><div className="game-info"><span>Score {score}</span><strong>{lost ? "Perdu !" : "Mange les pommes"}</strong><button onClick={restart}>{running ? "Recommencer" : "Jouer"}</button></div><canvas ref={canvasRef} width="640" height="360"/><p className="game-help">Flèches directionnelles</p></div>;
 }
 
-function Racer() {
+function Racer({ isActive }) {
   const canvasRef = useRef(null);
-  const keys = useGameKeys();
+  const keys = useGameKeys(isActive);
   const [running, setRunning] = useState(false);
   const [score, setScore] = useState(0);
   const [crashed, setCrashed] = useState(false);
@@ -255,14 +259,14 @@ export default function GamesWindow(props) {
           <nav>{GAME_LIST.map((item) => <button type="button" className={game === item.id ? "selected" : ""} onClick={() => setGame(item.id)} key={item.id}><span>{item.icon}</span>{item.name}</button>)}</nav>
           <main>
             {game === "mines" && <Minesweeper />}
-            {game === "pong" && <Pong />}
-            {game === "snake" && <Snake />}
-            {game === "racer" && <Racer />}
-            {game === "flappy" && <FlappyBird />}
-            {game === "2048" && <Game2048 />}
-            {game === "invaders" && <SpaceInvaders />}
-            {game === "doodle" && <DoodleJump />}
-            {game === "frogger" && <Frogger />}
+            {game === "pong" && <Pong isActive={props.isActive} />}
+            {game === "snake" && <Snake isActive={props.isActive} />}
+            {game === "racer" && <Racer isActive={props.isActive} />}
+            {game === "flappy" && <FlappyBird isActive={props.isActive} />}
+            {game === "2048" && <Game2048 isActive={props.isActive} />}
+            {game === "invaders" && <SpaceInvaders isActive={props.isActive} />}
+            {game === "doodle" && <DoodleJump isActive={props.isActive} />}
+            {game === "frogger" && <Frogger isActive={props.isActive} />}
             {game === "simon" && <Simon />}
           </main>
         </div>

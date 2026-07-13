@@ -145,6 +145,7 @@ export default function MainWindow(props) {
                     {listStack.frontend.map((element) => {
                       return (
                         <div
+                          key={element.nom}
                           style={{ textAlign: "center" }}
                           title={element.description}
                           className={
@@ -174,7 +175,7 @@ export default function MainWindow(props) {
                             alt="logo"
                             height="40px"
                           />
-                          <p key={element.nom}>{element.nom}</p>
+                          <p>{element.nom}</p>
                         </div>
                       );
                     })}
@@ -186,6 +187,7 @@ export default function MainWindow(props) {
                     {listStack.backend.map((element) => {
                       return (
                         <div
+                          key={element.nom}
                           style={{ textAlign: "center" }}
                           title={element.description}
                           className={
@@ -219,7 +221,7 @@ export default function MainWindow(props) {
                             alt="logo"
                             height="40px"
                           />
-                          <p key={element.nom}>{element.nom}</p>
+                          <p>{element.nom}</p>
                         </div>
                       );
                     })}
@@ -233,6 +235,7 @@ export default function MainWindow(props) {
                     {listStack.devops.map((element) => {
                       return (
                         <div
+                          key={element.nom}
                           style={{ textAlign: "center" }}
                           title={element.description}
                           className={
@@ -271,7 +274,7 @@ export default function MainWindow(props) {
                             alt="logo"
                             height="40px"
                           />
-                          <p key={element.nom}>{element.nom}</p>
+                          <p>{element.nom}</p>
                         </div>
                       );
                     })}
@@ -283,6 +286,7 @@ export default function MainWindow(props) {
                     {listStack.langages.map((element) => {
                       return (
                         <div
+                          key={element.nom}
                           style={{ textAlign: "center" }}
                           title={element.description}
                           className={
@@ -316,7 +320,7 @@ export default function MainWindow(props) {
                             alt="logo"
                             height="40px"
                           />
-                          <p key={element.nom}>{element.nom}</p>
+                          <p>{element.nom}</p>
                         </div>
                       );
                     })}
@@ -330,6 +334,7 @@ export default function MainWindow(props) {
                     {listStack.autres.map((element) => {
                       return (
                         <div
+                          key={element.nom}
                           style={{ textAlign: "center" }}
                           title={element.description}
                           className={
@@ -363,7 +368,7 @@ export default function MainWindow(props) {
                             alt="logo"
                             height="40px"
                           />
-                          <p key={element.nom}>{element.nom}</p>
+                          <p>{element.nom}</p>
                         </div>
                       );
                     })}
@@ -375,6 +380,7 @@ export default function MainWindow(props) {
                     {listStack.os.map((element) => {
                       return (
                         <div
+                          key={element.nom}
                           style={{ textAlign: "center" }}
                           title={element.description}
                           className={
@@ -400,7 +406,7 @@ export default function MainWindow(props) {
                             alt="logo"
                             height="40px"
                           />
-                          <p key={element.nom}>{element.nom}</p>
+                          <p>{element.nom}</p>
                         </div>
                       );
                     })}
@@ -444,7 +450,7 @@ export default function MainWindow(props) {
                       <p>{element.timeline}</p>
                       <ul>
                         {element.description.map((item) => {
-                          return <li key={element.item}>{item}</li>;
+                          return <li key={item}>{item}</li>;
                         })}
                       </ul>
                     </div>
