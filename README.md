@@ -29,6 +29,12 @@ Are used in this project :
 
 ## Changelog
 
+### 0.10.2
+- macOS-like window animations: windows now open with a zoom + fade rising from the Dock (instead of a plain fade), and closing/minimizing plays a simplified "genie" effect where the window is squashed and sucked down into the Dock
+- The yellow button now actually minimizes the window instead of closing it: the window is sucked into the Dock (genie animation) while staying mounted, so its state survives (terminal history, notes draft, running game...). Clicking the app's Dock icon restores it to the front with the zoom animation. Focus and the menu bar title fall back to the next window while minimized
+- Windows are rendered with stable keys (their name instead of the array index)
+- The menu bar clock now uses the real macOS date format ("jeu. 10 juil. 16:57" instead of "10/07/2026 16:57"), with the full date shown as a tooltip
+
 ### 0.10.1
 - Fixed keyboard listeners leaking between apps: Calculator and Games now only capture keystrokes when their window is focused (typing in another app no longer triggers the calculator, and arrow keys / spacebar are no longer hijacked by the games)
 - Saved window positions are now clamped to the current viewport on load: switching to a smaller screen/resolution no longer leaves windows stranded off-screen (original position is kept in storage and restored on the bigger screen)

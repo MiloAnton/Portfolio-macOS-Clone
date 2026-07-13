@@ -122,6 +122,7 @@ export default function CalendarWindow(props) {
           title="Calendrier"
           handleFullscreen={props.fullScreen}
           handleQuit={props.handleClose}
+          handleMinimize={props.handleMinimize}
         />
         <div className="calendar-app">
           <header className="calendar-header">

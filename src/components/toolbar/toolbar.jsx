@@ -24,7 +24,13 @@ export default function Toolbar(props) {
     return () => clearInterval(clock);
   }, []);
 
-  const date = current.toLocaleDateString("fr-FR");
+  // Format macOS : "jeu. 10 juil." (et la date complète en tooltip).
+  const date = current.toLocaleDateString("fr-FR", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+  const fullDate = current.toLocaleDateString("fr-FR", { dateStyle: "full" });
   const time = current.toLocaleTimeString("fr-FR", {
     hour: "2-digit",
     minute: "2-digit",
@@ -89,7 +95,7 @@ export default function Toolbar(props) {
           <BatteryIcon />
         </div>
         <div className="date-time">
-          <p title="Date du jour">{date}</p>
+          <p title={fullDate}>{date}</p>
           <p title={`Heure locale : ${fullTime}`}>{time}</p>
         </div>
       </div>

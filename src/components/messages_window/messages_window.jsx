@@ -107,6 +107,7 @@ export default function MessagesWindow(props) {
           title="Messages"
           handleFullscreen={props.fullScreen}
           handleQuit={props.handleClose}
+          handleMinimize={props.handleMinimize}
         />
 
         <div className="messages-app">

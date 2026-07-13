@@ -116,7 +116,11 @@ export default function NotesWindow(props) {
         maxConstraints={[2560, 1440]} // Largeur et hauteur maximales
         resizeHandles={["se"]} // Redimensionner uniquement depuis le coin inférieur droit
       >
-        <MenuBar handleFullscreen={handleFullscreen} handleQuit={handleQuit} />
+        <MenuBar
+          handleFullscreen={handleFullscreen}
+          handleQuit={handleQuit}
+          handleMinimize={props.handleMinimize}
+        />
         <section className="notes-app">
           <div className="notes-sidebar">
             <div className="notes-actions">

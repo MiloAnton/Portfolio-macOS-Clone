@@ -17,6 +17,21 @@ import WelcomeAnimation from "./components/intro_animation/WelcomeAnimation";
 import Desktop from "./components/desktop/desktop";
 import { addPortfolioLog } from "./utils/portfolioLogger";
 
+// Libellés affichés dans la Console pour les événements de fenêtres.
+const WINDOW_LABELS = {
+  main: "Curriculum",
+  projects: "Projets",
+  notes: "Notes",
+  facetime: "FaceTime",
+  terminal: "Terminal",
+  safari: "Safari",
+  messages: "Messages",
+  calculator: "Calculatrice",
+  console: "Console",
+  games: "Jeux",
+  calendar: "Calendrier",
+};
+
 export default function App() {
   const isDesktop = typeof window !== "undefined" && window.innerWidth > 900;
   const [isWelcomeAnimationVisible, setIsWelcomeAnimationVisible] =
@@ -111,19 +126,25 @@ export default function App() {
     setZIndexCalendarWindow(maxZIndex + 1);
   };
 
+  // Fenêtres minimisées dans le Dock : elles restent montées (leur état
+  // interne survit) mais sont masquées après l'animation genie.
+  const [minimizedWindows, setMinimizedWindows] = useState([]);
+
   useEffect(() => {
+    // Une fenêtre minimisée ne compte plus pour le focus : le titre de la
+    // barre de menus et l'état actif passent à la fenêtre suivante.
     const currentZIndexes = {};
-    if (displayedMainWindow) currentZIndexes.zIndexMainWindow = zIndexMainWindow;
-    if (displayedProjectsWindow) currentZIndexes.zIndexProjectsWindow = zIndexProjectsWindow;
-    if (displayedNotesWindow) currentZIndexes.zIndexNotesWindow = zIndexNotesWindow;
-    if (displayedFacetimeWindow) currentZIndexes.zIndexFacetimeWindow = zIndexFacetimeWindow;
-    if (displayedTerminalWindow) currentZIndexes.zIndexTerminalWindow = zIndexTerminalWindow;
-    if (displayedSafariWindow) currentZIndexes.zIndexSafariWindow = zIndexSafariWindow;
-    if (displayedMessagesWindow) currentZIndexes.zIndexMessagesWindow = zIndexMessagesWindow;
-    if (displayedCalculatorWindow) currentZIndexes.zIndexCalculatorWindow = zIndexCalculatorWindow;
-    if (displayedConsoleWindow) currentZIndexes.zIndexConsoleWindow = zIndexConsoleWindow;
-    if (displayedGamesWindow) currentZIndexes.zIndexGamesWindow = zIndexGamesWindow;
-    if (displayedCalendarWindow) currentZIndexes.zIndexCalendarWindow = zIndexCalendarWindow;
+    if (displayedMainWindow && !minimizedWindows.includes("main")) currentZIndexes.zIndexMainWindow = zIndexMainWindow;
+    if (displayedProjectsWindow && !minimizedWindows.includes("projects")) currentZIndexes.zIndexProjectsWindow = zIndexProjectsWindow;
+    if (displayedNotesWindow && !minimizedWindows.includes("notes")) currentZIndexes.zIndexNotesWindow = zIndexNotesWindow;
+    if (displayedFacetimeWindow && !minimizedWindows.includes("facetime")) currentZIndexes.zIndexFacetimeWindow = zIndexFacetimeWindow;
+    if (displayedTerminalWindow && !minimizedWindows.includes("terminal")) currentZIndexes.zIndexTerminalWindow = zIndexTerminalWindow;
+    if (displayedSafariWindow && !minimizedWindows.includes("safari")) currentZIndexes.zIndexSafariWindow = zIndexSafariWindow;
+    if (displayedMessagesWindow && !minimizedWindows.includes("messages")) currentZIndexes.zIndexMessagesWindow = zIndexMessagesWindow;
+    if (displayedCalculatorWindow && !minimizedWindows.includes("calculator")) currentZIndexes.zIndexCalculatorWindow = zIndexCalculatorWindow;
+    if (displayedConsoleWindow && !minimizedWindows.includes("console")) currentZIndexes.zIndexConsoleWindow = zIndexConsoleWindow;
+    if (displayedGamesWindow && !minimizedWindows.includes("games")) currentZIndexes.zIndexGamesWindow = zIndexGamesWindow;
+    if (displayedCalendarWindow && !minimizedWindows.includes("calendar")) currentZIndexes.zIndexCalendarWindow = zIndexCalendarWindow;
 
     const displayedWindowNames = Object.keys(currentZIndexes);
     if (displayedWindowNames.length > 0) {
@@ -156,6 +177,7 @@ export default function App() {
     displayedConsoleWindow,
     displayedGamesWindow,
     displayedCalendarWindow,
+    minimizedWindows,
   ]);
 
   useEffect(() => {
@@ -211,54 +233,43 @@ export default function App() {
     // eslint-disable-next-line
   }, [displayedCalendarWindow]);
 
-  const handleSetCurriculum = () => {
-    setDisplayedMainWindow(!displayedMainWindow);
-  };
+  const handleSetCurriculum = () =>
+    toggleWindow("main", displayedMainWindow, setDisplayedMainWindow, handleClickZIndexMainWindow);
 
-  const handleSetProjects = () => {
-    setDisplayedProjectsWindow(!displayedProjectsWindow);
-  };
+  const handleSetProjects = () =>
+    toggleWindow("projects", displayedProjectsWindow, setDisplayedProjectsWindow, handleClickZIndexProjectsWindow);
 
   const handleOpenProjects = () => {
+    restoreWindow("projects");
     setDisplayedProjectsWindow(true);
     handleClickZIndexProjectsWindow();
   };
 
-  const handleSetNotes = () => {
-    setDisplayedNotesWindow(!displayedNotesWindow);
-  };
+  const handleSetNotes = () =>
+    toggleWindow("notes", displayedNotesWindow, setDisplayedNotesWindow, handleClickZIndexNotesWindow);
 
-  const handleSetFacetime = () => {
-    setDisplayedFacetimeWindow(!displayedFacetimeWindow);
-  };
+  const handleSetFacetime = () =>
+    toggleWindow("facetime", displayedFacetimeWindow, setDisplayedFacetimeWindow, handleClickZIndexFacetimeWindow);
 
-  const handleSetTerminal = () => {
-    setDisplayedTerminalWindow(!displayedTerminalWindow);
-  };
+  const handleSetTerminal = () =>
+    toggleWindow("terminal", displayedTerminalWindow, setDisplayedTerminalWindow, handleClickZIndexTerminalWindow);
 
-  const handleSetSafari = () => {
-    setDisplayedSafariWindow(!displayedSafariWindow);
-  };
+  const handleSetSafari = () =>
+    toggleWindow("safari", displayedSafariWindow, setDisplayedSafariWindow, handleClickZIndexSafariWindow);
 
-  const handleSetMessages = () => {
-    setDisplayedMessagesWindow(!displayedMessagesWindow);
-  };
+  const handleSetMessages = () =>
+    toggleWindow("messages", displayedMessagesWindow, setDisplayedMessagesWindow, handleClickZIndexMessagesWindow);
 
-  const handleSetCalculator = () => {
-    setDisplayedCalculatorWindow(!displayedCalculatorWindow);
-  };
+  const handleSetCalculator = () =>
+    toggleWindow("calculator", displayedCalculatorWindow, setDisplayedCalculatorWindow, handleClickZIndexCalculatorWindow);
 
-  const handleSetConsole = () => {
-    setDisplayedConsoleWindow(!displayedConsoleWindow);
-  };
-  const handleSetGames = () => {
-    setDisplayedGamesWindow(!displayedGamesWindow);
-  };
-  const handleSetCalendar = () => {
-    setDisplayedCalendarWindow(!displayedCalendarWindow);
-  };
+  const handleSetConsole = () =>
+    toggleWindow("console", displayedConsoleWindow, setDisplayedConsoleWindow, handleClickZIndexConsoleWindow);
+  const handleSetGames = () =>
+    toggleWindow("games", displayedGamesWindow, setDisplayedGamesWindow, handleClickZIndexGamesWindow);
+  const handleSetCalendar = () =>
+    toggleWindow("calendar", displayedCalendarWindow, setDisplayedCalendarWindow, handleClickZIndexCalendarWindow);
 
-  const [mainWindowIsMinimized, setMainWindowIsMinimized] = useState(false);
   const [mainindowIsFullScreen, setMainWindowIsFullScreen] = useState(false);
   const [projectsWindowIsFullScreen, setProjectsWindowIsFullScreen] =
     useState(false);
@@ -322,9 +333,6 @@ export default function App() {
     setDisplayedCalendarWindow(false);
     setCalendarWindowIsFullScreen(false);
   };
-  const handleMinimizeMainWindow = () => {
-    setMainWindowIsMinimized(!mainWindowIsMinimized);
-  };
   const handleFullScreenMainWindow = () => {
     setMainWindowIsFullScreen(!mainindowIsFullScreen);
   };
@@ -357,6 +365,42 @@ export default function App() {
   };
   const handleFullScreenCalendarWindow = () => {
     setCalendarWindowIsFullScreen(!calendarWindowIsFullScreen);
+  };
+
+  // Fenêtres en cours d'animation "genie" : leur démontage est retardé le
+  // temps de l'animation (durée alignée sur window-genie-out dans App.scss).
+  const [closingWindows, setClosingWindows] = useState([]);
+  const animateClose = (name, close) => {
+    setClosingWindows((current) => [...current, name]);
+    setTimeout(() => {
+      close();
+      setClosingWindows((current) => current.filter((item) => item !== name));
+    }, 320);
+  };
+
+  const animateMinimize = (name) => {
+    if (closingWindows.includes(name) || minimizedWindows.includes(name)) return;
+    setClosingWindows((current) => [...current, name]);
+    setTimeout(() => {
+      setClosingWindows((current) => current.filter((item) => item !== name));
+      setMinimizedWindows((current) => [...current, name]);
+      addPortfolioLog("info", "window", `${WINDOW_LABELS[name]} minimisée dans le Dock`);
+    }, 320);
+  };
+  const restoreWindow = (name) => {
+    if (!minimizedWindows.includes(name)) return;
+    setMinimizedWindows((current) => current.filter((item) => item !== name));
+    addPortfolioLog("info", "window", `${WINDOW_LABELS[name]} restaurée`);
+  };
+
+  // Clic Dock : restaure la fenêtre si elle est minimisée, sinon ouvre/ferme.
+  const toggleWindow = (name, isDisplayed, setDisplayed, focusWindow) => {
+    if (minimizedWindows.includes(name)) {
+      restoreWindow(name);
+      focusWindow();
+      return;
+    }
+    setDisplayed(!isDisplayed);
   };
 
   const previousWindowsRef = useRef(null);
@@ -435,14 +479,14 @@ export default function App() {
                 setDisplayed={handleSetCurriculum}
                 zIndex={zIndexMainWindow}
                 handleClickZIndex={handleClickZIndexMainWindow}
-                isMinimized={mainWindowIsMinimized}
                 isFullScreen={mainindowIsFullScreen}
-                handleClose={handleCloseMainWindow}
-                minimize={handleMinimizeMainWindow}
+                handleClose={() => animateClose("main", handleCloseMainWindow)}
+                handleMinimize={() => animateMinimize("main")}
                 fullScreen={handleFullScreenMainWindow}
                 isActive={maxZIndexVarName === "zIndexMainWindow"}
               />
             ),
+            name: "main",
             displayed: displayedMainWindow,
           },
           {
@@ -452,11 +496,13 @@ export default function App() {
                 zIndex={zIndexProjectsWindow}
                 handleClickZIndex={handleClickZIndexProjectsWindow}
                 isFullScreen={projectsWindowIsFullScreen}
-                handleClose={handleCloseProjectsWindow}
+                handleClose={() => animateClose("projects", handleCloseProjectsWindow)}
+                handleMinimize={() => animateMinimize("projects")}
                 fullScreen={handleFullScreenProjectsWindow}
                 isActive={maxZIndexVarName === "zIndexProjectsWindow"}
               />
             ),
+            name: "projects",
             displayed: displayedProjectsWindow,
           },
           {
@@ -466,11 +512,13 @@ export default function App() {
                 zIndex={zIndexNotesWindow}
                 handleClickZIndex={handleClickZIndexNotesWindow}
                 isFullScreen={notesWindowIsFullScreen}
-                handleClose={handleCloseNotesWindow}
+                handleClose={() => animateClose("notes", handleCloseNotesWindow)}
+                handleMinimize={() => animateMinimize("notes")}
                 fullScreen={handleFullScreenNotesWindow}
                 isActive={maxZIndexVarName === "zIndexNotesWindow"}
               />
             ),
+            name: "notes",
             displayed: displayedNotesWindow,
           },
           {
@@ -480,11 +528,13 @@ export default function App() {
                 zIndex={zIndexFacetimeWindow}
                 handleClickZIndex={handleClickZIndexFacetimeWindow}
                 isFullScreen={facetimeWindowIsFullScreen}
-                handleClose={handleCloseFacetimeWindow}
+                handleClose={() => animateClose("facetime", handleCloseFacetimeWindow)}
+                handleMinimize={() => animateMinimize("facetime")}
                 fullScreen={handleFullScreenFacetimeWindow}
                 isActive={maxZIndexVarName === "zIndexFacetimeWindow"}
               />
             ),
+            name: "facetime",
             displayed: displayedFacetimeWindow,
           },
           {
@@ -494,11 +544,13 @@ export default function App() {
                 zIndex={zIndexTerminalWindow}
                 handleClickZIndex={handleClickZIndexTerminalWindow}
                 isFullScreen={terminalWindowIsFullScreen}
-                handleClose={handleCloseTerminalWindow}
+                handleClose={() => animateClose("terminal", handleCloseTerminalWindow)}
+                handleMinimize={() => animateMinimize("terminal")}
                 fullScreen={handleFullScreenTerminalWindow}
                 isActive={maxZIndexVarName === "zIndexTerminalWindow"}
               />
             ),
+            name: "terminal",
             displayed: displayedTerminalWindow,
           },
           {
@@ -508,11 +560,13 @@ export default function App() {
                 zIndex={zIndexSafariWindow}
                 handleClickZIndex={handleClickZIndexSafariWindow}
                 isFullScreen={safariWindowIsFullScreen}
-                handleClose={handleCloseSafariWindow}
+                handleClose={() => animateClose("safari", handleCloseSafariWindow)}
+                handleMinimize={() => animateMinimize("safari")}
                 fullScreen={handleFullScreenSafariWindow}
                 isActive={maxZIndexVarName === "zIndexSafariWindow"}
               />
             ),
+            name: "safari",
             displayed: displayedSafariWindow,
           },
           {
@@ -521,11 +575,13 @@ export default function App() {
                 zIndex={zIndexMessagesWindow}
                 handleClickZIndex={handleClickZIndexMessagesWindow}
                 isFullScreen={messagesWindowIsFullScreen}
-                handleClose={handleCloseMessagesWindow}
+                handleClose={() => animateClose("messages", handleCloseMessagesWindow)}
+                handleMinimize={() => animateMinimize("messages")}
                 fullScreen={handleFullScreenMessagesWindow}
                 isActive={maxZIndexVarName === "zIndexMessagesWindow"}
               />
             ),
+            name: "messages",
             displayed: displayedMessagesWindow,
           },
           {
@@ -534,11 +590,13 @@ export default function App() {
                 zIndex={zIndexCalculatorWindow}
                 handleClickZIndex={handleClickZIndexCalculatorWindow}
                 isFullScreen={calculatorWindowIsFullScreen}
-                handleClose={handleCloseCalculatorWindow}
+                handleClose={() => animateClose("calculator", handleCloseCalculatorWindow)}
+                handleMinimize={() => animateMinimize("calculator")}
                 fullScreen={handleFullScreenCalculatorWindow}
                 isActive={maxZIndexVarName === "zIndexCalculatorWindow"}
               />
             ),
+            name: "calculator",
             displayed: displayedCalculatorWindow,
           },
           {
@@ -547,11 +605,13 @@ export default function App() {
                 zIndex={zIndexConsoleWindow}
                 handleClickZIndex={handleClickZIndexConsoleWindow}
                 isFullScreen={consoleWindowIsFullScreen}
-                handleClose={handleCloseConsoleWindow}
+                handleClose={() => animateClose("console", handleCloseConsoleWindow)}
+                handleMinimize={() => animateMinimize("console")}
                 fullScreen={handleFullScreenConsoleWindow}
                 isActive={maxZIndexVarName === "zIndexConsoleWindow"}
               />
             ),
+            name: "console",
             displayed: displayedConsoleWindow,
           },
           {
@@ -560,11 +620,13 @@ export default function App() {
                 zIndex={zIndexGamesWindow}
                 handleClickZIndex={handleClickZIndexGamesWindow}
                 isFullScreen={gamesWindowIsFullScreen}
-                handleClose={handleCloseGamesWindow}
+                handleClose={() => animateClose("games", handleCloseGamesWindow)}
+                handleMinimize={() => animateMinimize("games")}
                 fullScreen={handleFullScreenGamesWindow}
                 isActive={maxZIndexVarName === "zIndexGamesWindow"}
               />
             ),
+            name: "games",
             displayed: displayedGamesWindow,
           },
           {
@@ -573,17 +635,24 @@ export default function App() {
                 zIndex={zIndexCalendarWindow}
                 handleClickZIndex={handleClickZIndexCalendarWindow}
                 isFullScreen={calendarWindowIsFullScreen}
-                handleClose={handleCloseCalendarWindow}
+                handleClose={() => animateClose("calendar", handleCloseCalendarWindow)}
+                handleMinimize={() => animateMinimize("calendar")}
                 fullScreen={handleFullScreenCalendarWindow}
                 isActive={maxZIndexVarName === "zIndexCalendarWindow"}
               />
             ),
+            name: "calendar",
             displayed: displayedCalendarWindow,
           },
         ]
           .filter((item) => item.displayed)
-          .map((item, index) => (
-            <div className="window-container" key={index}>
+          .map((item) => (
+            <div
+              className={`window-container${
+                closingWindows.includes(item.name) ? " window-closing" : ""
+              }${minimizedWindows.includes(item.name) ? " window-minimized" : ""}`}
+              key={item.name}
+            >
               {item.component}
             </div>
           ))}

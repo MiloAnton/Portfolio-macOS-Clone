@@ -1,9 +1,31 @@
-@keyframes open-window {
+// Ouverture façon macOS : zoom + fade qui monte depuis le Dock.
+// On anime les propriétés individuelles scale/translate (et pas transform),
+// sinon on écraserait le transform: translate() posé par react-draggable.
+@keyframes window-zoom-in {
   0% {
     opacity: 0;
+    scale: 0.55;
+    translate: 0 60px;
   }
   100% {
     opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+// Fermeture/minimisation "genie" simplifiée : la fenêtre s'aplatit et est
+// aspirée vers le Dock. Durée synchronisée avec animateClose() dans App.jsx.
+@keyframes window-genie-out {
+  0% {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.3 0.05;
+    translate: 0 45vh;
   }
 }
 
@@ -17,14 +39,25 @@
   position: absolute;
 }
 
+.window-closing .App {
+  animation: window-genie-out 0.3s cubic-bezier(0.55, 0, 0.85, 0.35) both;
+  pointer-events: none;
+}
+
+// Fenêtre minimisée : masquée mais toujours montée pour préserver son état.
+// Le passage par display:none relance window-zoom-in à la restauration.
+.window-minimized {
+  display: none;
+}
+
 .App {
   margin: 40px 200px 80px 200px;
   max-width: 1600px;
   height: calc(100vh - 192px);
   border-radius: 18px;
   box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
-  -webkit-animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  animation: open-window 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: window-zoom-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: 50% 100%;
   position: absolute;
   user-select: none;
   background: #212124EE;

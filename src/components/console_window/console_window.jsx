@@ -116,6 +116,7 @@ export default function ConsoleWindow(props) {
           title="Console"
           handleFullscreen={props.fullScreen}
           handleQuit={props.handleClose}
+          handleMinimize={props.handleMinimize}
         />
         <div className="console-toolbar">
           <button type="button" onClick={togglePause} className={isPaused ? "paused" : ""}>

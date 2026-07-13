@@ -118,6 +118,7 @@ export default function MainWindow(props) {
           title="À propos de Milo"
           handleFullscreen={handleFullscreen}
           handleQuit={handleQuit}
+          handleMinimize={props.handleMinimize}
         />
         <section className="page resume-page">
           <div className="content">

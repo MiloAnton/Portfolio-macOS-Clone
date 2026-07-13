@@ -171,6 +171,7 @@ export default function CalculatorWindow(props) {
           title="Calculatrice"
           handleFullscreen={props.fullScreen}
           handleQuit={props.handleClose}
+          handleMinimize={props.handleMinimize}
         />
         <div className="calculator-display" aria-live="polite">
           <span>{hint || " "}</span>

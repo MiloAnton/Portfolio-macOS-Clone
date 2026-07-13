@@ -254,7 +254,7 @@ export default function GamesWindow(props) {
   return (
     <Draggable handle="#handle" position={position} onStop={handleDragStop}>
       <ResizableBox className={`App games-window ${props.isActive ? "window-active" : "window-inactive"}`} style={{ zIndex: props.zIndex }} onMouseDownCapture={props.handleClickZIndex} width={760} height={570} minConstraints={[560, 480]} maxConstraints={[1200, 900]} resizeHandles={["se"]}>
-        <MenuBar title="Jeux" handleFullscreen={props.fullScreen} handleQuit={props.handleClose}/>
+        <MenuBar title="Jeux" handleFullscreen={props.fullScreen} handleQuit={props.handleClose} handleMinimize={props.handleMinimize}/>
         <div className="games-app">
           <nav>{GAME_LIST.map((item) => <button type="button" className={game === item.id ? "selected" : ""} onClick={() => setGame(item.id)} key={item.id}><span>{item.icon}</span>{item.name}</button>)}</nav>
           <main>

@@ -6,7 +6,12 @@ export default function MenuBar(props) {
     <section className="menubar" id="handle" style={{ cursor: "grab" }}>
       <div className="buttons">
         <div className="quitButton" onClick={() => props.handleQuit()} />
-        <div className="minimizeButton" onClick={() => props.handleQuit()} />
+        <div
+          className="minimizeButton"
+          onClick={() =>
+            props.handleMinimize ? props.handleMinimize() : props.handleQuit()
+          }
+        />
         <div
           className="fullscreenButton"
           onClick={() => props.handleFullscreen()}

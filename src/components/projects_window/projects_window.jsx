@@ -47,6 +47,7 @@ export default function ProjectsWindow(props) {
           title="Projets"
           handleFullscreen={handleFullscreen}
           handleQuit={handleQuit}
+          handleMinimize={props.handleMinimize}
         />
         <section className="page projects-page">
           <div className="content">

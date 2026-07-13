@@ -117,6 +117,7 @@ export default function SafariWindow(props) {
           title="Safari"
           handleFullscreen={props.fullScreen}
           handleQuit={props.handleClose}
+          handleMinimize={props.handleMinimize}
         />
 
         <div className="safari-toolbar">
