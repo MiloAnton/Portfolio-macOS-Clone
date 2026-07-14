@@ -19,6 +19,13 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.1
+- Added a classic Minesweeper scoreboard with red digital mine and time counters
+- Added a real game timer that starts on the first action, stops at game end and resets with a new board
+- Replaced the generic replay control with an accessible central status face for playing, lost and won states
+- Prevented players from placing more flags than the board's mine count
+- Added deterministic Minesweeper timer, status and flag-limit regression tests (32 tests across 11 suites)
+
 ### 0.10.7
 - Removed the Dock's global DOM queries, manual event listeners and imperative transforms
 - Dock magnification and neighbouring icon effects are now derived from React hover state and CSS classes

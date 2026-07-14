@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BOARD_SIZE = 9;
 const CELL_COUNT = BOARD_SIZE * BOARD_SIZE;
@@ -47,19 +47,41 @@ const getCellContent = (cell) => {
   return cell.adjacent || "";
 };
 
-const getStatusLabel = (status) => {
-  if (status === "lost") return "Perdu !";
-  if (status === "won") return "Gagné !";
-  return "À toi de jouer";
+const STATUS_DISPLAY = {
+  playing: { face: "🙂", label: "Partie en cours" },
+  lost: { face: "😵", label: "Partie perdue" },
+  won: { face: "😎", label: "Partie gagnée" },
+};
+
+const formatDigitalCounter = (value) => {
+  const limitedValue = Math.max(-99, Math.min(value, 999));
+  if (limitedValue < 0) {
+    return `-${String(Math.abs(limitedValue)).padStart(2, "0")}`;
+  }
+  return String(limitedValue).padStart(3, "0");
 };
 
 export default function Minesweeper() {
   const [board, setBoard] = useState(createMinefield);
   const [status, setStatus] = useState("playing");
+  const [hasStarted, setHasStarted] = useState(false);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+  useEffect(() => {
+    if (!hasStarted || status !== "playing") return undefined;
+
+    const timer = setInterval(() => {
+      setElapsedSeconds((seconds) => Math.min(seconds + 1, 999));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [hasStarted, status]);
 
   const restart = () => {
     setBoard(createMinefield());
     setStatus("playing");
+    setHasStarted(false);
+    setElapsedSeconds(0);
   };
 
   const reveal = (index) => {
@@ -72,6 +94,7 @@ export default function Minesweeper() {
       return;
     }
 
+    setHasStarted(true);
     const nextBoard = board.map((cell) => ({ ...cell }));
     if (nextBoard[index].mine) {
       nextBoard.forEach((cell) => {
@@ -129,6 +152,11 @@ export default function Minesweeper() {
     event.preventDefault();
     if (status !== "playing" || board[index].revealed) return;
 
+    const flaggedCells = board.filter((cell) => cell.flagged).length;
+    const isAddingFlag = !board[index].flagged;
+    if (isAddingFlag && flaggedCells >= MINE_COUNT) return;
+
+    setHasStarted(true);
     setBoard((currentBoard) =>
       currentBoard.map((cell) =>
         cell.index === index ? { ...cell, flagged: !cell.flagged } : cell
@@ -139,18 +167,44 @@ export default function Minesweeper() {
   const remainingMines =
     board.filter((cell) => cell.mine).length -
     board.filter((cell) => cell.flagged).length;
+  const statusDisplay = STATUS_DISPLAY[status];
 
   return (
     <div className="minesweeper game-stage">
-      <div className="game-info">
-        <span>💣 {remainingMines}</span>
-        <strong>{getStatusLabel(status)}</strong>
-        <button type="button" onClick={restart}>
-          Rejouer
+      <div className="minesweeper-scoreboard">
+        <div
+          className="digital-counter"
+          aria-label={`${remainingMines} mines restantes`}
+        >
+          <strong aria-hidden="true">
+            {formatDigitalCounter(remainingMines)}
+          </strong>
+          <span>MINES</span>
+        </div>
+
+        <button
+          type="button"
+          className={`minesweeper-status status-${status}`}
+          aria-label={`${statusDisplay.label}. Nouvelle partie`}
+          title={`${statusDisplay.label} — recommencer`}
+          onClick={restart}
+        >
+          <span aria-hidden="true">{statusDisplay.face}</span>
         </button>
+
+        <div
+          className="digital-counter timer-counter"
+          role="timer"
+          aria-label={`${elapsedSeconds} secondes écoulées`}
+        >
+          <strong aria-hidden="true">
+            {formatDigitalCounter(elapsedSeconds)}
+          </strong>
+          <span>TEMPS</span>
+        </div>
       </div>
 
-      <div className="mine-grid">
+      <div className={`mine-grid status-${status}`}>
         {board.map((cell) => (
           <button
             type="button"
