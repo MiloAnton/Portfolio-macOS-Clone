@@ -19,6 +19,16 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.2
+- Added a subtle nine-position light trail behind the Pong ball
+- Added impact flashes when the ball hits a wall or paddle
+- Added a visible 3–2–1 countdown before the first serve and after every point
+- Improved paddle collision direction checks to prevent repeated impacts
+- Made ball, paddle, computer and flash speeds independent from the display refresh rate
+- Added swept paddle collision detection so the ball cannot tunnel through a paddle at high speed
+- Made each new serve travel toward the player who conceded the previous point
+- Added Pong countdown, restart, frame-rate, collision and serve-direction regression tests
+
 ### 0.11.1
 - Added a classic Minesweeper scoreboard with red digital mine and time counters
 - Added a real game timer that starts on the first action, stops at game end and resets with a new board
