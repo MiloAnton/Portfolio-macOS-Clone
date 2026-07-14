@@ -96,6 +96,41 @@
   background: #111;
 }
 
+.snake-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 9px;
+
+  button {
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 0.76);
+    background: rgba(255, 255, 255, 0.07);
+    font: inherit;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 120ms ease;
+
+    &:hover:not(:disabled) {
+      color: white;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    &.selected {
+      color: white;
+      border-color: rgba(48, 209, 88, 0.55);
+      background: rgba(48, 209, 88, 0.2);
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+  }
+}
+
 .minesweeper {
   max-width: 410px;
 }

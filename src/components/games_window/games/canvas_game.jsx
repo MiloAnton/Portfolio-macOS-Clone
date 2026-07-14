@@ -3,6 +3,8 @@ export default function CanvasGame({
   status,
   running,
   onRestart,
+  actionLabel,
+  controls,
   help,
   canvasRef,
 }) {
@@ -12,11 +14,12 @@ export default function CanvasGame({
         <span>{title}</span>
         <strong>{status}</strong>
         <button type="button" onClick={onRestart}>
-          {running ? "Recommencer" : "Jouer"}
+          {actionLabel || (running ? "Recommencer" : "Jouer")}
         </button>
       </div>
 
       <canvas ref={canvasRef} width="640" height="360" />
+      {controls}
       <p className="game-help">{help}</p>
     </div>
   );

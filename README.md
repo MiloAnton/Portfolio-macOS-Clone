@@ -19,6 +19,16 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.3
+- Redesigned Snake with a distinct head, directional eyes and a subtle board grid
+- Added a short expanding ring animation whenever an apple is eaten
+- Added progressive speed from 115 ms down to a playable 55 ms movement floor, with a gentle 2 ms increase per apple
+- Added a persistent local best score displayed beside the current score
+- Added a 3–2–1 start countdown and pause/resume controls, including the `P` shortcut
+- Added an optional wall-traversal mode with wrapping on all four board edges
+- Guaranteed that new food is selected only from cells not occupied by the snake
+- Added Snake food, speed, record, countdown, pause and wall-mode regression tests (41 tests across 13 suites)
+
 ### 0.11.2
 - Added a subtle nine-position light trail behind the Pong ball
 - Added impact flashes when the ball hits a wall or paddle
