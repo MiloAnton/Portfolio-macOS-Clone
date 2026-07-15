@@ -19,6 +19,17 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.4
+- Replaced rectangular cars with detailed top-down canvas sprites, windows, lights, wheels and shadows
+- Redesigned the track with animated lane markings, red-and-white shoulders, grass gradients and scrolling scenery
+- Added acceleration, braking and smooth three-lane changes with arrow keys or WASD
+- Added progressive difficulty affecting traffic speed and real-time spawn frequency
+- Added a three-hit damage gauge, temporary impact protection and visible collision feedback
+- Made driving speed, distance, road scrolling, traffic and spawning independent from display refresh rate
+- Removed traffic after it leaves the play area to prevent an ever-growing obstacle array
+- Added safe wave generation that always preserves an escapable lane
+- Added Racer timing, difficulty, spawning, cleanup and damage-gauge regression tests (46 tests across 14 suites)
+
 ### 0.11.3
 - Redesigned Snake with a distinct head, directional eyes and a subtle board grid
 - Added a short expanding ring animation whenever an apple is eaten
