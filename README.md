@@ -19,6 +19,31 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.10
+- Rebuilt the Simon board with a substantial physical shell, recessed colored pads, central round display and responsive circular proportions
+- Added stronger color halos during playback plus a distinct inset press animation for player feedback
+- Added four Web Audio oscillator tones with smooth gain envelopes, initialized only after a user gesture
+- Progressively shortened sequence steps and flashes while retaining readable minimum timing limits
+- Added a strict mode that resets to the first round after an error, while normal mode replays the current sequence
+- Centralized every playback, user-flash, round-pause and error-pause timeout in one tracked scheduler
+- Fully disabled all four color buttons during demonstrations and error transitions
+- Cancelled every pending timer and closed the AudioContext when Simon is closed or another game replaces it
+- Allowed switching strict mode safely by cancelling the current game and returning to the ready state
+- Added Simon timing, scheduler, Web Audio, demonstration-lock, strict-mode and unmount-cleanup regression tests (77 tests across 20 suites)
+
+### 0.11.9
+- Rebuilt Frogger as a nine-row world with a start area, three road lanes, a safe median, three river lanes and five arrival bays
+- Added detailed frog, car and log sprites alongside animated water, roads, lane markings and filled lily-pad homes
+- Added five distinct arrival zones, three lives, a 30-second crossing timer and successive levels
+- Increased vehicle and log speed by 12% per completed set of five arrivals
+- Replaced free movement with a strict 13-column grid where every accepted input moves exactly one cell
+- Added a compact tactile directional pad using the same one-cell movement rules
+- Defined “Rejouer” as a complete new game that resets crossings, lives, time, level and occupied arrivals
+- Ignored keyboard auto-repeat and added a short shared input cadence to prevent accidental multi-cell jumps
+- Added inset frog hitboxes and swept vehicle collisions while avoiding false hits when vehicles wrap around the screen
+- Made cars, logs, carried-frog movement and the timer independent from display refresh rate
+- Added Frogger timing, grid movement, input-repeat, swept-collision and touch-control regression tests (71 tests across 19 suites)
+
 ### 0.11.8
 - Replaced the rectangular player with an expressive animated character whose limbs move while airborne
 - Diversified platform rendering with grassy static, directional moving and visibly cracked breakable variants
