@@ -19,6 +19,20 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.1
+- Added a timestamp beneath every message and a live latest-message time in the conversation list
+- Added outgoing “Distribué” and “Lu” states, with replies marking their corresponding message as read
+- Added a subtle arrival animation for newly sent and received bubbles with reduced-motion support
+- Persisted the full local conversation, timestamps and delivery states in versioned localStorage
+- Added a real “Effacer la conversation” action that restores the welcome exchange
+- Added clickable “Tes projets”, “Ta stack” and “Te contacter” suggestions
+- Turned the decorative composer plus button into a functional suggestions toggle
+- Removed the decorative new-conversation button from the sidebar
+- Replaced timestamp-only IDs with `crypto.randomUUID` and a unique fallback generator
+- Added generation-safe reply cancellation for clearing, replacing or unmounting the conversation
+- Converted the sidebar into a collapsible overlay using its own container width on narrow windows
+- Added Messages persistence, status, suggestion, clearing, unique-ID, responsive-sidebar and timer-cleanup regression tests (83 tests across 21 suites)
+
 ### 0.11.10
 - Rebuilt the Simon board with a substantial physical shell, recessed colored pads, central round display and responsive circular proportions
 - Added stronger color halos during playback plus a distinct inset press animation for player feedback
