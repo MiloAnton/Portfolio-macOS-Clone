@@ -19,6 +19,17 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.6
+- Added smooth tile movement animations followed by distinct merge and spawn effects
+- Rebuilt the 2048 board as a fluid square that remains playable in narrow game windows
+- Added explicit victory and game-over overlays, including the option to continue after reaching 2048
+- Added horizontal and vertical touch gestures alongside keyboard controls
+- Added one-move undo through the interface or `⌘/Ctrl + Z`
+- Added a persistent local best score that is preserved when a move is undone
+- Detected blocked full boards immediately instead of leaving the game silently frozen
+- Locked directional input during tile animations to prevent overlapping or inconsistent moves
+- Added 2048 movement, status, animation-lock, undo, touch and record regression tests (56 tests across 16 suites)
+
 ### 0.11.5
 - Redesigned Flappy Bird with an animated wing, expressive rotation and a more detailed bird
 - Added scrolling ground, two-layer parallax clouds and shaded pipes with distinct caps and highlights
