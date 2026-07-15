@@ -7,6 +7,7 @@ export default function CanvasGame({
   controls,
   help,
   canvasRef,
+  canvasProps,
 }) {
   return (
     <div className="canvas-game game-stage">
@@ -18,7 +19,7 @@ export default function CanvasGame({
         </button>
       </div>
 
-      <canvas ref={canvasRef} width="640" height="360" />
+      <canvas {...canvasProps} ref={canvasRef} width="640" height="360" />
       {controls}
       <p className="game-help">{help}</p>
     </div>

@@ -19,6 +19,17 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.5
+- Redesigned Flappy Bird with an animated wing, expressive rotation and a more detailed bird
+- Added scrolling ground, two-layer parallax clouds and shaded pipes with distinct caps and highlights
+- Added pointer and touch controls alongside the existing keyboard controls
+- Added a preparation screen, replay feedback and a persistent local best score
+- Added progressive difficulty that increases pipe speed and gradually narrows their gaps
+- Awarded points as soon as the bird fully passes a pipe instead of waiting for off-screen recycling
+- Made gravity, movement and scenery scrolling independent from display refresh rate
+- Replaced coarse rectangular bird collisions with a forgiving circular hitbox against detailed pipe sections
+- Added Flappy Bird timing, difficulty, scoring, collision and pointer-control regression tests (51 tests across 15 suites)
+
 ### 0.11.4
 - Replaced rectangular cars with detailed top-down canvas sprites, windows, lights, wheels and shadows
 - Redesigned the track with animated lane markings, red-and-white shoulders, grass gradients and scrolling scenery

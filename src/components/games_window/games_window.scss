@@ -96,6 +96,16 @@
   background: #111;
 }
 
+.flappy-canvas {
+  cursor: pointer;
+  touch-action: none;
+
+  &:focus-visible {
+    outline: 3px solid rgba(10, 132, 255, 0.75);
+    outline-offset: 2px;
+  }
+}
+
 .snake-controls {
   display: flex;
   justify-content: center;
