@@ -106,6 +106,95 @@
   }
 }
 
+.space-invaders-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 9px;
+  touch-action: none;
+
+  button {
+    width: 48px;
+    height: 34px;
+    border: 1px solid rgba(100, 210, 255, 0.25);
+    border-radius: 9px;
+    color: #64d2ff;
+    background: rgba(100, 210, 255, 0.09);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.09);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+
+    &:active {
+      background: rgba(100, 210, 255, 0.24);
+      transform: translateY(1px);
+    }
+
+    &.fire {
+      width: 68px;
+      color: #ffd60a;
+      border-color: rgba(255, 214, 10, 0.3);
+      background: rgba(255, 214, 10, 0.1);
+    }
+  }
+}
+
+.doodle-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 9px;
+  touch-action: none;
+
+  button {
+    min-width: 48px;
+    height: 34px;
+    padding: 0 11px;
+    border: 1px solid rgba(48, 209, 88, 0.26);
+    border-radius: 9px;
+    color: #7ee787;
+    background: rgba(48, 209, 88, 0.09);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.09);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+
+    &:nth-child(2) {
+      min-width: 125px;
+      color: rgba(255, 255, 255, 0.68);
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.07);
+      font-size: 9px;
+    }
+
+    &:active {
+      background: rgba(48, 209, 88, 0.22);
+      transform: translateY(1px);
+    }
+
+    &.tilt-enabled {
+      color: white;
+      border-color: rgba(10, 132, 255, 0.48);
+      background: rgba(10, 132, 255, 0.28);
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .doodle-controls {
+    gap: 6px;
+
+    button:nth-child(2) {
+      min-width: 110px;
+      padding-inline: 7px;
+    }
+  }
+}
+
 .snake-controls {
   display: flex;
   justify-content: center;

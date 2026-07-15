@@ -19,6 +19,30 @@ Are used in this project :
 
 ## Changelog
 
+### 0.11.8
+- Replaced the rectangular player with an expressive animated character whose limbs move while airborne
+- Diversified platform rendering with grassy static, directional moving and visibly cracked breakable variants
+- Added horizontally moving platforms, collapsing platforms and animated high-jump springs
+- Added floating star bonuses with a temporary boost, score reward and visual feedback
+- Added holdable left and right touch controls for mobile play
+- Added optional device-tilt steering with explicit iOS motion-permission handling and graceful unsupported states
+- Guaranteed a wide, fixed starting platform directly beneath the initial player position
+- Replaced narrow landing bands with swept landing detection so fast falls cannot pass through platforms
+- Made gravity, horizontal steering, moving platforms, breaking and scrolling independent from display refresh rate
+- Added Doodle Jump timing, safe-start, swept-landing, moving-platform, touch and tilt regression tests (66 tests across 18 suites)
+
+### 0.11.7
+- Replaced rectangular invaders and the player ship with animated, multicolored pixel-art sprites
+- Added particle explosions, glowing projectiles, muzzle flashes and a subtle animated star field
+- Added enemy projectiles, three player lives, temporary hit protection and progressively faster firing
+- Added successive waves with denser formations, increasing movement speed and visible wave announcements
+- Added a controlled player firing cadence for both held keyboard and touch input
+- Added accessible touch controls for moving left, firing and moving right
+- Removed destroyed and off-screen player or enemy projectiles every frame to keep their arrays bounded
+- Clamped enemy formations at screen edges so they reverse and descend exactly once per boundary contact
+- Reordered collision checks so an invader destroyed during a frame cannot still trigger defeat in that frame
+- Added Space Invaders timing, cleanup, formation, collision, wave and touch-control regression tests (61 tests across 17 suites)
+
 ### 0.11.6
 - Added smooth tile movement animations followed by distinct merge and spawn effects
 - Rebuilt the 2048 board as a fluid square that remains playable in narrow game windows
