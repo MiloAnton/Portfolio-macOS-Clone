@@ -1,5 +1,5 @@
 const EVENT_NAME = "portfolio:log";
-const MAX_LOGS = 250;
+export const MAX_PORTFOLIO_LOGS = 250;
 let nextId = 1;
 let history = [];
 
@@ -11,7 +11,7 @@ export const addPortfolioLog = (level, source, message) => {
     message,
     timestamp: new Date(),
   };
-  history = [...history, entry].slice(-MAX_LOGS);
+  history = [...history, entry].slice(-MAX_PORTFOLIO_LOGS);
   window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: entry }));
   return entry;
 };

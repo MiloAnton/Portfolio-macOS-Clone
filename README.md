@@ -19,6 +19,20 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.5
+- Repositioned Console as an application observer and filter, with an `observer ›` command bar and no Terminal-style `echo` execution
+- Added consistent SVG status icons and live counters for all, info, success, warning and error events
+- Added a prominent live “En pause — N événements en attente” banner backed by a bounded pending-event queue
+- Kept one stable portfolio-log subscription across every pause and resume transition
+- Enforced the shared 250-entry limit in both the global logger and Console's live local collection
+- Added selection-aware plain-text copying with Clipboard API feedback
+- Added filtered or selected JSON exports and downloadable `.log` text files
+- Added observer-command autocomplete with Tab, clickable suggestions and Arrow Up/Down command history
+- Added `⌘/Ctrl + K` for observer commands and `⌘/Ctrl + F` for log search, scoped to the visible foreground Console
+- Added keyboard navigation through log rows with Arrow Up/Down, Home and End
+- Made the time, level, source and message columns independently resizable by pointer or accessible keyboard separators
+- Added Console counter, pause-queue, stable-subscription, capacity, export, autocomplete, shortcut, column and row-navigation regression tests (116 tests across 24 suites)
+
 ### 0.12.4
 - Rebuilt the calculator around a deterministic reducer so chained operations and transient display states remain consistent
 - Added a macOS-style white selected state for the pending orange operator
