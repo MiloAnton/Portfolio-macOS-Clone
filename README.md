@@ -19,6 +19,19 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.4
+- Rebuilt the calculator around a deterministic reducer so chained operations and transient display states remain consistent
+- Added a macOS-style white selected state for the pending orange operator
+- Mirrored physical keyboard presses on their corresponding on-screen keys with a brief depressed state
+- Stabilized keyboard handling with one `keydown`, `keyup` and blur listener scoped to the visible foreground calculator
+- Added repeated equals operations, allowing sequences such as `2 + 3 = = =` to produce 5, 8 and 11
+- Added an in-session memory row with MC, M+, M− and MR plus a visible memory indicator
+- Added result copying through the Clipboard API with success and unavailable feedback
+- Defined percentage semantics explicitly: `+` and `−` calculate a percentage of the accumulated value, while `×` and `÷` convert the operand to a fraction
+- Improved operator replacement, immediate chained calculations and clean recovery after errors
+- Replaced non-finite and zero-division propagation with an explicit “Division par zéro impossible” state that cannot be repeated accidentally
+- Added calculator operator, keyboard, repeated-equals, chaining, percentage, memory, clipboard and error-recovery regression tests (107 tests across 23 suites)
+
 ### 0.12.3
 - Replaced Safari's typographic home, reload and external-link symbols with a consistent lightweight SVG icon set across the toolbar
 - Turned reload into a stop control while an iframe is loading, with safe invalidation of any later load event
