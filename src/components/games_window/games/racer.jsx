@@ -179,13 +179,7 @@ const createObstacle = (lane, difficulty, random = Math.random) => ({
   x: LANE_CENTERS[lane],
   y: -CAR_HEIGHT - 10,
   speedBonus: random() * 32 + difficulty * 7,
-  color:
-    OBSTACLE_COLORS[
-      Math.min(
-        Math.floor(random() * OBSTACLE_COLORS.length),
-        OBSTACLE_COLORS.length - 1
-      )
-    ],
+  color: OBSTACLE_COLORS[Math.floor(random() * OBSTACLE_COLORS.length)],
 });
 
 export default function Racer({ isActive }) {

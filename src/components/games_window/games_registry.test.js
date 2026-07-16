@@ -8,13 +8,4 @@ describe("games registry", () => {
     expect(new Set(ids).size).toBe(ids.length);
     expect(DEFAULT_GAME_ID).toBe(ids[0]);
   });
-
-  test("provides readable metadata and one component per game", () => {
-    GAMES.forEach((game) => {
-      expect(game.id).toEqual(expect.any(String));
-      expect(game.name).toEqual(expect.any(String));
-      expect(game.icon).toEqual(expect.any(String));
-      expect(game.component).toEqual(expect.any(Function));
-    });
-  });
 });

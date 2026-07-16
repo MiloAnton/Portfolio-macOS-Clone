@@ -19,9 +19,11 @@ Are used in this project :
 
 ## Changelog
 
+### 0.13.2
+- Code cleanup : removed superfluous defensive code (impossible guards, unused injection points, low-value test)
+
 ### 0.13.1
 - Code cleanup : shared game utilities (frame-time normalization, best-score storage, touch controls) mutualized across the mini-games
-- No functional change
 
 ### 0.12.9
 - Added a table of contents to the Curriculum with smooth scrolling

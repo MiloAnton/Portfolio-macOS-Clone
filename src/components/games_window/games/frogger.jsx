@@ -422,10 +422,11 @@ export default function Frogger({ isActive }) {
     };
 
     const reachArrival = () => {
-      const arrivalColumn = ARRIVAL_COLUMNS.find(
-        (column) => Math.abs(column - game.player.column) === 0
-      );
-      if (arrivalColumn === undefined || game.homes.has(arrivalColumn)) {
+      const arrivalColumn = game.player.column;
+      if (
+        !ARRIVAL_COLUMNS.includes(arrivalColumn) ||
+        game.homes.has(arrivalColumn)
+      ) {
         return loseLife();
       }
 

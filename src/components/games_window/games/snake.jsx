@@ -43,11 +43,7 @@ export const createFood = (snake, random = Math.random) => {
   }
 
   if (availableCells.length === 0) return null;
-  const randomIndex = Math.min(
-    Math.floor(random() * availableCells.length),
-    availableCells.length - 1
-  );
-  return availableCells[randomIndex];
+  return availableCells[Math.floor(random() * availableCells.length)];
 };
 
 export const getMoveInterval = (score) =>

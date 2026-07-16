@@ -15,27 +15,20 @@ export const getSimonTimings = (sequenceLength) => ({
   errorPause: 850,
 });
 
-export const createTimeoutManager = (
-  setTimer = setTimeout,
-  clearTimer = clearTimeout
-) => {
+export const createTimeoutManager = () => {
   const timers = new Set();
 
   return {
     schedule(callback, delay) {
-      const timer = setTimer(() => {
+      const timer = setTimeout(() => {
         timers.delete(timer);
         callback();
       }, delay);
       timers.add(timer);
-      return timer;
     },
     clearAll() {
-      timers.forEach((timer) => clearTimer(timer));
+      timers.forEach((timer) => clearTimeout(timer));
       timers.clear();
-    },
-    get size() {
-      return timers.size;
     },
   };
 };

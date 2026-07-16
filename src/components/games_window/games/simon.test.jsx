@@ -35,11 +35,10 @@ describe("Simon", () => {
     manager.schedule(firstCallback, 100);
     manager.schedule(secondCallback, 200);
 
-    expect(manager.size).toBe(2);
     manager.clearAll();
     act(() => jest.advanceTimersByTime(300));
 
-    expect(manager.size).toBe(0);
+    expect(jest.getTimerCount()).toBe(0);
     expect(firstCallback).not.toHaveBeenCalled();
     expect(secondCallback).not.toHaveBeenCalled();
   });
