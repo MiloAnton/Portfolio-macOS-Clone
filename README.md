@@ -19,6 +19,20 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.8
+- Added persistent Pro, Homebrew, Ocean and light Terminal profiles with responsive macOS-style controls
+- Turned recognized URLs into external links and known files into actions that run their corresponding Terminal command
+- Added a real emulated working directory with `cd`, contextual `ls`, dynamic prompts and directory-aware `pwd`
+- Added persistent `history` with Arrow Up/Down navigation and a bounded 100-command localStorage collection
+- Added concise `man <commande>` documentation for every supported command
+- Added `open projets` to focus the Projects application and `open cv` to download the real PDF résumé
+- Reworked Tab completion to expose every matching command or argument as clickable suggestions while still expanding their common prefix
+- Made Ctrl+C cancel every pending progressive-output timer and print an explicit `^C` interruption
+- Centralized Terminal timeout creation, tracking, cancellation and unmount cleanup
+- Limited retained output to the latest 400 lines to prevent unbounded rendering and memory growth
+- Passed the window manager's generic `openWindow` entry point to applications so Terminal can open internal apps without DOM coupling
+- Added Terminal theme, command, history, completion, link, file, cancellation, timer and capacity regression tests (150 tests across 27 suites)
+
 ### 0.12.7
 - Rebuilt the month grid as six complete weeks with attenuated, navigable days from the previous and next months
 - Restyled events as compact macOS-inspired pills with six coherent calendar colors, time and overflow counts

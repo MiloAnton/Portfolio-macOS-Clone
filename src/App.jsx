@@ -187,6 +187,7 @@ export default function App() {
                   isActive={activeWindowId === windowConfig.id}
                   isVisible={!windowState.isMinimized}
                   openWindowCount={openWindowCount}
+                  openWindow={openWindow}
                   closeWindow={() => animateClose(windowConfig.id)}
                 />
               </Suspense>
