@@ -19,6 +19,19 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.3
+- Replaced Safari's typographic home, reload and external-link symbols with a consistent lightweight SVG icon set across the toolbar
+- Turned reload into a stop control while an iframe is loading, with safe invalidation of any later load event
+- Added `⌘/Ctrl + L` to focus and select the address bar and `⌘/Ctrl + R` to reload the current page
+- Kept native Enter submission in the address bar for normalized HTTP and HTTPS navigation
+- Added versioned localStorage persistence for up to 24 favorites and the 100 most recent visits
+- Added a toolbar favorite toggle plus removable favorite cards on the start page
+- Added a dedicated, persistent history page with visit dates, direct reopening and a clear-history action
+- Scoped Safari keyboard shortcuts to the visible, foreground window
+- Attached a generation to every iframe navigation and reload so stale frames cannot change the current loading state
+- Added a permanently accessible external-tab escape hatch with honest guidance about undetectable cross-origin iframe blocking
+- Added Safari URL, loading, stale-iframe, shortcut, favorite, history, external-tab and validation regression tests (98 tests across 22 suites)
+
 ### 0.12.2
 - Added a privacy-first FaceTime lobby that waits for an explicit action before requesting camera access
 - Added a live pre-call camera preview with Milo's avatar and a dedicated “Rejoindre” action
