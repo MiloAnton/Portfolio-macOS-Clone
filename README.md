@@ -19,6 +19,20 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.7
+- Rebuilt the month grid as six complete weeks with attenuated, navigable days from the previous and next months
+- Restyled events as compact macOS-inspired pills with six coherent calendar colors, time and overflow counts
+- Added title, time, color and description fields to event creation
+- Added complete in-place event editing alongside the existing deletion action
+- Added a chronological “Liste” view showing every event with its date, time, description and color
+- Added a detailed “Jour” timeline and a seven-column “Semaine” view with direct event creation and editing
+- Made previous, next and Today navigation context-aware so each view keeps its selected granularity
+- Added double-click creation on any calendar day, including adjacent-month days
+- Indexed events once by local date and sorted each day by time instead of filtering the full collection in every cell
+- Replaced date-string parsing with validated local-noon helpers to prevent timezone and daylight-saving shifts
+- Migrated legacy localStorage events in place while preserving the existing `portfolio-calendar-events` key
+- Added Calendar grid, DST, migration, indexing, creation, editing, deletion, agenda, day, week and contextual-navigation regression tests (138 tests across 26 suites)
+
 ### 0.12.6
 - Rebuilt Notes around a macOS-style search bar with a foreground-only `⌘/Ctrl + F` shortcut
 - Added full-text search, pinned and unpinned groups, and automatic sorting by last modification
