@@ -1,4 +1,5 @@
 .resume-page {
+  container: resume-page / inline-size;
   height: calc(100% - 60px);
   max-height: none;
   overflow-y: auto;
@@ -20,13 +21,112 @@
     background-clip: padding-box;
   }
 
+  .resume-layout {
+    width: min(1140px, calc(100% - 40px));
+    display: grid;
+    grid-template-columns: 148px minmax(0, 920px);
+    align-items: start;
+    justify-content: center;
+    gap: 30px;
+    margin: 0 auto;
+    padding: 48px 0 72px;
+  }
+
   .content {
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 64px;
-    width: min(920px, calc(100% - 64px));
-    margin: 0 auto;
-    padding: 48px 0 72px;
+    width: 100%;
+  }
+
+  section[id] {
+    scroll-margin-top: 24px;
+  }
+
+  .resume-nav {
+    position: sticky;
+    top: 24px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(42, 42, 46, 0.72);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(18px);
+
+    .resume-nav-title {
+      display: block;
+      margin: 1px 7px 9px;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    button {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 7px;
+      border: 0;
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.48);
+      background: transparent;
+      font: inherit;
+      font-size: 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: color 140ms ease, background 140ms ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: -12px;
+        width: 2px;
+        height: 16px;
+        border-radius: 2px;
+        background: transparent;
+      }
+
+      span {
+        color: rgba(121, 167, 255, 0.55);
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 8px;
+      }
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.82);
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      &.active {
+        color: white;
+        background: rgba(121, 167, 255, 0.12);
+
+        &::before {
+          background: #79a7ff;
+          box-shadow: 0 0 8px rgba(121, 167, 255, 0.45);
+        }
+
+        span {
+          color: #8db5ff;
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid #79a7ff;
+        outline-offset: 1px;
+      }
+    }
   }
 
   .demoMobile {
@@ -55,6 +155,7 @@
 
     .profile-copy {
       min-width: 0;
+      flex: 1;
     }
 
     h2 {
@@ -69,6 +170,64 @@
       color: rgba(255, 255, 255, 0.62);
       font-size: 16px;
       font-weight: 500;
+    }
+  }
+
+  .profile-actions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 7px;
+
+    button,
+    a {
+      min-width: 142px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 11px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9px;
+      color: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.055);
+      font: inherit;
+      font-size: 9px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform 130ms ease, background 130ms ease, border-color 130ms ease;
+
+      &:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.09);
+      }
+
+      &.primary {
+        border-color: rgba(64, 134, 255, 0.48);
+        color: white;
+        background: linear-gradient(180deg, #438cff, #2469d9);
+        box-shadow: 0 7px 18px rgba(25, 94, 208, 0.24);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #79a7ff;
+        outline-offset: 2px;
+      }
+
+      svg {
+        width: 13px;
+        height: 13px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.45;
+      }
     }
   }
 
@@ -264,22 +423,80 @@
     animation: fadeInFromTop 0.45s ease both;
   }
 
-  @media screen and (max-width: 760px) {
-    .content {
+}
+
+@container resume-page (max-width: 900px) {
+  .resume-page {
+    .resume-layout {
       width: min(100% - 32px, 920px);
-      gap: 44px;
-      padding: 28px 0 52px;
+      display: block;
+      padding: 0 0 52px;
     }
 
+    .resume-nav {
+      z-index: 5;
+      top: 0;
+      margin: 0 -16px 24px;
+      padding: 8px 16px;
+      border-width: 0 0 1px;
+      border-radius: 0;
+      background: rgba(35, 35, 38, 0.9);
+
+      .resume-nav-title {
+        display: none;
+      }
+
+      > div {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      button {
+        width: auto;
+        justify-content: center;
+        padding-inline: 10px;
+
+        &::before {
+          inset: auto 8px -8px;
+          width: auto;
+          height: 2px;
+        }
+      }
+    }
+
+    .content {
+      gap: 48px;
+    }
+
+    section[id] {
+      scroll-margin-top: 72px;
+    }
+  }
+}
+
+@container resume-page (max-width: 700px) {
+  .resume-page {
     .presentation {
       align-items: flex-start;
+      flex-wrap: wrap;
       padding: 22px;
+
+      .round {
+        width: 80px;
+        height: 80px;
+        flex-basis: 80px;
+      }
     }
 
-    .presentation .round {
-      width: 80px;
-      height: 80px;
-      flex-basis: 80px;
+    .profile-actions {
+      width: 100%;
+      flex-direction: row;
+
+      button,
+      a {
+        min-width: 0;
+        flex: 1;
+      }
     }
 
     .gridStack,
@@ -287,11 +504,25 @@
       grid-template-columns: 1fr;
     }
   }
+}
 
-  @media screen and (max-width: 520px) {
+@container resume-page (max-width: 520px) {
+  .resume-page {
+    .resume-nav button {
+      gap: 0;
+      font-size: 0;
+
+      span {
+        font-size: 9px;
+      }
+    }
+
     .presentation {
       flex-direction: column;
     }
 
+    .profile-actions {
+      flex-direction: column;
+    }
   }
 }

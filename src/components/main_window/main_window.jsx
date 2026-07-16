@@ -1,4 +1,5 @@
 import "./main_window.scss";
+import { useRef, useState } from "react";
 import listStack from "./../../ressources/listStack.json";
 import educationList from "./../../ressources/listEducation.json";
 import experienceList from "./../../ressources/listExperiences.json";
@@ -37,6 +38,7 @@ import vite from "./../../assets/iconesStack/vite.webp";
 import next from "./../../assets/iconesStack/next.svg";
 import tailwind from "./../../assets/iconesStack/tailwind.png";
 import windows from "./../../assets/iconesStack/windows.webp";
+import { downloadCv } from "../../utils/downloadCv";
 
 // Icônes importées de la stack : les entrées absentes retombent sur
 // element.logo (URL CDN) définie dans listStack.json.
@@ -72,6 +74,31 @@ const stackIcons = {
 };
 
 const companyLogos = { obs, bytel, cf, ff, mdc, leonis };
+const LINKEDIN_URL =
+  "https://www.linkedin.com/in/milo-roche-vandenbroucque/";
+
+const NAVIGATION_ITEMS = [
+  { id: "perso", label: "Profil", number: "01" },
+  { id: "stack", label: "Stack", number: "02" },
+  { id: "pro", label: "Expériences", number: "03" },
+  { id: "education", label: "Formation", number: "04" },
+];
+
+function MessageIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M16.5 3.5h-13A2.5 2.5 0 0 0 1 6v6a2.5 2.5 0 0 0 2.5 2.5H6l4 3 4-3h2.5A2.5 2.5 0 0 0 19 12V6a2.5 2.5 0 0 0-2.5-2.5Z" />
+    </svg>
+  );
+}
+
+function DownloadIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M10 2v10m-4-4 4 4 4-4M3 15v2h14v-2" />
+    </svg>
+  );
+}
 
 function StackSection({ title, items }) {
   return (
@@ -105,91 +132,169 @@ function StackSection({ title, items }) {
 }
 
 export default function MainWindow() {
+  const [activeSection, setActiveSection] = useState("perso");
+  const pageRef = useRef(null);
+  const sectionRefs = useRef({});
+
+  const registerSection = (sectionId) => (element) => {
+    sectionRefs.current[sectionId] = element;
+  };
+
+  const navigateToSection = (sectionId) => {
+    setActiveSection(sectionId);
+    sectionRefs.current[sectionId]?.scrollIntoView?.({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleScroll = () => {
+    const page = pageRef.current;
+    if (!page) return;
+    const activationLine = page.scrollTop + Math.min(page.clientHeight * 0.28, 180);
+    let currentSection = NAVIGATION_ITEMS[0].id;
+
+    NAVIGATION_ITEMS.forEach(({ id }) => {
+      const section = sectionRefs.current[id];
+      if (section && section.offsetTop <= activationLine) currentSection = id;
+    });
+    setActiveSection(currentSection);
+  };
+
   return (
-        <section className="page resume-page">
-          <div className="content">
-            <section className="demoMobile">
-              <p>Profitez de l'expérience complète sur Desktop !</p>
-              <img src={demo} alt="demo screenshot on desktop" loading="lazy" decoding="async" />
-            </section>
-            <section className="presentation" id="perso">
-              <div className="round" />
-              <div className="profile-copy">
-                <p className="eyebrow">Portfolio professionnel</p>
-                <h2>Milo Roche-Vandenbroucque</h2>
-                <h3>Entrepreneur & Formateur 🦁</h3>
-              </div>
-            </section>
-            <section className="stack" id="stack">
-              <div className="section-heading">
-                <p>Expertise</p>
-                <h2>Stack maîtrisée</h2>
-              </div>
-              <div className="gridStack">
-                <StackSection title="Frontend" items={listStack.frontend} />
-                <StackSection title="Backend" items={listStack.backend} />
-              </div>
-              <div className="gridStack">
-                <StackSection title="DevSecOps" items={listStack.devops} />
-                <StackSection title="Langages" items={listStack.langages} />
-              </div>
-              <div className="gridStack">
-                <StackSection title="Autres" items={listStack.autres} />
-                <StackSection title="OS" items={listStack.os} />
-              </div>
-            </section>
-            <section className="experience" id="pro">
-              <div className="section-heading">
-                <p>Parcours</p>
-                <h2>Expériences</h2>
-              </div>
-              <div className="card-container">
-                {experienceList.experiences.map((element, index) => {
-                  return (
-                    <div className="cardExperience" key={index}>
-                      <div className="row">
-                        <img
-                          src={companyLogos[element.logo] || null}
-                          alt={`Logo ${element.entreprise}`}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="rowText">
-                        <h4>{element.poste}</h4>-<p>{element.contrat}</p>
-                      </div>
-                      <p>{element.entreprise}</p>
-                      <p>{element.timeline}</p>
-                      <ul>
-                        {element.description.map((item) => {
-                          return <li key={item}>{item}</li>;
-                        })}
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-            <section className="education" id="education">
-              <div className="section-heading">
-                <p>Études</p>
-                <h2>Formation</h2>
-              </div>
-              <div className="card-container">
-                {educationList.education.map((element, index) => {
-                  return (
-                    <div className="cardEducation" key={index}>
-                      <h3>{element.ecole}</h3>
-                      <h4>{element.diplome}</h4>
-                      <p>{element.localisation}</p>
-                      <p>{element.timeline}</p>
-                      <p>{element.description}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
+    <section
+      ref={pageRef}
+      className="page resume-page"
+      onScroll={handleScroll}
+    >
+      <div className="resume-layout">
+        <nav className="resume-nav" aria-label="Sommaire du curriculum">
+          <span className="resume-nav-title">Sommaire</span>
+          <div>
+            {NAVIGATION_ITEMS.map((item) => (
+              <button
+                type="button"
+                className={activeSection === item.id ? "active" : ""}
+                aria-current={activeSection === item.id ? "location" : undefined}
+                onClick={() => navigateToSection(item.id)}
+                key={item.id}
+              >
+                <span>{item.number}</span>
+                {item.label}
+              </button>
+            ))}
           </div>
-        </section>
+        </nav>
+
+        <div className="content">
+          <section className="demoMobile">
+            <p>Profitez de l'expérience complète sur Desktop !</p>
+            <img
+              src={demo}
+              alt="demo screenshot on desktop"
+              loading="lazy"
+              decoding="async"
+            />
+          </section>
+
+          <section
+            ref={registerSection("perso")}
+            className="presentation"
+            id="perso"
+          >
+            <div className="round" />
+            <div className="profile-copy">
+              <p className="eyebrow">Portfolio professionnel</p>
+              <h2>Milo Roche-Vandenbroucque</h2>
+              <h3>Entrepreneur & Formateur 🦁</h3>
+            </div>
+            <div className="profile-actions">
+              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+                <MessageIcon />
+                Me contacter
+              </a>
+              <button type="button" className="primary" onClick={downloadCv}>
+                <DownloadIcon />
+                Télécharger le CV
+              </button>
+            </div>
+          </section>
+
+          <section ref={registerSection("stack")} className="stack" id="stack">
+            <div className="section-heading">
+              <p>Expertise</p>
+              <h2>Stack maîtrisée</h2>
+            </div>
+            <div className="gridStack">
+              <StackSection title="Frontend" items={listStack.frontend} />
+              <StackSection title="Backend" items={listStack.backend} />
+            </div>
+            <div className="gridStack">
+              <StackSection title="DevSecOps" items={listStack.devops} />
+              <StackSection title="Langages" items={listStack.langages} />
+            </div>
+            <div className="gridStack">
+              <StackSection title="Autres" items={listStack.autres} />
+              <StackSection title="OS" items={listStack.os} />
+            </div>
+          </section>
+
+          <section
+            ref={registerSection("pro")}
+            className="experience"
+            id="pro"
+          >
+            <div className="section-heading">
+              <p>Parcours</p>
+              <h2>Expériences</h2>
+            </div>
+            <div className="card-container">
+              {experienceList.experiences.map((element) => (
+                <div className="cardExperience" key={`${element.entreprise}-${element.timeline}`}>
+                  <div className="row">
+                    <img
+                      src={companyLogos[element.logo] || null}
+                      alt={`Logo ${element.entreprise}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="rowText">
+                    <h4>{element.poste}</h4>-<p>{element.contrat}</p>
+                  </div>
+                  <p>{element.entreprise}</p>
+                  <p>{element.timeline}</p>
+                  <ul>
+                    {element.description.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section
+            ref={registerSection("education")}
+            className="education"
+            id="education"
+          >
+            <div className="section-heading">
+              <p>Études</p>
+              <h2>Formation</h2>
+            </div>
+            <div className="card-container">
+              {educationList.education.map((element) => (
+                <div className="cardEducation" key={`${element.ecole}-${element.timeline}`}>
+                  <h3>{element.ecole}</h3>
+                  <h4>{element.diplome}</h4>
+                  <p>{element.localisation}</p>
+                  <p>{element.timeline}</p>
+                  <p>{element.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
   );
 }

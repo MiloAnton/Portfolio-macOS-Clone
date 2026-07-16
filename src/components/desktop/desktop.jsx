@@ -1,17 +1,9 @@
 import { useState } from "react";
 import "./desktop.scss";
+import { downloadCv } from "../../utils/downloadCv";
 
 export default function Desktop({ openProjects }) {
   const [selectedItem, setSelectedItem] = useState(null);
-
-  const downloadCv = () => {
-    const link = document.createElement("a");
-    link.href = `${process.env.PUBLIC_URL}/CV-Milo-Roche-2026.pdf`;
-    link.download = "CV-Milo-Roche-2026.pdf";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  };
 
   const handleKeyDown = (event, action) => {
     if (event.key === "Enter") action();

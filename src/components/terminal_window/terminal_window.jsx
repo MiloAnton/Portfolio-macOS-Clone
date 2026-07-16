@@ -4,6 +4,7 @@ import listStack from "./../../ressources/listStack.json";
 import projectsList from "./../../ressources/listProjects.json";
 import experienceList from "./../../ressources/listExperiences.json";
 import version from "./../../../package.json";
+import { downloadCv } from "../../utils/downloadCv";
 
 export const TERMINAL_HISTORY_KEY = "portfolio-terminal-history";
 export const TERMINAL_THEME_KEY = "portfolio-terminal-theme";
@@ -282,15 +283,6 @@ export default function TerminalWindow({ closeWindow, openWindow }) {
     busyRef.current = false;
     appendLines([createLine("^C", { tone: "muted" })]);
     return true;
-  };
-
-  const downloadCv = () => {
-    const link = document.createElement("a");
-    link.href = `${process.env.PUBLIC_URL}/CV-Milo-Roche-2026.pdf`;
-    link.download = "CV-Milo-Roche-2026.pdf";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
   };
 
   const neofetch = () => {
