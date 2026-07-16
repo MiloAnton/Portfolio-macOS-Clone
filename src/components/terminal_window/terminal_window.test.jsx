@@ -105,6 +105,16 @@ describe("TerminalWindow", () => {
     expect(screen.getByText(/4\s+history/)).toBeInTheDocument();
   });
 
+  test("shows a project card with cat inside the projets folder", () => {
+    render(<TerminalWindow />);
+
+    runCommand("cd projets");
+    runCommand("cat Neologos");
+
+    expect(screen.getByText(/Jeu de création de mots/)).toBeInTheDocument();
+    expect(screen.getByText(/Neologos — 2025/)).toBeInTheDocument();
+  });
+
   test("opens the Projects application from the open command", () => {
     const openWindow = jest.fn();
     render(<TerminalWindow openWindow={openWindow} />);

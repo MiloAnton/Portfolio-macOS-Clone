@@ -23,8 +23,10 @@ export default function Dock(props) {
     <div className="dock">
       <div className="dock-container">
         {DOCK_WINDOWS.map((windowConfig, index) => (
-          <li
+          <button
+            type="button"
             className={`dock-item${openClass(windowConfig.id)}${hoverClass(index)}`}
+            aria-label={windowConfig.label}
             onClick={() => props.onToggle(windowConfig.id)}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
@@ -47,7 +49,7 @@ export default function Dock(props) {
                 alt=""
               />
             )}
-          </li>
+          </button>
         ))}
       </div>
     </div>

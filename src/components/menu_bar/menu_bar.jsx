@@ -35,9 +35,7 @@ export default function MenuBar(props) {
       </div>
       {props.title && <p className="window-title">{props.title}</p>}
       <div className="version">
-        <p className="versionNumber" title="Version du 13/07/2026">
-          v{version.version}
-        </p>
+        <p className="versionNumber">v{version.version}</p>
       </div>
     </section>
   );

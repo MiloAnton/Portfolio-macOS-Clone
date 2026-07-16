@@ -4,7 +4,7 @@ const BOARD_SIZE = 9;
 const CELL_COUNT = BOARD_SIZE * BOARD_SIZE;
 const MINE_COUNT = 10;
 
-const createMinefield = () => {
+const createMinefield = (safeIndex = null) => {
   const cells = Array.from({ length: CELL_COUNT }, (_, index) => ({
     index,
     mine: false,
@@ -15,7 +15,8 @@ const createMinefield = () => {
   const mineIndexes = new Set();
 
   while (mineIndexes.size < MINE_COUNT) {
-    mineIndexes.add(Math.floor(Math.random() * CELL_COUNT));
+    const index = Math.floor(Math.random() * CELL_COUNT);
+    if (index !== safeIndex) mineIndexes.add(index);
   }
 
   mineIndexes.forEach((index) => {
@@ -95,7 +96,17 @@ export default function Minesweeper() {
     }
 
     setHasStarted(true);
-    const nextBoard = board.map((cell) => ({ ...cell }));
+    let nextBoard = board.map((cell) => ({ ...cell }));
+
+    // Comme le vrai Démineur : le premier clic ne tombe jamais sur une mine.
+    const isFirstReveal = board.every((cell) => !cell.revealed);
+    if (isFirstReveal && nextBoard[index].mine) {
+      nextBoard = createMinefield(index);
+      board.forEach((cell, cellIndex) => {
+        nextBoard[cellIndex].flagged = cell.flagged;
+      });
+    }
+
     if (nextBoard[index].mine) {
       nextBoard.forEach((cell) => {
         if (cell.mine) cell.revealed = true;

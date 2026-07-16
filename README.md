@@ -1,6 +1,6 @@
 # Online portfolio
 
-This is the repository on wich you can find the source code of my [online portfolio](https://miloroche.fr).
+This is the repository on which you can find the source code of my [online portfolio](https://miloroche.fr).
 
 ![demo image](./src/assets/demo.png)
 
@@ -15,9 +15,13 @@ Are used in this project :
 1. [ReactJS](https://reactjs.org/) / JavaScript
 2. [SCSS](https://sass-lang.com/) with sass preprocessor
 3. [Draggable](https://www.npmjs.com/package/react-draggable) npm package
-4. [Resizeable](https://www.npmjs.com/react-resizeable) npm package
+4. [Resizable](https://www.npmjs.com/package/react-resizable) npm package
 
 ## Changelog
+
+### 0.13.4
+- Bug fixes : keyboard-accessible Dock, first-click-safe Minesweeper, default windows open when resizing to desktop width, `cat` shows project cards in the Terminal's projets folder
+- French `lang` metadata, removed the hardcoded version tooltip, README typos
 
 ### 0.13.3
 - Code cleanup : condensed repetitive JSX (Calendar view switch, Snake status, Doodle Jump tilt labels)

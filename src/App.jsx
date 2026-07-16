@@ -26,7 +26,9 @@ import { addPortfolioLog } from "./utils/portfolioLogger";
 const WINDOW_ANIMATION_DURATION = 320;
 
 export default function App() {
-  const isDesktop = typeof window !== "undefined" && window.innerWidth > 900;
+  const [isDesktop] = useState(
+    () => typeof window !== "undefined" && window.innerWidth > 900
+  );
   const [isWelcomeAnimationVisible, setIsWelcomeAnimationVisible] =
     useState(true);
   const [windows, dispatch] = useReducer(
@@ -45,6 +47,8 @@ export default function App() {
   const openWindowCount = Object.values(windows.byId).filter(
     (windowState) => windowState.isOpen
   ).length;
+  const openWindowCountRef = useRef(openWindowCount);
+  openWindowCountRef.current = openWindowCount;
 
   useEffect(
     () => () => {
@@ -53,6 +57,25 @@ export default function App() {
     },
     []
   );
+
+  // Chargement en largeur mobile : les fenêtres par défaut s'ouvrent au
+  // premier passage du viewport en largeur desktop, sauf si le visiteur
+  // a déjà ouvert quelque chose entre-temps.
+  useEffect(() => {
+    if (isDesktop) return undefined;
+
+    const openDefaultWindows = () => {
+      if (window.innerWidth <= 900) return;
+      window.removeEventListener("resize", openDefaultWindows);
+      if (openWindowCountRef.current > 0) return;
+      WINDOW_REGISTRY.filter((config) => config.openOnDesktop).forEach(
+        ({ id }) => dispatch({ type: WINDOW_ACTIONS.OPEN, id })
+      );
+    };
+
+    window.addEventListener("resize", openDefaultWindows);
+    return () => window.removeEventListener("resize", openDefaultWindows);
+  }, [isDesktop]);
 
   const completeAfterAnimation = (id, type) => {
     clearTimeout(transitionTimersRef.current.get(id));

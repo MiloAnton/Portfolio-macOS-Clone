@@ -53,6 +53,24 @@ describe("App window entry points", () => {
     expect(screen.getByTestId("window-projects")).toBeInTheDocument();
   });
 
+  test("opens the default windows when the viewport becomes desktop-sized", () => {
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      value: 800,
+    });
+    render(<App />);
+    expect(screen.queryByTestId("window-main")).not.toBeInTheDocument();
+
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      value: 1440,
+    });
+    fireEvent(window, new Event("resize"));
+
+    expect(screen.getByTestId("window-main")).toBeInTheDocument();
+    expect(screen.getByTestId("window-terminal")).toBeInTheDocument();
+  });
+
   test("moves a clicked window to the foreground", () => {
     render(<App />);
 

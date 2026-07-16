@@ -46,11 +46,26 @@ describe("Minesweeper scoreboard", () => {
     expect(screen.getByRole("timer")).toHaveTextContent("000");
   });
 
-  test("changes the status button when a mine explodes", () => {
+  test("never explodes on the first revealed cell", () => {
     const { container } = render(<Minesweeper />);
     const minedCell = container.querySelectorAll(".mine-grid button")[0];
 
     fireEvent.click(minedCell);
+
+    expect(
+      screen.getByRole("button", {
+        name: "Partie en cours. Nouvelle partie",
+      })
+    ).toBeInTheDocument();
+    expect(minedCell).toHaveClass("revealed");
+  });
+
+  test("changes the status button when a mine explodes", () => {
+    const { container } = render(<Minesweeper />);
+    const cells = container.querySelectorAll(".mine-grid button");
+
+    fireEvent.click(cells[10]);
+    fireEvent.click(cells[0]);
 
     expect(
       screen.getByRole("button", {

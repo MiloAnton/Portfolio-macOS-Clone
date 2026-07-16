@@ -70,7 +70,10 @@ const MANUAL = {
   about: ["about — présente Milo, son parcours et son activité."],
   ls: ["ls [chemin] — liste les fichiers du dossier courant ou de projets/."],
   cd: ["cd [projets|..|~] — change le dossier courant du terminal émulé."],
-  cat: ["cat <fichier> — affiche contact.txt, cv.txt ou stack.txt."],
+  cat: [
+    "cat <fichier> — affiche contact.txt, cv.txt ou stack.txt.",
+    "Dans projets/, `cat <nom du projet>` affiche sa fiche.",
+  ],
   projets: ["projets — affiche les projets, leurs dates et leurs technologies."],
   open: [
     "open <cible> — ouvre github, linkedin, leonis, projets ou cv.",
@@ -416,12 +419,31 @@ export default function TerminalWindow({ closeWindow, openWindow }) {
         }
         return { lines: [`cd: no such file or directory: ${arg}`] };
       }
-      case "cat":
+      case "cat": {
         if (!arg) {
           return { lines: ["cat: il manque un nom de fichier (essayez `cat cv.txt`)"] };
         }
         if (FILES[arg] && cwd === "~") return { lines: FILES[arg] };
+        if (cwd === "~/projets") {
+          const project = projectsList.projects.find(
+            (item) =>
+              item.name.toLocaleLowerCase("fr-FR") ===
+              arg.toLocaleLowerCase("fr-FR")
+          );
+          if (project) {
+            return {
+              lines: [
+                `${project.name} — ${project.when}`,
+                project.function,
+                `${project.where} · ${project.languages.join(", ")}`,
+                "",
+                project.description,
+              ],
+            };
+          }
+        }
         return { lines: [`cat: ${arg}: No such file or directory`] };
+      }
       case "projets":
         return {
           lines: projectsList.projects.map(
