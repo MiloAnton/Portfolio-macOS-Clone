@@ -19,6 +19,18 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.6
+- Rebuilt Notes around a macOS-style search bar with a foreground-only `⌘/Ctrl + F` shortcut
+- Added full-text search, pinned and unpinned groups, and automatic sorting by last modification
+- Added a date, content excerpt and selectable color marker to every note in the sidebar
+- Migrated existing notes in place with pin and color metadata while keeping the original `portfolio-notes` storage key
+- Loaded local notes exactly once when the application mounts
+- Debounced localStorage writes by 600 ms and safely flushed pending changes when Notes closes
+- Added visible saved, saving and failure states together with a live word count
+- Replaced immediate deletion with a five-second “Annuler la suppression” action
+- Converted every note selection and pin control to semantic, keyboard-accessible buttons
+- Added Notes migration, search, sorting, pinning, deletion, persistence, color, metadata and shortcut regression tests (125 tests across 25 suites)
+
 ### 0.12.5
 - Repositioned Console as an application observer and filter, with an `observer ›` command bar and no Terminal-style `echo` execution
 - Added consistent SVG status icons and live counters for all, info, success, warning and error events
