@@ -19,6 +19,18 @@ Are used in this project :
 
 ## Changelog
 
+### 0.12.2
+- Added a privacy-first FaceTime lobby that waits for an explicit action before requesting camera access
+- Added a live pre-call camera preview with Milo's avatar and a dedicated “Rejoindre” action
+- Added a real “Caméra coupée” screen instead of leaving a black video feed
+- Added microphone controls with graceful audio-only permission failure and a clear in-call status
+- Added post-permission camera discovery and safe switching between available video devices
+- Added an optional mirror mode for the local camera preview
+- Reset the call timer on every new call and stop it whenever the call ends
+- Added distinct states for denied permission, missing hardware, unsupported browsers and technical camera failures, each with a retry action
+- Made pending camera and microphone permissions cancellation-safe when FaceTime is minimized, closed or unmounted
+- Added FaceTime privacy, preview, device, control, timer, error-classification and media-cleanup regression tests (89 tests across 21 suites)
+
 ### 0.12.1
 - Added a timestamp beneath every message and a live latest-message time in the conversation list
 - Added outgoing “Distribué” and “Lu” states, with replies marking their corresponding message as read
