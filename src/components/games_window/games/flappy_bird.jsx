@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import CanvasGame from "./canvas_game";
+import { getDeltaSeconds, loadBestScore, saveBestScore } from "./game_utils";
 import useGameKeys from "./use_game_keys";
 
 const CANVAS_WIDTH = 640;
@@ -19,11 +20,6 @@ const PHASES = {
   ready: "ready",
   running: "running",
   lost: "lost",
-};
-
-export const getFlappyDeltaSeconds = (currentTime, previousTime) => {
-  if (previousTime === null) return 1 / 60;
-  return Math.min(Math.max((currentTime - previousTime) / 1000, 0), 0.05);
 };
 
 export const getFlappyDifficulty = (score) => ({
@@ -47,23 +43,6 @@ export const circleIntersectsRect = (circle, rectangle) => {
   const distanceX = circle.x - closestX;
   const distanceY = circle.y - closestY;
   return distanceX ** 2 + distanceY ** 2 <= circle.radius ** 2;
-};
-
-const loadBestScore = () => {
-  try {
-    const savedScore = Number(localStorage.getItem(FLAPPY_BEST_SCORE_KEY));
-    return Number.isFinite(savedScore) && savedScore > 0 ? savedScore : 0;
-  } catch (error) {
-    return 0;
-  }
-};
-
-const saveBestScore = (score) => {
-  try {
-    localStorage.setItem(FLAPPY_BEST_SCORE_KEY, String(score));
-  } catch (error) {
-    // Le record reste simplement limité à la session si le stockage est bloqué.
-  }
 };
 
 const createPipe = (x, difficulty, random = Math.random) => {
@@ -319,7 +298,9 @@ export default function FlappyBird({ isActive }) {
   const keys = useGameKeys(isActive);
   const [phase, setPhase] = useState(PHASES.ready);
   const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(loadBestScore);
+  const [bestScore, setBestScore] = useState(() =>
+    loadBestScore(FLAPPY_BEST_SCORE_KEY)
+  );
 
   const flap = useCallback(() => {
     gameRef.current.velocityY = FLAP_VELOCITY;
@@ -370,7 +351,7 @@ export default function FlappyBird({ isActive }) {
       setScore(game.score);
       setBestScore((currentBestScore) => {
         if (game.score <= currentBestScore) return currentBestScore;
-        saveBestScore(game.score);
+        saveBestScore(FLAPPY_BEST_SCORE_KEY, game.score);
         return game.score;
       });
     };
@@ -385,7 +366,7 @@ export default function FlappyBird({ isActive }) {
     };
 
     const loop = (currentTime) => {
-      const deltaSeconds = getFlappyDeltaSeconds(currentTime, previousTime);
+      const deltaSeconds = getDeltaSeconds(currentTime, previousTime);
       previousTime = currentTime;
       const difficulty = getFlappyDifficulty(game.score);
 

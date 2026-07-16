@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import CanvasGame from "./canvas_game";
+import { createPressHandlers, getDeltaSeconds } from "./game_utils";
 import useGameKeys from "./use_game_keys";
 
 const CANVAS_WIDTH = 640;
@@ -13,11 +14,6 @@ const JUMP_VELOCITY = -510;
 const SPRING_VELOCITY = -690;
 const HORIZONTAL_SPEED = 245;
 const CAMERA_LINE = 128;
-
-export const getDoodleDeltaSeconds = (currentTime, previousTime) => {
-  if (previousTime === null) return 1 / 60;
-  return Math.min(Math.max((currentTime - previousTime) / 1000, 0), 0.05);
-};
 
 const clampPlatformX = (x, width) =>
   Math.max(18, Math.min(CANVAS_WIDTH - width - 18, x));
@@ -434,7 +430,7 @@ export default function DoodleJump({ isActive }) {
     };
 
     const loop = (currentTime) => {
-      const deltaSeconds = getDoodleDeltaSeconds(currentTime, previousTime);
+      const deltaSeconds = getDeltaSeconds(currentTime, previousTime);
       previousTime = currentTime;
       game.bonusFlash = Math.max(0, game.bonusFlash - deltaSeconds);
 
@@ -525,26 +521,19 @@ export default function DoodleJump({ isActive }) {
     }
   };
 
-  const createTouchHandlers = (direction) => ({
-    onPointerDown: (event) => {
-      event.preventDefault();
-      event.currentTarget.setPointerCapture?.(event.pointerId);
-      touchDirectionRef.current = direction;
-    },
-    onPointerUp: () => {
-      if (touchDirectionRef.current === direction) touchDirectionRef.current = 0;
-    },
-    onPointerCancel: () => {
-      if (touchDirectionRef.current === direction) touchDirectionRef.current = 0;
-    },
-    onPointerLeave: () => {
-      if (touchDirectionRef.current === direction) touchDirectionRef.current = 0;
-    },
-  });
+  const touchHandlers = (direction) =>
+    createPressHandlers(
+      () => {
+        touchDirectionRef.current = direction;
+      },
+      () => {
+        if (touchDirectionRef.current === direction) touchDirectionRef.current = 0;
+      }
+    );
 
   const controls = (
     <div className="doodle-controls" aria-label="Commandes de Doodle Jump">
-      <button type="button" aria-label="Aller à gauche" {...createTouchHandlers(-1)}>
+      <button type="button" aria-label="Aller à gauche" {...touchHandlers(-1)}>
         ◀
       </button>
       <button
@@ -561,7 +550,7 @@ export default function DoodleJump({ isActive }) {
               ? "Non disponible"
               : "Activer l’inclinaison"}
       </button>
-      <button type="button" aria-label="Aller à droite" {...createTouchHandlers(1)}>
+      <button type="button" aria-label="Aller à droite" {...touchHandlers(1)}>
         ▶
       </button>
     </div>

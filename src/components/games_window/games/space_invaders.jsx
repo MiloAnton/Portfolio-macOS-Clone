@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import CanvasGame from "./canvas_game";
+import { createPressHandlers, getDeltaSeconds } from "./game_utils";
 import useGameKeys from "./use_game_keys";
 
 const CANVAS_WIDTH = 640;
@@ -95,11 +96,6 @@ const PLAYER_SPRITE = [
 ];
 
 const ENEMY_COLORS = ["#ff9f0a", "#bf5af2", "#30d158"];
-
-export const getInvadersDeltaSeconds = (currentTime, previousTime) => {
-  if (previousTime === null) return 1 / 60;
-  return Math.min(Math.max((currentTime - previousTime) / 1000, 0), 0.05);
-};
 
 export const getEnemyFireInterval = (wave) =>
   Math.max(0.38, 1.18 - (wave - 1) * 0.075);
@@ -537,7 +533,7 @@ export default function SpaceInvaders({ isActive }) {
     };
 
     const loop = (currentTime) => {
-      const deltaSeconds = getInvadersDeltaSeconds(currentTime, previousTime);
+      const deltaSeconds = getDeltaSeconds(currentTime, previousTime);
       previousTime = currentTime;
       game.playerShotCooldown = Math.max(
         0,
@@ -613,26 +609,21 @@ export default function SpaceInvaders({ isActive }) {
     }
   };
 
-  const createTouchHandlers = (control) => ({
-    onPointerDown: (event) => {
-      event.preventDefault();
-      event.currentTarget.setPointerCapture?.(event.pointerId);
-      setTouchControl(control, true);
-    },
-    onPointerUp: () => setTouchControl(control, false),
-    onPointerCancel: () => setTouchControl(control, false),
-    onPointerLeave: () => setTouchControl(control, false),
-  });
+  const touchHandlers = (control) =>
+    createPressHandlers(
+      () => setTouchControl(control, true),
+      () => setTouchControl(control, false)
+    );
 
   const touchButtons = (
     <div className="space-invaders-controls" aria-label="Commandes tactiles">
-      <button type="button" aria-label="Déplacer le vaisseau à gauche" {...createTouchHandlers("left")}>
+      <button type="button" aria-label="Déplacer le vaisseau à gauche" {...touchHandlers("left")}>
         ◀
       </button>
-      <button type="button" className="fire" aria-label="Tirer" {...createTouchHandlers("fire")}>
+      <button type="button" className="fire" aria-label="Tirer" {...touchHandlers("fire")}>
         ●
       </button>
-      <button type="button" aria-label="Déplacer le vaisseau à droite" {...createTouchHandlers("right")}>
+      <button type="button" aria-label="Déplacer le vaisseau à droite" {...touchHandlers("right")}>
         ▶
       </button>
     </div>

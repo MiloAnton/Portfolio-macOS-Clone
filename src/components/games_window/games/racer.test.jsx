@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Racer, {
-  getDeltaSeconds,
   getDifficulty,
   getSafeSpawnLanes,
   getSpawnInterval,
@@ -9,13 +8,6 @@ import Racer, {
 } from "./racer";
 
 describe("Racer", () => {
-  test("normalizes the simulation across refresh rates", () => {
-    expect(getDeltaSeconds(1000, null)).toBeCloseTo(1 / 60);
-    expect(getDeltaSeconds(1000 + 1000 / 60, 1000)).toBeCloseTo(1 / 60);
-    expect(getDeltaSeconds(1000 + 1000 / 120, 1000)).toBeCloseTo(1 / 120);
-    expect(getDeltaSeconds(5000, 1000)).toBe(0.05);
-  });
-
   test("increases difficulty and spawn frequency with distance", () => {
     expect(getDifficulty(0)).toBe(1);
     expect(getDifficulty(1.2)).toBe(2);

@@ -2,7 +2,6 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import DoodleJump, {
   createPlatforms,
-  getDoodleDeltaSeconds,
   getLandingPlatform,
   updateMovingPlatform,
 } from "./doodle_jump";
@@ -49,12 +48,6 @@ describe("Doodle Jump", () => {
       configurable: true,
       value: originalDeviceOrientationEvent,
     });
-  });
-
-  test("normalizes gravity and movement across refresh rates", () => {
-    expect(getDoodleDeltaSeconds(1000, null)).toBeCloseTo(1 / 60);
-    expect(getDoodleDeltaSeconds(1016.67, 1000)).toBeCloseTo(1 / 60, 2);
-    expect(getDoodleDeltaSeconds(5000, 1000)).toBe(0.05);
   });
 
   test("always creates a wide safe platform below the starting player", () => {

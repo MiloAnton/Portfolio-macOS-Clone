@@ -3,7 +3,6 @@ import "@testing-library/jest-dom";
 import SpaceInvaders, {
   createEnemyFormation,
   getEnemyFireInterval,
-  getInvadersDeltaSeconds,
   hasInvaderReachedDefense,
   removeOffscreenProjectiles,
   stepEnemyFormation,
@@ -35,12 +34,6 @@ describe("Space Invaders", () => {
     getContextSpy.mockRestore();
     window.requestAnimationFrame = originalRequestAnimationFrame;
     window.cancelAnimationFrame = originalCancelAnimationFrame;
-  });
-
-  test("keeps movement consistent across refresh rates", () => {
-    expect(getInvadersDeltaSeconds(1000, null)).toBeCloseTo(1 / 60);
-    expect(getInvadersDeltaSeconds(1016.67, 1000)).toBeCloseTo(1 / 60, 2);
-    expect(getInvadersDeltaSeconds(5000, 1000)).toBe(0.05);
   });
 
   test("removes both player and enemy projectiles outside the canvas", () => {

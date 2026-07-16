@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { loadBestScore, saveBestScore } from "./game_utils";
 
 const GRID_SIZE = 4;
 const CELL_COUNT = GRID_SIZE ** 2;
@@ -133,23 +134,6 @@ export const getGameStatus = (board, victoryAcknowledged = false) => {
   return hasAvailableMoves(board) ? "playing" : "lost";
 };
 
-const loadBestScore = () => {
-  try {
-    const storedScore = Number(localStorage.getItem(GAME_2048_BEST_SCORE_KEY));
-    return Number.isFinite(storedScore) && storedScore > 0 ? storedScore : 0;
-  } catch (error) {
-    return 0;
-  }
-};
-
-const saveBestScore = (score) => {
-  try {
-    localStorage.setItem(GAME_2048_BEST_SCORE_KEY, String(score));
-  } catch (error) {
-    // Le record reste disponible pour la session si le stockage est bloqué.
-  }
-};
-
 const boardToTiles = (board, createId, options = {}) =>
   board.flatMap((value, index) => {
     if (value === 0) return [];
@@ -203,7 +187,9 @@ export default function Game2048({ isActive }) {
     })
   );
   const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(loadBestScore);
+  const [bestScore, setBestScore] = useState(() =>
+    loadBestScore(GAME_2048_BEST_SCORE_KEY)
+  );
   const [status, setStatus] = useState("playing");
   const [victoryAcknowledged, setVictoryAcknowledged] = useState(false);
   const [history, setHistory] = useState(null);
@@ -212,7 +198,7 @@ export default function Game2048({ isActive }) {
   const updateBestScore = useCallback((nextScore) => {
     setBestScore((currentBestScore) => {
       if (nextScore <= currentBestScore) return currentBestScore;
-      saveBestScore(nextScore);
+      saveBestScore(GAME_2048_BEST_SCORE_KEY, nextScore);
       return nextScore;
     });
   }, []);

@@ -3,7 +3,6 @@ import "@testing-library/jest-dom";
 import FlappyBird, {
   circleIntersectsRect,
   FLAPPY_BEST_SCORE_KEY,
-  getFlappyDeltaSeconds,
   getFlappyDifficulty,
   hasBirdPipeCollision,
   shouldScorePipe,
@@ -46,14 +45,6 @@ describe("Flappy Bird", () => {
     getContextSpy.mockRestore();
     window.requestAnimationFrame = originalRequestAnimationFrame;
     window.cancelAnimationFrame = originalCancelAnimationFrame;
-  });
-
-  test("normalizes gravity and horizontal movement across refresh rates", () => {
-    expect(getFlappyDeltaSeconds(1000, null)).toBeCloseTo(1 / 60);
-    expect(getFlappyDeltaSeconds(1000 + 1000 / 120, 1000)).toBeCloseTo(
-      1 / 120
-    );
-    expect(getFlappyDeltaSeconds(5000, 1000)).toBe(0.05);
   });
 
   test("progressively increases speed while reducing the pipe gap", () => {

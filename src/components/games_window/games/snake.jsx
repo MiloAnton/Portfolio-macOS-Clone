@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import CanvasGame from "./canvas_game";
+import { loadBestScore, saveBestScore } from "./game_utils";
 import useGameKeys from "./use_game_keys";
 
 const GRID_WIDTH = 32;
@@ -54,23 +55,6 @@ export const getMoveInterval = (score) =>
     MINIMUM_MOVE_INTERVAL,
     INITIAL_MOVE_INTERVAL - score * SPEED_GAIN_PER_APPLE
   );
-
-const loadBestScore = () => {
-  try {
-    const savedScore = Number(localStorage.getItem(SNAKE_BEST_SCORE_KEY));
-    return Number.isFinite(savedScore) && savedScore > 0 ? savedScore : 0;
-  } catch (error) {
-    return 0;
-  }
-};
-
-const saveBestScore = (score) => {
-  try {
-    localStorage.setItem(SNAKE_BEST_SCORE_KEY, String(score));
-  } catch (error) {
-    // Le jeu reste fonctionnel lorsque le stockage navigateur est indisponible.
-  }
-};
 
 const createGameState = () => {
   const snake = createSnake();
@@ -225,7 +209,9 @@ export default function Snake({ isActive }) {
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
   const [sessionId, setSessionId] = useState(0);
   const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(loadBestScore);
+  const [bestScore, setBestScore] = useState(() =>
+    loadBestScore(SNAKE_BEST_SCORE_KEY)
+  );
   const [wrapWalls, setWrapWalls] = useState(false);
 
   useEffect(() => {
@@ -316,7 +302,7 @@ export default function Snake({ isActive }) {
           setScore(game.applesEaten);
           setBestScore((currentBestScore) => {
             if (game.applesEaten <= currentBestScore) return currentBestScore;
-            saveBestScore(game.applesEaten);
+            saveBestScore(SNAKE_BEST_SCORE_KEY, game.applesEaten);
             return game.applesEaten;
           });
           game.food = createFood(game.snake);

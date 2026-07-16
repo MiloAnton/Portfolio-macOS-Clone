@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import CanvasGame from "./canvas_game";
+import { getDeltaSeconds } from "./game_utils";
 import useGameKeys from "./use_game_keys";
 
 const CANVAS_WIDTH = 640;
@@ -17,11 +18,6 @@ const DAMAGE_PER_HIT = 34;
 const OFFSCREEN_LIMIT = CANVAS_HEIGHT + CAR_HEIGHT;
 
 const OBSTACLE_COLORS = ["#ff453a", "#ff9f0a", "#bf5af2", "#ffd60a"];
-
-export const getDeltaSeconds = (currentTime, previousTime) => {
-  if (previousTime === null) return 1 / 60;
-  return Math.min(Math.max((currentTime - previousTime) / 1000, 0), 0.05);
-};
 
 export const getDifficulty = (distance) =>
   Math.min(10, 1 + Math.floor(distance / 1.2));

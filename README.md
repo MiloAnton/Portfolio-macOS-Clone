@@ -19,6 +19,10 @@ Are used in this project :
 
 ## Changelog
 
+### 0.13.1
+- Code cleanup : shared game utilities (frame-time normalization, best-score storage, touch controls) mutualized across the mini-games
+- No functional change
+
 ### 0.12.9
 - Added a table of contents to the Curriculum with smooth scrolling
 - New profile actions : contact me on LinkedIn and download the CV

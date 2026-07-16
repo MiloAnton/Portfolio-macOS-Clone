@@ -3,7 +3,6 @@ import "@testing-library/jest-dom";
 import Frogger, {
   advanceFroggerMover,
   canAcceptFroggerInput,
-  getFroggerDeltaSeconds,
   moveFrogByCell,
   vehicleHitsFrog,
 } from "./frogger";
@@ -48,10 +47,6 @@ describe("Frogger", () => {
   });
 
   test("normalizes vehicle movement across refresh rates", () => {
-    expect(getFroggerDeltaSeconds(1000, null)).toBeCloseTo(1 / 60);
-    expect(getFroggerDeltaSeconds(1016.67, 1000)).toBeCloseTo(1 / 60, 2);
-    expect(getFroggerDeltaSeconds(5000, 1000)).toBe(0.05);
-
     const car = { x: 100, width: 55, speed: 120 };
     const fullStep = advanceFroggerMover(car, 1 / 60, 1);
     const firstHalf = advanceFroggerMover(car, 1 / 120, 1);

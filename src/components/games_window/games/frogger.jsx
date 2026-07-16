@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import CanvasGame from "./canvas_game";
+import { getDeltaSeconds } from "./game_utils";
 
 const CANVAS_WIDTH = 640;
 const CANVAS_HEIGHT = 360;
@@ -19,11 +20,6 @@ const DIRECTIONS_BY_KEY = {
   ArrowDown: "down",
   ArrowLeft: "left",
   ArrowRight: "right",
-};
-
-export const getFroggerDeltaSeconds = (currentTime, previousTime) => {
-  if (previousTime === null) return 1 / 60;
-  return Math.min(Math.max((currentTime - previousTime) / 1000, 0), 0.05);
 };
 
 const getFrogBaseX = (column) =>
@@ -453,7 +449,7 @@ export default function Frogger({ isActive }) {
     };
 
     const loop = (currentTime) => {
-      const deltaSeconds = getFroggerDeltaSeconds(currentTime, previousTime);
+      const deltaSeconds = getDeltaSeconds(currentTime, previousTime);
       previousTime = currentTime;
       game.player = playerRef.current;
       game.player.hopTime = Math.max(0, game.player.hopTime - deltaSeconds);
