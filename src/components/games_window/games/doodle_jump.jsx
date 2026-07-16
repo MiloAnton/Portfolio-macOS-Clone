@@ -15,6 +15,13 @@ const SPRING_VELOCITY = -690;
 const HORIZONTAL_SPEED = 245;
 const CAMERA_LINE = 128;
 
+const TILT_LABELS = {
+  idle: "Activer l’inclinaison",
+  enabled: "Inclinaison active",
+  denied: "Accès refusé",
+  unsupported: "Non disponible",
+};
+
 const clampPlatformX = (x, width) =>
   Math.max(18, Math.min(CANVAS_WIDTH - width - 18, x));
 
@@ -542,13 +549,7 @@ export default function DoodleJump({ isActive }) {
         onClick={requestTiltControl}
         aria-pressed={tiltEnabled}
       >
-        {tiltStatus === "enabled"
-          ? "Inclinaison active"
-          : tiltStatus === "denied"
-            ? "Accès refusé"
-            : tiltStatus === "unsupported"
-              ? "Non disponible"
-              : "Activer l’inclinaison"}
+        {TILT_LABELS[tiltStatus]}
       </button>
       <button type="button" aria-label="Aller à droite" {...touchHandlers(1)}>
         ▶

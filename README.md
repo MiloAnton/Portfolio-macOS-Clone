@@ -19,6 +19,9 @@ Are used in this project :
 
 ## Changelog
 
+### 0.13.3
+- Code cleanup : condensed repetitive JSX (Calendar view switch, Snake status, Doodle Jump tilt labels)
+
 ### 0.13.2
 - Code cleanup : removed superfluous defensive code (impossible guards, unused injection points, low-value test)
 

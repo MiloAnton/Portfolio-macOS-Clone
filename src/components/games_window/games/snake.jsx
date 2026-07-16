@@ -373,18 +373,14 @@ export default function Snake({ isActive }) {
     phase === PHASES.running ||
     phase === PHASES.paused;
   const canPause = phase === PHASES.running || phase === PHASES.paused;
-  const status =
-    phase === PHASES.countdown
-      ? `Départ dans ${countdown}`
-      : phase === PHASES.paused
-        ? "En pause"
-        : phase === PHASES.lost
-          ? "Perdu !"
-          : phase === PHASES.won
-            ? "Gagné !"
-            : phase === PHASES.running
-              ? `Niveau ${1 + Math.floor(score / 3)}`
-              : "Mange les pommes";
+  const status = {
+    [PHASES.countdown]: `Départ dans ${countdown}`,
+    [PHASES.paused]: "En pause",
+    [PHASES.lost]: "Perdu !",
+    [PHASES.won]: "Gagné !",
+    [PHASES.running]: `Niveau ${1 + Math.floor(score / 3)}`,
+    [PHASES.idle]: "Mange les pommes",
+  }[phase];
   const actionLabel =
     phase === PHASES.lost || phase === PHASES.won
       ? "Rejouer"

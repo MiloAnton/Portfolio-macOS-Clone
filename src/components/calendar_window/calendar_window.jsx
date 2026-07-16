@@ -3,6 +3,12 @@ import "./calendar_window.scss";
 
 export const CALENDAR_STORAGE_KEY = "portfolio-calendar-events";
 const WEEKDAYS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+const VIEWS = [
+  ["day", "Jour"],
+  ["week", "Semaine"],
+  ["month", "Mois"],
+  ["agenda", "Liste"],
+];
 export const EVENT_COLORS = ["blue", "purple", "orange", "green", "pink", "red"];
 const COLOR_LABELS = {
   blue: "Bleu",
@@ -409,38 +415,17 @@ export default function CalendarWindow() {
         <h2>{viewTitle}</h2>
 
         <div className="calendar-view-switch" aria-label="Vue du calendrier">
-          <button
-            type="button"
-            className={view === "day" ? "active" : ""}
-            aria-pressed={view === "day"}
-            onClick={() => setView("day")}
-          >
-            Jour
-          </button>
-          <button
-            type="button"
-            className={view === "week" ? "active" : ""}
-            aria-pressed={view === "week"}
-            onClick={() => setView("week")}
-          >
-            Semaine
-          </button>
-          <button
-            type="button"
-            className={view === "month" ? "active" : ""}
-            aria-pressed={view === "month"}
-            onClick={() => setView("month")}
-          >
-            Mois
-          </button>
-          <button
-            type="button"
-            className={view === "agenda" ? "active" : ""}
-            aria-pressed={view === "agenda"}
-            onClick={() => setView("agenda")}
-          >
-            Liste
-          </button>
+          {VIEWS.map(([id, label]) => (
+            <button
+              type="button"
+              className={view === id ? "active" : ""}
+              aria-pressed={view === id}
+              onClick={() => setView(id)}
+              key={id}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </header>
 
