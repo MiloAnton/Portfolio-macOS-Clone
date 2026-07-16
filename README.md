@@ -22,7 +22,7 @@ Are used in this project :
 ### 0.12.9
 - Added a table of contents to the Curriculum with smooth scrolling
 - New profile actions : contact me on LinkedIn and download the CV
-- More tests
+- More tests and bug fixes
 
 ### 0.12.8
 - Big Terminal update : themes, navigable file system, persistent history, man pages, better completion and clickable links
