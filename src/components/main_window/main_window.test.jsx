@@ -1,9 +1,11 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MainWindow from "./main_window";
+import { LANGUAGE_STORAGE_KEY, LanguageProvider } from "../../i18n/language";
 
 describe("MainWindow", () => {
   beforeEach(() => {
+    localStorage.clear();
     Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
       configurable: true,
       value: vi.fn(),
@@ -12,6 +14,24 @@ describe("MainWindow", () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
+  });
+
+  test("renders the English curriculum when the language is English", () => {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, "en");
+    render(
+      <LanguageProvider>
+        <MainWindow />
+      </LanguageProvider>
+    );
+
+    expect(screen.getByRole("link", { name: "Contact me" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Download my resume" })
+    ).toBeInTheDocument();
+    expect(screen.getByText("Full-Stack Software Engineer")).toBeInTheDocument();
+    expect(
+      screen.getByRole("navigation", { name: "Table of contents" })
+    ).toBeInTheDocument();
   });
 
   test("renders each section animation cascade declaratively", () => {

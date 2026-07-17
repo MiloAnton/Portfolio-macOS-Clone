@@ -19,6 +19,11 @@ Are used in this project :
 
 ## Changelog
 
+### 0.14.1
+- Accessibility : windows are focusable dialogs, arrow-key navigation in the Dock, low-contrast texts raised to WCAG-friendly levels
+- SEO : keyword-rich metadata (macOS clone, React), Open Graph / Twitter cards, JSON-LD Person schema and a real noscript fallback
+- French / English toggle in the menu bar : full curriculum, projects and desktop are translated (apps interiors stay French for now)
+
 ### 0.14.0
 - Migrated from Create React App to Vite + Vitest : builds in under a second, maintained toolchain, same 154 tests
 - Standalone ESLint, autoprefixer kept for CSS compatibility

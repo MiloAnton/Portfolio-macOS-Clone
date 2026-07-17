@@ -39,6 +39,8 @@ import next from "./../../assets/iconesStack/next.svg";
 import tailwind from "./../../assets/iconesStack/tailwind.png";
 import windows from "./../../assets/iconesStack/windows.webp";
 import { downloadCv } from "../../utils/downloadCv";
+import { useLanguage } from "../../i18n/language";
+import { EN_EDUCATION, EN_EXPERIENCES } from "../../i18n/content.en";
 
 // Icônes importées de la stack : les entrées absentes retombent sur
 // element.logo (URL CDN) définie dans listStack.json.
@@ -78,11 +80,58 @@ const LINKEDIN_URL =
   "https://www.linkedin.com/in/milo-roche-vandenbroucque/";
 
 const NAVIGATION_ITEMS = [
-  { id: "perso", label: "Profil", number: "01" },
-  { id: "stack", label: "Stack", number: "02" },
-  { id: "pro", label: "Expériences", number: "03" },
-  { id: "education", label: "Formation", number: "04" },
+  { id: "perso", number: "01" },
+  { id: "stack", number: "02" },
+  { id: "pro", number: "03" },
+  { id: "education", number: "04" },
 ];
+
+const COPY = {
+  fr: {
+    navLabels: {
+      perso: "Profil",
+      stack: "Stack",
+      pro: "Expériences",
+      education: "Formation",
+    },
+    navAria: "Sommaire du curriculum",
+    navTitle: "Sommaire",
+    mobileNotice: "Profitez de l'expérience complète sur Desktop !",
+    eyebrow: "Portfolio professionnel",
+    headline: "Entrepreneur & Formateur 🦁",
+    contact: "Me contacter",
+    download: "Télécharger le CV",
+    stackEyebrow: "Expertise",
+    stackTitle: "Stack maîtrisée",
+    stackSections: ["Frontend", "Backend", "DevSecOps", "Langages", "Autres", "OS"],
+    proEyebrow: "Parcours",
+    proTitle: "Expériences",
+    educationEyebrow: "Études",
+    educationTitle: "Formation",
+  },
+  en: {
+    navLabels: {
+      perso: "Profile",
+      stack: "Stack",
+      pro: "Experience",
+      education: "Education",
+    },
+    navAria: "Table of contents",
+    navTitle: "Contents",
+    mobileNotice: "Enjoy the full experience on desktop!",
+    eyebrow: "Professional portfolio",
+    headline: "Entrepreneur & Educator 🦁",
+    contact: "Contact me",
+    download: "Download my resume",
+    stackEyebrow: "Expertise",
+    stackTitle: "Tech stack",
+    stackSections: ["Frontend", "Backend", "DevSecOps", "Languages", "Other", "OS"],
+    proEyebrow: "Career",
+    proTitle: "Experience",
+    educationEyebrow: "Studies",
+    educationTitle: "Education",
+  },
+};
 
 function MessageIcon() {
   return (
@@ -135,6 +184,22 @@ export default function MainWindow() {
   const [activeSection, setActiveSection] = useState("perso");
   const pageRef = useRef(null);
   const sectionRefs = useRef({});
+  const { language } = useLanguage();
+  const copy = COPY[language];
+  const experiences =
+    language === "en"
+      ? experienceList.experiences.map((element) => ({
+          ...element,
+          ...EN_EXPERIENCES[element.entreprise],
+        }))
+      : experienceList.experiences;
+  const education =
+    language === "en"
+      ? educationList.education.map((element) => ({
+          ...element,
+          ...EN_EDUCATION[element.ecole],
+        }))
+      : educationList.education;
 
   const registerSection = (sectionId) => (element) => {
     sectionRefs.current[sectionId] = element;
@@ -168,8 +233,8 @@ export default function MainWindow() {
       onScroll={handleScroll}
     >
       <div className="resume-layout">
-        <nav className="resume-nav" aria-label="Sommaire du curriculum">
-          <span className="resume-nav-title">Sommaire</span>
+        <nav className="resume-nav" aria-label={copy.navAria}>
+          <span className="resume-nav-title">{copy.navTitle}</span>
           <div>
             {NAVIGATION_ITEMS.map((item) => (
               <button
@@ -180,7 +245,7 @@ export default function MainWindow() {
                 key={item.id}
               >
                 <span>{item.number}</span>
-                {item.label}
+                {copy.navLabels[item.id]}
               </button>
             ))}
           </div>
@@ -188,7 +253,7 @@ export default function MainWindow() {
 
         <div className="content">
           <section className="demoMobile">
-            <p>Profitez de l'expérience complète sur Desktop !</p>
+            <p>{copy.mobileNotice}</p>
             <img
               src={demo}
               alt="demo screenshot on desktop"
@@ -204,38 +269,38 @@ export default function MainWindow() {
           >
             <div className="round" />
             <div className="profile-copy">
-              <p className="eyebrow">Portfolio professionnel</p>
+              <p className="eyebrow">{copy.eyebrow}</p>
               <h2>Milo Roche-Vandenbroucque</h2>
-              <h3>Entrepreneur & Formateur 🦁</h3>
+              <h3>{copy.headline}</h3>
             </div>
             <div className="profile-actions">
               <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
                 <MessageIcon />
-                Me contacter
+                {copy.contact}
               </a>
               <button type="button" className="primary" onClick={downloadCv}>
                 <DownloadIcon />
-                Télécharger le CV
+                {copy.download}
               </button>
             </div>
           </section>
 
           <section ref={registerSection("stack")} className="stack" id="stack">
             <div className="section-heading">
-              <p>Expertise</p>
-              <h2>Stack maîtrisée</h2>
+              <p>{copy.stackEyebrow}</p>
+              <h2>{copy.stackTitle}</h2>
             </div>
             <div className="gridStack">
-              <StackSection title="Frontend" items={listStack.frontend} />
-              <StackSection title="Backend" items={listStack.backend} />
+              <StackSection title={copy.stackSections[0]} items={listStack.frontend} />
+              <StackSection title={copy.stackSections[1]} items={listStack.backend} />
             </div>
             <div className="gridStack">
-              <StackSection title="DevSecOps" items={listStack.devops} />
-              <StackSection title="Langages" items={listStack.langages} />
+              <StackSection title={copy.stackSections[2]} items={listStack.devops} />
+              <StackSection title={copy.stackSections[3]} items={listStack.langages} />
             </div>
             <div className="gridStack">
-              <StackSection title="Autres" items={listStack.autres} />
-              <StackSection title="OS" items={listStack.os} />
+              <StackSection title={copy.stackSections[4]} items={listStack.autres} />
+              <StackSection title={copy.stackSections[5]} items={listStack.os} />
             </div>
           </section>
 
@@ -245,11 +310,11 @@ export default function MainWindow() {
             id="pro"
           >
             <div className="section-heading">
-              <p>Parcours</p>
-              <h2>Expériences</h2>
+              <p>{copy.proEyebrow}</p>
+              <h2>{copy.proTitle}</h2>
             </div>
             <div className="card-container">
-              {experienceList.experiences.map((element) => (
+              {experiences.map((element) => (
                 <div className="cardExperience" key={`${element.entreprise}-${element.timeline}`}>
                   <div className="row">
                     <img
@@ -278,11 +343,11 @@ export default function MainWindow() {
             id="education"
           >
             <div className="section-heading">
-              <p>Études</p>
-              <h2>Formation</h2>
+              <p>{copy.educationEyebrow}</p>
+              <h2>{copy.educationTitle}</h2>
             </div>
             <div className="card-container">
-              {educationList.education.map((element) => (
+              {education.map((element) => (
                 <div className="cardEducation" key={`${element.ecole}-${element.timeline}`}>
                   <h3>{element.ecole}</h3>
                   <h4>{element.diplome}</h4>

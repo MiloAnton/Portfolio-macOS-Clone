@@ -62,6 +62,18 @@ test("exécute une commande dans le Terminal", async ({ page }) => {
   await expect(terminal.getByText("Commandes disponibles :")).toBeVisible();
 });
 
+test("passe le curriculum en anglais depuis la barre de menus", async ({
+  page,
+}) => {
+  await page.getByRole("button", { name: "Switch to English" }).click();
+
+  await expect(page.getByRole("link", { name: "Contact me" })).toBeVisible();
+  await expect(windowByTitle(page, "About Milo")).toBeVisible();
+
+  await page.getByRole("button", { name: "Passer en français" }).click();
+  await expect(page.getByRole("link", { name: "Me contacter" })).toBeVisible();
+});
+
 test("joue au Démineur sans exploser au premier clic", async ({ page }) => {
   await page.getByRole("button", { name: "Jeux", exact: true }).click();
   const games = windowByTitle(page, "Jeux");

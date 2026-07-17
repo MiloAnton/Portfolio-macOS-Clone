@@ -1,6 +1,23 @@
 import "./toolbar.scss";
 import heart from "./../../assets/heart.svg";
 import { useEffect, useState } from "react";
+import { useLanguage } from "../../i18n/language";
+import { EN_APP_LABELS } from "../../i18n/content.en";
+
+const COPY = {
+  fr: {
+    locale: "fr-FR",
+    menus: { stack: "Stack", pro: "Pro", education: "Formation", projects: "Projets" },
+    switchLabel: "Switch to English",
+    switchText: "EN",
+  },
+  en: {
+    locale: "en-GB",
+    menus: { stack: "Stack", pro: "Work", education: "Education", projects: "Projects" },
+    switchLabel: "Passer en français",
+    switchText: "FR",
+  },
+};
 
 const BluetoothIcon = () => (
   <svg viewBox="0 0 16 20" aria-hidden="true">
@@ -18,6 +35,8 @@ const BatteryIcon = () => (
 
 export default function Toolbar(props) {
   const [current, setCurrent] = useState(() => new Date());
+  const { language, toggleLanguage } = useLanguage();
+  const copy = COPY[language];
 
   useEffect(() => {
     const clock = setInterval(() => setCurrent(new Date()), 1000);
@@ -25,18 +44,23 @@ export default function Toolbar(props) {
   }, []);
 
   // Format macOS : "jeu. 10 juil." (et la date complète en tooltip).
-  const date = current.toLocaleDateString("fr-FR", {
+  const date = current.toLocaleDateString(copy.locale, {
     weekday: "short",
     day: "numeric",
     month: "short",
   });
-  const fullDate = current.toLocaleDateString("fr-FR", { dateStyle: "full" });
-  const time = current.toLocaleTimeString("fr-FR", {
+  const fullDate = current.toLocaleDateString(copy.locale, { dateStyle: "full" });
+  const time = current.toLocaleTimeString(copy.locale, {
     hour: "2-digit",
     minute: "2-digit",
   });
-  const fullTime = current.toLocaleTimeString("fr-FR");
-  const focusedWindowId = props.focusedWindow?.id;
+  const fullTime = current.toLocaleTimeString(copy.locale);
+  const focusedWindow = props.focusedWindow;
+  const focusedLabel =
+    focusedWindow &&
+    (language === "en"
+      ? EN_APP_LABELS[focusedWindow.id] || focusedWindow.label
+      : focusedWindow.label);
 
   return (
     <section className="toolbar">
@@ -52,27 +76,36 @@ export default function Toolbar(props) {
             <b>Milo</b>
           </p>
         </a>
-        {focusedWindowId === "main" ? (
+        {focusedWindow?.id === "main" ? (
           <>
-            <a href="#stack" title="Scroll vers ma stack technique">
-              <p>Stack</p>
+            <a href="#stack">
+              <p>{copy.menus.stack}</p>
             </a>
-            <a href="#pro" title="Scroll vers mes expériences">
-              <p>Pro</p>
+            <a href="#pro">
+              <p>{copy.menus.pro}</p>
             </a>
-            <a href="#education" title="Scroll vers mes diplômes">
-              <p>Formation</p>
+            <a href="#education">
+              <p>{copy.menus.education}</p>
             </a>
           </>
-        ) : focusedWindowId === "projects" ? (
-          <a href="#projects" title="Scroll vers mes projets">
-            <p>Projets</p>
+        ) : focusedWindow?.id === "projects" ? (
+          <a href="#projects">
+            <p>{copy.menus.projects}</p>
           </a>
-        ) : props.focusedWindow ? (
-          <p>{props.focusedWindow.label}</p>
+        ) : focusedWindow ? (
+          <p>{focusedLabel}</p>
         ) : null}
       </div>
       <div className="icons">
+        <button
+          type="button"
+          className="language-switch"
+          aria-label={copy.switchLabel}
+          title={copy.switchLabel}
+          onClick={toggleLanguage}
+        >
+          {copy.switchText}
+        </button>
         <div className="status-icon bluetooth-icon" title="Bluetooth activé">
           <BluetoothIcon />
         </div>
@@ -81,7 +114,7 @@ export default function Toolbar(props) {
         </div>
         <div className="date-time">
           <p title={fullDate}>{date}</p>
-          <p title={`Heure locale : ${fullTime}`}>{time}</p>
+          <p title={`${fullTime}`}>{time}</p>
         </div>
       </div>
     </section>

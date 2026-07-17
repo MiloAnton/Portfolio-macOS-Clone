@@ -22,6 +22,7 @@ import {
   windowsReducer,
 } from "./state/windowManager";
 import { addPortfolioLog } from "./utils/portfolioLogger";
+import { LanguageProvider } from "./i18n/language";
 
 const WINDOW_ANIMATION_DURATION = 320;
 
@@ -162,6 +163,7 @@ export default function App() {
   }, [activeWindowId]);
 
   return (
+    <LanguageProvider>
     <main className="bounds">
       {isWelcomeAnimationVisible && (
         <WelcomeAnimation
@@ -224,5 +226,6 @@ export default function App() {
         onToggle={toggleWindow}
       />
     </main>
+    </LanguageProvider>
   );
 }

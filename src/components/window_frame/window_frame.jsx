@@ -6,6 +6,8 @@ import MenuBar from "../menu_bar/menu_bar";
 import usePersistentWindowLayout, {
   TOOLBAR_HEIGHT,
 } from "../../hooks/usePersistentWindowLayout";
+import { useLanguage } from "../../i18n/language";
+import { EN_APP_LABELS, EN_APP_TITLES } from "../../i18n/content.en";
 import "./window_frame.scss";
 
 export default function WindowFrame({
@@ -20,6 +22,12 @@ export default function WindowFrame({
   const { layout, viewport, bounds, handleDragStop, handleResizeStop } =
     usePersistentWindowLayout(config);
   const contentRef = useRef(null);
+  const { language } = useLanguage();
+  const windowTitle =
+    (language === "en" &&
+      (EN_APP_TITLES[config.id] || EN_APP_LABELS[config.id])) ||
+    config.title ||
+    config.label;
 
   // À l'ouverture, le focus entre dans la fenêtre pour les utilisateurs
   // clavier — sauf si un champ interne (Terminal…) l'a déjà pris.
@@ -73,12 +81,12 @@ export default function WindowFrame({
         <div
           className="window-frame-content"
           role="dialog"
-          aria-label={config.title || config.label}
+          aria-label={windowTitle}
           tabIndex={-1}
           ref={contentRef}
         >
           <MenuBar
-            title={config.title || config.label}
+            title={windowTitle}
             handleFullscreen={onToggleFullscreen}
             handleQuit={onClose}
             handleMinimize={onMinimize}

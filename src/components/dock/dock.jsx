@@ -1,9 +1,16 @@
 import "./dock.scss";
 import { useState } from "react";
 import { DOCK_WINDOWS } from "../../config/windowRegistry";
+import { useLanguage } from "../../i18n/language";
+import { EN_APP_LABELS } from "../../i18n/content.en";
 
 export default function Dock(props) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const { language } = useLanguage();
+  const appLabel = (windowConfig) =>
+    language === "en"
+      ? EN_APP_LABELS[windowConfig.id] || windowConfig.label
+      : windowConfig.label;
   // Ajoute le point "app ouverte" sous l'icône, comme sur macOS.
   const openClass = (appId) => (props.windows?.[appId]?.isOpen ? " open" : "");
   const hoverClass = (index) => {
@@ -42,13 +49,13 @@ export default function Dock(props) {
           <button
             type="button"
             className={`dock-item${openClass(windowConfig.id)}${hoverClass(index)}`}
-            aria-label={windowConfig.label}
+            aria-label={appLabel(windowConfig)}
             onClick={() => props.onToggle(windowConfig.id)}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             key={windowConfig.id}
           >
-            <div className="name">{windowConfig.label}</div>
+            <div className="name">{appLabel(windowConfig)}</div>
             {windowConfig.dockIconType === "calendar" ? (
               <div className="ico calendar-dock-icon" aria-hidden="true">
                 <span>{calendarMonth}</span>
