@@ -9,10 +9,10 @@ import SpaceInvaders, {
 } from "./space_invaders";
 
 const createCanvasContext = () => ({
-  fillRect: jest.fn(),
-  fillText: jest.fn(),
-  restore: jest.fn(),
-  save: jest.fn(),
+  fillRect: vi.fn(),
+  fillText: vi.fn(),
+  restore: vi.fn(),
+  save: vi.fn(),
 });
 
 describe("Space Invaders", () => {
@@ -21,13 +21,13 @@ describe("Space Invaders", () => {
   let originalCancelAnimationFrame;
 
   beforeEach(() => {
-    getContextSpy = jest
+    getContextSpy = vi
       .spyOn(HTMLCanvasElement.prototype, "getContext")
       .mockReturnValue(createCanvasContext());
     originalRequestAnimationFrame = window.requestAnimationFrame;
     originalCancelAnimationFrame = window.cancelAnimationFrame;
-    window.requestAnimationFrame = jest.fn(() => 1);
-    window.cancelAnimationFrame = jest.fn();
+    window.requestAnimationFrame = vi.fn(() => 1);
+    window.cancelAnimationFrame = vi.fn();
   });
 
   afterEach(() => {

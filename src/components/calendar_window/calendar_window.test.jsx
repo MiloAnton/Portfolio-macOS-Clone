@@ -41,14 +41,14 @@ const STORED_EVENTS = [
 
 describe("CalendarWindow", () => {
   beforeEach(() => {
-    jest.useFakeTimers().setSystemTime(new Date(2026, 6, 16, 12));
+    vi.useFakeTimers().setSystemTime(new Date(2026, 6, 16, 12));
     localStorage.clear();
     localStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(STORED_EVENTS));
   });
 
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   it("builds a stable six-week grid including adjacent months", () => {
@@ -79,7 +79,7 @@ describe("CalendarWindow", () => {
       CALENDAR_STORAGE_KEY,
       JSON.stringify([{ id: 1, date: "2026-07-16", title: "Ancien", color: "blue" }])
     );
-    const storageSpy = jest.spyOn(Storage.prototype, "getItem");
+    const storageSpy = vi.spyOn(Storage.prototype, "getItem");
 
     render(<CalendarWindow />);
 

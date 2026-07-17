@@ -16,7 +16,7 @@ describe("ConsoleWindow", () => {
     clearPortfolioLogs();
     originalClipboard = navigator.clipboard;
     originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
-    HTMLElement.prototype.scrollIntoView = jest.fn();
+    HTMLElement.prototype.scrollIntoView = vi.fn();
   });
 
   afterEach(() => {
@@ -25,7 +25,7 @@ describe("ConsoleWindow", () => {
       value: originalClipboard,
     });
     HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   test("shows icons and live counters for every log level", () => {
@@ -60,7 +60,7 @@ describe("ConsoleWindow", () => {
   });
 
   test("keeps one stable subscription and reports queued events while paused", () => {
-    const addEventListener = jest.spyOn(window, "addEventListener");
+    const addEventListener = vi.spyOn(window, "addEventListener");
     render(<ConsoleWindow />);
     expect(
       addEventListener.mock.calls.filter(
@@ -114,7 +114,7 @@ describe("ConsoleWindow", () => {
   });
 
   test("copies visible logs and exposes JSON and text downloads", async () => {
-    const writeText = jest.fn().mockResolvedValue(undefined);
+    const writeText = vi.fn().mockResolvedValue(undefined);
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
       value: { writeText },

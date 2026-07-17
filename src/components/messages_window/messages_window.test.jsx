@@ -9,15 +9,15 @@ describe("Messages", () => {
   let originalScrollIntoView;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     localStorage.clear();
     originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
-    HTMLElement.prototype.scrollIntoView = jest.fn();
+    HTMLElement.prototype.scrollIntoView = vi.fn();
   });
 
   afterEach(() => {
     HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("creates unique identifiers without relying only on the current time", () => {
@@ -57,7 +57,7 @@ describe("Messages", () => {
     expect(screen.getByText("Distribué")).toBeInTheDocument();
     expect(document.querySelector(".message-row.arriving")).toBeInTheDocument();
 
-    act(() => jest.advanceTimersByTime(750));
+    act(() => vi.advanceTimersByTime(750));
     expect(screen.getByText("Lu")).toBeInTheDocument();
     expect(container.querySelector(".message-list")).toHaveTextContent(
       "Tu peux ouvrir l’app Projets"
@@ -67,7 +67,7 @@ describe("Messages", () => {
   test("persists new messages across a component remount", () => {
     const firstRender = render(<MessagesWindow />);
     fireEvent.click(screen.getByRole("button", { name: "Ta stack" }));
-    act(() => jest.advanceTimersByTime(750));
+    act(() => vi.advanceTimersByTime(750));
     firstRender.unmount();
 
     const secondRender = render(<MessagesWindow />);
@@ -85,7 +85,7 @@ describe("Messages", () => {
       screen.getByRole("button", { name: "Effacer la conversation" })
     );
     expect(screen.queryByLabelText("Milo écrit")).not.toBeInTheDocument();
-    act(() => jest.advanceTimersByTime(1000));
+    act(() => vi.advanceTimersByTime(1000));
 
     expect(
       screen.queryByText("Comment est-ce que je peux te contacter ?")
@@ -106,8 +106,11 @@ describe("Messages", () => {
     expect(container.querySelector(".messages-app")).toHaveClass("sidebar-open");
 
     fireEvent.click(screen.getByRole("button", { name: "Tes projets" }));
-    expect(jest.getTimerCount()).toBeGreaterThan(0);
+    expect(vi.getTimerCount()).toBeGreaterThan(0);
     unmount();
-    expect(jest.getTimerCount()).toBe(0);
+    // Purge les setTimeout(0) internes de jsdom (MessageChannel de React) :
+    // seuls les timers applicatifs, tous > 0 ms, resteraient comptés.
+    act(() => vi.advanceTimersByTime(0));
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

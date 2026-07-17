@@ -18,7 +18,7 @@ describe("SafariWindow", () => {
   beforeEach(() => {
     localStorage.clear();
     originalOpen = window.open;
-    window.open = jest.fn();
+    window.open = vi.fn();
   });
 
   afterEach(() => {
@@ -30,6 +30,7 @@ describe("SafariWindow", () => {
     expect(normalizeUrl("http://example.com/path")).toBe(
       "http://example.com/path"
     );
+    // eslint-disable-next-line no-script-url -- on teste justement le rejet
     expect(normalizeUrl("javascript:alert(1)")).toBeNull();
     expect(normalizeUrl("   ")).toBeNull();
   });

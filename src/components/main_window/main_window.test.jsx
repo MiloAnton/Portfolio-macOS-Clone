@@ -6,12 +6,12 @@ describe("MainWindow", () => {
   beforeEach(() => {
     Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
       configurable: true,
-      value: jest.fn(),
+      value: vi.fn(),
     });
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   test("renders each section animation cascade declaratively", () => {
@@ -67,7 +67,7 @@ describe("MainWindow", () => {
   });
 
   test("downloads the shared real CV from the profile header", () => {
-    const clickSpy = jest
+    const clickSpy = vi
       .spyOn(HTMLAnchorElement.prototype, "click")
       .mockImplementation(() => {});
     render(<MainWindow />);

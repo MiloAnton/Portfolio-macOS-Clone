@@ -7,9 +7,9 @@ describe("Minesweeper scoreboard", () => {
   let randomIndex;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     randomIndex = 0;
-    randomSpy = jest.spyOn(Math, "random").mockImplementation(() => {
+    randomSpy = vi.spyOn(Math, "random").mockImplementation(() => {
       const value = (randomIndex % 81) / 81;
       randomIndex += 1;
       return value;
@@ -18,7 +18,7 @@ describe("Minesweeper scoreboard", () => {
 
   afterEach(() => {
     randomSpy.mockRestore();
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("shows digital mine and time counters and resets the timer", () => {
@@ -31,7 +31,7 @@ describe("Minesweeper scoreboard", () => {
 
     const safeCell = container.querySelectorAll(".mine-grid button")[10];
     fireEvent.click(safeCell);
-    act(() => jest.advanceTimersByTime(3000));
+    act(() => vi.advanceTimersByTime(3000));
 
     expect(screen.getByRole("timer")).toHaveTextContent("003");
 
@@ -42,7 +42,7 @@ describe("Minesweeper scoreboard", () => {
     );
     expect(screen.getByRole("timer")).toHaveTextContent("000");
 
-    act(() => jest.advanceTimersByTime(2000));
+    act(() => vi.advanceTimersByTime(2000));
     expect(screen.getByRole("timer")).toHaveTextContent("000");
   });
 

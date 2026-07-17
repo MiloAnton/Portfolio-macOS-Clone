@@ -23,10 +23,10 @@ describe("WindowFrame", () => {
 
   test("provides the common window controls and content", () => {
     const handlers = {
-      onFocus: jest.fn(),
-      onClose: jest.fn(),
-      onMinimize: jest.fn(),
-      onToggleFullscreen: jest.fn(),
+      onFocus: vi.fn(),
+      onClose: vi.fn(),
+      onMinimize: vi.fn(),
+      onToggleFullscreen: vi.fn(),
     };
     const { container } = render(
       <WindowFrame config={config} windowState={windowState} {...handlers}>
@@ -58,10 +58,10 @@ describe("WindowFrame", () => {
       <WindowFrame
         config={config}
         windowState={{ ...windowState, isFullscreen: true }}
-        onFocus={jest.fn()}
-        onClose={jest.fn()}
-        onMinimize={jest.fn()}
-        onToggleFullscreen={jest.fn()}
+        onFocus={vi.fn()}
+        onClose={vi.fn()}
+        onMinimize={vi.fn()}
+        onToggleFullscreen={vi.fn()}
       >
         <p>Contenu</p>
       </WindowFrame>

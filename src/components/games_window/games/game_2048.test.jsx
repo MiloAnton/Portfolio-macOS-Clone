@@ -17,14 +17,14 @@ describe("2048", () => {
   let randomSpy;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     localStorage.clear();
-    randomSpy = jest.spyOn(Math, "random").mockReturnValue(0);
+    randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
   });
 
   afterEach(() => {
     randomSpy.mockRestore();
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("moves and merges tiles while exposing their animation routes", () => {
@@ -60,7 +60,7 @@ describe("2048", () => {
     fireEvent.keyDown(window, { key: "ArrowRight" });
 
     expect(screen.getByRole("button", { name: "Rejouer" })).toBeDisabled();
-    act(() => jest.advanceTimersByTime(MOVE_ANIMATION_MS));
+    act(() => vi.advanceTimersByTime(MOVE_ANIMATION_MS));
 
     expect(screen.getByText("Score").parentElement).toHaveTextContent("4");
     expect(localStorage.getItem(GAME_2048_BEST_SCORE_KEY)).toBe("4");
@@ -73,7 +73,7 @@ describe("2048", () => {
     render(<Game2048 isActive />);
 
     fireEvent.keyDown(window, { key: "ArrowLeft" });
-    act(() => jest.advanceTimersByTime(MOVE_ANIMATION_MS));
+    act(() => vi.advanceTimersByTime(MOVE_ANIMATION_MS));
     fireEvent.click(screen.getByRole("button", { name: "Annuler" }));
     expect(screen.getByText("Score").parentElement).toHaveTextContent("0");
 
@@ -82,7 +82,7 @@ describe("2048", () => {
     });
     fireEvent.pointerDown(grid, { pointerId: 1, clientX: 100, clientY: 50 });
     fireEvent.pointerUp(grid, { pointerId: 1, clientX: 30, clientY: 50 });
-    act(() => jest.advanceTimersByTime(MOVE_ANIMATION_MS));
+    act(() => vi.advanceTimersByTime(MOVE_ANIMATION_MS));
 
     expect(screen.getByText("Score").parentElement).toHaveTextContent("4");
   });
@@ -93,7 +93,7 @@ describe("2048", () => {
 
     expect(screen.getByText("Record").parentElement).toHaveTextContent("128");
     fireEvent.keyDown(window, { key: "ArrowLeft" });
-    act(() => jest.advanceTimersByTime(MOVE_ANIMATION_MS));
+    act(() => vi.advanceTimersByTime(MOVE_ANIMATION_MS));
     fireEvent.click(screen.getByRole("button", { name: "Annuler" }));
 
     expect(screen.getByText("Record").parentElement).toHaveTextContent("128");

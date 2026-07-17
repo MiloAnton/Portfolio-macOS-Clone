@@ -6,7 +6,7 @@ const getDockItem = (label) => screen.getByText(label).closest(".dock-item");
 
 describe("Dock", () => {
   test("derives magnification classes from React hover state", () => {
-    render(<Dock windows={{}} onToggle={jest.fn()} />);
+    render(<Dock windows={{}} onToggle={vi.fn()} />);
 
     const projects = getDockItem("Projets");
     const curriculum = getDockItem("Curriculum");
@@ -28,7 +28,7 @@ describe("Dock", () => {
   });
 
   test("keeps open state declarative and delegates clicks", () => {
-    const onToggle = jest.fn();
+    const onToggle = vi.fn();
     render(
       <Dock
         windows={{ projects: { isOpen: true } }}

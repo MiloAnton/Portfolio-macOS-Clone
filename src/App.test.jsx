@@ -2,24 +2,26 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 
-jest.mock("./components/intro_animation/WelcomeAnimation", () => () => null);
-jest.mock("./components/toolbar/toolbar", () => ({ focusedWindow }) => (
-  <div data-testid="focused-window">{focusedWindow?.id || "none"}</div>
-));
-jest.mock("./components/window_frame/window_frame", () => ({
-  config,
-  windowState,
-  onFocus,
-}) => (
-  <section
-    data-testid={`window-${config.id}`}
-    data-active={windowState.isActive ? "true" : "false"}
-    onMouseDown={onFocus}
-  >
-    {config.label}
-  </section>
-));
-jest.mock("./utils/portfolioLogger", () => ({ addPortfolioLog: jest.fn() }));
+vi.mock("./components/intro_animation/WelcomeAnimation", () => ({
+  default: () => null,
+}));
+vi.mock("./components/toolbar/toolbar", () => ({
+  default: ({ focusedWindow }) => (
+    <div data-testid="focused-window">{focusedWindow?.id || "none"}</div>
+  ),
+}));
+vi.mock("./components/window_frame/window_frame", () => ({
+  default: ({ config, windowState, onFocus }) => (
+    <section
+      data-testid={`window-${config.id}`}
+      data-active={windowState.isActive ? "true" : "false"}
+      onMouseDown={onFocus}
+    >
+      {config.label}
+    </section>
+  ),
+}));
+vi.mock("./utils/portfolioLogger", () => ({ addPortfolioLog: vi.fn() }));
 
 describe("App window entry points", () => {
   beforeEach(() => {

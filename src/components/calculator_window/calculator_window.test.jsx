@@ -22,7 +22,7 @@ describe("CalculatorWindow", () => {
       configurable: true,
       value: originalClipboard,
     });
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   test("highlights the selected operator until the calculation is resolved", () => {
@@ -97,7 +97,7 @@ describe("CalculatorWindow", () => {
   });
 
   test("copies the raw numerical result through the Clipboard API", async () => {
-    const writeText = jest.fn().mockResolvedValue(undefined);
+    const writeText = vi.fn().mockResolvedValue(undefined);
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
       value: { writeText },
@@ -113,7 +113,7 @@ describe("CalculatorWindow", () => {
   });
 
   test("keeps one stable keyboard listener and mirrors physical key presses", () => {
-    const addEventListener = jest.spyOn(window, "addEventListener");
+    const addEventListener = vi.spyOn(window, "addEventListener");
     render(<CalculatorWindow isActive isVisible />);
     expect(
       addEventListener.mock.calls.filter(([eventName]) => eventName === "keydown")

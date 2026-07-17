@@ -9,20 +9,20 @@ import FlappyBird, {
 } from "./flappy_bird";
 
 const createCanvasContext = () => ({
-  arc: jest.fn(),
-  beginPath: jest.fn(),
-  closePath: jest.fn(),
-  createLinearGradient: jest.fn(() => ({ addColorStop: jest.fn() })),
-  ellipse: jest.fn(),
-  fill: jest.fn(),
-  fillRect: jest.fn(),
-  fillText: jest.fn(),
-  lineTo: jest.fn(),
-  moveTo: jest.fn(),
-  restore: jest.fn(),
-  rotate: jest.fn(),
-  save: jest.fn(),
-  translate: jest.fn(),
+  arc: vi.fn(),
+  beginPath: vi.fn(),
+  closePath: vi.fn(),
+  createLinearGradient: vi.fn(() => ({ addColorStop: vi.fn() })),
+  ellipse: vi.fn(),
+  fill: vi.fn(),
+  fillRect: vi.fn(),
+  fillText: vi.fn(),
+  lineTo: vi.fn(),
+  moveTo: vi.fn(),
+  restore: vi.fn(),
+  rotate: vi.fn(),
+  save: vi.fn(),
+  translate: vi.fn(),
 });
 
 describe("Flappy Bird", () => {
@@ -32,13 +32,13 @@ describe("Flappy Bird", () => {
 
   beforeEach(() => {
     localStorage.clear();
-    getContextSpy = jest
+    getContextSpy = vi
       .spyOn(HTMLCanvasElement.prototype, "getContext")
       .mockReturnValue(createCanvasContext());
     originalRequestAnimationFrame = window.requestAnimationFrame;
     originalCancelAnimationFrame = window.cancelAnimationFrame;
-    window.requestAnimationFrame = jest.fn(() => 1);
-    window.cancelAnimationFrame = jest.fn();
+    window.requestAnimationFrame = vi.fn(() => 1);
+    window.cancelAnimationFrame = vi.fn();
   });
 
   afterEach(() => {

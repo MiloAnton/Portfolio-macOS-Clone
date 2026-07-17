@@ -7,20 +7,20 @@ import DoodleJump, {
 } from "./doodle_jump";
 
 const createCanvasContext = () => ({
-  arc: jest.fn(),
-  beginPath: jest.fn(),
-  closePath: jest.fn(),
-  ellipse: jest.fn(),
-  fill: jest.fn(),
-  fillRect: jest.fn(),
-  fillText: jest.fn(),
-  lineTo: jest.fn(),
-  moveTo: jest.fn(),
-  restore: jest.fn(),
-  save: jest.fn(),
-  scale: jest.fn(),
-  stroke: jest.fn(),
-  translate: jest.fn(),
+  arc: vi.fn(),
+  beginPath: vi.fn(),
+  closePath: vi.fn(),
+  ellipse: vi.fn(),
+  fill: vi.fn(),
+  fillRect: vi.fn(),
+  fillText: vi.fn(),
+  lineTo: vi.fn(),
+  moveTo: vi.fn(),
+  restore: vi.fn(),
+  save: vi.fn(),
+  scale: vi.fn(),
+  stroke: vi.fn(),
+  translate: vi.fn(),
 });
 
 describe("Doodle Jump", () => {
@@ -30,14 +30,14 @@ describe("Doodle Jump", () => {
   let originalDeviceOrientationEvent;
 
   beforeEach(() => {
-    getContextSpy = jest
+    getContextSpy = vi
       .spyOn(HTMLCanvasElement.prototype, "getContext")
       .mockReturnValue(createCanvasContext());
     originalRequestAnimationFrame = window.requestAnimationFrame;
     originalCancelAnimationFrame = window.cancelAnimationFrame;
     originalDeviceOrientationEvent = window.DeviceOrientationEvent;
-    window.requestAnimationFrame = jest.fn(() => 1);
-    window.cancelAnimationFrame = jest.fn();
+    window.requestAnimationFrame = vi.fn(() => 1);
+    window.cancelAnimationFrame = vi.fn();
   });
 
   afterEach(() => {
@@ -99,7 +99,7 @@ describe("Doodle Jump", () => {
   });
 
   test("offers touch buttons and enables tilt after mobile permission", async () => {
-    const requestPermission = jest.fn().mockResolvedValue("granted");
+    const requestPermission = vi.fn().mockResolvedValue("granted");
     Object.defineProperty(window, "DeviceOrientationEvent", {
       configurable: true,
       value: { requestPermission },

@@ -7,14 +7,14 @@ import Snake, {
 } from "./snake";
 
 const createCanvasContext = () => ({
-  arc: jest.fn(),
-  beginPath: jest.fn(),
-  fill: jest.fn(),
-  fillRect: jest.fn(),
-  fillText: jest.fn(),
-  lineTo: jest.fn(),
-  moveTo: jest.fn(),
-  stroke: jest.fn(),
+  arc: vi.fn(),
+  beginPath: vi.fn(),
+  fill: vi.fn(),
+  fillRect: vi.fn(),
+  fillText: vi.fn(),
+  lineTo: vi.fn(),
+  moveTo: vi.fn(),
+  stroke: vi.fn(),
 });
 
 describe("Snake", () => {
@@ -24,21 +24,21 @@ describe("Snake", () => {
 
   beforeEach(() => {
     localStorage.clear();
-    jest.useFakeTimers();
-    getContextSpy = jest
+    vi.useFakeTimers();
+    getContextSpy = vi
       .spyOn(HTMLCanvasElement.prototype, "getContext")
       .mockReturnValue(createCanvasContext());
     originalRequestAnimationFrame = window.requestAnimationFrame;
     originalCancelAnimationFrame = window.cancelAnimationFrame;
-    window.requestAnimationFrame = jest.fn(() => 1);
-    window.cancelAnimationFrame = jest.fn();
+    window.requestAnimationFrame = vi.fn(() => 1);
+    window.cancelAnimationFrame = vi.fn();
   });
 
   afterEach(() => {
     getContextSpy.mockRestore();
     window.requestAnimationFrame = originalRequestAnimationFrame;
     window.cancelAnimationFrame = originalCancelAnimationFrame;
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("always creates food outside the snake", () => {
@@ -66,7 +66,7 @@ describe("Snake", () => {
     fireEvent.click(screen.getByRole("button", { name: "Jouer" }));
     expect(screen.getByText("Départ dans 3")).toBeInTheDocument();
 
-    act(() => jest.advanceTimersByTime(3000));
+    act(() => vi.advanceTimersByTime(3000));
     expect(screen.getByText("Niveau 1")).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /Pause/ }));

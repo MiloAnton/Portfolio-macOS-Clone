@@ -26,15 +26,15 @@ const seedNotes = (notes) => {
 
 describe("NotesWindow", () => {
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date("2026-07-16T12:00:00.000Z"));
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-16T12:00:00.000Z"));
     localStorage.clear();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   test("loads and migrates stored notes exactly once while rendering real buttons", () => {
@@ -45,7 +45,7 @@ describe("NotesWindow", () => {
         updatedAt: 100,
       },
     ]);
-    const getItem = jest.spyOn(Storage.prototype, "getItem");
+    const getItem = vi.spyOn(Storage.prototype, "getItem");
     render(<NotesWindow />);
 
     expect(
@@ -165,7 +165,7 @@ describe("NotesWindow", () => {
     seedNotes([
       createNote({ id: "a", title: "Un deux trois", body: "", updatedAt: 100 }),
     ]);
-    const setItem = jest.spyOn(Storage.prototype, "setItem");
+    const setItem = vi.spyOn(Storage.prototype, "setItem");
     render(<NotesWindow />);
     expect(screen.getByText("3 mots")).toBeInTheDocument();
     expect(screen.getByText("Enregistré")).toBeInTheDocument();
@@ -177,9 +177,9 @@ describe("NotesWindow", () => {
     expect(screen.getByText("Enregistrement…")).toBeInTheDocument();
     expect(setItem).not.toHaveBeenCalled();
 
-    act(() => jest.advanceTimersByTime(NOTES_SAVE_DELAY - 1));
+    act(() => vi.advanceTimersByTime(NOTES_SAVE_DELAY - 1));
     expect(setItem).not.toHaveBeenCalled();
-    act(() => jest.advanceTimersByTime(1));
+    act(() => vi.advanceTimersByTime(1));
     expect(setItem).toHaveBeenCalledTimes(1);
     expect(JSON.parse(setItem.mock.calls[0][1])[0].content).toBe(
       "Un deux trois quatre cinq"
@@ -189,7 +189,7 @@ describe("NotesWindow", () => {
 
   test("flushes the latest pending note when the window unmounts", () => {
     seedNotes([createNote({ id: "a", title: "Brouillon", updatedAt: 100 })]);
-    const setItem = jest.spyOn(Storage.prototype, "setItem");
+    const setItem = vi.spyOn(Storage.prototype, "setItem");
     const { unmount } = render(<NotesWindow />);
     fireEvent.change(screen.getByRole("textbox", { name: "Contenu de la note" }), {
       target: { value: "Texte final avant fermeture" },
@@ -221,7 +221,7 @@ describe("NotesWindow", () => {
     expect(
       screen.getByRole("button", { name: "Couleur bleue" })
     ).toHaveAttribute("aria-pressed", "true");
-    act(() => jest.advanceTimersByTime(NOTES_SAVE_DELAY));
+    act(() => vi.advanceTimersByTime(NOTES_SAVE_DELAY));
     expect(JSON.parse(localStorage.getItem(NOTES_STORAGE_KEY))[0].color).toBe(
       "blue"
     );

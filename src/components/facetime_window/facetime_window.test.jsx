@@ -6,17 +6,17 @@ const createTrack = (kind, deviceId = "") => ({
   enabled: true,
   getSettings: () => ({ deviceId }),
   kind,
-  stop: jest.fn(),
+  stop: vi.fn(),
 });
 
 const createStream = (initialTracks) => {
   const tracks = [...initialTracks];
   return {
-    addTrack: jest.fn((track) => tracks.push(track)),
+    addTrack: vi.fn((track) => tracks.push(track)),
     getAudioTracks: () => tracks.filter((track) => track.kind === "audio"),
     getTracks: () => tracks,
     getVideoTracks: () => tracks.filter((track) => track.kind === "video"),
-    removeTrack: jest.fn((track) => {
+    removeTrack: vi.fn((track) => {
       const index = tracks.indexOf(track);
       if (index >= 0) tracks.splice(index, 1);
     }),
@@ -27,7 +27,7 @@ describe("FacetimeWindow", () => {
   let originalMediaDevices;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     originalMediaDevices = navigator.mediaDevices;
   });
 
@@ -36,12 +36,12 @@ describe("FacetimeWindow", () => {
       configurable: true,
       value: originalMediaDevices,
     });
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("waits for consent, shows a preview and resets the timer for each call", async () => {
-    const closeWindow = jest.fn();
-    const getUserMedia = jest.fn((constraints) => {
+    const closeWindow = vi.fn();
+    const getUserMedia = vi.fn((constraints) => {
       if (constraints.video) {
         return Promise.resolve(createStream([createTrack("video", "camera-1")]));
       }
@@ -50,7 +50,7 @@ describe("FacetimeWindow", () => {
     Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
       value: {
-        enumerateDevices: jest.fn().mockResolvedValue([]),
+        enumerateDevices: vi.fn().mockResolvedValue([]),
         getUserMedia,
       },
     });
@@ -73,7 +73,7 @@ describe("FacetimeWindow", () => {
       audio: true,
     });
     expect(screen.getByText("00:00")).toBeInTheDocument();
-    act(() => jest.advanceTimersByTime(2000));
+    act(() => vi.advanceTimersByTime(2000));
     expect(screen.getByText("00:02")).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Raccrocher" }));
@@ -87,22 +87,22 @@ describe("FacetimeWindow", () => {
   test("stops every media track when the window is minimized", async () => {
     const videoTrack = createTrack("video", "camera-1");
     const stream = createStream([videoTrack]);
-    const getUserMedia = jest.fn().mockResolvedValue(stream);
+    const getUserMedia = vi.fn().mockResolvedValue(stream);
     Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
       value: {
-        enumerateDevices: jest.fn().mockResolvedValue([]),
+        enumerateDevices: vi.fn().mockResolvedValue([]),
         getUserMedia,
       },
     });
 
     const { rerender } = render(
-      <FacetimeWindow isVisible closeWindow={jest.fn()} />
+      <FacetimeWindow isVisible closeWindow={vi.fn()} />
     );
     fireEvent.click(screen.getByRole("button", { name: /Préparer l’appel/ }));
     await screen.findByRole("button", { name: "Rejoindre" });
 
-    rerender(<FacetimeWindow isVisible={false} closeWindow={jest.fn()} />);
+    rerender(<FacetimeWindow isVisible={false} closeWindow={vi.fn()} />);
     expect(videoTrack.stop).toHaveBeenCalledTimes(1);
     expect(screen.getByRole("button", { name: /Préparer l’appel/ })).toBeInTheDocument();
     expect(getUserMedia).toHaveBeenCalledTimes(1);
@@ -113,20 +113,20 @@ describe("FacetimeWindow", () => {
     const audioTrack = createTrack("audio");
     const videoStream = createStream([videoTrack]);
     const audioStream = createStream([audioTrack]);
-    const getUserMedia = jest
+    const getUserMedia = vi
       .fn()
       .mockResolvedValueOnce(videoStream)
       .mockResolvedValueOnce(audioStream);
     Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
       value: {
-        enumerateDevices: jest.fn().mockResolvedValue([]),
+        enumerateDevices: vi.fn().mockResolvedValue([]),
         getUserMedia,
       },
     });
 
     const { container } = render(
-      <FacetimeWindow isVisible closeWindow={jest.fn()} />
+      <FacetimeWindow isVisible closeWindow={vi.fn()} />
     );
     fireEvent.click(screen.getByRole("button", { name: /Préparer l’appel/ }));
     await screen.findByRole("button", { name: "Rejoindre" });
@@ -148,7 +148,7 @@ describe("FacetimeWindow", () => {
     expect(classifyMediaError({ name: "NotFoundError" })).toBe("no-camera");
     expect(classifyMediaError({ name: "NotReadableError" })).toBe("technical");
 
-    const getUserMedia = jest
+    const getUserMedia = vi
       .fn()
       .mockRejectedValueOnce({ name: "NotAllowedError" })
       .mockRejectedValueOnce({ name: "NotFoundError" })
@@ -158,7 +158,7 @@ describe("FacetimeWindow", () => {
       value: { getUserMedia },
     });
 
-    render(<FacetimeWindow isVisible closeWindow={jest.fn()} />);
+    render(<FacetimeWindow isVisible closeWindow={vi.fn()} />);
     fireEvent.click(screen.getByRole("button", { name: /Préparer l’appel/ }));
     expect(await screen.findByText("Accès à la caméra refusé")).toBeInTheDocument();
 
@@ -174,14 +174,14 @@ describe("FacetimeWindow", () => {
     const secondTrack = createTrack("video", "camera-2");
     const firstStream = createStream([firstTrack]);
     const secondStream = createStream([secondTrack]);
-    const getUserMedia = jest
+    const getUserMedia = vi
       .fn()
       .mockResolvedValueOnce(firstStream)
       .mockResolvedValueOnce(secondStream);
     Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
       value: {
-        enumerateDevices: jest.fn().mockResolvedValue([
+        enumerateDevices: vi.fn().mockResolvedValue([
           { kind: "videoinput", deviceId: "camera-1", label: "FaceTime HD" },
           { kind: "videoinput", deviceId: "camera-2", label: "Caméra USB" },
         ]),
@@ -189,7 +189,7 @@ describe("FacetimeWindow", () => {
       },
     });
 
-    render(<FacetimeWindow isVisible closeWindow={jest.fn()} />);
+    render(<FacetimeWindow isVisible closeWindow={vi.fn()} />);
     fireEvent.click(screen.getByRole("button", { name: /Préparer l’appel/ }));
     const cameraSelect = await screen.findByRole("combobox", {
       name: "Choisir la caméra",
@@ -212,11 +212,11 @@ describe("FacetimeWindow", () => {
     });
     Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
-      value: { getUserMedia: jest.fn().mockReturnValue(pendingCamera) },
+      value: { getUserMedia: vi.fn().mockReturnValue(pendingCamera) },
     });
 
     const { unmount } = render(
-      <FacetimeWindow isVisible closeWindow={jest.fn()} />
+      <FacetimeWindow isVisible closeWindow={vi.fn()} />
     );
     fireEvent.click(screen.getByRole("button", { name: /Préparer l’appel/ }));
     unmount();
@@ -235,20 +235,20 @@ describe("FacetimeWindow", () => {
     const pendingMicrophone = new Promise((resolve) => {
       resolveMicrophone = resolve;
     });
-    const getUserMedia = jest
+    const getUserMedia = vi
       .fn()
       .mockResolvedValueOnce(videoStream)
       .mockReturnValueOnce(pendingMicrophone);
     Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
       value: {
-        enumerateDevices: jest.fn().mockResolvedValue([]),
+        enumerateDevices: vi.fn().mockResolvedValue([]),
         getUserMedia,
       },
     });
 
     const { unmount } = render(
-      <FacetimeWindow isVisible closeWindow={jest.fn()} />
+      <FacetimeWindow isVisible closeWindow={vi.fn()} />
     );
     fireEvent.click(screen.getByRole("button", { name: /Préparer l’appel/ }));
     await screen.findByRole("button", { name: "Rejoindre" });

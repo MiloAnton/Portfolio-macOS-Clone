@@ -11,13 +11,13 @@ describe("Simon", () => {
   let randomSpy;
 
   beforeEach(() => {
-    jest.useFakeTimers();
-    randomSpy = jest.spyOn(Math, "random").mockReturnValue(0);
+    vi.useFakeTimers();
+    randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
   });
 
   afterEach(() => {
     randomSpy.mockRestore();
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("accelerates demonstrations progressively while keeping a readable floor", () => {
@@ -29,23 +29,23 @@ describe("Simon", () => {
   });
 
   test("centralizes timeouts and cancels every pending callback", () => {
-    const firstCallback = jest.fn();
-    const secondCallback = jest.fn();
+    const firstCallback = vi.fn();
+    const secondCallback = vi.fn();
     const manager = createTimeoutManager();
     manager.schedule(firstCallback, 100);
     manager.schedule(secondCallback, 200);
 
     manager.clearAll();
-    act(() => jest.advanceTimersByTime(300));
+    act(() => vi.advanceTimersByTime(300));
 
-    expect(jest.getTimerCount()).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
     expect(firstCallback).not.toHaveBeenCalled();
     expect(secondCallback).not.toHaveBeenCalled();
   });
 
   test("plays a distinct Web Audio frequency for every color", () => {
     const oscillators = [];
-    const close = jest.fn();
+    const close = vi.fn();
 
     class MockAudioContext {
       constructor() {
@@ -56,10 +56,10 @@ describe("Simon", () => {
 
       createOscillator() {
         const oscillator = {
-          connect: jest.fn(),
-          frequency: { setValueAtTime: jest.fn() },
-          start: jest.fn(),
-          stop: jest.fn(),
+          connect: vi.fn(),
+          frequency: { setValueAtTime: vi.fn() },
+          start: vi.fn(),
+          stop: vi.fn(),
         };
         oscillators.push(oscillator);
         return oscillator;
@@ -67,10 +67,10 @@ describe("Simon", () => {
 
       createGain() {
         return {
-          connect: jest.fn(),
+          connect: vi.fn(),
           gain: {
-            exponentialRampToValueAtTime: jest.fn(),
-            setValueAtTime: jest.fn(),
+            exponentialRampToValueAtTime: vi.fn(),
+            setValueAtTime: vi.fn(),
           },
         };
       }
@@ -107,7 +107,7 @@ describe("Simon", () => {
     expect(redButton).toBeDisabled();
     expect(screen.getByText("Observe…")).toBeInTheDocument();
 
-    act(() => jest.advanceTimersByTime(900));
+    act(() => vi.advanceTimersByTime(900));
     expect(greenButton).toBeEnabled();
     expect(redButton).toBeEnabled();
     expect(screen.getByText("À toi")).toBeInTheDocument();
@@ -117,27 +117,27 @@ describe("Simon", () => {
     render(<Simon />);
     fireEvent.click(screen.getByRole("button", { name: "Strict" }));
     fireEvent.click(screen.getByRole("button", { name: "Jouer" }));
-    act(() => jest.advanceTimersByTime(900));
+    act(() => vi.advanceTimersByTime(900));
 
     fireEvent.click(screen.getByRole("button", { name: "green" }));
     expect(screen.getByText(/Score/).parentElement).toHaveTextContent("1");
 
-    act(() => jest.advanceTimersByTime(600));
-    act(() => jest.advanceTimersByTime(1400));
+    act(() => vi.advanceTimersByTime(600));
+    act(() => vi.advanceTimersByTime(1400));
     fireEvent.click(screen.getByRole("button", { name: "red" }));
 
     expect(screen.getByText("Raté — retour au début")).toBeInTheDocument();
     expect(screen.getByText(/Score/).parentElement).toHaveTextContent("0");
-    act(() => jest.advanceTimersByTime(850));
+    act(() => vi.advanceTimersByTime(850));
     expect(screen.getByText("Observe…")).toBeInTheDocument();
   });
 
   test("cleans every pending sequence timer when the game is closed", () => {
     const { unmount } = render(<Simon />);
     fireEvent.click(screen.getByRole("button", { name: "Jouer" }));
-    expect(jest.getTimerCount()).toBeGreaterThan(0);
+    expect(vi.getTimerCount()).toBeGreaterThan(0);
 
     unmount();
-    expect(jest.getTimerCount()).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

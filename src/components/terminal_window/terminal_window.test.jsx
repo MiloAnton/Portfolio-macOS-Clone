@@ -23,8 +23,8 @@ describe("TerminalWindow", () => {
   });
 
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   test("exposes multiple command and argument completion candidates", () => {
@@ -116,7 +116,7 @@ describe("TerminalWindow", () => {
   });
 
   test("opens the Projects application from the open command", () => {
-    const openWindow = jest.fn();
+    const openWindow = vi.fn();
     render(<TerminalWindow openWindow={openWindow} />);
 
     runCommand("open projets");
@@ -126,7 +126,7 @@ describe("TerminalWindow", () => {
   });
 
   test("downloads the real CV from open cv", () => {
-    const clickSpy = jest
+    const clickSpy = vi
       .spyOn(HTMLAnchorElement.prototype, "click")
       .mockImplementation(() => {});
     render(<TerminalWindow />);
@@ -177,29 +177,32 @@ describe("TerminalWindow", () => {
   });
 
   test("Ctrl+C cancels every pending progressive output timer", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     render(<TerminalWindow />);
     const input = runCommand("sudo rm -rf /");
 
-    act(() => jest.advanceTimersByTime(400));
+    act(() => vi.advanceTimersByTime(400));
     expect(screen.getByText("Suppression de /System… ok")).toBeInTheDocument();
 
     fireEvent.keyDown(input, { key: "c", ctrlKey: true });
-    act(() => jest.runAllTimers());
+    act(() => vi.runAllTimers());
 
     expect(screen.getByText("^C")).toBeInTheDocument();
     expect(screen.queryByText("Suppression de /Users… ok")).not.toBeInTheDocument();
     expect(screen.queryByText(/Rassurez-vous/)).not.toBeInTheDocument();
-    expect(jest.getTimerCount()).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
   });
 
   test("clears centralized timers when Terminal unmounts", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { unmount } = render(<TerminalWindow />);
     runCommand("sudo rm -rf /");
 
-    expect(jest.getTimerCount()).toBeGreaterThan(0);
+    expect(vi.getTimerCount()).toBeGreaterThan(0);
     unmount();
-    expect(jest.getTimerCount()).toBe(0);
+    // Purge les setTimeout(0) internes de jsdom (MessageChannel de React) :
+    // seuls les timers applicatifs, tous > 0 ms, resteraient comptés.
+    act(() => vi.advanceTimersByTime(0));
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

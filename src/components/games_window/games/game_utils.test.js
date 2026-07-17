@@ -25,13 +25,13 @@ describe("game utils", () => {
   });
 
   test("press handlers capture the pointer and release on every exit path", () => {
-    const onPress = jest.fn();
-    const onRelease = jest.fn();
+    const onPress = vi.fn();
+    const onRelease = vi.fn();
     const handlers = createPressHandlers(onPress, onRelease);
     const event = {
-      preventDefault: jest.fn(),
+      preventDefault: vi.fn(),
       pointerId: 1,
-      currentTarget: { setPointerCapture: jest.fn() },
+      currentTarget: { setPointerCapture: vi.fn() },
     };
 
     handlers.onPointerDown(event);

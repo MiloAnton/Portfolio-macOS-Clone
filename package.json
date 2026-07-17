@@ -1,29 +1,47 @@
 {
   "name": "portfolio",
-  "version": "0.13.4",
+  "version": "0.14.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
     "react-resizable": "^3.0.5",
-    "react-scripts": "5.0.1",
-    "sass": "^1.58.3",
-    "web-vitals": "^2.1.4"
+    "sass": "^1.58.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .js,.jsx"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "src/setupTests.js"
+        ],
+        "globals": {
+          "describe": "readonly",
+          "it": "readonly",
+          "test": "readonly",
+          "expect": "readonly",
+          "beforeEach": "readonly",
+          "afterEach": "readonly",
+          "beforeAll": "readonly",
+          "afterAll": "readonly",
+          "vi": "readonly",
+          "globalThis": "readonly"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -39,6 +57,15 @@
     ]
   },
   "devDependencies": {
-    "@klarr-agency/circum-icons-react": "^2.0.1"
+    "@klarr-agency/circum-icons-react": "^2.0.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@vitejs/plugin-react": "^6.0.3",
+    "autoprefixer": "^10.5.4",
+    "eslint": "^8.57.1",
+    "eslint-config-react-app": "^7.0.1",
+    "jsdom": "^29.1.1",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
   }
 }

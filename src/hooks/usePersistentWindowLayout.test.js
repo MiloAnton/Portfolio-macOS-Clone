@@ -34,7 +34,7 @@ describe("window layout", () => {
       callback();
       return 1;
     };
-    window.cancelAnimationFrame = jest.fn();
+    window.cancelAnimationFrame = vi.fn();
   });
 
   afterEach(() => {

@@ -7,15 +7,15 @@ import Pong, {
 } from "./pong";
 
 const createCanvasContext = () => ({
-  arc: jest.fn(),
-  beginPath: jest.fn(),
-  fill: jest.fn(),
-  fillRect: jest.fn(),
-  fillText: jest.fn(),
-  lineTo: jest.fn(),
-  moveTo: jest.fn(),
-  setLineDash: jest.fn(),
-  stroke: jest.fn(),
+  arc: vi.fn(),
+  beginPath: vi.fn(),
+  fill: vi.fn(),
+  fillRect: vi.fn(),
+  fillText: vi.fn(),
+  lineTo: vi.fn(),
+  moveTo: vi.fn(),
+  setLineDash: vi.fn(),
+  stroke: vi.fn(),
 });
 
 describe("Pong service countdown", () => {
@@ -25,22 +25,22 @@ describe("Pong service countdown", () => {
   let originalCancelAnimationFrame;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     context = createCanvasContext();
-    getContextSpy = jest
+    getContextSpy = vi
       .spyOn(HTMLCanvasElement.prototype, "getContext")
       .mockReturnValue(context);
     originalRequestAnimationFrame = window.requestAnimationFrame;
     originalCancelAnimationFrame = window.cancelAnimationFrame;
-    window.requestAnimationFrame = jest.fn(() => 1);
-    window.cancelAnimationFrame = jest.fn();
+    window.requestAnimationFrame = vi.fn(() => 1);
+    window.cancelAnimationFrame = vi.fn();
   });
 
   afterEach(() => {
     getContextSpy.mockRestore();
     window.requestAnimationFrame = originalRequestAnimationFrame;
     window.cancelAnimationFrame = originalCancelAnimationFrame;
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("counts down from three before starting the service", () => {
@@ -50,13 +50,13 @@ describe("Pong service countdown", () => {
     expect(screen.getByText("Service dans 3")).toBeInTheDocument();
     expect(context.fillText).toHaveBeenCalledWith("3", 320, 230);
 
-    act(() => jest.advanceTimersByTime(1000));
+    act(() => vi.advanceTimersByTime(1000));
     expect(screen.getByText("Service dans 2")).toBeInTheDocument();
 
-    act(() => jest.advanceTimersByTime(1000));
+    act(() => vi.advanceTimersByTime(1000));
     expect(screen.getByText("Service dans 1")).toBeInTheDocument();
 
-    act(() => jest.advanceTimersByTime(1000));
+    act(() => vi.advanceTimersByTime(1000));
     expect(screen.getByText("Premier à 5")).toBeInTheDocument();
     expect(window.requestAnimationFrame).toHaveBeenCalled();
   });
@@ -65,7 +65,7 @@ describe("Pong service countdown", () => {
     render(<Pong isActive />);
     fireEvent.click(screen.getByRole("button", { name: "Jouer" }));
 
-    act(() => jest.advanceTimersByTime(2000));
+    act(() => vi.advanceTimersByTime(2000));
     expect(screen.getByText("Service dans 1")).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Recommencer" }));
