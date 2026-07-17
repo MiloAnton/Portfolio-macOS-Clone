@@ -23,6 +23,7 @@ Are used in this project :
 - Migrated from Create React App to Vite + Vitest : builds in under a second, maintained toolchain, same 154 tests
 - Standalone ESLint, autoprefixer kept for CSS compatibility
 - GitHub Actions CI : lint, tests and build on every push
+- Playwright end-to-end tests : desktop loading, Dock open/close, window dragging, Terminal commands and Minesweeper on the real production build
 
 ### 0.13.4
 - Bug fixes : keyboard-accessible Dock, first-click-safe Minesweeper, default windows open when resizing to desktop width, `cat` shows project cards in the Terminal's projets folder

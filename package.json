@@ -16,6 +16,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "lint": "eslint src --ext .js,.jsx"
   },
   "eslintConfig": {
@@ -58,6 +59,7 @@
   },
   "devDependencies": {
     "@klarr-agency/circum-icons-react": "^2.0.1",
+    "@playwright/test": "^1.61.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@vitejs/plugin-react": "^6.0.3",
