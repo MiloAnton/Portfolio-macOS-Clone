@@ -57,7 +57,7 @@
     .resume-nav-title {
       display: block;
       margin: 1px 7px 9px;
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.55);
       font-size: 8px;
       font-weight: 700;
       letter-spacing: 0.09em;
@@ -401,7 +401,7 @@
 
     p {
       display: inline;
-      color: rgba(255, 255, 255, 0.43);
+      color: rgba(255, 255, 255, 0.55);
       font-size: 11px;
 
       & + p::before {

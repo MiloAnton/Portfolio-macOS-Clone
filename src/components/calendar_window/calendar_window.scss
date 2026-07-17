@@ -146,7 +146,7 @@ $event-colors: (
   grid-template-columns: repeat(7, 1fr);
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.55);
   background: #222225;
   font-size: 8px;
   font-weight: 650;
@@ -191,7 +191,7 @@ $event-colors: (
   }
 
   &.outside-month {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.55);
     background: #1d1d1f;
 
     .event-pill {
@@ -225,7 +225,7 @@ $event-colors: (
 
   small {
     padding-left: 4px;
-    color: rgba(255, 255, 255, 0.42);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 7px;
   }
 }
@@ -291,7 +291,7 @@ $event-colors: (
   p,
   span {
     margin: 0;
-    color: rgba(255, 255, 255, 0.43);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 9px;
     text-transform: capitalize;
   }
@@ -349,7 +349,7 @@ $event-colors: (
   padding: 19px 8px;
   border: 1px dashed rgba(255, 255, 255, 0.09);
   border-radius: 9px;
-  color: rgba(255, 255, 255, 0.34);
+  color: rgba(255, 255, 255, 0.55);
   text-align: center;
 
   span {
@@ -407,7 +407,7 @@ $event-colors: (
     display: -webkit-box;
     margin-top: 4px;
     overflow: hidden;
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 8px;
     line-height: 1.35;
     -webkit-box-orient: vertical;
@@ -434,7 +434,7 @@ $event-colors: (
     padding: 0;
     border: 0;
     border-radius: 5px;
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(255, 255, 255, 0.55);
     background: transparent;
     cursor: pointer;
 
@@ -456,7 +456,7 @@ $event-colors: (
 
 .storage-note {
   margin: 10px 2px 0;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 7px;
   text-align: center;
 }
@@ -515,7 +515,7 @@ $event-colors: (
   span {
     display: block;
     margin-top: 3px;
-    color: rgba(255, 255, 255, 0.34);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 8px;
     text-transform: capitalize;
   }
@@ -641,7 +641,7 @@ $event-colors: (
 
   p {
     margin: 3px 0 0;
-    color: rgba(255, 255, 255, 0.34);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 8px;
   }
 
@@ -678,7 +678,7 @@ $event-colors: (
   text-align: center;
 
   span {
-    color: rgba(255, 255, 255, 0.44);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 7px;
     font-weight: 700;
     text-transform: uppercase;
@@ -717,7 +717,7 @@ $event-colors: (
 
 .schedule-gutter {
   padding-top: 11px;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 7px;
   text-transform: uppercase;
 }
@@ -772,7 +772,7 @@ $event-colors: (
 
     small {
       margin-top: 2px;
-      color: rgba(255, 255, 255, 0.36);
+      color: rgba(255, 255, 255, 0.55);
       font-size: 7px;
     }
   }
@@ -799,7 +799,7 @@ $event-colors: (
   gap: 7px;
   border: 1px dashed rgba(255, 255, 255, 0.09);
   border-radius: 10px;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.55);
   background: rgba(255, 255, 255, 0.018);
   font-size: 8px;
   cursor: pointer;
@@ -863,7 +863,7 @@ $event-colors: (
       gap: 3px;
 
       span {
-        color: rgba(255, 255, 255, 0.37);
+        color: rgba(255, 255, 255, 0.55);
         font-size: 7px;
         font-weight: 650;
         text-transform: uppercase;
@@ -886,7 +886,7 @@ $event-colors: (
       display: grid;
       place-items: center;
       border-radius: 5px;
-      color: rgba(255, 255, 255, 0.25);
+      color: rgba(255, 255, 255, 0.55);
 
       &:hover {
         color: #62affb;
@@ -945,7 +945,7 @@ $event-colors: (
 
 .week-empty {
   padding-top: 8px;
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 7px;
   text-align: center;
 }
@@ -983,7 +983,7 @@ $event-colors: (
   }
 
   > strong {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 9px;
     font-weight: 500;
   }
@@ -1047,7 +1047,7 @@ $event-colors: (
   }
 
   span {
-    color: rgba(255, 255, 255, 0.42);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 8px;
     text-transform: uppercase;
   }
@@ -1070,14 +1070,14 @@ $event-colors: (
 
   span {
     margin-top: 2px;
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 8px;
   }
 }
 
 .agenda-empty {
   padding: 50px 20px;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 10px;
   text-align: center;
 }

@@ -5,6 +5,21 @@ import Dock from "./dock";
 const getDockItem = (label) => screen.getByText(label).closest(".dock-item");
 
 describe("Dock", () => {
+  test("moves focus between apps with the arrow keys", () => {
+    render(<Dock windows={{}} onToggle={vi.fn()} />);
+    const buttons = screen.getAllByRole("button");
+
+    buttons[0].focus();
+    fireEvent.keyDown(buttons[0], { key: "ArrowRight" });
+    expect(buttons[1]).toHaveFocus();
+
+    fireEvent.keyDown(buttons[1], { key: "ArrowLeft" });
+    expect(buttons[0]).toHaveFocus();
+
+    fireEvent.keyDown(buttons[0], { key: "ArrowLeft" });
+    expect(buttons.at(-1)).toHaveFocus();
+  });
+
   test("derives magnification classes from React hover state", () => {
     render(<Dock windows={{}} onToggle={vi.fn()} />);
 

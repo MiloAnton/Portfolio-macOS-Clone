@@ -19,9 +19,25 @@ export default function Dock(props) {
     .toLocaleDateString("fr-FR", { month: "short" })
     .replace(".", "")
     .toUpperCase();
+  // Navigation clavier façon toolbar : ← → déplacent le focus entre les apps.
+  const handleKeyDown = (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    const buttons = [...event.currentTarget.querySelectorAll("button")];
+    const index = buttons.indexOf(document.activeElement);
+    if (index === -1) return;
+    const step = event.key === "ArrowRight" ? 1 : buttons.length - 1;
+    buttons[(index + step) % buttons.length].focus();
+  };
+
   return (
     <div className="dock">
-      <div className="dock-container">
+      <div
+        className="dock-container"
+        role="toolbar"
+        aria-label="Dock"
+        onKeyDown={handleKeyDown}
+      >
         {DOCK_WINDOWS.map((windowConfig, index) => (
           <button
             type="button"

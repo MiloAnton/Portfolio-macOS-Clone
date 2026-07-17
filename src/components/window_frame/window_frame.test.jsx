@@ -53,6 +53,24 @@ describe("WindowFrame", () => {
     expect(handlers.onToggleFullscreen).toHaveBeenCalledTimes(2);
   });
 
+  test("exposes the window as a dialog and focuses it on open", () => {
+    render(
+      <WindowFrame
+        config={config}
+        windowState={windowState}
+        onFocus={vi.fn()}
+        onClose={vi.fn()}
+        onMinimize={vi.fn()}
+        onToggleFullscreen={vi.fn()}
+      >
+        <p>Contenu</p>
+      </WindowFrame>
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "Fenêtre de test" });
+    expect(dialog).toHaveFocus();
+  });
+
   test("uses viewport dimensions in fullscreen mode", () => {
     const { container } = render(
       <WindowFrame

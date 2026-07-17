@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Draggable from "react-draggable";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
@@ -18,6 +19,14 @@ export default function WindowFrame({
 }) {
   const { layout, viewport, bounds, handleDragStop, handleResizeStop } =
     usePersistentWindowLayout(config);
+  const contentRef = useRef(null);
+
+  // À l'ouverture, le focus entre dans la fenêtre pour les utilisateurs
+  // clavier — sauf si un champ interne (Terminal…) l'a déjà pris.
+  useEffect(() => {
+    const node = contentRef.current;
+    if (node && !node.contains(document.activeElement)) node.focus();
+  }, []);
   const isFullscreen = windowState.isFullscreen;
   const isResizable = config.resizable !== false && !isFullscreen;
   const position = isFullscreen
@@ -61,7 +70,13 @@ export default function WindowFrame({
         onResizeStop={handleResizeStop}
         onMouseDownCapture={onFocus}
       >
-        <div className="window-frame-content">
+        <div
+          className="window-frame-content"
+          role="dialog"
+          aria-label={config.title || config.label}
+          tabIndex={-1}
+          ref={contentRef}
+        >
           <MenuBar
             title={config.title || config.label}
             handleFullscreen={onToggleFullscreen}
