@@ -8,6 +8,8 @@ export default defineConfig({
     outDir: "build",
   },
   test: {
+    // Les .spec de e2e/ appartiennent à Playwright, pas à Vitest.
+    include: ["src/**/*.test.{js,jsx}"],
     environment: "jsdom",
     globals: true,
     setupFiles: "./src/setupTests.js",
