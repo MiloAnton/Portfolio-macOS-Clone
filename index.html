@@ -8,9 +8,20 @@
     <meta name="author" content="Milo Roche-Vandenbroucque">
     <meta
       name="description"
-      content="Portfolio de Milo Roche-Vandenbroucque ! Découvrez ma stack technique, mes expériences et mes diplômes !"
+      content="Portfolio interactif façon macOS (clone macOS en React) de Milo Roche-Vandenbroucque — entrepreneur, formateur et développeur full-stack. Stack technique, expériences, diplômes et mini-jeux."
     />
-    <meta name="keywords" content="milo, roche, developpeur, développeur, portfolio, site, vandenbroucque, concepteur, dsi">
+    <meta name="keywords" content="milo roche-vandenbroucque, portfolio, clone macos, macos clone, react, développeur full-stack, formateur, entrepreneur, leonis, dsi">
+    <link rel="canonical" href="https://miloroche.fr/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://miloroche.fr/" />
+    <meta property="og:title" content="Milo Roche-Vandenbroucque — Portfolio façon macOS" />
+    <meta property="og:description" content="Un portfolio interactif qui reproduit macOS dans le navigateur : fenêtres, Dock, Terminal et mini-jeux, développé en React." />
+    <meta property="og:image" content="https://miloroche.fr/logo512.png" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Milo Roche-Vandenbroucque — Portfolio façon macOS" />
+    <meta name="twitter:description" content="Un portfolio interactif qui reproduit macOS dans le navigateur : fenêtres, Dock, Terminal et mini-jeux, développé en React." />
+    <meta name="twitter:image" content="https://miloroche.fr/logo512.png" />
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Milo">
@@ -23,10 +34,50 @@
     <link rel="icon" sizes="512x512" href="/logo512.png">
     <link rel="apple-touch-icon" sizes="512x512" href="/logo512.png">
     <link rel="manifest" href="/manifest.json" />
-    <title>Milo Roche-Vandenbroucque</title>
+    <title>Milo Roche-Vandenbroucque — Portfolio façon macOS</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Milo Roche-Vandenbroucque",
+        "url": "https://miloroche.fr/",
+        "jobTitle": "Entrepreneur, formateur et développeur full-stack",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Leonis",
+          "url": "https://leonis-formation.fr"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/milo-roche-vandenbroucque/",
+          "https://github.com/MiloAnton"
+        ],
+        "knowsAbout": [
+          "React",
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "DevOps",
+          "Formation professionnelle"
+        ]
+      }
+    </script>
   </head>
   <body style="overflow: hidden;">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <h1>Milo Roche-Vandenbroucque — Portfolio façon macOS</h1>
+      <p>
+        Ce portfolio interactif reproduit macOS dans le navigateur (clone macOS
+        développé en React) : fenêtres, Dock, Terminal, mini-jeux. Il nécessite
+        JavaScript.
+      </p>
+      <p>
+        Entrepreneur, formateur et développeur full-stack, fondateur de
+        <a href="https://leonis-formation.fr">Leonis</a>. Me contacter :
+        <a href="https://www.linkedin.com/in/milo-roche-vandenbroucque/">LinkedIn</a>
+        · <a href="https://github.com/MiloAnton">GitHub</a>
+        · <a href="/CV-Milo-Roche-2026.pdf">Télécharger le CV (PDF)</a>
+      </p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
   </body>

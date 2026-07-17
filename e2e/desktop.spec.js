@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("charge le bureau avec les fenêtres par défaut", async ({ page }) => {
-  await expect(page).toHaveTitle("Milo Roche-Vandenbroucque");
+  await expect(page).toHaveTitle("Milo Roche-Vandenbroucque — Portfolio façon macOS");
   await expect(windowByTitle(page, "À propos de Milo")).toBeVisible();
   await expect(windowByTitle(page, "Terminal")).toBeVisible();
   await expect(
